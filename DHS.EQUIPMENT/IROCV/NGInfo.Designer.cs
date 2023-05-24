@@ -37,10 +37,15 @@ namespace DHS.EQUIPMENT
             this.radpnl_Title = new Telerik.WinControls.UI.RadPanel();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pBase = new System.Windows.Forms.Panel();
-            this.lblAgvPosition4S = new System.Windows.Forms.Label();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.radpnl_msa = new Telerik.WinControls.UI.RadPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.lblData4 = new System.Windows.Forms.Label();
+            this.lblData3 = new System.Windows.Forms.Label();
+            this.lblTitle2 = new System.Windows.Forms.Label();
+            this.lblData2 = new System.Windows.Forms.Label();
+            this.lblData1 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.BasePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_ManualMode)).BeginInit();
             this.radpanel_ManualMode.SuspendLayout();
@@ -152,7 +157,12 @@ namespace DHS.EQUIPMENT
             // 
             this.pBase.AutoSize = true;
             this.pBase.BackColor = System.Drawing.Color.Black;
-            this.pBase.Controls.Add(this.lblAgvPosition4S);
+            this.pBase.Controls.Add(this.lblData4);
+            this.pBase.Controls.Add(this.lblData3);
+            this.pBase.Controls.Add(this.lblTitle2);
+            this.pBase.Controls.Add(this.lblData2);
+            this.pBase.Controls.Add(this.lblData1);
+            this.pBase.Controls.Add(this.label1);
             this.pBase.Controls.Add(this.tbTime);
             this.pBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pBase.Location = new System.Drawing.Point(5, 5);
@@ -161,21 +171,6 @@ namespace DHS.EQUIPMENT
             this.pBase.Padding = new System.Windows.Forms.Padding(2);
             this.pBase.Size = new System.Drawing.Size(1258, 222);
             this.pBase.TabIndex = 11;
-            // 
-            // lblAgvPosition4S
-            // 
-            this.lblAgvPosition4S.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.lblAgvPosition4S.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAgvPosition4S.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAgvPosition4S.ForeColor = System.Drawing.Color.Black;
-            this.lblAgvPosition4S.Location = new System.Drawing.Point(7, 6);
-            this.lblAgvPosition4S.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.lblAgvPosition4S.Name = "lblAgvPosition4S";
-            this.lblAgvPosition4S.Size = new System.Drawing.Size(66, 43);
-            this.lblAgvPosition4S.TabIndex = 17;
-            this.lblAgvPosition4S.Text = "1";
-            this.lblAgvPosition4S.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblAgvPosition4S.Visible = false;
             // 
             // tbTime
             // 
@@ -215,6 +210,74 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Text = "initialize each channel : double click channel number";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // lblData4
+            // 
+            this.lblData4.BackColor = System.Drawing.Color.White;
+            this.lblData4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData4.Location = new System.Drawing.Point(2, 188);
+            this.lblData4.Name = "lblData4";
+            this.lblData4.Size = new System.Drawing.Size(64, 32);
+            this.lblData4.TabIndex = 73;
+            this.lblData4.Text = "NG";
+            this.lblData4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblData3
+            // 
+            this.lblData3.BackColor = System.Drawing.Color.White;
+            this.lblData3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData3.Location = new System.Drawing.Point(2, 155);
+            this.lblData3.Name = "lblData3";
+            this.lblData3.Size = new System.Drawing.Size(64, 32);
+            this.lblData3.TabIndex = 72;
+            this.lblData3.Text = "USE";
+            this.lblData3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTitle2
+            // 
+            this.lblTitle2.BackColor = System.Drawing.Color.DarkGray;
+            this.lblTitle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTitle2.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle2.Location = new System.Drawing.Point(2, 112);
+            this.lblTitle2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.lblTitle2.Name = "lblTitle2";
+            this.lblTitle2.Size = new System.Drawing.Size(64, 42);
+            this.lblTitle2.TabIndex = 71;
+            this.lblTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblData2
+            // 
+            this.lblData2.BackColor = System.Drawing.Color.White;
+            this.lblData2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData2.Location = new System.Drawing.Point(2, 78);
+            this.lblData2.Name = "lblData2";
+            this.lblData2.Size = new System.Drawing.Size(64, 32);
+            this.lblData2.TabIndex = 70;
+            this.lblData2.Text = "NG";
+            this.lblData2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblData1
+            // 
+            this.lblData1.BackColor = System.Drawing.Color.White;
+            this.lblData1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData1.Location = new System.Drawing.Point(2, 45);
+            this.lblData1.Name = "lblData1";
+            this.lblData1.Size = new System.Drawing.Size(64, 32);
+            this.lblData1.TabIndex = 69;
+            this.lblData1.Text = "USE";
+            this.lblData1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.DarkGray;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(2, 2);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 42);
+            this.label1.TabIndex = 68;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NGInfo
             // 
@@ -256,10 +319,15 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadPanel radpnl_Title;
         public System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Panel pBase;
-        private System.Windows.Forms.Label lblAgvPosition4S;
         private System.Windows.Forms.TextBox tbTime;
         private Telerik.WinControls.UI.RadPanel radpnl_msa;
         private System.Windows.Forms.Label lblTitle;
         private Telerik.WinControls.UI.RadPanel radPanel1;
+        private System.Windows.Forms.Label lblData4;
+        private System.Windows.Forms.Label lblData3;
+        private System.Windows.Forms.Label lblTitle2;
+        private System.Windows.Forms.Label lblData2;
+        private System.Windows.Forms.Label lblData1;
+        private System.Windows.Forms.Label label1;
     }
 }

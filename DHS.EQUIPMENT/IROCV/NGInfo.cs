@@ -18,6 +18,9 @@ namespace DHS.EQUIPMENT
         CEquipmentData _system;
 
         public int _iStage;
+        int LABEL_TITLE_LEFT = 64 + 3;
+        int LABEL_TITLE_TOP = 2;
+        int LABEL_TITLE_WIDTH = 72;
         int LABEL_TITLE_HEIGHT = 42;
         int LABEL_DATA_HEIGHT = 32;
         private Label[] lblNGInfo = new Label[_Constant.ChannelCount];
@@ -48,9 +51,9 @@ namespace DHS.EQUIPMENT
         #region Make Panel - ir/ocv values
         private void MakeLabelTitle()
         {
-            int nx = 3;
-            int ny = 2;
-            int width = 76;
+            int nx = LABEL_TITLE_LEFT;
+            int ny = LABEL_TITLE_TOP;
+            int width = LABEL_TITLE_WIDTH;
             int height = LABEL_TITLE_HEIGHT;
             for (int nIndex = 0; nIndex < 32;)
             {
@@ -64,15 +67,15 @@ namespace DHS.EQUIPMENT
                 if (nIndex % 16 == 0)
                 {
                     ny = ny + LABEL_TITLE_HEIGHT + (LABEL_DATA_HEIGHT * 2) + 4;
-                    nx = 3;
+                    nx = LABEL_TITLE_LEFT;
                 }
             }
         }
         private void MakeLabelData()
         {
-            int nx = 3;
+            int nx = LABEL_TITLE_LEFT;
             int ny = LABEL_TITLE_HEIGHT + 3;
-            int width = 76;
+            int width = LABEL_TITLE_WIDTH;
             int height = LABEL_DATA_HEIGHT;
             string label_text = string.Empty;
             for (int nIndex = 0; nIndex < _Constant.ChannelCount;)
@@ -91,7 +94,7 @@ namespace DHS.EQUIPMENT
                 if (nIndex % 16 == 0)
                 {
                     ny = ny + LABEL_TITLE_HEIGHT + (LABEL_DATA_HEIGHT * 2) + 4;
-                    nx = 3;
+                    nx = LABEL_TITLE_LEFT;
                 }
             }
         }

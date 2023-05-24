@@ -423,7 +423,7 @@ namespace DHS.EQUIPMENT
         {
             int nx = LABEL_TITLE_LEFT;
             int ny = LABEL_TITLE_TOP;
-            int width = 72;
+            int width = LABEL_TITLE_WIDTH;
             int height = LABEL_TITLE_HEIGHT;
             for (int nIndex = 0; nIndex < 32;)
             {
@@ -444,7 +444,7 @@ namespace DHS.EQUIPMENT
         {
             int nx = LABEL_TITLE_LEFT;
             int ny = LABEL_TITLE_HEIGHT + 3;
-            int width = 72;
+            int width = LABEL_TITLE_WIDTH;
             int height = LABEL_DATA_HEIGHT;
             string label_text = string.Empty;
             for (int nIndex = 0; nIndex < _Constant.ChannelCount;)
