@@ -1,0 +1,81 @@
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\IROCV.exe.config
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\IROCV.exe
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\IROCV.pdb
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\S7.Net.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\TelerikCommon.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\S7.Net.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.AssemblyReference.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.ConfigForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVConfig.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVMeasureInfoForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.MainForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.PLCINTERFACE.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.Properties.Resources.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.GenerateResource.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\IROCV.exe.licenses
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CoreCompileInputs.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CopyComplete
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\IROCV.exe
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\IROCV.pdb
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.NGInfo.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.ConfigForm.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVConfig.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVForm.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVMeasureInfoForm.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.NGInfo.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.MainForm.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.PLCINTERFACE.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.Properties.Resources.resources
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.GenerateResource.cache
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\IROCV.exe.licenses
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\IROCV.exe.config
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\IROCV.exe
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\IROCV.pdb
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\S7.Net.dll
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.dll
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.dll
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.dll
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\TelerikCommon.dll
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\S7.Net.xml
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.xml
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.xml
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.xml
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CoreCompileInputs.cache
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CopyComplete
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\IROCV.exe
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\IROCV.pdb
+D:\DHS.EQUIPMENT 20230523 nginfo 제목추가\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.AssemblyReference.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\IROCV.exe.config
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\IROCV.exe
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\IROCV.pdb
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\S7.Net.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\TelerikCommon.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\S7.Net.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.AssemblyReference.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.ConfigForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVConfig.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVMeasureInfoForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.NGInfo.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.MainForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.PLCINTERFACE.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.Properties.Resources.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.GenerateResource.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\IROCV.exe.licenses
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CoreCompileInputs.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CopyComplete
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\IROCV.exe
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT 20230523 004 config\DHS.EQUIPMENT\obj\Debug\IROCV.pdb
