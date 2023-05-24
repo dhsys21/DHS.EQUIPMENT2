@@ -29,14 +29,14 @@ namespace DHS.EQUIPMENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.radpanel_body = new Telerik.WinControls.UI.RadPanel();
             this.pnlOCVChart = new System.Windows.Forms.Panel();
             this.OCVCHART = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -48,9 +48,9 @@ namespace DHS.EQUIPMENT
             this.radBtnOK = new Telerik.WinControls.UI.RadButton();
             this.tbMeasureIR = new System.Windows.Forms.TextBox();
             this.lblChangeOffsetTitle = new System.Windows.Forms.Label();
-            this.lblMeasureColor = new System.Windows.Forms.Label();
-            this.lblStandardColor = new System.Windows.Forms.Label();
-            this.lblAgvPosition4S = new System.Windows.Forms.Label();
+            this.lblData2 = new System.Windows.Forms.Label();
+            this.lblData1 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.BasePanel = new System.Windows.Forms.Panel();
             this.radpanel_ManualMode = new Telerik.WinControls.UI.RadPanel();
@@ -177,6 +177,9 @@ namespace DHS.EQUIPMENT
             this.radbtn_IR = new Telerik.WinControls.UI.RadButton();
             this.lblManualTitle = new System.Windows.Forms.Label();
             this.radpnl_Title = new Telerik.WinControls.UI.RadPanel();
+            this.lblData4 = new System.Windows.Forms.Label();
+            this.lblData3 = new System.Windows.Forms.Label();
+            this.lblTitle2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_body)).BeginInit();
             this.radpanel_body.SuspendLayout();
             this.pnlOCVChart.SuspendLayout();
@@ -299,33 +302,33 @@ namespace DHS.EQUIPMENT
             // 
             this.OCVCHART.BorderlineColor = System.Drawing.Color.Black;
             this.OCVCHART.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.OCVCHART.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.OCVCHART.ChartAreas.Add(chartArea3);
             this.OCVCHART.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.OCVCHART.Legends.Add(legend1);
+            legend3.Name = "Legend1";
+            this.OCVCHART.Legends.Add(legend3);
             this.OCVCHART.Location = new System.Drawing.Point(5, 5);
             this.OCVCHART.Name = "OCVCHART";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.Red;
-            series1.IsVisibleInLegend = false;
-            series1.LabelBackColor = System.Drawing.Color.Red;
-            series1.LabelForeColor = System.Drawing.Color.Red;
-            series1.Legend = "Legend1";
-            series1.MarkerColor = System.Drawing.Color.Red;
-            series1.MarkerSize = 8;
-            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series1.Name = "lineSeries";
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.OCVCHART.Series.Add(series1);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Red;
+            series3.IsVisibleInLegend = false;
+            series3.LabelBackColor = System.Drawing.Color.Red;
+            series3.LabelForeColor = System.Drawing.Color.Red;
+            series3.Legend = "Legend1";
+            series3.MarkerColor = System.Drawing.Color.Red;
+            series3.MarkerSize = 8;
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series3.Name = "lineSeries";
+            series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.OCVCHART.Series.Add(series3);
             this.OCVCHART.Size = new System.Drawing.Size(1254, 225);
             this.OCVCHART.TabIndex = 0;
             this.OCVCHART.Text = "OCV Chart";
-            title1.Name = "Title1";
-            title1.Text = "OCV Chart";
-            this.OCVCHART.Titles.Add(title1);
+            title3.Name = "Title1";
+            title3.Text = "OCV Chart";
+            this.OCVCHART.Titles.Add(title3);
             // 
             // pnlIRChart
             // 
@@ -341,33 +344,33 @@ namespace DHS.EQUIPMENT
             // 
             this.IRCHART.BorderlineColor = System.Drawing.Color.Black;
             this.IRCHART.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea2.Name = "ChartArea1";
-            this.IRCHART.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.IRCHART.ChartAreas.Add(chartArea4);
             this.IRCHART.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.IRCHART.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.IRCHART.Legends.Add(legend4);
             this.IRCHART.Location = new System.Drawing.Point(5, 5);
             this.IRCHART.Name = "IRCHART";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Red;
-            series2.IsVisibleInLegend = false;
-            series2.LabelBackColor = System.Drawing.Color.Red;
-            series2.LabelForeColor = System.Drawing.Color.Red;
-            series2.Legend = "Legend1";
-            series2.MarkerColor = System.Drawing.Color.Red;
-            series2.MarkerSize = 8;
-            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series2.Name = "lineSeries";
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.IRCHART.Series.Add(series2);
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.Red;
+            series4.IsVisibleInLegend = false;
+            series4.LabelBackColor = System.Drawing.Color.Red;
+            series4.LabelForeColor = System.Drawing.Color.Red;
+            series4.Legend = "Legend1";
+            series4.MarkerColor = System.Drawing.Color.Red;
+            series4.MarkerSize = 8;
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series4.Name = "lineSeries";
+            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.IRCHART.Series.Add(series4);
             this.IRCHART.Size = new System.Drawing.Size(1254, 225);
             this.IRCHART.TabIndex = 1;
             this.IRCHART.Text = "IR Chart";
-            title2.Name = "Title1";
-            title2.Text = "IR Chart";
-            this.IRCHART.Titles.Add(title2);
+            title4.Name = "Title1";
+            title4.Text = "IR Chart";
+            this.IRCHART.Titles.Add(title4);
             // 
             // pnlData
             // 
@@ -383,10 +386,13 @@ namespace DHS.EQUIPMENT
             // 
             this.pBase.AutoSize = true;
             this.pBase.BackColor = System.Drawing.Color.Black;
+            this.pBase.Controls.Add(this.lblData4);
+            this.pBase.Controls.Add(this.lblData3);
+            this.pBase.Controls.Add(this.lblTitle2);
             this.pBase.Controls.Add(this.radPnlChangeOffset);
-            this.pBase.Controls.Add(this.lblMeasureColor);
-            this.pBase.Controls.Add(this.lblStandardColor);
-            this.pBase.Controls.Add(this.lblAgvPosition4S);
+            this.pBase.Controls.Add(this.lblData2);
+            this.pBase.Controls.Add(this.lblData1);
+            this.pBase.Controls.Add(this.lblTitle);
             this.pBase.Controls.Add(this.tbTime);
             this.pBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pBase.Location = new System.Drawing.Point(5, 5);
@@ -412,7 +418,8 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPnlChangeOffset.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.White;
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.White;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.DimGray;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.White;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.White;
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(0))).Opacity = 13D;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(1))).BottomWidth = 3F;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPnlChangeOffset.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
@@ -460,42 +467,39 @@ namespace DHS.EQUIPMENT
             this.lblChangeOffsetTitle.TabIndex = 50;
             this.lblChangeOffsetTitle.Text = "Change Offset Value : ";
             // 
-            // lblMeasureColor
+            // lblData2
             // 
-            this.lblMeasureColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblMeasureColor.Location = new System.Drawing.Point(7, 92);
-            this.lblMeasureColor.Name = "lblMeasureColor";
-            this.lblMeasureColor.Size = new System.Drawing.Size(66, 33);
-            this.lblMeasureColor.TabIndex = 19;
-            this.lblMeasureColor.Text = "measure color";
-            this.lblMeasureColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblMeasureColor.Visible = false;
+            this.lblData2.BackColor = System.Drawing.Color.White;
+            this.lblData2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData2.Location = new System.Drawing.Point(2, 78);
+            this.lblData2.Name = "lblData2";
+            this.lblData2.Size = new System.Drawing.Size(64, 32);
+            this.lblData2.TabIndex = 19;
+            this.lblData2.Text = "OCV";
+            this.lblData2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblStandardColor
+            // lblData1
             // 
-            this.lblStandardColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            this.lblStandardColor.Location = new System.Drawing.Point(7, 55);
-            this.lblStandardColor.Name = "lblStandardColor";
-            this.lblStandardColor.Size = new System.Drawing.Size(66, 33);
-            this.lblStandardColor.TabIndex = 18;
-            this.lblStandardColor.Text = "stardard color";
-            this.lblStandardColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblStandardColor.Visible = false;
+            this.lblData1.BackColor = System.Drawing.Color.Wheat;
+            this.lblData1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData1.Location = new System.Drawing.Point(2, 45);
+            this.lblData1.Name = "lblData1";
+            this.lblData1.Size = new System.Drawing.Size(64, 32);
+            this.lblData1.TabIndex = 18;
+            this.lblData1.Text = "IR";
+            this.lblData1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblAgvPosition4S
+            // lblTitle
             // 
-            this.lblAgvPosition4S.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.lblAgvPosition4S.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAgvPosition4S.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAgvPosition4S.ForeColor = System.Drawing.Color.Black;
-            this.lblAgvPosition4S.Location = new System.Drawing.Point(7, 6);
-            this.lblAgvPosition4S.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.lblAgvPosition4S.Name = "lblAgvPosition4S";
-            this.lblAgvPosition4S.Size = new System.Drawing.Size(66, 43);
-            this.lblAgvPosition4S.TabIndex = 17;
-            this.lblAgvPosition4S.Text = "1";
-            this.lblAgvPosition4S.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblAgvPosition4S.Visible = false;
+            this.lblTitle.BackColor = System.Drawing.Color.DarkGray;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(64, 42);
+            this.lblTitle.TabIndex = 17;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tbTime
             // 
@@ -2437,6 +2441,40 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_Title.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_Title.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
+            // lblData4
+            // 
+            this.lblData4.BackColor = System.Drawing.Color.White;
+            this.lblData4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData4.Location = new System.Drawing.Point(2, 188);
+            this.lblData4.Name = "lblData4";
+            this.lblData4.Size = new System.Drawing.Size(64, 32);
+            this.lblData4.TabIndex = 67;
+            this.lblData4.Text = "OCV";
+            this.lblData4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblData3
+            // 
+            this.lblData3.BackColor = System.Drawing.Color.Wheat;
+            this.lblData3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblData3.Location = new System.Drawing.Point(2, 155);
+            this.lblData3.Name = "lblData3";
+            this.lblData3.Size = new System.Drawing.Size(64, 32);
+            this.lblData3.TabIndex = 66;
+            this.lblData3.Text = "IR";
+            this.lblData3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTitle2
+            // 
+            this.lblTitle2.BackColor = System.Drawing.Color.DarkGray;
+            this.lblTitle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTitle2.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle2.Location = new System.Drawing.Point(2, 112);
+            this.lblTitle2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.lblTitle2.Name = "lblTitle2";
+            this.lblTitle2.Size = new System.Drawing.Size(64, 42);
+            this.lblTitle2.TabIndex = 65;
+            this.lblTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // IROCVMeasureInfoForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2567,7 +2605,7 @@ namespace DHS.EQUIPMENT
         public System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Panel pBase;
         private System.Windows.Forms.TextBox tbTime;
-        private System.Windows.Forms.Label lblAgvPosition4S;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataVisualization.Charting.Chart OCVCHART;
         private System.Windows.Forms.DataVisualization.Charting.Chart IRCHART;
         private Telerik.WinControls.UI.RadPanel radpanel_ManualMode;
@@ -2634,8 +2672,8 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.ComboBox comboBox18;
         private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Label lblStandardColor;
-        private System.Windows.Forms.Label lblMeasureColor;
+        private System.Windows.Forms.Label lblData1;
+        private System.Windows.Forms.Label lblData2;
         private Telerik.WinControls.UI.RadPanel radpnl_Offset;
         private Telerik.WinControls.UI.RadButton radBtnStopAllOffset;
         private Telerik.WinControls.UI.RadButton radBtnAllOffset;
@@ -2700,5 +2738,8 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadButton radBtnOK;
         private System.Windows.Forms.TextBox tbMeasureIR;
         private System.Windows.Forms.Label lblChangeOffsetTitle;
+        private System.Windows.Forms.Label lblData4;
+        private System.Windows.Forms.Label lblData3;
+        private System.Windows.Forms.Label lblTitle2;
     }
 }

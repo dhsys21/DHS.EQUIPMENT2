@@ -22,6 +22,9 @@ namespace DHS.EQUIPMENT
         double[] _dMeasured = new double[_Constant.ChannelCount];
         double[] _dOffset = new double[_Constant.ChannelCount];
 
+        int LABEL_TITLE_LEFT = 64 + 3;
+        int LABEL_TITLE_TOP = 2;
+        int LABEL_TITLE_WIDTH = 72;
         int LABEL_TITLE_HEIGHT = 42;
         int LABEL_DATA_HEIGHT = 32;
         private Label[] lblIR = new Label[_Constant.ChannelCount];
@@ -418,9 +421,9 @@ namespace DHS.EQUIPMENT
         #region Make Panel - ir/ocv values
         private void MakeLabelTitle()
         {
-            int nx = 3;
-            int ny = 2;
-            int width = 76;
+            int nx = LABEL_TITLE_LEFT;
+            int ny = LABEL_TITLE_TOP;
+            int width = 72;
             int height = LABEL_TITLE_HEIGHT;
             for (int nIndex = 0; nIndex < 32;)
             {
@@ -433,15 +436,15 @@ namespace DHS.EQUIPMENT
                 if (nIndex % 16 == 0)
                 {
                     ny = ny + LABEL_TITLE_HEIGHT + (LABEL_DATA_HEIGHT * 2) + 4;
-                    nx = 3;
+                    nx = LABEL_TITLE_LEFT;
                 }
             }
         }
         private void MakeLabelData()
         {
-            int nx = 3;
+            int nx = LABEL_TITLE_LEFT;
             int ny = LABEL_TITLE_HEIGHT + 3;
-            int width = 76;
+            int width = 72;
             int height = LABEL_DATA_HEIGHT;
             string label_text = string.Empty;
             for (int nIndex = 0; nIndex < _Constant.ChannelCount;)
@@ -469,7 +472,7 @@ namespace DHS.EQUIPMENT
                 if(nIndex % 16 == 0)
                 {
                     ny = ny + LABEL_TITLE_HEIGHT + (LABEL_DATA_HEIGHT * 2) + 4; 
-                    nx = 3;
+                    nx = LABEL_TITLE_LEFT;
                 }
             }
         }
@@ -528,6 +531,14 @@ namespace DHS.EQUIPMENT
                 lblIR[nIndex].BringToFront();
                 lblOCV[nIndex].BringToFront();
             }
+
+            lblData1.Text = lblData3.Text = "IR";
+            lblData2.Text = lblData4.Text = "OCV";
+
+            lblData1.BackColor = lblData3.BackColor = Color.Wheat;
+            lblData2.BackColor = lblData4.BackColor = Color.White;
+
+            lblData1.Font = lblData2.Font = lblData3.Font = lblData4.Font = new Font("Arial", 10, FontStyle.Bold);
         }
         public void ShowOffsetValues()
         {
@@ -536,6 +547,14 @@ namespace DHS.EQUIPMENT
                 lblIRStandard[nIndex].BringToFront();
                 lblIRMeasure[nIndex].BringToFront();
             }
+
+            lblData1.Text = lblData3.Text = "STANDARD";
+            lblData2.Text = lblData4.Text = "MEASURE";
+
+            lblData1.BackColor = lblData3.BackColor = Color.FromArgb(144, 202, 249);
+            lblData2.BackColor = lblData4.BackColor = Color.GhostWhite;
+
+            lblData1.Font = lblData2.Font = lblData3.Font = lblData4.Font = new Font("Arial", 8, FontStyle.Bold);
         }
         #endregion
 
