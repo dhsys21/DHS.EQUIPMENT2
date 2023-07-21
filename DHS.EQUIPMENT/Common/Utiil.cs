@@ -343,8 +343,8 @@ namespace DHS.EQUIPMENT
             if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
 
             // for test 2023 05 18
-            filename = dir + "IROCV_" + irocvdata.TRAYID + "-" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
-            //filename = dir + "IROCV_" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
+            //filename = dir + "IROCV_" + irocvdata.TRAYID + "-" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
+            filename = dir + "IROCV_" + irocvdata.TRAYID.Replace("?", "TEST") + "_" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
 
             if (File.Exists(filename))
             {
