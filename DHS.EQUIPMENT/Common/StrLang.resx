@@ -117,35 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="IROCV_Backgroud" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\IROCV_Backgroud.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AUTO" xml:space="preserve">
+    <value>AUTO</value>
   </data>
-  <data name="Ready" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Ready.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CONFIG" xml:space="preserve">
+    <value>CONFIG</value>
   </data>
-  <data name="NOANSWER" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\NOANSWER.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Initialize" xml:space="preserve">
+    <value>Initialize</value>
   </data>
-  <data name="Local" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Local.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MANUAL" xml:space="preserve">
+    <value>MANUAL</value>
   </data>
-  <data name="End" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\End.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NGINFO" xml:space="preserve">
+    <value>NG Info.</value>
   </data>
-  <data name="Run" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Run.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PNLBARCODE" xml:space="preserve">
+    <value>BARCODE</value>
   </data>
-  <data name="TrayOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\TrayOut.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PNLFINISH" xml:space="preserve">
+    <value>FINISH</value>
   </data>
-  <data name="TrayIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\TrayIn.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PNLMEASURE" xml:space="preserve">
+    <value>MEASURE</value>
   </data>
-  <data name="vacancy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\vacancy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PNLREADY" xml:space="preserve">
+    <value>READY</value>
   </data>
-  <data name="Stage_End" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stage_End.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PNLTRAYDOWN" xml:space="preserve">
+    <value>TRAY DOWN</value>
+  </data>
+  <data name="PNLTRAYIN" xml:space="preserve">
+    <value>TRAY IN</value>
+  </data>
+  <data name="PNLTRAYOUT" xml:space="preserve">
+    <value>TRAY OUT</value>
+  </data>
+  <data name="PNLTRAYUP" xml:space="preserve">
+    <value>TRAY UP</value>
+  </data>
+  <data name="RESET" xml:space="preserve">
+    <value>RESET</value>
+  </data>
+  <data name="TRAYOUT" xml:space="preserve">
+    <value>Tray Out</value>
   </data>
 </root>

@@ -111,6 +111,16 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Method
+        public void ChangeIROCVFormLanguage()
+        {
+            radbtn_AUTO.Text = StrLang.AUTO;
+            radbtn_MANU.Text = StrLang.MANUAL;
+            radbtn_RESET.Text = StrLang.RESET;
+            radbtn_NGINFO.Text = StrLang.NGINFO;
+            radBtnConfig.Text = StrLang.CONFIG;
+            radbtn_TRAYOUT.Text = StrLang.TRAYOUT;
+            lblReady.Text = StrLang.PNLREADY;
+        }
         public void SetStageTitle(string stagename)
         {
             SetValueToLabel2(lblTitle, stagename);

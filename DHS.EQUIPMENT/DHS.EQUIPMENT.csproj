@@ -80,6 +80,21 @@
     <Compile Include="Common\CheckSum.cs" />
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\Ini.cs" />
+    <Compile Include="Common\StrLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StrLang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\StrLang.Ko.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StrLang.Ko.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\StrLang.No.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StrLang.No.resx</DependentUpon>
+    </Compile>
     <Compile Include="Common\Utiil.cs" />
     <Compile Include="ConfigForm.cs">
       <SubType>Form</SubType>
@@ -139,6 +154,18 @@
     <Compile Include="PLC\SIEMENSS7LIB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Common\StrLang.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StrLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\StrLang.Ko.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StrLang.Ko.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\StrLang.No.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StrLang.No.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="IROCV_Icon.ico" />
+    <None Include="Resources\Stage_End.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

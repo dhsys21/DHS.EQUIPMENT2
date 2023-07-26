@@ -31,51 +31,9 @@ namespace DHS.EQUIPMENT
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pnlTitle = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radbtn_Init = new Telerik.WinControls.UI.RadButton();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.radButton19 = new Telerik.WinControls.UI.RadButton();
-            this.radButton20 = new Telerik.WinControls.UI.RadButton();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.radButton21 = new Telerik.WinControls.UI.RadButton();
-            this.radButton22 = new Telerik.WinControls.UI.RadButton();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.radButton23 = new Telerik.WinControls.UI.RadButton();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.radButton24 = new Telerik.WinControls.UI.RadButton();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.radButton25 = new Telerik.WinControls.UI.RadButton();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.radButton26 = new Telerik.WinControls.UI.RadButton();
-            this.radButton27 = new Telerik.WinControls.UI.RadButton();
-            this.radButton28 = new Telerik.WinControls.UI.RadButton();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.comboBox16 = new System.Windows.Forms.ComboBox();
-            this.button13 = new System.Windows.Forms.Button();
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.comboBox17 = new System.Windows.Forms.ComboBox();
-            this.comboBox18 = new System.Windows.Forms.ComboBox();
-            this.comboBox19 = new System.Windows.Forms.ComboBox();
-            this.button14 = new System.Windows.Forms.Button();
+            this.pnlLanguage = new System.Windows.Forms.Panel();
+            this.lblLangNo = new System.Windows.Forms.Label();
+            this.lblLangEn = new System.Windows.Forms.Label();
             this.pnlConnection = new System.Windows.Forms.Panel();
             this.radbtn_PLC = new Telerik.WinControls.UI.RadButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -165,39 +123,60 @@ namespace DHS.EQUIPMENT
             this.cbTagValue = new System.Windows.Forms.ComboBox();
             this.cbTagValueType = new System.Windows.Forms.ComboBox();
             this.btnWriteTagConveyor = new System.Windows.Forms.Button();
+            this.radbtn_Init = new Telerik.WinControls.UI.RadButton();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.comboBox13 = new System.Windows.Forms.ComboBox();
+            this.radButton19 = new Telerik.WinControls.UI.RadButton();
+            this.radButton20 = new Telerik.WinControls.UI.RadButton();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.radButton21 = new Telerik.WinControls.UI.RadButton();
+            this.radButton22 = new Telerik.WinControls.UI.RadButton();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.radButton23 = new Telerik.WinControls.UI.RadButton();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.radButton24 = new Telerik.WinControls.UI.RadButton();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.radButton25 = new Telerik.WinControls.UI.RadButton();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.radButton26 = new Telerik.WinControls.UI.RadButton();
+            this.radButton27 = new Telerik.WinControls.UI.RadButton();
+            this.radButton28 = new Telerik.WinControls.UI.RadButton();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.comboBox15 = new System.Windows.Forms.ComboBox();
+            this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.comboBox17 = new System.Windows.Forms.ComboBox();
+            this.comboBox18 = new System.Windows.Forms.ComboBox();
+            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.button14 = new System.Windows.Forms.Button();
             this.lblIROCVConnection = new System.Windows.Forms.Label();
             this.lblPLCConnection = new System.Windows.Forms.Label();
             this.lblMESConnection = new System.Windows.Forms.Label();
             this.radlbl_Title = new Telerik.WinControls.UI.RadLabel();
-            this.pboxTitle = new System.Windows.Forms.PictureBox();
             this.MeasurePanel = new System.Windows.Forms.Panel();
             this.BasePanel = new System.Windows.Forms.Panel();
+            this.lblLangKo = new System.Windows.Forms.Label();
+            this.pboxTitle = new System.Windows.Forms.PictureBox();
             this.pnlTitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radbtn_Init)).BeginInit();
-            this.radbtn_Init.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton20)).BeginInit();
-            this.groupBox13.SuspendLayout();
-            this.groupBox14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton22)).BeginInit();
-            this.groupBox15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton24)).BeginInit();
-            this.groupBox16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton27)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton28)).BeginInit();
-            this.flowLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            this.groupBox17.SuspendLayout();
-            this.groupBox18.SuspendLayout();
+            this.pnlLanguage.SuspendLayout();
             this.pnlConnection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radbtn_PLC)).BeginInit();
             this.radbtn_PLC.SuspendLayout();
@@ -249,6 +228,31 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radLblAgv5Stop)).BeginInit();
             this.gbAgvMovingTest.SuspendLayout();
             this.grpConveyorPLCTest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radbtn_Init)).BeginInit();
+            this.radbtn_Init.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton20)).BeginInit();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton22)).BeginInit();
+            this.groupBox15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton24)).BeginInit();
+            this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton28)).BeginInit();
+            this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            this.groupBox17.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radlbl_Title)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxTitle)).BeginInit();
             this.SuspendLayout();
@@ -256,8 +260,7 @@ namespace DHS.EQUIPMENT
             // pnlTitle
             // 
             this.pnlTitle.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTitle.Controls.Add(this.label1);
-            this.pnlTitle.Controls.Add(this.radbtn_Init);
+            this.pnlTitle.Controls.Add(this.pnlLanguage);
             this.pnlTitle.Controls.Add(this.pnlConnection);
             this.pnlTitle.Controls.Add(this.radlbl_Title);
             this.pnlTitle.Controls.Add(this.pboxTitle);
@@ -268,702 +271,58 @@ namespace DHS.EQUIPMENT
             this.pnlTitle.Size = new System.Drawing.Size(1904, 100);
             this.pnlTitle.TabIndex = 4;
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(35, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 15);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "2023 07 21";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radbtn_Init
-            // 
-            this.radbtn_Init.Controls.Add(this.groupBox12);
-            this.radbtn_Init.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.radbtn_Init.ForeColor = System.Drawing.Color.Black;
-            this.radbtn_Init.Location = new System.Drawing.Point(1414, 30);
-            this.radbtn_Init.Margin = new System.Windows.Forms.Padding(4);
-            this.radbtn_Init.Name = "radbtn_Init";
-            this.radbtn_Init.Size = new System.Drawing.Size(100, 60);
-            this.radbtn_Init.TabIndex = 25;
-            this.radbtn_Init.Text = "Initialize";
-            this.radbtn_Init.ThemeName = "ControlDefault";
-            this.radbtn_Init.Click += new System.EventHandler(this.radbtn_Init_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_Init.GetChildAt(0))).Text = "Initialize";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_Init.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(57)))), ((int)(((byte)(53)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(57)))), ((int)(((byte)(53)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).CanFocus = true;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.BackColor = System.Drawing.Color.Gainsboro;
-            this.groupBox12.Controls.Add(this.comboBox12);
-            this.groupBox12.Controls.Add(this.comboBox13);
-            this.groupBox12.Controls.Add(this.radButton19);
-            this.groupBox12.Controls.Add(this.radButton20);
-            this.groupBox12.Controls.Add(this.textBox8);
-            this.groupBox12.Controls.Add(this.textBox9);
-            this.groupBox12.Controls.Add(this.textBox10);
-            this.groupBox12.Controls.Add(this.groupBox13);
-            this.groupBox12.Controls.Add(this.groupBox14);
-            this.groupBox12.Controls.Add(this.groupBox15);
-            this.groupBox12.Controls.Add(this.groupBox16);
-            this.groupBox12.Controls.Add(this.flowLayoutPanel3);
-            this.groupBox12.Controls.Add(this.groupBox17);
-            this.groupBox12.Controls.Add(this.groupBox18);
-            this.groupBox12.Location = new System.Drawing.Point(102, 73);
-            this.groupBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox12.Size = new System.Drawing.Size(776, 721);
-            this.groupBox12.TabIndex = 74;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "TEST Groupbox";
-            this.groupBox12.Visible = false;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.comboBox12.Location = new System.Drawing.Point(615, 681);
-            this.comboBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(147, 20);
-            this.comboBox12.TabIndex = 92;
-            this.comboBox12.Text = "select battery";
-            // 
-            // comboBox13
-            // 
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "Battery Get Status",
-            "Battery Start Charging",
-            "Battery Stop Charging",
-            "Battery Reset"});
-            this.comboBox13.Location = new System.Drawing.Point(615, 653);
-            this.comboBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(147, 20);
-            this.comboBox13.TabIndex = 91;
-            this.comboBox13.Text = "Battery Get Status";
-            // 
-            // radButton19
-            // 
-            this.radButton19.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.radButton19.ForeColor = System.Drawing.Color.Black;
-            this.radButton19.Location = new System.Drawing.Point(570, 548);
-            this.radButton19.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton19.Name = "radButton19";
-            this.radButton19.Size = new System.Drawing.Size(156, 50);
-            this.radButton19.TabIndex = 90;
-            this.radButton19.Text = "EMS True";
-            this.radButton19.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton19.GetChildAt(0))).Text = "EMS True";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton19.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // radButton20
-            // 
-            this.radButton20.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.radButton20.ForeColor = System.Drawing.Color.Black;
-            this.radButton20.Location = new System.Drawing.Point(570, 646);
-            this.radButton20.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton20.Name = "radButton20";
-            this.radButton20.Size = new System.Drawing.Size(156, 50);
-            this.radButton20.TabIndex = 89;
-            this.radButton20.Text = "Battery Charger";
-            this.radButton20.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton20.GetChildAt(0))).Text = "Battery Charger";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton20.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(157, 629);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(136, 26);
-            this.textBox8.TabIndex = 79;
-            this.textBox8.Text = "46";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(311, 629);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(136, 26);
-            this.textBox9.TabIndex = 78;
-            this.textBox9.Text = "50";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(12, 629);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(136, 26);
-            this.textBox10.TabIndex = 77;
-            this.textBox10.Text = "42";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.BackColor = System.Drawing.Color.White;
-            this.groupBox13.Controls.Add(this.textBox11);
-            this.groupBox13.Controls.Add(this.button9);
-            this.groupBox13.Controls.Add(this.textBox12);
-            this.groupBox13.Controls.Add(this.button10);
-            this.groupBox13.Location = new System.Drawing.Point(27, 543);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox13.Size = new System.Drawing.Size(601, 75);
-            this.groupBox13.TabIndex = 76;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "AGV Odometer TEST";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(196, 44);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(136, 26);
-            this.textBox11.TabIndex = 76;
-            this.textBox11.Text = "400";
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(437, 44);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(95, 30);
-            this.button9.TabIndex = 75;
-            this.button9.Text = "Set Agv";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(196, 15);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(136, 26);
-            this.textBox12.TabIndex = 74;
-            this.textBox12.Text = "1320";
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(439, 13);
-            this.button10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(95, 30);
-            this.button10.TabIndex = 60;
-            this.button10.Text = "Set Rgv";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.BackColor = System.Drawing.Color.White;
-            this.groupBox14.Controls.Add(this.radButton21);
-            this.groupBox14.Controls.Add(this.radButton22);
-            this.groupBox14.Location = new System.Drawing.Point(25, 443);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox14.Size = new System.Drawing.Size(601, 85);
-            this.groupBox14.TabIndex = 75;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "groupBox14";
-            // 
-            // radButton21
-            // 
-            this.radButton21.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton21.ForeColor = System.Drawing.Color.Black;
-            this.radButton21.Location = new System.Drawing.Point(419, 21);
-            this.radButton21.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton21.Name = "radButton21";
-            this.radButton21.Size = new System.Drawing.Size(156, 50);
-            this.radButton21.TabIndex = 88;
-            this.radButton21.Text = "OFF";
-            this.radButton21.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton21.GetChildAt(0))).Text = "OFF";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton21.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // radButton22
-            // 
-            this.radButton22.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton22.ForeColor = System.Drawing.Color.Black;
-            this.radButton22.Location = new System.Drawing.Point(84, 21);
-            this.radButton22.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton22.Name = "radButton22";
-            this.radButton22.Size = new System.Drawing.Size(296, 50);
-            this.radButton22.TabIndex = 87;
-            this.radButton22.Text = "status timer";
-            this.radButton22.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton22.GetChildAt(0))).Text = "status timer";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton22.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.BackColor = System.Drawing.Color.White;
-            this.groupBox15.Controls.Add(this.radButton23);
-            this.groupBox15.Controls.Add(this.textBox13);
-            this.groupBox15.Controls.Add(this.radButton24);
-            this.groupBox15.Location = new System.Drawing.Point(25, 353);
-            this.groupBox15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox15.Size = new System.Drawing.Size(601, 85);
-            this.groupBox15.TabIndex = 74;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "groupBox15";
-            // 
-            // radButton23
-            // 
-            this.radButton23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.radButton23.ForeColor = System.Drawing.Color.Black;
-            this.radButton23.Location = new System.Drawing.Point(394, 24);
-            this.radButton23.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton23.Name = "radButton23";
-            this.radButton23.Size = new System.Drawing.Size(162, 50);
-            this.radButton23.TabIndex = 88;
-            this.radButton23.Text = "Update Gridview";
-            this.radButton23.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton23.GetChildAt(0))).Text = "Update Gridview";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton23.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(53, 38);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(193, 26);
-            this.textBox13.TabIndex = 73;
-            // 
-            // radButton24
-            // 
-            this.radButton24.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton24.ForeColor = System.Drawing.Color.Black;
-            this.radButton24.Location = new System.Drawing.Point(248, 21);
-            this.radButton24.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton24.Name = "radButton24";
-            this.radButton24.Size = new System.Drawing.Size(125, 50);
-            this.radButton24.TabIndex = 87;
-            this.radButton24.Text = "CIS";
-            this.radButton24.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton24.GetChildAt(0))).Text = "CIS";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton24.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // groupBox16
-            // 
-            this.groupBox16.BackColor = System.Drawing.Color.White;
-            this.groupBox16.Controls.Add(this.radButton25);
-            this.groupBox16.Controls.Add(this.comboBox14);
-            this.groupBox16.Controls.Add(this.radButton26);
-            this.groupBox16.Controls.Add(this.radButton27);
-            this.groupBox16.Controls.Add(this.radButton28);
-            this.groupBox16.Location = new System.Drawing.Point(25, 105);
-            this.groupBox16.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox16.Size = new System.Drawing.Size(724, 85);
-            this.groupBox16.TabIndex = 73;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "groupBox16";
-            // 
-            // radButton25
-            // 
-            this.radButton25.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton25.ForeColor = System.Drawing.Color.Black;
-            this.radButton25.Location = new System.Drawing.Point(255, 24);
-            this.radButton25.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton25.Name = "radButton25";
-            this.radButton25.Size = new System.Drawing.Size(125, 50);
-            this.radButton25.TabIndex = 91;
-            this.radButton25.Text = "STOP";
-            this.radButton25.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton25.GetChildAt(0))).Text = "STOP";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton25.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // comboBox14
-            // 
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.comboBox14.Location = new System.Drawing.Point(27, 40);
-            this.comboBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(84, 20);
-            this.comboBox14.TabIndex = 90;
-            this.comboBox14.Text = "1";
-            // 
-            // radButton26
-            // 
-            this.radButton26.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton26.ForeColor = System.Drawing.Color.Black;
-            this.radButton26.Location = new System.Drawing.Point(559, 25);
-            this.radButton26.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton26.Name = "radButton26";
-            this.radButton26.Size = new System.Drawing.Size(100, 50);
-            this.radButton26.TabIndex = 89;
-            this.radButton26.Text = "0";
-            this.radButton26.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton26.GetChildAt(0))).Text = "0";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton26.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // radButton27
-            // 
-            this.radButton27.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton27.ForeColor = System.Drawing.Color.Black;
-            this.radButton27.Location = new System.Drawing.Point(118, 24);
-            this.radButton27.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton27.Name = "radButton27";
-            this.radButton27.Size = new System.Drawing.Size(125, 50);
-            this.radButton27.TabIndex = 87;
-            this.radButton27.Text = "START";
-            this.radButton27.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton27.GetChildAt(0))).Text = "START";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton27.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // radButton28
-            // 
-            this.radButton28.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            this.radButton28.ForeColor = System.Drawing.Color.Black;
-            this.radButton28.Location = new System.Drawing.Point(452, 24);
-            this.radButton28.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton28.Name = "radButton28";
-            this.radButton28.Size = new System.Drawing.Size(100, 50);
-            this.radButton28.TabIndex = 88;
-            this.radButton28.Text = "47";
-            this.radButton28.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton28.GetChildAt(0))).Text = "47";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton28.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel3.Controls.Add(this.radLabel6);
-            this.flowLayoutPanel3.Controls.Add(this.radLabel7);
-            this.flowLayoutPanel3.Controls.Add(this.radLabel8);
-            this.flowLayoutPanel3.Controls.Add(this.radLabel9);
-            this.flowLayoutPanel3.Controls.Add(this.radLabel10);
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(37, 24);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(647, 68);
-            this.flowLayoutPanel3.TabIndex = 72;
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.AutoSize = false;
-            this.radLabel6.BackColor = System.Drawing.Color.Red;
-            this.radLabel6.Font = new System.Drawing.Font("Arial", 14F);
-            this.radLabel6.ForeColor = System.Drawing.Color.White;
-            this.radLabel6.Location = new System.Drawing.Point(7, 6);
-            this.radLabel6.Margin = new System.Windows.Forms.Padding(4);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Padding = new System.Windows.Forms.Padding(2);
-            this.radLabel6.Size = new System.Drawing.Size(112, 61);
-            this.radLabel6.TabIndex = 75;
-            this.radLabel6.Tag = "0";
-            this.radLabel6.Text = "AGV 1 STOP";
-            this.radLabel6.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.AutoSize = false;
-            this.radLabel7.BackColor = System.Drawing.Color.Red;
-            this.radLabel7.Font = new System.Drawing.Font("Arial", 14F);
-            this.radLabel7.ForeColor = System.Drawing.Color.White;
-            this.radLabel7.Location = new System.Drawing.Point(127, 6);
-            this.radLabel7.Margin = new System.Windows.Forms.Padding(4);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Padding = new System.Windows.Forms.Padding(2);
-            this.radLabel7.Size = new System.Drawing.Size(112, 61);
-            this.radLabel7.TabIndex = 71;
-            this.radLabel7.Tag = "1";
-            this.radLabel7.Text = "AGV 2 STOP";
-            this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.AutoSize = false;
-            this.radLabel8.BackColor = System.Drawing.Color.Red;
-            this.radLabel8.Font = new System.Drawing.Font("Arial", 14F);
-            this.radLabel8.ForeColor = System.Drawing.Color.White;
-            this.radLabel8.Location = new System.Drawing.Point(247, 6);
-            this.radLabel8.Margin = new System.Windows.Forms.Padding(4);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Padding = new System.Windows.Forms.Padding(2);
-            this.radLabel8.Size = new System.Drawing.Size(112, 61);
-            this.radLabel8.TabIndex = 72;
-            this.radLabel8.Tag = "2";
-            this.radLabel8.Text = "AGV 3 STOP";
-            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.AutoSize = false;
-            this.radLabel9.BackColor = System.Drawing.Color.Red;
-            this.radLabel9.Font = new System.Drawing.Font("Arial", 14F);
-            this.radLabel9.ForeColor = System.Drawing.Color.White;
-            this.radLabel9.Location = new System.Drawing.Point(367, 6);
-            this.radLabel9.Margin = new System.Windows.Forms.Padding(4);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Padding = new System.Windows.Forms.Padding(2);
-            this.radLabel9.Size = new System.Drawing.Size(112, 61);
-            this.radLabel9.TabIndex = 73;
-            this.radLabel9.Tag = "3";
-            this.radLabel9.Text = "AGV 4 STOP";
-            this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.AutoSize = false;
-            this.radLabel10.BackColor = System.Drawing.Color.Red;
-            this.radLabel10.Font = new System.Drawing.Font("Arial", 14F);
-            this.radLabel10.ForeColor = System.Drawing.Color.White;
-            this.radLabel10.Location = new System.Drawing.Point(487, 6);
-            this.radLabel10.Margin = new System.Windows.Forms.Padding(4);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Padding = new System.Windows.Forms.Padding(2);
-            this.radLabel10.Size = new System.Drawing.Size(112, 61);
-            this.radLabel10.TabIndex = 74;
-            this.radLabel10.Tag = "4";
-            this.radLabel10.Text = "AGV 5 STOP";
-            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // groupBox17
-            // 
-            this.groupBox17.BackColor = System.Drawing.Color.White;
-            this.groupBox17.Controls.Add(this.button11);
-            this.groupBox17.Controls.Add(this.button12);
-            this.groupBox17.Controls.Add(this.comboBox15);
-            this.groupBox17.Controls.Add(this.comboBox16);
-            this.groupBox17.Controls.Add(this.button13);
-            this.groupBox17.Location = new System.Drawing.Point(25, 208);
-            this.groupBox17.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox17.Size = new System.Drawing.Size(724, 48);
-            this.groupBox17.TabIndex = 54;
-            this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "AGV Moving TEST";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(619, 12);
-            this.button11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(92, 30);
-            this.button11.TabIndex = 65;
-            this.button11.Text = "Not Ready";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(529, 12);
-            this.button12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(80, 30);
-            this.button12.TabIndex = 64;
-            this.button12.Text = "Clear";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // comboBox15
-            // 
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.comboBox15.Location = new System.Drawing.Point(140, 16);
-            this.comboBox15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(84, 20);
-            this.comboBox15.TabIndex = 63;
-            this.comboBox15.Text = "1";
-            // 
-            // comboBox16
-            // 
-            this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.Items.AddRange(new object[] {
-            "0 -",
-            "1 - stop at 2F",
-            "2 - stop at 1",
-            "3 - moving 1 to 2",
-            "4 - ",
-            "5 - stop at 2",
-            "6 - moving 2 to 2A",
-            "7 - stop at 2A",
-            "8 - moving 2A to 2B",
-            "9 - stop at 2B",
-            "10 - moving 2B to 3",
-            "11 - ",
-            "12 - stop at 3",
-            "13 - moving 3 to 4",
-            "14 - ",
-            "15 -",
-            "16 -",
-            "17 - stop at 4",
-            "18 - moving 4 to 4S",
-            "19 - stop at 4S",
-            "20 - moving 4S to 4A",
-            "21 - moving 4A to 4B",
-            "22 - moving 4B to 5",
-            "23 - stop at 4A",
-            "24 - stop at 5",
-            "25 - moving 5 to 5A",
-            "26 - stop at 5A",
-            "27 - moving 5A to 1"});
-            this.comboBox16.Location = new System.Drawing.Point(232, 16);
-            this.comboBox16.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(185, 20);
-            this.comboBox16.TabIndex = 62;
-            this.comboBox16.Text = "1 - stop at 2F";
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(428, 13);
-            this.button13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(95, 30);
-            this.button13.TabIndex = 60;
-            this.button13.Text = "Move";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
-            // groupBox18
-            // 
-            this.groupBox18.BackColor = System.Drawing.Color.White;
-            this.groupBox18.Controls.Add(this.comboBox17);
-            this.groupBox18.Controls.Add(this.comboBox18);
-            this.groupBox18.Controls.Add(this.comboBox19);
-            this.groupBox18.Controls.Add(this.button14);
-            this.groupBox18.Location = new System.Drawing.Point(25, 271);
-            this.groupBox18.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox18.Size = new System.Drawing.Size(601, 62);
-            this.groupBox18.TabIndex = 44;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "CONVEYOR PLC TEST";
-            // 
-            // comboBox17
-            // 
-            this.comboBox17.FormattingEnabled = true;
-            this.comboBox17.Items.AddRange(new object[] {
-            "InterlockFromACS_AGV",
-            "AGV_Interlocking_Alarm_From_ACS"});
-            this.comboBox17.Location = new System.Drawing.Point(19, 23);
-            this.comboBox17.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox17.Name = "comboBox17";
-            this.comboBox17.Size = new System.Drawing.Size(252, 20);
-            this.comboBox17.TabIndex = 64;
-            this.comboBox17.Text = "AGV_Interlocking_Alarm_From_ACS";
-            // 
-            // comboBox18
-            // 
-            this.comboBox18.FormattingEnabled = true;
-            this.comboBox18.Items.AddRange(new object[] {
-            "TRUE",
-            "FALSE",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.comboBox18.Location = new System.Drawing.Point(280, 23);
-            this.comboBox18.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox18.Name = "comboBox18";
-            this.comboBox18.Size = new System.Drawing.Size(84, 20);
-            this.comboBox18.TabIndex = 63;
-            this.comboBox18.Text = "TRUE";
-            // 
-            // comboBox19
-            // 
-            this.comboBox19.FormattingEnabled = true;
-            this.comboBox19.Items.AddRange(new object[] {
-            "BOOL",
-            "INT"});
-            this.comboBox19.Location = new System.Drawing.Point(383, 23);
-            this.comboBox19.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(84, 20);
-            this.comboBox19.TabIndex = 62;
-            this.comboBox19.Text = "BOOL";
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(489, 17);
-            this.button14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(95, 35);
-            this.button14.TabIndex = 60;
-            this.button14.Text = "Write Tag";
-            this.button14.UseVisualStyleBackColor = true;
+            // pnlLanguage
+            // 
+            this.pnlLanguage.BackColor = System.Drawing.Color.Transparent;
+            this.pnlLanguage.Controls.Add(this.lblLangNo);
+            this.pnlLanguage.Controls.Add(this.lblLangEn);
+            this.pnlLanguage.Controls.Add(this.lblLangKo);
+            this.pnlLanguage.Location = new System.Drawing.Point(1230, 24);
+            this.pnlLanguage.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlLanguage.Name = "pnlLanguage";
+            this.pnlLanguage.Size = new System.Drawing.Size(170, 72);
+            this.pnlLanguage.TabIndex = 27;
+            // 
+            // lblLangNo
+            // 
+            this.lblLangNo.BackColor = System.Drawing.Color.Silver;
+            this.lblLangNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLangNo.ForeColor = System.Drawing.Color.White;
+            this.lblLangNo.Location = new System.Drawing.Point(115, 12);
+            this.lblLangNo.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLangNo.Name = "lblLangNo";
+            this.lblLangNo.Size = new System.Drawing.Size(50, 48);
+            this.lblLangNo.TabIndex = 1;
+            this.lblLangNo.Text = "NO";
+            this.lblLangNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLangEn
+            // 
+            this.lblLangEn.BackColor = System.Drawing.Color.Silver;
+            this.lblLangEn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLangEn.ForeColor = System.Drawing.Color.White;
+            this.lblLangEn.Location = new System.Drawing.Point(60, 12);
+            this.lblLangEn.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLangEn.Name = "lblLangEn";
+            this.lblLangEn.Size = new System.Drawing.Size(50, 48);
+            this.lblLangEn.TabIndex = 2;
+            this.lblLangEn.Text = "EN";
+            this.lblLangEn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLangEn.Click += new System.EventHandler(this.lblLangEn_Click);
             // 
             // pnlConnection
             // 
             this.pnlConnection.BackColor = System.Drawing.Color.Transparent;
             this.pnlConnection.Controls.Add(this.radbtn_PLC);
             this.pnlConnection.Controls.Add(this.radbtn_Config);
+            this.pnlConnection.Controls.Add(this.radbtn_Init);
             this.pnlConnection.Controls.Add(this.lblIROCVConnection);
             this.pnlConnection.Controls.Add(this.lblPLCConnection);
             this.pnlConnection.Controls.Add(this.lblMESConnection);
-            this.pnlConnection.Location = new System.Drawing.Point(1515, 24);
+            this.pnlConnection.Location = new System.Drawing.Point(1405, 24);
             this.pnlConnection.Margin = new System.Windows.Forms.Padding(0);
             this.pnlConnection.Name = "pnlConnection";
-            this.pnlConnection.Size = new System.Drawing.Size(386, 72);
+            this.pnlConnection.Size = new System.Drawing.Size(496, 72);
             this.pnlConnection.TabIndex = 5;
             // 
             // radbtn_PLC
@@ -971,7 +330,7 @@ namespace DHS.EQUIPMENT
             this.radbtn_PLC.Controls.Add(this.groupBox5);
             this.radbtn_PLC.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.radbtn_PLC.ForeColor = System.Drawing.Color.Black;
-            this.radbtn_PLC.Location = new System.Drawing.Point(6, 6);
+            this.radbtn_PLC.Location = new System.Drawing.Point(110, 6);
             this.radbtn_PLC.Margin = new System.Windows.Forms.Padding(4);
             this.radbtn_PLC.Name = "radbtn_PLC";
             this.radbtn_PLC.Size = new System.Drawing.Size(100, 60);
@@ -1641,7 +1000,7 @@ namespace DHS.EQUIPMENT
             this.radbtn_Config.Controls.Add(this.grpTest);
             this.radbtn_Config.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.radbtn_Config.ForeColor = System.Drawing.Color.Black;
-            this.radbtn_Config.Location = new System.Drawing.Point(112, 6);
+            this.radbtn_Config.Location = new System.Drawing.Point(215, 6);
             this.radbtn_Config.Margin = new System.Windows.Forms.Padding(4);
             this.radbtn_Config.Name = "radbtn_Config";
             this.radbtn_Config.Size = new System.Drawing.Size(100, 60);
@@ -2306,12 +1665,686 @@ namespace DHS.EQUIPMENT
             this.btnWriteTagConveyor.Text = "Write Tag";
             this.btnWriteTagConveyor.UseVisualStyleBackColor = true;
             // 
+            // radbtn_Init
+            // 
+            this.radbtn_Init.Controls.Add(this.groupBox12);
+            this.radbtn_Init.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.radbtn_Init.ForeColor = System.Drawing.Color.Black;
+            this.radbtn_Init.Location = new System.Drawing.Point(5, 6);
+            this.radbtn_Init.Margin = new System.Windows.Forms.Padding(4);
+            this.radbtn_Init.Name = "radbtn_Init";
+            this.radbtn_Init.Size = new System.Drawing.Size(100, 60);
+            this.radbtn_Init.TabIndex = 25;
+            this.radbtn_Init.Text = "Initialize";
+            this.radbtn_Init.ThemeName = "ControlDefault";
+            this.radbtn_Init.Click += new System.EventHandler(this.radbtn_Init_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_Init.GetChildAt(0))).Text = "Initialize";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_Init.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(57)))), ((int)(((byte)(53)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(57)))), ((int)(((byte)(53)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_Init.GetChildAt(0).GetChildAt(0))).CanFocus = true;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.BackColor = System.Drawing.Color.Gainsboro;
+            this.groupBox12.Controls.Add(this.comboBox12);
+            this.groupBox12.Controls.Add(this.comboBox13);
+            this.groupBox12.Controls.Add(this.radButton19);
+            this.groupBox12.Controls.Add(this.radButton20);
+            this.groupBox12.Controls.Add(this.textBox8);
+            this.groupBox12.Controls.Add(this.textBox9);
+            this.groupBox12.Controls.Add(this.textBox10);
+            this.groupBox12.Controls.Add(this.groupBox13);
+            this.groupBox12.Controls.Add(this.groupBox14);
+            this.groupBox12.Controls.Add(this.groupBox15);
+            this.groupBox12.Controls.Add(this.groupBox16);
+            this.groupBox12.Controls.Add(this.flowLayoutPanel3);
+            this.groupBox12.Controls.Add(this.groupBox17);
+            this.groupBox12.Controls.Add(this.groupBox18);
+            this.groupBox12.Location = new System.Drawing.Point(102, 73);
+            this.groupBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox12.Size = new System.Drawing.Size(776, 721);
+            this.groupBox12.TabIndex = 74;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "TEST Groupbox";
+            this.groupBox12.Visible = false;
+            // 
+            // comboBox12
+            // 
+            this.comboBox12.FormattingEnabled = true;
+            this.comboBox12.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox12.Location = new System.Drawing.Point(615, 681);
+            this.comboBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox12.Name = "comboBox12";
+            this.comboBox12.Size = new System.Drawing.Size(147, 20);
+            this.comboBox12.TabIndex = 92;
+            this.comboBox12.Text = "select battery";
+            // 
+            // comboBox13
+            // 
+            this.comboBox13.FormattingEnabled = true;
+            this.comboBox13.Items.AddRange(new object[] {
+            "Battery Get Status",
+            "Battery Start Charging",
+            "Battery Stop Charging",
+            "Battery Reset"});
+            this.comboBox13.Location = new System.Drawing.Point(615, 653);
+            this.comboBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox13.Name = "comboBox13";
+            this.comboBox13.Size = new System.Drawing.Size(147, 20);
+            this.comboBox13.TabIndex = 91;
+            this.comboBox13.Text = "Battery Get Status";
+            // 
+            // radButton19
+            // 
+            this.radButton19.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.radButton19.ForeColor = System.Drawing.Color.Black;
+            this.radButton19.Location = new System.Drawing.Point(570, 548);
+            this.radButton19.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton19.Name = "radButton19";
+            this.radButton19.Size = new System.Drawing.Size(156, 50);
+            this.radButton19.TabIndex = 90;
+            this.radButton19.Text = "EMS True";
+            this.radButton19.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton19.GetChildAt(0))).Text = "EMS True";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton19.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton19.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // radButton20
+            // 
+            this.radButton20.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.radButton20.ForeColor = System.Drawing.Color.Black;
+            this.radButton20.Location = new System.Drawing.Point(570, 646);
+            this.radButton20.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton20.Name = "radButton20";
+            this.radButton20.Size = new System.Drawing.Size(156, 50);
+            this.radButton20.TabIndex = 89;
+            this.radButton20.Text = "Battery Charger";
+            this.radButton20.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton20.GetChildAt(0))).Text = "Battery Charger";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton20.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton20.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(157, 629);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(136, 26);
+            this.textBox8.TabIndex = 79;
+            this.textBox8.Text = "46";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(311, 629);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(136, 26);
+            this.textBox9.TabIndex = 78;
+            this.textBox9.Text = "50";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(12, 629);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(136, 26);
+            this.textBox10.TabIndex = 77;
+            this.textBox10.Text = "42";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.BackColor = System.Drawing.Color.White;
+            this.groupBox13.Controls.Add(this.textBox11);
+            this.groupBox13.Controls.Add(this.button9);
+            this.groupBox13.Controls.Add(this.textBox12);
+            this.groupBox13.Controls.Add(this.button10);
+            this.groupBox13.Location = new System.Drawing.Point(27, 543);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox13.Size = new System.Drawing.Size(601, 75);
+            this.groupBox13.TabIndex = 76;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "AGV Odometer TEST";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(196, 44);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(136, 26);
+            this.textBox11.TabIndex = 76;
+            this.textBox11.Text = "400";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(437, 44);
+            this.button9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(95, 30);
+            this.button9.TabIndex = 75;
+            this.button9.Text = "Set Agv";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(196, 15);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(136, 26);
+            this.textBox12.TabIndex = 74;
+            this.textBox12.Text = "1320";
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(439, 13);
+            this.button10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(95, 30);
+            this.button10.TabIndex = 60;
+            this.button10.Text = "Set Rgv";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.BackColor = System.Drawing.Color.White;
+            this.groupBox14.Controls.Add(this.radButton21);
+            this.groupBox14.Controls.Add(this.radButton22);
+            this.groupBox14.Location = new System.Drawing.Point(25, 443);
+            this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox14.Size = new System.Drawing.Size(601, 85);
+            this.groupBox14.TabIndex = 75;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "groupBox14";
+            // 
+            // radButton21
+            // 
+            this.radButton21.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton21.ForeColor = System.Drawing.Color.Black;
+            this.radButton21.Location = new System.Drawing.Point(419, 21);
+            this.radButton21.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton21.Name = "radButton21";
+            this.radButton21.Size = new System.Drawing.Size(156, 50);
+            this.radButton21.TabIndex = 88;
+            this.radButton21.Text = "OFF";
+            this.radButton21.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton21.GetChildAt(0))).Text = "OFF";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton21.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton21.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // radButton22
+            // 
+            this.radButton22.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton22.ForeColor = System.Drawing.Color.Black;
+            this.radButton22.Location = new System.Drawing.Point(84, 21);
+            this.radButton22.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton22.Name = "radButton22";
+            this.radButton22.Size = new System.Drawing.Size(296, 50);
+            this.radButton22.TabIndex = 87;
+            this.radButton22.Text = "status timer";
+            this.radButton22.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton22.GetChildAt(0))).Text = "status timer";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton22.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton22.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.BackColor = System.Drawing.Color.White;
+            this.groupBox15.Controls.Add(this.radButton23);
+            this.groupBox15.Controls.Add(this.textBox13);
+            this.groupBox15.Controls.Add(this.radButton24);
+            this.groupBox15.Location = new System.Drawing.Point(25, 353);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox15.Size = new System.Drawing.Size(601, 85);
+            this.groupBox15.TabIndex = 74;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "groupBox15";
+            // 
+            // radButton23
+            // 
+            this.radButton23.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radButton23.ForeColor = System.Drawing.Color.Black;
+            this.radButton23.Location = new System.Drawing.Point(394, 24);
+            this.radButton23.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton23.Name = "radButton23";
+            this.radButton23.Size = new System.Drawing.Size(162, 50);
+            this.radButton23.TabIndex = 88;
+            this.radButton23.Text = "Update Gridview";
+            this.radButton23.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton23.GetChildAt(0))).Text = "Update Gridview";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton23.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton23.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(53, 38);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(193, 26);
+            this.textBox13.TabIndex = 73;
+            // 
+            // radButton24
+            // 
+            this.radButton24.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton24.ForeColor = System.Drawing.Color.Black;
+            this.radButton24.Location = new System.Drawing.Point(248, 21);
+            this.radButton24.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton24.Name = "radButton24";
+            this.radButton24.Size = new System.Drawing.Size(125, 50);
+            this.radButton24.TabIndex = 87;
+            this.radButton24.Text = "CIS";
+            this.radButton24.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton24.GetChildAt(0))).Text = "CIS";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton24.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton24.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.BackColor = System.Drawing.Color.White;
+            this.groupBox16.Controls.Add(this.radButton25);
+            this.groupBox16.Controls.Add(this.comboBox14);
+            this.groupBox16.Controls.Add(this.radButton26);
+            this.groupBox16.Controls.Add(this.radButton27);
+            this.groupBox16.Controls.Add(this.radButton28);
+            this.groupBox16.Location = new System.Drawing.Point(25, 105);
+            this.groupBox16.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox16.Size = new System.Drawing.Size(724, 85);
+            this.groupBox16.TabIndex = 73;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "groupBox16";
+            // 
+            // radButton25
+            // 
+            this.radButton25.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton25.ForeColor = System.Drawing.Color.Black;
+            this.radButton25.Location = new System.Drawing.Point(255, 24);
+            this.radButton25.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton25.Name = "radButton25";
+            this.radButton25.Size = new System.Drawing.Size(125, 50);
+            this.radButton25.TabIndex = 91;
+            this.radButton25.Text = "STOP";
+            this.radButton25.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton25.GetChildAt(0))).Text = "STOP";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton25.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton25.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.comboBox14.Location = new System.Drawing.Point(27, 40);
+            this.comboBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(84, 20);
+            this.comboBox14.TabIndex = 90;
+            this.comboBox14.Text = "1";
+            // 
+            // radButton26
+            // 
+            this.radButton26.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton26.ForeColor = System.Drawing.Color.Black;
+            this.radButton26.Location = new System.Drawing.Point(559, 25);
+            this.radButton26.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton26.Name = "radButton26";
+            this.radButton26.Size = new System.Drawing.Size(100, 50);
+            this.radButton26.TabIndex = 89;
+            this.radButton26.Text = "0";
+            this.radButton26.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton26.GetChildAt(0))).Text = "0";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton26.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton26.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // radButton27
+            // 
+            this.radButton27.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton27.ForeColor = System.Drawing.Color.Black;
+            this.radButton27.Location = new System.Drawing.Point(118, 24);
+            this.radButton27.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton27.Name = "radButton27";
+            this.radButton27.Size = new System.Drawing.Size(125, 50);
+            this.radButton27.TabIndex = 87;
+            this.radButton27.Text = "START";
+            this.radButton27.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton27.GetChildAt(0))).Text = "START";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton27.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton27.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // radButton28
+            // 
+            this.radButton28.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            this.radButton28.ForeColor = System.Drawing.Color.Black;
+            this.radButton28.Location = new System.Drawing.Point(452, 24);
+            this.radButton28.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton28.Name = "radButton28";
+            this.radButton28.Size = new System.Drawing.Size(100, 50);
+            this.radButton28.TabIndex = 88;
+            this.radButton28.Text = "47";
+            this.radButton28.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton28.GetChildAt(0))).Text = "47";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton28.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton28.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(171)))), ((int)(((byte)(199)))));
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel3.Controls.Add(this.radLabel6);
+            this.flowLayoutPanel3.Controls.Add(this.radLabel7);
+            this.flowLayoutPanel3.Controls.Add(this.radLabel8);
+            this.flowLayoutPanel3.Controls.Add(this.radLabel9);
+            this.flowLayoutPanel3.Controls.Add(this.radLabel10);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(37, 24);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(647, 68);
+            this.flowLayoutPanel3.TabIndex = 72;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.AutoSize = false;
+            this.radLabel6.BackColor = System.Drawing.Color.Red;
+            this.radLabel6.Font = new System.Drawing.Font("Arial", 14F);
+            this.radLabel6.ForeColor = System.Drawing.Color.White;
+            this.radLabel6.Location = new System.Drawing.Point(7, 6);
+            this.radLabel6.Margin = new System.Windows.Forms.Padding(4);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Padding = new System.Windows.Forms.Padding(2);
+            this.radLabel6.Size = new System.Drawing.Size(112, 61);
+            this.radLabel6.TabIndex = 75;
+            this.radLabel6.Tag = "0";
+            this.radLabel6.Text = "AGV 1 STOP";
+            this.radLabel6.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.AutoSize = false;
+            this.radLabel7.BackColor = System.Drawing.Color.Red;
+            this.radLabel7.Font = new System.Drawing.Font("Arial", 14F);
+            this.radLabel7.ForeColor = System.Drawing.Color.White;
+            this.radLabel7.Location = new System.Drawing.Point(127, 6);
+            this.radLabel7.Margin = new System.Windows.Forms.Padding(4);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Padding = new System.Windows.Forms.Padding(2);
+            this.radLabel7.Size = new System.Drawing.Size(112, 61);
+            this.radLabel7.TabIndex = 71;
+            this.radLabel7.Tag = "1";
+            this.radLabel7.Text = "AGV 2 STOP";
+            this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.AutoSize = false;
+            this.radLabel8.BackColor = System.Drawing.Color.Red;
+            this.radLabel8.Font = new System.Drawing.Font("Arial", 14F);
+            this.radLabel8.ForeColor = System.Drawing.Color.White;
+            this.radLabel8.Location = new System.Drawing.Point(247, 6);
+            this.radLabel8.Margin = new System.Windows.Forms.Padding(4);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Padding = new System.Windows.Forms.Padding(2);
+            this.radLabel8.Size = new System.Drawing.Size(112, 61);
+            this.radLabel8.TabIndex = 72;
+            this.radLabel8.Tag = "2";
+            this.radLabel8.Text = "AGV 3 STOP";
+            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.AutoSize = false;
+            this.radLabel9.BackColor = System.Drawing.Color.Red;
+            this.radLabel9.Font = new System.Drawing.Font("Arial", 14F);
+            this.radLabel9.ForeColor = System.Drawing.Color.White;
+            this.radLabel9.Location = new System.Drawing.Point(367, 6);
+            this.radLabel9.Margin = new System.Windows.Forms.Padding(4);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Padding = new System.Windows.Forms.Padding(2);
+            this.radLabel9.Size = new System.Drawing.Size(112, 61);
+            this.radLabel9.TabIndex = 73;
+            this.radLabel9.Tag = "3";
+            this.radLabel9.Text = "AGV 4 STOP";
+            this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.AutoSize = false;
+            this.radLabel10.BackColor = System.Drawing.Color.Red;
+            this.radLabel10.Font = new System.Drawing.Font("Arial", 14F);
+            this.radLabel10.ForeColor = System.Drawing.Color.White;
+            this.radLabel10.Location = new System.Drawing.Point(487, 6);
+            this.radLabel10.Margin = new System.Windows.Forms.Padding(4);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Padding = new System.Windows.Forms.Padding(2);
+            this.radLabel10.Size = new System.Drawing.Size(112, 61);
+            this.radLabel10.TabIndex = 74;
+            this.radLabel10.Tag = "4";
+            this.radLabel10.Text = "AGV 5 STOP";
+            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.BackColor = System.Drawing.Color.White;
+            this.groupBox17.Controls.Add(this.button11);
+            this.groupBox17.Controls.Add(this.button12);
+            this.groupBox17.Controls.Add(this.comboBox15);
+            this.groupBox17.Controls.Add(this.comboBox16);
+            this.groupBox17.Controls.Add(this.button13);
+            this.groupBox17.Location = new System.Drawing.Point(25, 208);
+            this.groupBox17.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox17.Size = new System.Drawing.Size(724, 48);
+            this.groupBox17.TabIndex = 54;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "AGV Moving TEST";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(619, 12);
+            this.button11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(92, 30);
+            this.button11.TabIndex = 65;
+            this.button11.Text = "Not Ready";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(529, 12);
+            this.button12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(80, 30);
+            this.button12.TabIndex = 64;
+            this.button12.Text = "Clear";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // comboBox15
+            // 
+            this.comboBox15.FormattingEnabled = true;
+            this.comboBox15.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.comboBox15.Location = new System.Drawing.Point(140, 16);
+            this.comboBox15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox15.Name = "comboBox15";
+            this.comboBox15.Size = new System.Drawing.Size(84, 20);
+            this.comboBox15.TabIndex = 63;
+            this.comboBox15.Text = "1";
+            // 
+            // comboBox16
+            // 
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.Items.AddRange(new object[] {
+            "0 -",
+            "1 - stop at 2F",
+            "2 - stop at 1",
+            "3 - moving 1 to 2",
+            "4 - ",
+            "5 - stop at 2",
+            "6 - moving 2 to 2A",
+            "7 - stop at 2A",
+            "8 - moving 2A to 2B",
+            "9 - stop at 2B",
+            "10 - moving 2B to 3",
+            "11 - ",
+            "12 - stop at 3",
+            "13 - moving 3 to 4",
+            "14 - ",
+            "15 -",
+            "16 -",
+            "17 - stop at 4",
+            "18 - moving 4 to 4S",
+            "19 - stop at 4S",
+            "20 - moving 4S to 4A",
+            "21 - moving 4A to 4B",
+            "22 - moving 4B to 5",
+            "23 - stop at 4A",
+            "24 - stop at 5",
+            "25 - moving 5 to 5A",
+            "26 - stop at 5A",
+            "27 - moving 5A to 1"});
+            this.comboBox16.Location = new System.Drawing.Point(232, 16);
+            this.comboBox16.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(185, 20);
+            this.comboBox16.TabIndex = 62;
+            this.comboBox16.Text = "1 - stop at 2F";
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(428, 13);
+            this.button13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(95, 30);
+            this.button13.TabIndex = 60;
+            this.button13.Text = "Move";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.BackColor = System.Drawing.Color.White;
+            this.groupBox18.Controls.Add(this.comboBox17);
+            this.groupBox18.Controls.Add(this.comboBox18);
+            this.groupBox18.Controls.Add(this.comboBox19);
+            this.groupBox18.Controls.Add(this.button14);
+            this.groupBox18.Location = new System.Drawing.Point(25, 271);
+            this.groupBox18.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox18.Size = new System.Drawing.Size(601, 62);
+            this.groupBox18.TabIndex = 44;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "CONVEYOR PLC TEST";
+            // 
+            // comboBox17
+            // 
+            this.comboBox17.FormattingEnabled = true;
+            this.comboBox17.Items.AddRange(new object[] {
+            "InterlockFromACS_AGV",
+            "AGV_Interlocking_Alarm_From_ACS"});
+            this.comboBox17.Location = new System.Drawing.Point(19, 23);
+            this.comboBox17.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox17.Name = "comboBox17";
+            this.comboBox17.Size = new System.Drawing.Size(252, 20);
+            this.comboBox17.TabIndex = 64;
+            this.comboBox17.Text = "AGV_Interlocking_Alarm_From_ACS";
+            // 
+            // comboBox18
+            // 
+            this.comboBox18.FormattingEnabled = true;
+            this.comboBox18.Items.AddRange(new object[] {
+            "TRUE",
+            "FALSE",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.comboBox18.Location = new System.Drawing.Point(280, 23);
+            this.comboBox18.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox18.Name = "comboBox18";
+            this.comboBox18.Size = new System.Drawing.Size(84, 20);
+            this.comboBox18.TabIndex = 63;
+            this.comboBox18.Text = "TRUE";
+            // 
+            // comboBox19
+            // 
+            this.comboBox19.FormattingEnabled = true;
+            this.comboBox19.Items.AddRange(new object[] {
+            "BOOL",
+            "INT"});
+            this.comboBox19.Location = new System.Drawing.Point(383, 23);
+            this.comboBox19.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBox19.Name = "comboBox19";
+            this.comboBox19.Size = new System.Drawing.Size(84, 20);
+            this.comboBox19.TabIndex = 62;
+            this.comboBox19.Text = "BOOL";
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(489, 17);
+            this.button14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(95, 35);
+            this.button14.TabIndex = 60;
+            this.button14.Text = "Write Tag";
+            this.button14.UseVisualStyleBackColor = true;
+            // 
             // lblIROCVConnection
             // 
             this.lblIROCVConnection.BackColor = System.Drawing.Color.Lime;
             this.lblIROCVConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblIROCVConnection.ForeColor = System.Drawing.Color.White;
-            this.lblIROCVConnection.Location = new System.Drawing.Point(332, 18);
+            this.lblIROCVConnection.Location = new System.Drawing.Point(437, 18);
             this.lblIROCVConnection.Margin = new System.Windows.Forms.Padding(0);
             this.lblIROCVConnection.Name = "lblIROCVConnection";
             this.lblIROCVConnection.Size = new System.Drawing.Size(50, 48);
@@ -2324,7 +2357,7 @@ namespace DHS.EQUIPMENT
             this.lblPLCConnection.BackColor = System.Drawing.Color.Lime;
             this.lblPLCConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPLCConnection.ForeColor = System.Drawing.Color.White;
-            this.lblPLCConnection.Location = new System.Drawing.Point(276, 18);
+            this.lblPLCConnection.Location = new System.Drawing.Point(381, 18);
             this.lblPLCConnection.Margin = new System.Windows.Forms.Padding(0);
             this.lblPLCConnection.Name = "lblPLCConnection";
             this.lblPLCConnection.Size = new System.Drawing.Size(50, 48);
@@ -2338,7 +2371,7 @@ namespace DHS.EQUIPMENT
             this.lblMESConnection.BackColor = System.Drawing.Color.Lime;
             this.lblMESConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMESConnection.ForeColor = System.Drawing.Color.White;
-            this.lblMESConnection.Location = new System.Drawing.Point(220, 18);
+            this.lblMESConnection.Location = new System.Drawing.Point(325, 18);
             this.lblMESConnection.Margin = new System.Windows.Forms.Padding(0);
             this.lblMESConnection.Name = "lblMESConnection";
             this.lblMESConnection.Size = new System.Drawing.Size(50, 48);
@@ -2361,18 +2394,6 @@ namespace DHS.EQUIPMENT
             this.radlbl_Title.TabIndex = 4;
             this.radlbl_Title.Text = "IR/OCV";
             // 
-            // pboxTitle
-            // 
-            this.pboxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pboxTitle.Image = global::DHS.EQUIPMENT.Properties.Resources.IROCV_Backgroud;
-            this.pboxTitle.Location = new System.Drawing.Point(0, 0);
-            this.pboxTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pboxTitle.Name = "pboxTitle";
-            this.pboxTitle.Size = new System.Drawing.Size(1904, 100);
-            this.pboxTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxTitle.TabIndex = 3;
-            this.pboxTitle.TabStop = false;
-            // 
             // MeasurePanel
             // 
             this.MeasurePanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2391,6 +2412,32 @@ namespace DHS.EQUIPMENT
             this.BasePanel.Size = new System.Drawing.Size(620, 911);
             this.BasePanel.TabIndex = 5;
             // 
+            // lblLangKo
+            // 
+            this.lblLangKo.BackColor = System.Drawing.Color.Silver;
+            this.lblLangKo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLangKo.ForeColor = System.Drawing.Color.White;
+            this.lblLangKo.Location = new System.Drawing.Point(5, 12);
+            this.lblLangKo.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLangKo.Name = "lblLangKo";
+            this.lblLangKo.Size = new System.Drawing.Size(50, 48);
+            this.lblLangKo.TabIndex = 3;
+            this.lblLangKo.Text = "KO";
+            this.lblLangKo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLangKo.Click += new System.EventHandler(this.lblLangKo_Click);
+            // 
+            // pboxTitle
+            // 
+            this.pboxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pboxTitle.Image = global::DHS.EQUIPMENT.Properties.Resources.IROCV_Backgroud;
+            this.pboxTitle.Location = new System.Drawing.Point(0, 0);
+            this.pboxTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pboxTitle.Name = "pboxTitle";
+            this.pboxTitle.Size = new System.Drawing.Size(1904, 100);
+            this.pboxTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxTitle.TabIndex = 3;
+            this.pboxTitle.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2402,39 +2449,12 @@ namespace DHS.EQUIPMENT
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
-            this.Text = "INSPECTION";
+            this.Text = "IR/OCV INSPECTION 2023 07 26";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlTitle.ResumeLayout(false);
             this.pnlTitle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radbtn_Init)).EndInit();
-            this.radbtn_Init.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton20)).EndInit();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton22)).EndInit();
-            this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton24)).EndInit();
-            this.groupBox16.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton27)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton28)).EndInit();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            this.groupBox17.ResumeLayout(false);
-            this.groupBox18.ResumeLayout(false);
+            this.pnlLanguage.ResumeLayout(false);
             this.pnlConnection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radbtn_PLC)).EndInit();
             this.radbtn_PLC.ResumeLayout(false);
@@ -2492,6 +2512,34 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radLblAgv5Stop)).EndInit();
             this.gbAgvMovingTest.ResumeLayout(false);
             this.grpConveyorPLCTest.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radbtn_Init)).EndInit();
+            this.radbtn_Init.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton20)).EndInit();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton22)).EndInit();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton24)).EndInit();
+            this.groupBox16.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton28)).EndInit();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radlbl_Title)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxTitle)).EndInit();
             this.ResumeLayout(false);
@@ -2641,7 +2689,10 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.ComboBox comboBox18;
         private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlLanguage;
+        private System.Windows.Forms.Label lblLangNo;
+        private System.Windows.Forms.Label lblLangEn;
+        private System.Windows.Forms.Label lblLangKo;
     }
 }
 

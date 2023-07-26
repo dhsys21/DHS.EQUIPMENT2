@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 using DHS.EQUIPMENT.Common;
 
 namespace DHS.EQUIPMENT
@@ -44,6 +45,7 @@ namespace DHS.EQUIPMENT
 
             //* Connection Status Panel 색상 하얀색으로 - 위와 동일
             pnlConnection.Parent = pboxTitle;
+            pnlLanguage.Parent = pboxTitle;
 
             //* PLC INTERFACE
             plcForm = PLCINTERFACE.GetInstance();
@@ -294,6 +296,30 @@ namespace DHS.EQUIPMENT
         {
             _errorForm.ShowMessage(enumStageError.IROCVDisconnected, 0);
             _errorForm.ShowMessage(enumStageError.IROCVNoResponse, 0);
+        }
+
+        private void lblLangKo_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko-KR");
+            ChangeLanguage();
+        }
+
+        private void lblLangEn_Click(object sender, EventArgs e)
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            ChangeLanguage();
+        }
+
+        private void ChangeLanguage()
+        {
+            ChangeMainFormLanguage();
+            for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
+                nForm[nIndex].ChangeIROCVFormLanguage();
+        }
+        private void ChangeMainFormLanguage()
+        {
+            radbtn_Init.Text = StrLang.Initialize;
+            radbtn_Config.Text = StrLang.CONFIG;
         }
     }
 

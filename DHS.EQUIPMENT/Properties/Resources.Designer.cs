@@ -123,6 +123,16 @@ namespace DHS.EQUIPMENT.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Stage_End {
+            get {
+                object obj = ResourceManager.GetObject("Stage_End", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap TrayIn {
             get {
                 object obj = ResourceManager.GetObject("TrayIn", resourceCulture);

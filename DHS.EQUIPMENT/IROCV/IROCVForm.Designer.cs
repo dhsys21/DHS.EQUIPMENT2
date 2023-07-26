@@ -264,7 +264,7 @@ namespace DHS.EQUIPMENT
             // 
             // radBtnConfig
             // 
-            this.radBtnConfig.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radBtnConfig.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.radBtnConfig.ForeColor = System.Drawing.Color.Black;
             this.radBtnConfig.Location = new System.Drawing.Point(398, 54);
             this.radBtnConfig.Margin = new System.Windows.Forms.Padding(4);
@@ -280,7 +280,7 @@ namespace DHS.EQUIPMENT
             this.radBtnConfig.ThemeName = "ControlDefault";
             this.radBtnConfig.Click += new System.EventHandler(this.radBtnConfig_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnConfig.GetChildAt(0))).Text = "Config";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnConfig.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnConfig.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.DarkGray;
@@ -289,14 +289,14 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).MeasureTrailingSpaces = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Opacity = 1D;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(6);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radBtnConfig.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radbtn_TRAYOUT
             // 
-            this.radbtn_TRAYOUT.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radbtn_TRAYOUT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.radbtn_TRAYOUT.ForeColor = System.Drawing.Color.Black;
             this.radbtn_TRAYOUT.Location = new System.Drawing.Point(534, 54);
             this.radbtn_TRAYOUT.Margin = new System.Windows.Forms.Padding(4);
@@ -312,7 +312,7 @@ namespace DHS.EQUIPMENT
             this.radbtn_TRAYOUT.ThemeName = "ControlDefault";
             this.radbtn_TRAYOUT.Click += new System.EventHandler(this.radbtn_TRAYOUT_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_TRAYOUT.GetChildAt(0))).Text = "Tray Out";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_TRAYOUT.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_TRAYOUT.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.DarkGray;
@@ -321,14 +321,14 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).MeasureTrailingSpaces = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Opacity = 1D;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(6);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_TRAYOUT.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radbtn_NGINFO
             // 
-            this.radbtn_NGINFO.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radbtn_NGINFO.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.radbtn_NGINFO.ForeColor = System.Drawing.Color.Black;
             this.radbtn_NGINFO.Location = new System.Drawing.Point(466, 54);
             this.radbtn_NGINFO.Margin = new System.Windows.Forms.Padding(4);
@@ -344,7 +344,7 @@ namespace DHS.EQUIPMENT
             this.radbtn_NGINFO.ThemeName = "ControlDefault";
             this.radbtn_NGINFO.Click += new System.EventHandler(this.radbtn_NGINFO_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_NGINFO.GetChildAt(0))).Text = "NG Info.";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_NGINFO.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_NGINFO.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(241)))), ((int)(((byte)(252)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.DarkGray;
@@ -353,7 +353,7 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).MeasureTrailingSpaces = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Opacity = 1D;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(6);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_NGINFO.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;

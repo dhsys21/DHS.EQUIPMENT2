@@ -107,3 +107,10 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\IR
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\IROCV.pdb
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.AssemblyReference.cache
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.ErrorForm.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Ko\IROCV.resources.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\No\IROCV.resources.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.Common.StrLang.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.Common.StrLang.Ko.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.Common.StrLang.No.resources
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\Ko\IROCV.resources.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\No\IROCV.resources.dll
