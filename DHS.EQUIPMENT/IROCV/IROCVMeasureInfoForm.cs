@@ -744,5 +744,20 @@ namespace DHS.EQUIPMENT
             lblIRMeasure[_iOffsetChannel].Text = tbMeasureIR.Text;
             radPnlChangeOffset.Visible = false;
         }
+
+        public void ChangeIROCVMeasureInfoFormLanguage()
+        {
+            radlbl_manualmode.Text = StrLang.MANUALMODE;
+            lblManualTitle.Text = StrLang.LBLMANUALTITLE;
+            radbtn_AMSSTART.Text = StrLang.AMSSTART;
+            radbtn_AMSSTOP.Text = StrLang.AMSSTOP;
+            radbtn_Init.Text = StrLang.INITDATA;
+            lblTraySettingTitle.Text = StrLang.LBLTRAYSETTING;
+            radbtn_ProbeClose.Text = StrLang.BTNTRAYUP;
+            radbtn_ProbeOpen.Text = StrLang.BTNTRAYDOWN;
+            radBtnSaveData.Text = StrLang.BTNSAVEDATA;
+            radbtn_MsaStart.Text = StrLang.BTNMSASTART;
+            radbtn_MsaStop.Text = StrLang.BTNMSASTOP;
+        }
     }
 }

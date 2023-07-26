@@ -61,11 +61,74 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   IR/OCV과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string AMSSTART {
+            get {
+                return ResourceManager.GetString("AMSSTART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   STOP과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string AMSSTOP {
+            get {
+                return ResourceManager.GetString("AMSSTOP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   AUTO과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string AUTO {
             get {
                 return ResourceManager.GetString("AUTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   START과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNMSASTART {
+            get {
+                return ResourceManager.GetString("BTNMSASTART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   STOP과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNMSASTOP {
+            get {
+                return ResourceManager.GetString("BTNMSASTOP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SAVE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNSAVEDATA {
+            get {
+                return ResourceManager.GetString("BTNSAVEDATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TRAY DOWN과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNTRAYDOWN {
+            get {
+                return ResourceManager.GetString("BTNTRAYDOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TRAY UP과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNTRAYUP {
+            get {
+                return ResourceManager.GetString("BTNTRAYUP", resourceCulture);
             }
         }
         
@@ -79,6 +142,15 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   Init Data과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string INITDATA {
+            get {
+                return ResourceManager.GetString("INITDATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Initialize과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string Initialize {
@@ -88,11 +160,92 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   IR RANGE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLIRRANGE {
+            get {
+                return ResourceManager.GetString("LBLIRRANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   MANUAL과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLMANUALTITLE {
+            get {
+                return ResourceManager.GetString("LBLMANUALTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   OCV RANGE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLOCVRANGE {
+            get {
+                return ResourceManager.GetString("LBLOCVRANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PROCESS과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLPROCESS {
+            get {
+                return ResourceManager.GetString("LBLPROCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   RECIPE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLRECIPE {
+            get {
+                return ResourceManager.GetString("LBLRECIPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   STATUS과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLSTATUS {
+            get {
+                return ResourceManager.GetString("LBLSTATUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TRAY ID과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLTRAYID {
+            get {
+                return ResourceManager.GetString("LBLTRAYID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TRAY SETTING과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLTRAYSETTING {
+            get {
+                return ResourceManager.GetString("LBLTRAYSETTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   MANUAL과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MANUAL {
             get {
                 return ResourceManager.GetString("MANUAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   MANUAL MODE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MANUALMODE {
+            get {
+                return ResourceManager.GetString("MANUALMODE", resourceCulture);
             }
         }
         

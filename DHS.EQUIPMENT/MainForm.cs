@@ -315,6 +315,8 @@ namespace DHS.EQUIPMENT
             ChangeMainFormLanguage();
             for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
                 nForm[nIndex].ChangeIROCVFormLanguage();
+
+            measureinfo.ChangeIROCVMeasureInfoFormLanguage();
         }
         private void ChangeMainFormLanguage()
         {

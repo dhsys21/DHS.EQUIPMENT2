@@ -30,10 +30,10 @@ namespace DHS.EQUIPMENT
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            Telerik.WinControls.ThemeSource themeSource1 = new Telerik.WinControls.ThemeSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            Telerik.WinControls.ThemeSource themeSource2 = new Telerik.WinControls.ThemeSource();
             this.radpanel_Title = new Telerik.WinControls.UI.RadPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.radpanel_body = new Telerik.WinControls.UI.RadPanel();
@@ -79,16 +79,16 @@ namespace DHS.EQUIPMENT
             this.lblTrayIdTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblProcessTitle = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblRecipeTitle = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblIrRangeTitle = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblOcvRangeTitle = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.radpanel_connectionstatus = new Telerik.WinControls.UI.RadPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -813,7 +813,7 @@ namespace DHS.EQUIPMENT
             // panel2
             // 
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.lblProcessTitle);
             this.panel2.Location = new System.Drawing.Point(4, 105);
             this.panel2.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel2.Name = "panel2";
@@ -835,24 +835,24 @@ namespace DHS.EQUIPMENT
             this.label1.TabIndex = 18;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // lblProcessTitle
             // 
-            this.label6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(2, 2);
-            this.label6.Margin = new System.Windows.Forms.Padding(1);
-            this.label6.Name = "label6";
-            this.label6.Padding = new System.Windows.Forms.Padding(1);
-            this.label6.Size = new System.Drawing.Size(96, 36);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "PROCESS";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblProcessTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblProcessTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblProcessTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblProcessTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblProcessTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblProcessTitle.Name = "lblProcessTitle";
+            this.lblProcessTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblProcessTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblProcessTitle.TabIndex = 0;
+            this.lblProcessTitle.Text = "PROCESS";
+            this.lblProcessTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.lblRecipeTitle);
             this.panel3.Location = new System.Drawing.Point(4, 149);
             this.panel3.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel3.Name = "panel3";
@@ -874,24 +874,24 @@ namespace DHS.EQUIPMENT
             this.label7.TabIndex = 18;
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // lblRecipeTitle
             // 
-            this.label8.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(2, 2);
-            this.label8.Margin = new System.Windows.Forms.Padding(1);
-            this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(1);
-            this.label8.Size = new System.Drawing.Size(96, 36);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "RECIPE";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRecipeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblRecipeTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblRecipeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblRecipeTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblRecipeTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblRecipeTitle.Name = "lblRecipeTitle";
+            this.lblRecipeTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblRecipeTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblRecipeTitle.TabIndex = 0;
+            this.lblRecipeTitle.Text = "RECIPE";
+            this.lblRecipeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label9);
-            this.panel4.Controls.Add(this.label10);
+            this.panel4.Controls.Add(this.lblIrRangeTitle);
             this.panel4.Location = new System.Drawing.Point(4, 193);
             this.panel4.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel4.Name = "panel4";
@@ -913,24 +913,24 @@ namespace DHS.EQUIPMENT
             this.label9.TabIndex = 18;
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // lblIrRangeTitle
             // 
-            this.label10.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(2, 2);
-            this.label10.Margin = new System.Windows.Forms.Padding(1);
-            this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(1);
-            this.label10.Size = new System.Drawing.Size(96, 36);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "IR RANGE";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIrRangeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblIrRangeTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblIrRangeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblIrRangeTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblIrRangeTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblIrRangeTitle.Name = "lblIrRangeTitle";
+            this.lblIrRangeTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblIrRangeTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblIrRangeTitle.TabIndex = 0;
+            this.lblIrRangeTitle.Text = "IR RANGE";
+            this.lblIrRangeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Controls.Add(this.label15);
+            this.panel5.Controls.Add(this.lblOcvRangeTitle);
             this.panel5.Location = new System.Drawing.Point(4, 237);
             this.panel5.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel5.Name = "panel5";
@@ -952,19 +952,19 @@ namespace DHS.EQUIPMENT
             this.label13.TabIndex = 18;
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label15
+            // lblOcvRangeTitle
             // 
-            this.label15.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label15.Location = new System.Drawing.Point(2, 2);
-            this.label15.Margin = new System.Windows.Forms.Padding(1);
-            this.label15.Name = "label15";
-            this.label15.Padding = new System.Windows.Forms.Padding(1);
-            this.label15.Size = new System.Drawing.Size(96, 36);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "OCV RANGE";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOcvRangeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblOcvRangeTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblOcvRangeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblOcvRangeTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblOcvRangeTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblOcvRangeTitle.Name = "lblOcvRangeTitle";
+            this.lblOcvRangeTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblOcvRangeTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblOcvRangeTitle.TabIndex = 0;
+            this.lblOcvRangeTitle.Text = "OCV RANGE";
+            this.lblOcvRangeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -1205,19 +1205,19 @@ namespace DHS.EQUIPMENT
             this.gridView.AllowUserToAddRows = false;
             this.gridView.AllowUserToResizeColumns = false;
             this.gridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.gridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.gridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridView.BackgroundColor = System.Drawing.Color.White;
             this.gridView.ColumnHeadersHeight = 29;
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridView.DefaultCellStyle = dataGridViewCellStyle5;
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.GridColor = System.Drawing.Color.Black;
             this.gridView.Location = new System.Drawing.Point(2, 2);
@@ -1225,10 +1225,10 @@ namespace DHS.EQUIPMENT
             this.gridView.Name = "gridView";
             this.gridView.ReadOnly = true;
             this.gridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.gridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.gridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gridView.RowTemplate.Height = 23;
             this.gridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -1250,7 +1250,7 @@ namespace DHS.EQUIPMENT
             // radThemeManager1
             // 
             this.radThemeManager1.LoadedThemes.AddRange(new Telerik.WinControls.ThemeSource[] {
-            themeSource1});
+            themeSource2});
             // 
             // IROCVForm
             // 
@@ -1384,15 +1384,15 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadButton radBtnConfig;
         public System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblProcessTitle;
         public System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblRecipeTitle;
         public System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblIrRangeTitle;
         public System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblOcvRangeTitle;
     }
 }

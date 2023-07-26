@@ -117,17 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AMSSTART" xml:space="preserve">
+    <value>시작</value>
+  </data>
+  <data name="AMSSTOP" xml:space="preserve">
+    <value>정지</value>
+  </data>
   <data name="AUTO" xml:space="preserve">
     <value>자동</value>
+  </data>
+  <data name="BTNMSASTART" xml:space="preserve">
+    <value>시작</value>
+  </data>
+  <data name="BTNMSASTOP" xml:space="preserve">
+    <value>정지</value>
+  </data>
+  <data name="BTNSAVEDATA" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="BTNTRAYDOWN" xml:space="preserve">
+    <value>트레이 하강</value>
+  </data>
+  <data name="BTNTRAYUP" xml:space="preserve">
+    <value>트레이 상승</value>
   </data>
   <data name="CONFIG" xml:space="preserve">
     <value>환경설정</value>
   </data>
+  <data name="INITDATA" xml:space="preserve">
+    <value>초기화</value>
+  </data>
   <data name="Initialize" xml:space="preserve">
     <value>초기화</value>
   </data>
+  <data name="LBLIRRANGE" xml:space="preserve">
+    <value>IR 범위</value>
+  </data>
+  <data name="LBLMANUALTITLE" xml:space="preserve">
+    <value>수동</value>
+  </data>
+  <data name="LBLOCVRANGE" xml:space="preserve">
+    <value>OCV 범위</value>
+  </data>
+  <data name="LBLPROCESS" xml:space="preserve">
+    <value>프로세스</value>
+  </data>
+  <data name="LBLRECIPE" xml:space="preserve">
+    <value>레시피</value>
+  </data>
+  <data name="LBLSTATUS" xml:space="preserve">
+    <value>상태정보</value>
+  </data>
+  <data name="LBLTRAYID" xml:space="preserve">
+    <value>트레이 아이디</value>
+  </data>
+  <data name="LBLTRAYSETTING" xml:space="preserve">
+    <value>트레이 셋팅</value>
+  </data>
   <data name="MANUAL" xml:space="preserve">
     <value>수동</value>
+  </data>
+  <data name="MANUALMODE" xml:space="preserve">
+    <value>수동검사모드</value>
   </data>
   <data name="NGINFO" xml:space="preserve">
     <value>NG 정보</value>

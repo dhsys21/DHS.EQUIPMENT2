@@ -119,7 +119,22 @@ namespace DHS.EQUIPMENT
             radbtn_NGINFO.Text = StrLang.NGINFO;
             radBtnConfig.Text = StrLang.CONFIG;
             radbtn_TRAYOUT.Text = StrLang.TRAYOUT;
+
             lblReady.Text = StrLang.PNLREADY;
+            lblTrayIn.Text = StrLang.PNLTRAYIN;
+            lblBarcode.Text = StrLang.PNLBARCODE;
+            lblMeasure.Text = StrLang.PNLMEASURE;
+            lblFinish.Text = StrLang.PNLFINISH;
+            lblProbeOpen.Text = StrLang.PNLTRAYDOWN;
+            lblProbeDown.Text = StrLang.PNLTRAYUP;
+            lblTrayOut.Text = StrLang.PNLTRAYOUT;
+
+            lblStatusTitle.Text = StrLang.LBLSTATUS;
+            lblTrayIdTitle.Text = StrLang.LBLTRAYID;
+            lblProcessTitle.Text = StrLang.LBLPROCESS;
+            lblRecipeTitle.Text = StrLang.LBLRECIPE;
+            lblIrRangeTitle.Text = StrLang.LBLIRRANGE;
+            lblOcvRangeTitle.Text = StrLang.LBLOCVRANGE;
         }
         public void SetStageTitle(string stagename)
         {

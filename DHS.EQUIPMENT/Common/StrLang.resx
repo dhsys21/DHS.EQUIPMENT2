@@ -117,17 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AMSSTART" xml:space="preserve">
+    <value>IR/OCV</value>
+  </data>
+  <data name="AMSSTOP" xml:space="preserve">
+    <value>STOP</value>
+  </data>
   <data name="AUTO" xml:space="preserve">
     <value>AUTO</value>
+  </data>
+  <data name="BTNMSASTART" xml:space="preserve">
+    <value>START</value>
+  </data>
+  <data name="BTNMSASTOP" xml:space="preserve">
+    <value>STOP</value>
+  </data>
+  <data name="BTNSAVEDATA" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="BTNTRAYDOWN" xml:space="preserve">
+    <value>TRAY DOWN</value>
+  </data>
+  <data name="BTNTRAYUP" xml:space="preserve">
+    <value>TRAY UP</value>
   </data>
   <data name="CONFIG" xml:space="preserve">
     <value>CONFIG</value>
   </data>
+  <data name="INITDATA" xml:space="preserve">
+    <value>Init Data</value>
+  </data>
   <data name="Initialize" xml:space="preserve">
     <value>Initialize</value>
   </data>
+  <data name="LBLIRRANGE" xml:space="preserve">
+    <value>IR RANGE</value>
+  </data>
+  <data name="LBLMANUALTITLE" xml:space="preserve">
+    <value>MANUAL</value>
+  </data>
+  <data name="LBLOCVRANGE" xml:space="preserve">
+    <value>OCV RANGE</value>
+  </data>
+  <data name="LBLPROCESS" xml:space="preserve">
+    <value>PROCESS</value>
+  </data>
+  <data name="LBLRECIPE" xml:space="preserve">
+    <value>RECIPE</value>
+  </data>
+  <data name="LBLSTATUS" xml:space="preserve">
+    <value>STATUS</value>
+  </data>
+  <data name="LBLTRAYID" xml:space="preserve">
+    <value>TRAY ID</value>
+  </data>
+  <data name="LBLTRAYSETTING" xml:space="preserve">
+    <value>TRAY SETTING</value>
+  </data>
   <data name="MANUAL" xml:space="preserve">
     <value>MANUAL</value>
+  </data>
+  <data name="MANUALMODE" xml:space="preserve">
+    <value>MANUAL MODE</value>
   </data>
   <data name="NGINFO" xml:space="preserve">
     <value>NG Info.</value>
