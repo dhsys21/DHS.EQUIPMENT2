@@ -121,6 +121,7 @@
     <Compile Include="IROCV\NGInfo.Designer.cs">
       <DependentUpon>NGInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MES\OPENUACLIENT.cs" />
     <Compile Include="PRECHARGER\PrechargerData.cs" />
     <Compile Include="IrocvProcess.cs" />
     <Compile Include="MainForm.cs">

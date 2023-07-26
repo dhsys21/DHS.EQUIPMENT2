@@ -64,6 +64,9 @@ namespace DHS.EQUIPMENT
         private double[] _dIR_OFFSETAVERAGE = new double[_Constant.ChannelCount];
         private double _dOCV_OFFSET;
 
+        //* Channel offset (해당 셀 전후로 셀이 없는 경우 offset값
+        private double[] _dIR_CHANNELOFFSET = new double[_Constant.ChannelCount];
+
         public string TRAYID { get => _sTRAYID; set => _sTRAYID = value; }
         public string CELLTYPE { get => _sCELLTYPE; set => _sCELLTYPE = value; }
         public string BATCHID { get => _sBATCHID; set => _sBATCHID = value; }
@@ -92,6 +95,7 @@ namespace DHS.EQUIPMENT
         public double[] IR_OFFSET { get => _dIR_OFFSET; set => _dIR_OFFSET = value; }
         public double[] IR_OFFSETMEASUREAVERAGE { get => _dIR_OFFSETAVERAGE; set => _dIR_OFFSETAVERAGE = value; }
         public double OCV_OFFSET { get => _dOCV_OFFSET; set => _dOCV_OFFSET = value; }
+        public double[] IR_CHANNELOFFSET { get => _dIR_CHANNELOFFSET; set => _dIR_CHANNELOFFSET = value; }
         public double IRMin { get => _dIRMin; set => _dIRMin = value; }
         public double IRMax { get => _dIRMax; set => _dIRMax = value; }
         public double OCVMin { get => _dOCVMin; set => _dOCVMin = value; }
