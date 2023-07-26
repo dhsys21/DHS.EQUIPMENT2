@@ -138,4 +138,13 @@ namespace DHS.EQUIPMENT.Common
         Retry = 4,
         TimeOut = 5
     }
+    public enum enumStageError
+    {
+        NoError = 0,
+        IROCVDisconnected = 1,
+        PLCDisconnected = 2,
+        MESDisconnected = 3,
+        IROCVNoResponse = 4,
+        IROCVNotRemote = 5
+    }
 }

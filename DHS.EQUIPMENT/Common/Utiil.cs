@@ -344,7 +344,7 @@ namespace DHS.EQUIPMENT
 
             // for test 2023 05 18
             //filename = dir + "IROCV_" + irocvdata.TRAYID + "-" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
-            filename = dir + "IROCV_" + irocvdata.TRAYID.Replace("?", "TEST") + "_" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
+            filename = dir + "IROCV_" + irocvdata.TRAYID.Replace("?", "TEST").Replace("\0", string.Empty) + "_" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
 
             if (File.Exists(filename))
             {
@@ -352,7 +352,7 @@ namespace DHS.EQUIPMENT
             }
 
             string file;
-            file = "TRAY ID," + irocvdata.TRAYID + Environment.NewLine;
+            file = "TRAY ID," + irocvdata.TRAYID.Replace("?", "TEST").Replace("\0", string.Empty) + Environment.NewLine;
             //file = file + "CELL MODEL," + irocvdata.CELLMODEL + Environment.NewLine;
             //file = file + "LOT NUMBER," + irocvdata.LOTNUMBER + Environment.NewLine;
             file = file + "ARRIVE TIME," + irocvdata.ARRIVETIME.ToString("yyyy/MM/dd HH:mm:ss") + Environment.NewLine;

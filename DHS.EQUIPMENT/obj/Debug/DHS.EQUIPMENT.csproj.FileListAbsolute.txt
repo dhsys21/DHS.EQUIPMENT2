@@ -91,7 +91,6 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\S7
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.xml
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.ChartView.xml
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.xml
-D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.AssemblyReference.cache
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.ConfigForm.resources
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVConfig.resources
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.IROCVForm.resources
@@ -106,3 +105,5 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DH
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.CopyComplete
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\IROCV.exe
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\IROCV.pdb
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.csproj.AssemblyReference.cache
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.ErrorForm.resources

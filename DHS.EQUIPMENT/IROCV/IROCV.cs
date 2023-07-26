@@ -81,6 +81,16 @@ namespace DHS.EQUIPMENT
             }
         }
 
+        public delegate void IROCVError(int stageno, string param);
+        public event IROCVError OnIROCVError = null;
+        protected void RaiseOnIROCVError(int stageno, string param)
+        {
+            if (OnIROCVError != null)
+            {
+                OnIROCVError(stageno, param);
+            }
+        }
+
         public delegate void ProcessAms(int stageno);
         public event ProcessAms OnProcessAms = null;
         protected void RaiseOnProcessAms(int stageno)
@@ -365,12 +375,15 @@ namespace DHS.EQUIPMENT
                     break;
                 case "SEN":
                     //RaiseOnSensorInputProcess(param);
+                    //* error상태일 때 SENERR, error가 없을 때 SENIDL
+                    RaiseOnIROCVError(this._iStage, param);
                     break;
                 case "OUT":
                     //RaiseOnSensorOutputProcess(param);
                     break;
                 case "ERR":
                     //ResponseError(param);
+                    //RaiseOnIROCVError(this._iStage, param);
                     break;
                 default:
                     break;

@@ -22,6 +22,8 @@ namespace DHS.EQUIPMENT
         private IrocvProcess _EQProcess = null;
         public IROCVForm[] nForm = new IROCVForm[_Constant.frmCount];
         public IROCVMeasureInfoForm measureinfo;
+        //* Error Form
+        private ErrorForm _errorForm;
 
         public Timer _tmrConnectionChange = new Timer();
 
@@ -50,11 +52,15 @@ namespace DHS.EQUIPMENT
             configForm = new ConfigForm();
             configForm.OnSaveButtonClick += _CONFIGFORM_SaveConfigure;
 
+            //* Error Form
+            _errorForm = ErrorForm.GetInstance();
+            _errorForm.StartPosition = FormStartPosition.CenterScreen;
+
             //* IROCV FORM 추가
             AddEquipPanel();
 
             //* Connection Status
-            _tmrConnectionChange.Interval = 1000;
+            _tmrConnectionChange.Interval = 2000;
             _tmrConnectionChange.Tick += new EventHandler(ConnectionChangeTimer_Tick);
             _tmrConnectionChange.Enabled = true;
         }
@@ -68,31 +74,77 @@ namespace DHS.EQUIPMENT
 
         private void ConnectionChangeTimer_Tick(object sender, EventArgs e)
         {
+            //* 2023 07 25 PLC, IR/OCV, MES 연결이 안되면 PC_Error에 신호 ON
+            //* 2023 07 25 이 에러를 에러창을 띄워서 처리하는 것으로 수정해야 함
             SetConnectionStatus();
         }
 
+        string PcErrorMsg = string.Empty;
         private void SetConnectionStatus()
         {
             if(_EQProcess.IROCVCONNECTED[0] == true)
             {
-                if(lblIROCVConnection.BackColor != Color.Lime)
+                PcErrorMsg = "IROCV is connected.";
+                _EQProcess.PLC_SETERROR(0, 0, PcErrorMsg, enumStageError.NoError);
+                if (lblIROCVConnection.BackColor != Color.Lime)
+                {
                     SetColorToLabel(lblIROCVConnection, Color.Lime);
+                    //_EQProcess.PLC_SETERROR(0, 0, PcErrorMsg, enumStageError.NoError);
+                }
+                    
             }
             else
             {
+                PcErrorMsg = "IROCV is not connected.";
+                _EQProcess.PLC_SETERROR(0, 1, PcErrorMsg, enumStageError.IROCVDisconnected);
                 if (lblIROCVConnection.BackColor != Color.Red)
+                {
                     SetColorToLabel(lblIROCVConnection, Color.Red);
+                    //_EQProcess.PLC_SETERROR(0, 1, PcErrorMsg, enumStageError.IROCVDisconnected);
+                }
+                    
             }
 
             if(_EQProcess.PLCCONNECTED == true)
             {
-                if(lblPLCConnection.BackColor != Color.Lime)
+                PcErrorMsg = "PLC is connected.";
+                if (lblPLCConnection.BackColor != Color.Lime)
+                {
                     SetColorToLabel(lblPLCConnection, Color.Lime);
+                    _EQProcess.PLC_SETERROR(0, 0, PcErrorMsg, enumStageError.NoError);
+                }
+                    
             }
             else
             {
+                PcErrorMsg = "PLC is not connected.";
                 if (lblPLCConnection.BackColor != Color.Red)
+                {
                     SetColorToLabel(lblPLCConnection, Color.Red);
+                    _EQProcess.PLC_SETERROR(0, 1, PcErrorMsg, enumStageError.PLCDisconnected);
+                }
+                    
+            }
+
+            if (_EQProcess.MESCONNECTED == true)
+            {
+                PcErrorMsg = "MES is connected.";
+                if (lblMESConnection.BackColor != Color.Lime)
+                {
+                    SetColorToLabel(lblMESConnection, Color.Lime);
+                    _EQProcess.PLC_SETERROR(0, 0, PcErrorMsg, enumStageError.NoError);
+                }
+                    
+            }
+            else
+            {
+                PcErrorMsg = "MES is not connected.";
+                if (lblMESConnection.BackColor != Color.Red)
+                {
+                    SetColorToLabel(lblMESConnection, Color.Red);
+                    _EQProcess.PLC_SETERROR(0, 1, PcErrorMsg, enumStageError.MESDisconnected);
+                }
+                    
             }
         }
 
@@ -237,6 +289,12 @@ namespace DHS.EQUIPMENT
             
         }
         #endregion Config  Read / Save
+
+        private void lblPLCConnection_Click(object sender, EventArgs e)
+        {
+            _errorForm.ShowMessage(enumStageError.IROCVDisconnected, 0);
+            _errorForm.ShowMessage(enumStageError.IROCVNoResponse, 0);
+        }
     }
 
     public class DoubleBufferedPanel : Panel

@@ -89,6 +89,12 @@
     </Compile>
     <Compile Include="Equipment\CSocketDriver.cs" />
     <Compile Include="Equipment\EquipmentConfig.cs" />
+    <Compile Include="ErrorForm\ErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorForm\ErrorForm.Designer.cs">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IROCV\IROCV.cs" />
     <Compile Include="IROCV\IROCVConfig.cs">
       <SubType>Form</SubType>
@@ -134,6 +140,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorForm\ErrorForm.resx">
+      <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IROCV\IROCVConfig.resx">
       <DependentUpon>IROCVConfig.cs</DependentUpon>

@@ -31,6 +31,7 @@ namespace DHS.EQUIPMENT
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pnlTitle = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.radbtn_Init = new Telerik.WinControls.UI.RadButton();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.comboBox12 = new System.Windows.Forms.ComboBox();
@@ -255,6 +256,7 @@ namespace DHS.EQUIPMENT
             // pnlTitle
             // 
             this.pnlTitle.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTitle.Controls.Add(this.label1);
             this.pnlTitle.Controls.Add(this.radbtn_Init);
             this.pnlTitle.Controls.Add(this.pnlConnection);
             this.pnlTitle.Controls.Add(this.radlbl_Title);
@@ -265,6 +267,16 @@ namespace DHS.EQUIPMENT
             this.pnlTitle.Name = "pnlTitle";
             this.pnlTitle.Size = new System.Drawing.Size(1904, 100);
             this.pnlTitle.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.SteelBlue;
+            this.label1.Location = new System.Drawing.Point(35, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 15);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "2023 07 21";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radbtn_Init
             // 
@@ -323,7 +335,7 @@ namespace DHS.EQUIPMENT
             this.comboBox12.Location = new System.Drawing.Point(615, 681);
             this.comboBox12.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(147, 21);
+            this.comboBox12.Size = new System.Drawing.Size(147, 20);
             this.comboBox12.TabIndex = 92;
             this.comboBox12.Text = "select battery";
             // 
@@ -338,7 +350,7 @@ namespace DHS.EQUIPMENT
             this.comboBox13.Location = new System.Drawing.Point(615, 653);
             this.comboBox13.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(147, 21);
+            this.comboBox13.Size = new System.Drawing.Size(147, 20);
             this.comboBox13.TabIndex = 91;
             this.comboBox13.Text = "Battery Get Status";
             // 
@@ -615,7 +627,7 @@ namespace DHS.EQUIPMENT
             this.comboBox14.Location = new System.Drawing.Point(27, 40);
             this.comboBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(84, 21);
+            this.comboBox14.Size = new System.Drawing.Size(84, 20);
             this.comboBox14.TabIndex = 90;
             this.comboBox14.Text = "1";
             // 
@@ -817,7 +829,7 @@ namespace DHS.EQUIPMENT
             this.comboBox15.Location = new System.Drawing.Point(140, 16);
             this.comboBox15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(84, 21);
+            this.comboBox15.Size = new System.Drawing.Size(84, 20);
             this.comboBox15.TabIndex = 63;
             this.comboBox15.Text = "1";
             // 
@@ -856,7 +868,7 @@ namespace DHS.EQUIPMENT
             this.comboBox16.Location = new System.Drawing.Point(232, 16);
             this.comboBox16.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(185, 21);
+            this.comboBox16.Size = new System.Drawing.Size(185, 20);
             this.comboBox16.TabIndex = 62;
             this.comboBox16.Text = "1 - stop at 2F";
             // 
@@ -895,7 +907,7 @@ namespace DHS.EQUIPMENT
             this.comboBox17.Location = new System.Drawing.Point(19, 23);
             this.comboBox17.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox17.Name = "comboBox17";
-            this.comboBox17.Size = new System.Drawing.Size(252, 21);
+            this.comboBox17.Size = new System.Drawing.Size(252, 20);
             this.comboBox17.TabIndex = 64;
             this.comboBox17.Text = "AGV_Interlocking_Alarm_From_ACS";
             // 
@@ -913,7 +925,7 @@ namespace DHS.EQUIPMENT
             this.comboBox18.Location = new System.Drawing.Point(280, 23);
             this.comboBox18.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox18.Name = "comboBox18";
-            this.comboBox18.Size = new System.Drawing.Size(84, 21);
+            this.comboBox18.Size = new System.Drawing.Size(84, 20);
             this.comboBox18.TabIndex = 63;
             this.comboBox18.Text = "TRUE";
             // 
@@ -926,7 +938,7 @@ namespace DHS.EQUIPMENT
             this.comboBox19.Location = new System.Drawing.Point(383, 23);
             this.comboBox19.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox19.Name = "comboBox19";
-            this.comboBox19.Size = new System.Drawing.Size(84, 21);
+            this.comboBox19.Size = new System.Drawing.Size(84, 20);
             this.comboBox19.TabIndex = 62;
             this.comboBox19.Text = "BOOL";
             // 
@@ -1007,7 +1019,7 @@ namespace DHS.EQUIPMENT
             this.comboBox4.Location = new System.Drawing.Point(615, 681);
             this.comboBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(147, 21);
+            this.comboBox4.Size = new System.Drawing.Size(147, 20);
             this.comboBox4.TabIndex = 92;
             this.comboBox4.Text = "select battery";
             // 
@@ -1022,7 +1034,7 @@ namespace DHS.EQUIPMENT
             this.comboBox5.Location = new System.Drawing.Point(615, 653);
             this.comboBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(147, 21);
+            this.comboBox5.Size = new System.Drawing.Size(147, 20);
             this.comboBox5.TabIndex = 91;
             this.comboBox5.Text = "Battery Get Status";
             // 
@@ -1299,7 +1311,7 @@ namespace DHS.EQUIPMENT
             this.comboBox6.Location = new System.Drawing.Point(27, 40);
             this.comboBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(84, 21);
+            this.comboBox6.Size = new System.Drawing.Size(84, 20);
             this.comboBox6.TabIndex = 90;
             this.comboBox6.Text = "1";
             // 
@@ -1501,7 +1513,7 @@ namespace DHS.EQUIPMENT
             this.comboBox7.Location = new System.Drawing.Point(140, 16);
             this.comboBox7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(84, 21);
+            this.comboBox7.Size = new System.Drawing.Size(84, 20);
             this.comboBox7.TabIndex = 63;
             this.comboBox7.Text = "1";
             // 
@@ -1540,7 +1552,7 @@ namespace DHS.EQUIPMENT
             this.comboBox8.Location = new System.Drawing.Point(232, 16);
             this.comboBox8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(185, 21);
+            this.comboBox8.Size = new System.Drawing.Size(185, 20);
             this.comboBox8.TabIndex = 62;
             this.comboBox8.Text = "1 - stop at 2F";
             // 
@@ -1579,7 +1591,7 @@ namespace DHS.EQUIPMENT
             this.comboBox9.Location = new System.Drawing.Point(19, 23);
             this.comboBox9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(252, 21);
+            this.comboBox9.Size = new System.Drawing.Size(252, 20);
             this.comboBox9.TabIndex = 64;
             this.comboBox9.Text = "AGV_Interlocking_Alarm_From_ACS";
             // 
@@ -1597,7 +1609,7 @@ namespace DHS.EQUIPMENT
             this.comboBox10.Location = new System.Drawing.Point(280, 23);
             this.comboBox10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(84, 21);
+            this.comboBox10.Size = new System.Drawing.Size(84, 20);
             this.comboBox10.TabIndex = 63;
             this.comboBox10.Text = "TRUE";
             // 
@@ -1610,7 +1622,7 @@ namespace DHS.EQUIPMENT
             this.comboBox11.Location = new System.Drawing.Point(383, 23);
             this.comboBox11.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(84, 21);
+            this.comboBox11.Size = new System.Drawing.Size(84, 20);
             this.comboBox11.TabIndex = 62;
             this.comboBox11.Text = "BOOL";
             // 
@@ -1677,7 +1689,7 @@ namespace DHS.EQUIPMENT
             this.comboBox2.Location = new System.Drawing.Point(615, 681);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(147, 21);
+            this.comboBox2.Size = new System.Drawing.Size(147, 20);
             this.comboBox2.TabIndex = 92;
             this.comboBox2.Text = "select battery";
             // 
@@ -1692,7 +1704,7 @@ namespace DHS.EQUIPMENT
             this.comboBox1.Location = new System.Drawing.Point(615, 653);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(147, 21);
+            this.comboBox1.Size = new System.Drawing.Size(147, 20);
             this.comboBox1.TabIndex = 91;
             this.comboBox1.Text = "Battery Get Status";
             // 
@@ -1969,7 +1981,7 @@ namespace DHS.EQUIPMENT
             this.cbAgv.Location = new System.Drawing.Point(27, 40);
             this.cbAgv.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbAgv.Name = "cbAgv";
-            this.cbAgv.Size = new System.Drawing.Size(84, 21);
+            this.cbAgv.Size = new System.Drawing.Size(84, 20);
             this.cbAgv.TabIndex = 90;
             this.cbAgv.Text = "1";
             // 
@@ -2171,7 +2183,7 @@ namespace DHS.EQUIPMENT
             this.cbTest1.Location = new System.Drawing.Point(140, 16);
             this.cbTest1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbTest1.Name = "cbTest1";
-            this.cbTest1.Size = new System.Drawing.Size(84, 21);
+            this.cbTest1.Size = new System.Drawing.Size(84, 20);
             this.cbTest1.TabIndex = 63;
             this.cbTest1.Text = "1";
             // 
@@ -2210,7 +2222,7 @@ namespace DHS.EQUIPMENT
             this.cbTest2.Location = new System.Drawing.Point(232, 16);
             this.cbTest2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbTest2.Name = "cbTest2";
-            this.cbTest2.Size = new System.Drawing.Size(185, 21);
+            this.cbTest2.Size = new System.Drawing.Size(185, 20);
             this.cbTest2.TabIndex = 62;
             this.cbTest2.Text = "1 - stop at 2F";
             // 
@@ -2249,7 +2261,7 @@ namespace DHS.EQUIPMENT
             this.comboBox3.Location = new System.Drawing.Point(19, 23);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(252, 21);
+            this.comboBox3.Size = new System.Drawing.Size(252, 20);
             this.comboBox3.TabIndex = 64;
             this.comboBox3.Text = "AGV_Interlocking_Alarm_From_ACS";
             // 
@@ -2267,7 +2279,7 @@ namespace DHS.EQUIPMENT
             this.cbTagValue.Location = new System.Drawing.Point(280, 23);
             this.cbTagValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbTagValue.Name = "cbTagValue";
-            this.cbTagValue.Size = new System.Drawing.Size(84, 21);
+            this.cbTagValue.Size = new System.Drawing.Size(84, 20);
             this.cbTagValue.TabIndex = 63;
             this.cbTagValue.Text = "TRUE";
             // 
@@ -2280,7 +2292,7 @@ namespace DHS.EQUIPMENT
             this.cbTagValueType.Location = new System.Drawing.Point(383, 23);
             this.cbTagValueType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbTagValueType.Name = "cbTagValueType";
-            this.cbTagValueType.Size = new System.Drawing.Size(84, 21);
+            this.cbTagValueType.Size = new System.Drawing.Size(84, 20);
             this.cbTagValueType.TabIndex = 62;
             this.cbTagValueType.Text = "BOOL";
             // 
@@ -2296,7 +2308,7 @@ namespace DHS.EQUIPMENT
             // 
             // lblIROCVConnection
             // 
-            this.lblIROCVConnection.BackColor = System.Drawing.Color.Red;
+            this.lblIROCVConnection.BackColor = System.Drawing.Color.Lime;
             this.lblIROCVConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblIROCVConnection.ForeColor = System.Drawing.Color.White;
             this.lblIROCVConnection.Location = new System.Drawing.Point(332, 18);
@@ -2309,7 +2321,7 @@ namespace DHS.EQUIPMENT
             // 
             // lblPLCConnection
             // 
-            this.lblPLCConnection.BackColor = System.Drawing.Color.Red;
+            this.lblPLCConnection.BackColor = System.Drawing.Color.Lime;
             this.lblPLCConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPLCConnection.ForeColor = System.Drawing.Color.White;
             this.lblPLCConnection.Location = new System.Drawing.Point(276, 18);
@@ -2319,10 +2331,11 @@ namespace DHS.EQUIPMENT
             this.lblPLCConnection.TabIndex = 2;
             this.lblPLCConnection.Text = "PLC";
             this.lblPLCConnection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPLCConnection.Click += new System.EventHandler(this.lblPLCConnection_Click);
             // 
             // lblMESConnection
             // 
-            this.lblMESConnection.BackColor = System.Drawing.Color.Red;
+            this.lblMESConnection.BackColor = System.Drawing.Color.Lime;
             this.lblMESConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblMESConnection.ForeColor = System.Drawing.Color.White;
             this.lblMESConnection.Location = new System.Drawing.Point(220, 18);
@@ -2628,6 +2641,7 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.ComboBox comboBox18;
         private System.Windows.Forms.ComboBox comboBox19;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Label label1;
     }
 }
 

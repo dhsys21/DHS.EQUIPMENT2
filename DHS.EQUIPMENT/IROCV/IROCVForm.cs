@@ -318,7 +318,7 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Stage Status Picture
-        public void SetStageStatus(enumEquipStatus equipstatus, bool _bPlcConnected, int _iPLCAUTOMANUAL)
+        public void SetStageStatus(enumEquipStatus equipstatus, bool _bPlcConnected, int _iPLCAUTOMANUAL, bool _bMesConnected)
         {
             switch (equipstatus)
             {
@@ -360,14 +360,22 @@ namespace DHS.EQUIPMENT
                     break;
             }
 
+            //* 2023 07 25 순서 PLC 연결 -> MES 연결 -> PLC 매뉴얼
             if (_bPlcConnected == false)
             {
                 SetValueToLabel(lblStatus, "PLC is not connected", Color.Red);
             }
+            //* 2023 07 25 아직 MES 연결안되어서 주석처리함
+            //else if(_bMesConnected == false)
+            //{
+            //    SetValueToLabel(lblStatus, "MES is not connected", Color.Red);
+            //}
             else if(_iPLCAUTOMANUAL == 0)
             {
                 SetValueToLabel(lblStatus, "PLC is Manual Mode", Color.Red);
             }
+
+            
         }
         #endregion
 

@@ -22,12 +22,15 @@ namespace DHS.EQUIPMENT
         IROCVConfig[] irocvconfig = new IROCVConfig[_Constant.frmCount];
         NGInfo nginfo;
         IROCVMeasureInfoForm measureinfo;
+        //* Error Form
+        private ErrorForm _errorForm;
 
         public Timer[] _tmrEquipStatus = new Timer[_Constant.frmCount];
         public Timer[] _tmrAutoInspection = new Timer[_Constant.frmCount];
         public Timer[] _tmrConnectionChange = new Timer[_Constant.frmCount];
         public Timer[] _tmrMsaInspection = new Timer[_Constant.frmCount];
         public Timer _tmrGetPlcData = new Timer();
+        public Timer _tmrGetMesData = new Timer();
         public Timer DeleteFileTimer = null;
 
         private int msacount = 0;
@@ -84,6 +87,11 @@ namespace DHS.EQUIPMENT
             _tmrGetPlcData.Tick += new EventHandler(GetPlcDataTimer_Tick);
             _tmrGetPlcData.Enabled = true;
 
+            //* MES Timer
+            _tmrGetMesData.Interval = 1000;
+            _tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_Tick);
+            _tmrGetMesData.Enabled = true;
+
             //* Delete File Timer
             DeleteFileTimer = new Timer();
             DeleteFileTimer.Interval = 60 * 60 * 1000; //1시간에 한번씩 데이터 삭제
@@ -112,6 +120,10 @@ namespace DHS.EQUIPMENT
 
             //* NG INFO
             nginfo = NGInfo.GetInstance();
+
+            //* Error Form
+            _errorForm = ErrorForm.GetInstance();
+            _errorForm.StartPosition = FormStartPosition.CenterScreen;
 
             //* IROCV FORM
             for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
@@ -152,6 +164,7 @@ namespace DHS.EQUIPMENT
                 irocv[nIndex].OnProcessStop += _IROCV_ProcessStop;
                 irocv[nIndex].OnProcessIr += _IROCV_ProcessIr;
                 irocv[nIndex].OnProcessOcv += _IROCV_ProcessOcv;
+                irocv[nIndex].OnIROCVError += _IROCV_Error;
 
                 _bIrocvConnected[nIndex] = false;
                 #endregion
@@ -526,6 +539,10 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Timer
+        private void GetMesDataTimer_Tick(object sender, EventArgs e)
+        {
+            _bMesConnected = false;
+        }
         private void GetPlcDataTimer_Tick(object sender, EventArgs e)
         {
             _bPlcConnected = SIEMENSS7LIB.connection;
@@ -559,7 +576,8 @@ namespace DHS.EQUIPMENT
                     SetOperationMode(stageno, true);
                 _bIrocvConnected[stageno] = true;
 
-                PLC_SETERROR(stageno, 0);
+                //* 2023 07 25 mainform ConnectionChangeTimer_Tick으로 옮김
+                //PLC_SETERROR(stageno, 0);
             }
             else
             {
@@ -568,7 +586,9 @@ namespace DHS.EQUIPMENT
                 _bIrocvConnected[stageno] = false;
 
                 PLC_SETAUTOMODE(stageno, 0);
-                PLC_SETERROR(stageno, 1);
+
+                //* 2023 07 25 mainform ConnectionChangeTimer_Tick으로 옮김
+                //PLC_SETERROR(stageno, 1);
 
                 irocv[stageno].EQUIPMODE = enumEquipMode.MANUAL;
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepNoAnswer;
@@ -577,7 +597,7 @@ namespace DHS.EQUIPMENT
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepNoAnswer)
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepManual;
 
-            irocvform[stageno].SetStageStatus(irocv[stageno].EQUIPSTATUS, _bPlcConnected, siemensplc.PLCAUTOMANUAL);
+            irocvform[stageno].SetStageStatus(irocv[stageno].EQUIPSTATUS, _bPlcConnected, siemensplc.PLCAUTOMANUAL, _bMesConnected);
         }
         private void ConnectionChangeTimer_Tick(object sender, EventArgs e)
         {
@@ -605,6 +625,10 @@ namespace DHS.EQUIPMENT
             //if (irocv[stageno].AUTOMODE == false || siemensplc.PLCAUTOMANUAL == 0) return;
             //if (irocv[stageno].AUTOMODE == false) return;
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO) return;
+
+            //* 2023 07 25 PLC 에러 발생시 StepVacancy 상태가 아니면 IR/OCV 초기화 한다.
+            if(siemensplc.PLCERROR == 1 && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepVacancy)
+                IROCV_Initialize(stageno);
 
             switch (irocv[stageno].EQUIPSTATUS)
             {
@@ -839,6 +863,21 @@ namespace DHS.EQUIPMENT
         #endregion Timer
 
         #region IR/OCV Method
+        public void IROCV_Error(int stageno, string param)
+        {
+            //* 2023 07 25 컨트롤러 에러 추가
+            string statusCode = param.Substring(0, 3);
+            if(statusCode == "ERR")
+            {
+                SetOperationMode(stageno, false);
+                _errorForm.ShowMessage(enumStageError.IROCVNoResponse, stageno);
+            }
+            else if(statusCode == "IDL")
+            {
+                //* error 해제
+                _errorForm.HideMessage2(false);
+            }
+        }
         public void IROCV_Initialize(int stageno)
         {
             util.SaveLog(stageno, "IROCV Initialize ...");
@@ -1061,12 +1100,21 @@ namespace DHS.EQUIPMENT
             if (nValue == 1) SaveLog(stageno, "PC SET AUTOMODE ON");
             else SaveLog(stageno, "PC SET AUTOMODE OFF");
         }
-        private void PLC_SETERROR(int stageno, int nValue)
+        public void PLC_SETERROR(int stageno, int nValue, string msg, enumStageError _StageError)
         {
-            if (nValue == 1 && siemensplc.PCERROR == 0) SaveLog(stageno, "PC SET ERROR ON");
-            else if (nValue == 0 && siemensplc.PCERROR == 1) SaveLog(stageno, "PC SET ERROR OFF");
+            if (nValue == 1 && siemensplc.PCERROR == 0)
+            {
+                SaveLog(stageno, "PC SET ERROR ON : " + msg);
+            }
+            else if (nValue == 0 && siemensplc.PCERROR == 1)
+            {
+                SaveLog(stageno, "PC SET ERROR OFF : " + msg);
+            }
 
             siemensplc.SetPCError(stageno, nValue);
+
+            if(nValue == 1) _errorForm.ShowMessage(_StageError, stageno);
+            else _errorForm.HideMessage2(false);
         }
         private void PLC_TRAYDOWN(int stageno)
         {
@@ -1140,7 +1188,10 @@ namespace DHS.EQUIPMENT
             if(irocv[stageno].AMF == false)
                 AutoTestStart(stageno);
         }
-
+        private void _IROCV_Error(int stageno, string param)
+        {
+            IROCV_Error(stageno, param);
+        }
         private void _IROCV_Initialize(int stageno)
         {
             IROCV_Initialize(stageno);
