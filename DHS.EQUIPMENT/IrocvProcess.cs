@@ -21,7 +21,9 @@ namespace DHS.EQUIPMENT
         IROCVForm[] irocvform = new IROCVForm[_Constant.frmCount];
         IROCVConfig[] irocvconfig = new IROCVConfig[_Constant.frmCount];
         NGInfo nginfo;
+        
         IROCVMeasureInfoForm measureinfo;
+        IROCVRemeasureInfo remeasureinfo;
         //* Error Form
         private ErrorForm _errorForm;
 
@@ -118,6 +120,12 @@ namespace DHS.EQUIPMENT
             measureinfo.OnInitDataClick += _MEASUREINFOFORM_InitData;
             #endregion
 
+            #region Remeasure Info Form
+            remeasureinfo = IROCVRemeasureInfo.GetInstance();
+            remeasureinfo.OnRemeasureAllClick += _REMEASUREINFOFORM_RemeasureAll;
+            remeasureinfo.OnRemeasureClick += _REMEASUREINFOFORM_Remeasure;
+            remeasureinfo.OnTrayOutClick += _REMEASUREINFOFORM_TrayOut;
+            #endregion
             //* NG INFO
             nginfo = NGInfo.GetInstance();
 
@@ -144,6 +152,7 @@ namespace DHS.EQUIPMENT
                 irocvform[nIndex].OnIROCVReset += _IROCVFORM_IROCVReset;
                 irocvform[nIndex].OnNGInfo += _IROCVFORM_NGInfo;
                 irocvform[nIndex].OnConfigForm += _IROCVFORM_ConfigForm;
+                irocvform[nIndex].OnRemeasureInfo += _IROCVFORM_REMEASUREInfo;
 
                 //* IROCV CONFIG
                 irocvconfig[nIndex] = IROCVConfig.GetInstance(nIndex);
@@ -208,7 +217,7 @@ namespace DHS.EQUIPMENT
                 _tmrEquipStatus[nIndex].Enabled = true;
             }
         }
-        
+
         private void DeleteFileTimer_Tick(object sender, EventArgs e)
         {
             DeleteOldFiles();
@@ -1079,6 +1088,19 @@ namespace DHS.EQUIPMENT
         {
             irocv[stageno].CmdRESET();
         }
+        private void CmdRemeasureAll(int stageno)
+        {
+
+        }
+        private void CmdRemeasure(int stageno)
+        {
+
+        }
+        //* MES 보고 후 트레이 배출
+        private void CmdTrayOut(int stageno)
+        {
+
+        }
         #endregion IR/OCV Command
 
         #region PLC Action
@@ -1224,6 +1246,11 @@ namespace DHS.EQUIPMENT
             nginfo.SetNGInfo(stageno);
             nginfo.Show();
         }
+        private void _IROCVFORM_REMEASUREInfo(int stageno)
+        {
+            remeasureinfo.InitData(stageno);
+            remeasureinfo.Show();
+        }
         private void _IROCVFORM_ConfigForm(int stageno)
         {
             irocvconfig[stageno].Show();
@@ -1314,6 +1341,21 @@ namespace DHS.EQUIPMENT
             MsaInspection_Start(stageno, count, "OFFSET");
         }
         #endregion Delegate Event Measure Info Form Event
+
+        #region Delegate Event Remeasure Info Form Event
+        private void _REMEASUREINFOFORM_TrayOut(int stageno)
+        {
+            CmdTrayOut(stageno);
+        }
+        private void _REMEASUREINFOFORM_Remeasure(int stageno)
+        {
+            CmdRemeasure(stageno);
+        }
+        private void _REMEASUREINFOFORM_RemeasureAll(int stageno)
+        {
+            CmdRemeasureAll(stageno);
+        }
+        #endregion
 
         #region Delegate IROCV Config Form Event
         private void _IROCVCONFIG_SaveConfig(int stageno)

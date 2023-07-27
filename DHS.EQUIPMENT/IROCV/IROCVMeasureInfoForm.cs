@@ -211,7 +211,6 @@ namespace DHS.EQUIPMENT
             InitOCVChart();
         }
 
-
         public void SetOperationMode(bool bAuto)
         {
             if(bAuto == true)
@@ -271,6 +270,7 @@ namespace DHS.EQUIPMENT
         #region Display Data
         public void InitData(int stageno)
         {
+            _iStage = stageno;
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
                 SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);

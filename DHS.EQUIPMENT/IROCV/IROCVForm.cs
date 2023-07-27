@@ -66,6 +66,16 @@ namespace DHS.EQUIPMENT
             }
         }
 
+        public delegate void RemeasureInfoClick(int stageno);
+        public event RemeasureInfoClick OnRemeasureInfo = null;
+        protected void RaiseOnRemeasureInfo(int stageno)
+        {
+            if (OnRemeasureInfo != null)
+            {
+                OnRemeasureInfo(stageno);
+            }
+        }
+
         public delegate void ConfigFormClick(int stageno);
         public event ConfigFormClick OnConfigForm = null;
         protected void RaiseOnConfigForm(int stageno)
@@ -445,7 +455,7 @@ namespace DHS.EQUIPMENT
 
         private void radbtn_TRAYOUT_Click(object sender, EventArgs e)
         {
-
+            RaiseOnRemeasureInfo(this.stageno);
         }
     }
     
