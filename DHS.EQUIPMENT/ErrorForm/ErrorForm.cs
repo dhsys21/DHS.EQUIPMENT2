@@ -77,25 +77,25 @@ namespace DHS.EQUIPMENT
             else if (_StageError == enumStageError.IROCVDisconnected)
             {
                 errmsg = "IR/OCV Stage No." + stageno.ToString() + " is not connected."; 
-                ShowMessage("Connection Error", "IR/OCV is not connected.", "Please check the IR/OCV and restart IR/OCV Controller.");
+                ShowMessage("IR/OCV Connection Error", "IR/OCV is not connected.", "Please check the IR/OCV and restart IR/OCV Controller.");
             }
             else if (_StageError == enumStageError.IROCVNoResponse)
             {
                 errmsg = "IR/OCV Stage No." + stageno.ToString() + " is not response.";
-                ShowMessage("IR/OCV Error", "IR/OCV is not response.", "Please re-start IR/OCV Controller.");
+                ShowMessage("IR/OCV Response Error", "IR/OCV is not response.", "Please re-start IR/OCV Controller.");
             }
             else if (_StageError == enumStageError.IROCVNotRemote)
             {
                 errmsg = "IR/OCV Stage No." + stageno.ToString() + " is not remote mode.";
-                ShowMessage("IR/OCV Error", "IR/OCV is not remote mode.", "Please click reset button or re-start IR/OCV Controller.");
+                ShowMessage("IR/OCV Response Error", "IR/OCV is not remote mode.", "Please click reset button or re-start IR/OCV Controller.");
             }
             else if (_StageError == enumStageError.PLCDisconnected)
             {
-                ShowMessage("Connection Error", "PLC is not connected.", "Please check the PLC connection.");
+                ShowMessage("PLC Connection Error", "PLC is not connected.", "Please check the PLC connection.");
             }
             else if (_StageError == enumStageError.MESDisconnected)
             {
-                ShowMessage("Connection Error", "MES is not connected.", "Please check the MES connection.");
+                ShowMessage("MES Connection Error", "MES is not connected.", "Please check the MES connection.");
             }
         }
 
