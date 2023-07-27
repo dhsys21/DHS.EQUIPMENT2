@@ -130,6 +130,12 @@
     <Compile Include="IROCV\IROCVMeasureInfoForm.Designer.cs">
       <DependentUpon>IROCVMeasureInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IROCV\IROCVRemeasureInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IROCV\IROCVRemeasureInfo.Designer.cs">
+      <DependentUpon>IROCVRemeasureInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="IROCV\NGInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IROCV\IROCVMeasureInfoForm.resx">
       <DependentUpon>IROCVMeasureInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IROCV\IROCVRemeasureInfo.resx">
+      <DependentUpon>IROCVRemeasureInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IROCV\NGInfo.resx">
       <DependentUpon>NGInfo.cs</DependentUpon>
