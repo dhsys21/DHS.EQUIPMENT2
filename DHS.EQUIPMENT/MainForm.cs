@@ -301,24 +301,27 @@ namespace DHS.EQUIPMENT
         private void lblLangKo_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ko-KR");
-            ChangeLanguage();
+            ChangeLanguage(enumLanguage.Kor);
         }
-
         private void lblLangEn_Click(object sender, EventArgs e)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
-            ChangeLanguage();
+            ChangeLanguage(enumLanguage.Eng);
         }
-
-        private void ChangeLanguage()
+        private void lblLangNo_Click(object sender, EventArgs e)
         {
-            ChangeMainFormLanguage();
-            for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
-                nForm[nIndex].ChangeIROCVFormLanguage();
-
-            measureinfo.ChangeIROCVMeasureInfoFormLanguage();
+            System.Threading.Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("nn-NO");
+            ChangeLanguage(enumLanguage.Nor);
         }
-        private void ChangeMainFormLanguage()
+        private void ChangeLanguage(enumLanguage enumLanguageType)
+        {
+            ChangeMainFormLanguage(enumLanguageType);
+            for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
+                nForm[nIndex].ChangeIROCVFormLanguage(enumLanguageType);
+
+            measureinfo.ChangeIROCVMeasureInfoFormLanguage(enumLanguageType);
+        }
+        private void ChangeMainFormLanguage(enumLanguage enumLanguageType)
         {
             radbtn_Init.Text = StrLang.Initialize;
             radbtn_Config.Text = StrLang.CONFIG;

@@ -295,6 +295,7 @@ namespace DHS.EQUIPMENT
             this.lblLangNo.TabIndex = 1;
             this.lblLangNo.Text = "NO";
             this.lblLangNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLangNo.Click += new System.EventHandler(this.lblLangNo_Click);
             // 
             // lblLangEn
             // 

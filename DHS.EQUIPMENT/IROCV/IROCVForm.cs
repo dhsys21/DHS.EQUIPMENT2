@@ -111,10 +111,15 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Method
-        public void ChangeIROCVFormLanguage()
+        public void ChangeIROCVFormLanguage(enumLanguage enumLanguageType)
         {
             radbtn_AUTO.Text = StrLang.AUTO;
             radbtn_MANU.Text = StrLang.MANUAL;
+            if(enumLanguageType == enumLanguage.Kor || enumLanguageType == enumLanguage.Eng)
+                radbtn_MANU.Font = new Font("Arial", 14, FontStyle.Bold);
+            else if(enumLanguageType == enumLanguage.Nor)
+                radbtn_MANU.Font = new Font("Arial", 12, FontStyle.Bold);
+            
             radbtn_RESET.Text = StrLang.RESET;
             radbtn_NGINFO.Text = StrLang.NGINFO;
             radBtnConfig.Text = StrLang.CONFIG;

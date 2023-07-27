@@ -147,4 +147,10 @@ namespace DHS.EQUIPMENT.Common
         IROCVNoResponse = 4,
         IROCVNotRemote = 5
     }
+    public enum enumLanguage
+    {
+        Kor = 0,
+        Eng = 1,
+        Nor = 2
+    }
 }

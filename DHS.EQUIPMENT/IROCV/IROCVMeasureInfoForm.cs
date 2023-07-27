@@ -745,7 +745,7 @@ namespace DHS.EQUIPMENT
             radPnlChangeOffset.Visible = false;
         }
 
-        public void ChangeIROCVMeasureInfoFormLanguage()
+        public void ChangeIROCVMeasureInfoFormLanguage(enumLanguage enumLanguageType)
         {
             radlbl_manualmode.Text = StrLang.MANUALMODE;
             lblManualTitle.Text = StrLang.LBLMANUALTITLE;
