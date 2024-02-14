@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 
+
 namespace DHS.EQUIPMENT
 {
     class IrocvProcess
@@ -14,6 +15,8 @@ namespace DHS.EQUIPMENT
         public static IrocvProcess irocvprocess = null;
         Util util;
         SIEMENSS7LIB siemensplc;
+        MesServer messerver;
+        MesClient mesclient;
         CEquipmentData _system;
         PLCINTERFACE plcinterface = null;
         IROCV[] irocv = new IROCV[_Constant.frmCount];
@@ -88,6 +91,18 @@ namespace DHS.EQUIPMENT
             _tmrGetPlcData.Interval = 1000;
             _tmrGetPlcData.Tick += new EventHandler(GetPlcDataTimer_Tick);
             _tmrGetPlcData.Enabled = true;
+
+            //* MES Connection
+            try
+            {
+                messerver = new MesServer();
+
+                mesclient = new MesClient();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
             //* MES Timer
             _tmrGetMesData.Interval = 1000;
@@ -218,6 +233,20 @@ namespace DHS.EQUIPMENT
             }
         }
 
+        private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
+        {
+            if (tagname == "PC Heart Beat") siemensplc.SetHeartBeat(stageno, nValue);
+            else if (tagname == "PC Auto Manual") siemensplc.SetAutoMode(stageno, nValue);
+            else if (tagname == "PC Error") siemensplc.SetPCError(stageno, nValue);
+            else if (tagname == "Tray Out") siemensplc.SetTrayOut(stageno, nValue);
+            else if (tagname == "Tray Down") siemensplc.SetTrayDown(stageno, nValue);
+            else if (tagname == "Tray Up") siemensplc.SetTrayUp(stageno, nValue);
+            else if (tagname == "Measurement Wait") siemensplc.SetMeasurementWait(stageno, nValue);
+            else if (tagname == "Measurement Run") siemensplc.SetMeasurementRunning(stageno, nValue);
+            else if (tagname == "Measurement Complete") siemensplc.SetMeasurementComplete(stageno, nValue);
+        }
+
+        #region FILE MANAGE
         private void DeleteFileTimer_Tick(object sender, EventArgs e)
         {
             DeleteOldFiles();
@@ -247,25 +276,9 @@ namespace DHS.EQUIPMENT
             if (Directory.Exists(_Constant.MSA_PATH) == false) Directory.CreateDirectory(_Constant.MSA_PATH);
             if (Directory.Exists(_Constant.OFFSET_PATH) == false) Directory.CreateDirectory(_Constant.OFFSET_PATH);
         }
+        #endregion
 
-        private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
-        {
-            if (tagname == "PC Heart Beat") siemensplc.SetHeartBeat(stageno, nValue);
-            else if (tagname == "PC Auto Manual") siemensplc.SetAutoMode(stageno, nValue);
-            else if (tagname == "PC Error") siemensplc.SetPCError(stageno, nValue);
-            else if (tagname == "Tray Out") siemensplc.SetTrayOut(stageno, nValue);
-            else if (tagname == "Tray Down") siemensplc.SetTrayDown(stageno, nValue);
-            else if (tagname == "Tray Up") siemensplc.SetTrayUp(stageno, nValue);
-            else if (tagname == "Measurement Wait") siemensplc.SetMeasurementWait(stageno, nValue);
-            else if (tagname == "Measurement Run") siemensplc.SetMeasurementRunning(stageno, nValue);
-            else if (tagname == "Measurement Complete") siemensplc.SetMeasurementComplete(stageno, nValue);
-        }
-
-        public void close()
-        {
-            for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
-                if (irocv[nIndex] != null) irocv[nIndex].Close();
-        }
+        #region CONFIG/ RESULT FILE/ NG INFO
 
         #region Channel Mapping
         private void ReadChannelMapping()
@@ -547,10 +560,19 @@ namespace DHS.EQUIPMENT
         */
         #endregion
 
+        #endregion
+
         #region Timer
         private void GetMesDataTimer_Tick(object sender, EventArgs e)
         {
             _bMesConnected = false;
+            try
+            {
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
         private void GetPlcDataTimer_Tick(object sender, EventArgs e)
         {
@@ -845,7 +867,10 @@ namespace DHS.EQUIPMENT
         {
             if (siemensplc.PLCTRAYUP == 1)
             {
-                CmdAutoStart(stageno);
+                if (irocvdata[stageno].REMEASURE == false)
+                    CmdAutoStart(stageno);
+                else if (irocvdata[stageno].REMEASURE == true)
+                    CmdRemeasureExcute(stageno);
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepRun;
             }
         }
@@ -870,6 +895,13 @@ namespace DHS.EQUIPMENT
         #endregion Auto Inspection Timer
 
         #endregion Timer
+
+        #region IR/OCV
+        public void close()
+        {
+            for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
+                if (irocv[nIndex] != null) irocv[nIndex].Close();
+        }
 
         #region IR/OCV Method
         public void IROCV_Error(int stageno, string param)
@@ -1088,20 +1120,33 @@ namespace DHS.EQUIPMENT
         {
             irocv[stageno].CmdRESET();
         }
-        private void CmdRemeasureAll(int stageno)
+        private void CmdRemeasureExcute(int stageno)
         {
 
+        }
+        private void CmdRemeasureAll(int stageno)
+        {
+            //* auto inspection - tray up 으로 이동
+            //* mode - remeasure all
+            irocvdata[stageno].REMEASURE = false;
+            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayIn;
         }
         private void CmdRemeasure(int stageno)
         {
-
+            //* auto inspection - tray up 으로 이동
+            //* mode - remeasure
+            irocvdata[stageno].REMEASURE = true;
+            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayIn;
         }
-        //* MES 보고 후 트레이 배출
         private void CmdTrayOut(int stageno)
         {
-
+            //* MES 보고? 후 트레이 배출
+            //* auto inspection - tray out 으로 이동
+            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
         }
         #endregion IR/OCV Command
+
+        #endregion
 
         #region PLC Action
         private void SaveLog(int stageno, string strMessage)
@@ -1185,6 +1230,8 @@ namespace DHS.EQUIPMENT
             SaveLog(stageno, "SET MEASUREMENT COMPLETE ON");
         }
         #endregion PLC Action
+
+        #region DELEGATE
 
         #region Delegate Event IROCV Equipment (Socket)
         private void _IROCV_ProcessOcv(int stageno, string param)
@@ -1363,6 +1410,8 @@ namespace DHS.EQUIPMENT
             SaveConfigFile(stageno);
             ReadConfigFile(stageno);
         }
+        #endregion
+
         #endregion
     }
 }

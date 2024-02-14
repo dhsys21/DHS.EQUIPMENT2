@@ -47,6 +47,8 @@ namespace DHS.EQUIPMENT
         private int[] _iMEASURERESULT = new int[_Constant.ChannelCount];
         //* Remeasure Cell Count
         private int _iREMEASURECELLCOUNT;
+        //* Remeasure Mode true - remeasure ng channel, false - remeausre all or test all
+        private bool _bREMEASURE;
         //* Remeasure Count per every cell
         private int[] _iCellNgCount = new int[_Constant.ChannelCount];
         //* IR Result 0 - not measured, 1 - measured
@@ -84,6 +86,7 @@ namespace DHS.EQUIPMENT
         public double[] OCV { get => _dOCV; set => _dOCV = value; }
         public int[] MEASURERESULT { get => _iMEASURERESULT; set => _iMEASURERESULT = value; }
         public int REMEASURECELLCOUNT { get => _iREMEASURECELLCOUNT; set => _iREMEASURECELLCOUNT = value; }
+        public bool REMEASURE { get => _bREMEASURE; set => _bREMEASURE = value; }
         public int[] CELLNGCOUNT { get => _iCellNgCount; set => _iCellNgCount = value; }
         public int[] IRRESULT { get => _iIRRESULT; set => _iIRRESULT = value; }
         public int[] OCVRESULT { get => _iOCVRESULT; set => _iOCVRESULT = value; }
@@ -126,8 +129,9 @@ namespace DHS.EQUIPMENT
             _sCELLSERIAL = string.Empty;
             iCELLCOUNT = 0;
             _bFIRST = true;
+            _bREMEASURE = false;
 
-            for(int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
                 _iCELL[nIndex] = 1;
                 _dIR_ORIGINALVALUE[nIndex] = 0.000;

@@ -22,6 +22,7 @@ namespace DHS.EQUIPMENT
         private int _iMeasureCount;
         private bool _bAMS;
         private bool _bAMF;
+        
         //private bool _bAutoMode = false;
         private int _iStage = 0;
         private int _iMsaCount = 0;
@@ -46,7 +47,7 @@ namespace DHS.EQUIPMENT
         public enumEquipStatus EQUIPSTATUS { get => _EquipStatus; set => _EquipStatus = value; }
         public enumMsaStatus MSASTATUS { get => _MsaStatus; set => _MsaStatus = value; }
         public string StrBuffData { get => _strBuffData; set => _strBuffData = value; }
-
+        
 
         private static IROCV[] IrocvDriver = new IROCV[_Constant.frmCount];
         public static IROCV GetInstance(int nIndex)
