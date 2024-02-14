@@ -14,7 +14,6 @@ namespace DHS.EQUIPMENT
         public static bool connection = false;
         public bool isRead = false;
 
-        
         public MesServer()
         {
             connection = false;
