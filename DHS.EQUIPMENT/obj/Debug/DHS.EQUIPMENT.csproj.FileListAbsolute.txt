@@ -136,3 +136,4 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DH
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\IROCV.exe
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\IROCV.pdb
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\IROCV.Config.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.OPCUA.MESINTERFACE.resources

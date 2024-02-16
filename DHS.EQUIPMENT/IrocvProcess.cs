@@ -19,6 +19,7 @@ namespace DHS.EQUIPMENT
         MesClient mesclient;
         CEquipmentData _system;
         PLCINTERFACE plcinterface = null;
+        MESINTERFACE mesinterface = null;
         IROCV[] irocv = new IROCV[_Constant.frmCount];
         IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
         IROCVForm[] irocvform = new IROCVForm[_Constant.frmCount];
@@ -65,15 +66,10 @@ namespace DHS.EQUIPMENT
             //* Make Folder
             MakeFolder();
 
-            #region PLC INTERFACE
+            #region PLC
+            _bPlcConnected = false;
             plcinterface = PLCINTERFACE.GetInstance();
             plcinterface.OnWritePLCClick += _PLCINTERFACE_WritePLC;
-            #endregion
-
-            _bPlcConnected = false;
-            _bMesConnected = false;
-
-            ReadChannelMapping();
 
             //* PLC Connection
             try
@@ -91,6 +87,11 @@ namespace DHS.EQUIPMENT
             _tmrGetPlcData.Interval = 1000;
             _tmrGetPlcData.Tick += new EventHandler(GetPlcDataTimer_Tick);
             _tmrGetPlcData.Enabled = true;
+            #endregion
+
+            #region MES
+            _bMesConnected = false;
+            mesinterface = MESINTERFACE.GetInstance();
 
             //* MES Connection
             try
@@ -98,6 +99,7 @@ namespace DHS.EQUIPMENT
                 messerver = new MesServer();
 
                 mesclient = new MesClient();
+                mesclient.
 
                 _bMesConnected = MesClient.connection;
             }
@@ -110,6 +112,9 @@ namespace DHS.EQUIPMENT
             _tmrGetMesData.Interval = 1000;
             _tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_Tick);
             _tmrGetMesData.Enabled = true;
+            #endregion
+
+            ReadChannelMapping();
 
             //* Delete File Timer
             DeleteFileTimer = new Timer();
@@ -143,6 +148,7 @@ namespace DHS.EQUIPMENT
             remeasureinfo.OnRemeasureClick += _REMEASUREINFOFORM_Remeasure;
             remeasureinfo.OnTrayOutClick += _REMEASUREINFOFORM_TrayOut;
             #endregion
+
             //* NG INFO
             nginfo = NGInfo.GetInstance();
 
@@ -150,7 +156,8 @@ namespace DHS.EQUIPMENT
             _errorForm = ErrorForm.GetInstance();
             _errorForm.StartPosition = FormStartPosition.CenterScreen;
 
-            //* IROCV FORM
+            #region IR/OCV
+            //* IROCV 
             for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
             {
                 //* IROCV Socekt
@@ -233,6 +240,7 @@ namespace DHS.EQUIPMENT
                 _tmrEquipStatus[nIndex].Tick += new EventHandler(EquipStatusTimer_Tick);
                 _tmrEquipStatus[nIndex].Enabled = true;
             }
+            #endregion
         }
 
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
@@ -573,7 +581,7 @@ namespace DHS.EQUIPMENT
             {
                 if(_bMesConnected == true)
                 {
-
+                    mesinterface.setdata
                 }
             }catch(Exception ex)
             {

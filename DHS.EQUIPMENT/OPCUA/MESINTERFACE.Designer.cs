@@ -1,5 +1,5 @@
 ﻿
-namespace DHS.EQUIPMENT.OPCUA
+namespace DHS.EQUIPMENT
 {
     partial class MESINTERFACE
     {

@@ -15,6 +15,9 @@ namespace DHS.EQUIPMENT
         public bool isRead = false;
         OPCUACLIENT.OPCUACLIENT opcclient = null;
 
+        private string[] mesData = new string[70];
+        private string[] pcData = new string[133];
+
         private int _iMesSequenceNo;
         private int _iMesAcknowledgeNo;
         private string _strMesEquipmentID;
@@ -53,6 +56,16 @@ namespace DHS.EQUIPMENT
         public int[] PCRESULTS { get => _iPCResults; set => _iPCResults = value; }
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
+        
+        public delegate void SetValueToDgv(string[] pcValues, string[] mesValues);
+        public event SetValueToDgv OnSetValueToDgv = null;
+        protected void RaiseOnSetValueToDgv(string[] pcValues, string[] mesValues)
+        {
+            if (OnSetValueToDgv != null)
+            {
+                OnSetValueToDgv(pcValues, mesValues);
+            }
+        }
         public MesClient()
         {
             opcclient = new OPCUACLIENT.OPCUACLIENT();
@@ -84,6 +97,8 @@ namespace DHS.EQUIPMENT
 
                     MesReadTimer();
 
+                    RaiseOnSetValueToDgv(pcData, mesData);
+
                     sw.Stop();
                     //SetValue(sw.ElapsedMilliseconds.ToString());
                 }
@@ -106,28 +121,36 @@ namespace DHS.EQUIPMENT
                     case "ns=2;s=Mes/SequenceNo":
                         iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iMesSequenceNo = (int)iVal;
+                        SetValue(0, _iMesSequenceNo);
                         break;
                     case "ns=2;s=Mes/AcknowledgeNo":
                         iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iMesAcknowledgeNo = (int)iVal;
+                        SetValue(1, _iMesAcknowledgeNo);
                         break;
                     case "ns=2;s=Mes/EquipmentID":
                         _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(2, _strMesEquipmentID);
                         break;
                     case "ns=2;s=Mes/TrayID":
                         _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(3, _strMesTrayID);
                         break;
                     case "ns=2;s=Mes/RecipeID":
                         _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(4, _strMesRecipeID);
                         break;
                     case "ns=2;s=Mes/Bypass":
                         _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(5, _bMesBypass);
                         break;
                     case "ns=2;s=Mes/CellID":
                         _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(6, _strMesCellIDs);
                         break;
                     case "ns=2;s=Mes/CellStatus":
                         _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(38, _strMesCellStats);
                         break;
                     default:
                         break;
@@ -181,9 +204,13 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region OPC UA Method
-        private void SetValue(DataGridView dgv, int row, int column, string value)
+        private void SetValue(int row, string value, string type)
         {
-            dgv.Rows[row].Cells[column].Value = value;
+            
+        }
+        private void SetValue(int row, bool value, string type)
+        {
+            
         }
         private object ReadValue(string node, int nDataType)
         {
