@@ -268,7 +268,7 @@ namespace OPCUASERVER
                 CreateVariable(rootMy2, "CellID", DataTypeIds.String, ValueRanks.OneDimension, strCellID2);
                 CreateVariable(rootMy2, "IR", DataTypeIds.UInt32, ValueRanks.OneDimension, uiIR);
                 CreateVariable(rootMy2, "OCV", DataTypeIds.UInt32, ValueRanks.OneDimension, uiOCV);
-                CreateVariable(rootMy2, "Result", DataTypeIds.UInt32, ValueRanks.OneDimension, uiOCV);
+                CreateVariable(rootMy2, "Result", DataTypeIds.UInt32, ValueRanks.OneDimension, uiResult);
 
                 AddPredefinedNode(SystemContext, rootMy2);
                 #endregion

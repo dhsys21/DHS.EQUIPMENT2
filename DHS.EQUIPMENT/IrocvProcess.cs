@@ -566,6 +566,7 @@ namespace DHS.EQUIPMENT
         private void GetMesDataTimer_Tick(object sender, EventArgs e)
         {
             _bMesConnected = false;
+
             try
             {
 

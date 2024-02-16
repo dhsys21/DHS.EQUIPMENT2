@@ -15,6 +15,43 @@ namespace DHS.EQUIPMENT
         public bool isRead = false;
         OPCUACLIENT.OPCUACLIENT opcclient = null;
 
+        private int _iMesSequenceNo;
+        private int _iMesAcknowledgeNo;
+        private string _strMesEquipmentID;
+        private string _strMesTrayID;
+        private string _strMesRecipeID;
+        private bool _bMesBypass;
+        private string[] _strMesCellIDs;
+        private string[] _strMesCellStats;
+
+        private int _iPCSequenceNo;
+        private int _iPCAcknowledgeNo;
+        private string _strPCEquipmentID;
+        private string _strPCTrayID;
+        private string _strPCRecipeID;
+        private string[] _strPCCellIDs;
+        private string[] _strPCIRs;
+        private string[] _strPCOCVs;
+        private string[] _strPCResults;
+
+        public int MESSEQUENCENO { get => _iMesSequenceNo; set => _iMesSequenceNo = value; }
+        public int MESACKNOWLEDGENO { get => _iMesAcknowledgeNo; set => _iMesAcknowledgeNo = value; }
+        public string MESEQUIPMENTID { get => _strMesEquipmentID; set => _strMesEquipmentID = value; }
+        public string MESTRAYID { get => _strMesTrayID; set => _strMesTrayID = value; }
+        public string MESRECIPEID { get => _strMesRecipeID; set => _strMesRecipeID = value; }
+        public bool MESBYPASS { get => _bMesBypass; set => _bMesBypass = value; }
+        public string[] MESCELLIDS { get => _strMesCellIDs; set => _strMesCellIDs = value; }
+        public string[] MESCELLSTATS { get => _strMesCellStats; set => _strMesCellStats = value; }
+        public int PCSEQUENCENO { get => _iPCSequenceNo; set => _iPCSequenceNo = value; }
+        public int PCACKNOWLEDGENO { get => _iPCAcknowledgeNo; set => _iPCAcknowledgeNo = value; }
+        public string PCEQUIPMENTID { get => _strPCEquipmentID; set => _strPCEquipmentID = value; }
+        public string PCTRAYID { get => _strPCTrayID; set => _strPCTrayID = value; }
+        public string PCRECIPEID { get => _strPCRecipeID; set => _strPCRecipeID = value; }
+        public string[] PCCELLIDS { get => _strPCCellIDs; set => _strPCCellIDs = value; }
+        public string[] PCIRS { get => _strPCIRs; set => _strPCIRs = value; }
+        public string[] PCOCVS { get => _strPCOCVs; set => _strPCOCVs = value; }
+        public string[] PCRESULTS { get => _strPCResults; set => _strPCResults = value; }
+
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         public MesClient()
         {
@@ -44,66 +81,72 @@ namespace DHS.EQUIPMENT
                     sw.Start();
 
                     #region Get Value from Equipment Tag
-                    int nIndex = 0;
-                    foreach (var tag in EquipTagList)
+                    UInt32 iVal = 0;
+                    foreach (var tag in MesTagList)
                     {
-                        if (tag.tagDataType == MesClient.EnumDataType.dtUInt32)
+                        switch (tag.tagName)
                         {
-                            var val = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(dgvPCTOMES, nIndex++, 1, val.ToString());
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtUInt32Arr)
-                        {
-                            var val = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            for (int i = 0; i < val.Length; i++)
-                                SetValue(dgvPCTOMES, nIndex++, 1, val[i].ToString());
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtString)
-                        {
-                            var val = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            if (val == null) val = string.Empty;
-                            SetValue(dgvPCTOMES, nIndex++, 1, val.ToString());
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtStringArr)
-                        {
-                            var val = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            for (int i = 0; i < val.Length; i++)
-                                SetValue(dgvPCTOMES, nIndex++, 1, val[i]);
+                            case "ns=2;s=Mes/SequenceNo":
+                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                _iMesSequenceNo = (int)iVal;
+                                break;
+                            case "ns=2;s=Mes/AcknowledgeNo":
+                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                _iMesAcknowledgeNo = (int)iVal;
+                                break;
+                            case "ns=2;s=Mes/EquipmentID":
+                                _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Mes/TrayID":
+                                _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Mes/RecipeID":
+                                _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Mes/Bypass":
+                                _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Mes/CellID":
+                                _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Mes/CellStatus":
+                                _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
                         }
                     }
                     #endregion
 
                     #region Get Value from Mes Tag
-                    nIndex = 0;
-                    foreach (var tag in MesTagList)
+                    foreach (var tag in EquipTagList)
                     {
-                        if (tag.tagDataType == MesClient.EnumDataType.dtUInt32)
+                        switch (tag.tagName)
                         {
-                            var val = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(dgvMESTOPC, nIndex++, 1, val.ToString());
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtUInt32Arr)
-                        {
-                            var val = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            for (int i = 0; i < val.Length; i++)
-                                SetValue(dgvMESTOPC, nIndex++, 1, val[i].ToString());
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtString)
-                        {
-                            var val = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(dgvMESTOPC, nIndex++, 1, val.ToString());
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtStringArr)
-                        {
-                            var val = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            for (int i = 0; i < val.Length; i++)
-                                SetValue(dgvMESTOPC, nIndex++, 1, val[i]);
-                        }
-                        else if (tag.tagDataType == MesClient.EnumDataType.dtBoolean)
-                        {
-                            var val = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            //var val = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(dgvMESTOPC, nIndex++, 1, val.ToString());
+                            case "ns=2;s=Equipment/SequenceNo":
+                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                _iMesSequenceNo = (int)iVal;
+                                break;
+                            case "ns=2;s=Equipment/AcknowledgeNo":
+                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                _iMesAcknowledgeNo = (int)iVal;
+                                break;
+                            case "ns=2;s=Equipment/EquipmentID":
+                                _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Equipment/TrayID":
+                                _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Equipment/RecipeID":
+                                _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Equipment/Bypass":
+                                _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Equipment/CellID":
+                                _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
+                            case "ns=2;s=Equipment/CellStatus":
+                                _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                                break;
                         }
                     }
                     #endregion
@@ -228,6 +271,7 @@ namespace DHS.EQUIPMENT
 
         public List<Tag> EquipTagList = new List<Tag>();
         public List<Tag> MesTagList = new List<Tag>();
+
         public void SetEquipmentTagList()
         {
             #region Equipment Tag List
