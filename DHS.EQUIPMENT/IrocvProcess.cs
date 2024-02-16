@@ -98,6 +98,8 @@ namespace DHS.EQUIPMENT
                 messerver = new MesServer();
 
                 mesclient = new MesClient();
+
+                _bMesConnected = MesClient.connection;
             }
             catch(Exception ex)
             {
@@ -565,11 +567,14 @@ namespace DHS.EQUIPMENT
         #region Timer
         private void GetMesDataTimer_Tick(object sender, EventArgs e)
         {
-            _bMesConnected = false;
+            _bMesConnected = MesClient.connection;
 
             try
             {
+                if(_bMesConnected == true)
+                {
 
+                }
             }catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());

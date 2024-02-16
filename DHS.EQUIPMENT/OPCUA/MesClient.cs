@@ -30,9 +30,9 @@ namespace DHS.EQUIPMENT
         private string _strPCTrayID;
         private string _strPCRecipeID;
         private string[] _strPCCellIDs;
-        private string[] _strPCIRs;
-        private string[] _strPCOCVs;
-        private string[] _strPCResults;
+        private int[] _iPCIRs;
+        private int[] _iPCOCVs;
+        private int[] _iPCResults;
 
         public int MESSEQUENCENO { get => _iMesSequenceNo; set => _iMesSequenceNo = value; }
         public int MESACKNOWLEDGENO { get => _iMesAcknowledgeNo; set => _iMesAcknowledgeNo = value; }
@@ -48,9 +48,9 @@ namespace DHS.EQUIPMENT
         public string PCTRAYID { get => _strPCTrayID; set => _strPCTrayID = value; }
         public string PCRECIPEID { get => _strPCRecipeID; set => _strPCRecipeID = value; }
         public string[] PCCELLIDS { get => _strPCCellIDs; set => _strPCCellIDs = value; }
-        public string[] PCIRS { get => _strPCIRs; set => _strPCIRs = value; }
-        public string[] PCOCVS { get => _strPCOCVs; set => _strPCOCVs = value; }
-        public string[] PCRESULTS { get => _strPCResults; set => _strPCResults = value; }
+        public int[] PCIRS { get => _iPCIRs; set => _iPCIRs = value; }
+        public int[] PCOCVS { get => _iPCOCVs; set => _iPCOCVs = value; }
+        public int[] PCRESULTS { get => _iPCResults; set => _iPCResults = value; }
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         public MesClient()
@@ -64,6 +64,7 @@ namespace DHS.EQUIPMENT
 
             _tmrMESRead.Interval = 1000;
             _tmrMESRead.Tick += new EventHandler(MESReadTimer_Tick);
+            _tmrMESRead.Enabled = true;
         }
 
         public void MesClientStart()
@@ -71,6 +72,7 @@ namespace DHS.EQUIPMENT
             connection = opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV");
         }
 
+        #region MES Timer
         private void MESReadTimer_Tick(object sender, EventArgs e)
         {
             try
@@ -80,76 +82,7 @@ namespace DHS.EQUIPMENT
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
 
-                    #region Get Value from Equipment Tag
-                    UInt32 iVal = 0;
-                    foreach (var tag in MesTagList)
-                    {
-                        switch (tag.tagName)
-                        {
-                            case "ns=2;s=Mes/SequenceNo":
-                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                _iMesSequenceNo = (int)iVal;
-                                break;
-                            case "ns=2;s=Mes/AcknowledgeNo":
-                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                _iMesAcknowledgeNo = (int)iVal;
-                                break;
-                            case "ns=2;s=Mes/EquipmentID":
-                                _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Mes/TrayID":
-                                _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Mes/RecipeID":
-                                _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Mes/Bypass":
-                                _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Mes/CellID":
-                                _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Mes/CellStatus":
-                                _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                        }
-                    }
-                    #endregion
-
-                    #region Get Value from Mes Tag
-                    foreach (var tag in EquipTagList)
-                    {
-                        switch (tag.tagName)
-                        {
-                            case "ns=2;s=Equipment/SequenceNo":
-                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                _iMesSequenceNo = (int)iVal;
-                                break;
-                            case "ns=2;s=Equipment/AcknowledgeNo":
-                                iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                _iMesAcknowledgeNo = (int)iVal;
-                                break;
-                            case "ns=2;s=Equipment/EquipmentID":
-                                _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Equipment/TrayID":
-                                _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Equipment/RecipeID":
-                                _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Equipment/Bypass":
-                                _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Equipment/CellID":
-                                _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                            case "ns=2;s=Equipment/CellStatus":
-                                _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                                break;
-                        }
-                    }
-                    #endregion
+                    MesReadTimer();
 
                     sw.Stop();
                     //SetValue(sw.ElapsedMilliseconds.ToString());
@@ -160,6 +93,92 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        private void MesReadTimer()
+        {
+            #region Get Value from MES Tag
+            UInt32 iVal = 0;
+            UInt32[] iVals;
+            foreach (var tag in MesTagList)
+            {
+                switch (tag.tagName)
+                {
+                    case "ns=2;s=Mes/SequenceNo":
+                        iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iMesSequenceNo = (int)iVal;
+                        break;
+                    case "ns=2;s=Mes/AcknowledgeNo":
+                        iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iMesAcknowledgeNo = (int)iVal;
+                        break;
+                    case "ns=2;s=Mes/EquipmentID":
+                        _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Mes/TrayID":
+                        _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Mes/RecipeID":
+                        _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Mes/Bypass":
+                        _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Mes/CellID":
+                        _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Mes/CellStatus":
+                        _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            #endregion
+
+            #region Get Value from Equipment Tag
+            foreach (var tag in EquipTagList)
+            {
+                switch (tag.tagName)
+                {
+                    case "ns=2;s=Equipment/SequenceNo":
+                        iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iPCSequenceNo = (int)iVal;
+                        break;
+                    case "ns=2;s=Equipment/AcknowledgeNo":
+                        iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iPCAcknowledgeNo = (int)iVal;
+                        break;
+                    case "ns=2;s=Equipment/EquipmentID":
+                        _strPCEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Equipment/TrayID":
+                        _strPCTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Equipment/RecipeID":
+                        _strPCRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Equipment/CellID":
+                        _strPCCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        break;
+                    case "ns=2;s=Equipment/IR":
+                        iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iPCIRs = iVals.Select(x => (int)x).ToArray();
+                        break;
+                    case "ns=2;s=Equipment/OCV":
+                        iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iPCOCVs = iVals.Select(x => (int)x).ToArray();
+                        break;
+                    case "ns=2;s=Equipment/Result":
+                        iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _iPCResults = iVals.Select(x => (int)x).ToArray();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            #endregion
+        }
+        #endregion
 
         #region OPC UA Method
         private void SetValue(DataGridView dgv, int row, int column, string value)

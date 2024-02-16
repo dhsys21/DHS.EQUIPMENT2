@@ -161,6 +161,12 @@
     </Compile>
     <Compile Include="MES\OPENUACLIENT.cs" />
     <Compile Include="OPCUA\MesClient.cs" />
+    <Compile Include="OPCUA\MESINTERFACE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OPCUA\MESINTERFACE.Designer.cs">
+      <DependentUpon>MESINTERFACE.cs</DependentUpon>
+    </Compile>
     <Compile Include="OPCUA\MesServer.cs" />
     <Compile Include="OPCUA\Namespaces.cs" />
     <Compile Include="OPCUA\ReferenceNodeManager.cs" />
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPCUA\MESINTERFACE.resx">
+      <DependentUpon>MESINTERFACE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\PLCINTERFACE.resx">
       <DependentUpon>PLCINTERFACE.cs</DependentUpon>
