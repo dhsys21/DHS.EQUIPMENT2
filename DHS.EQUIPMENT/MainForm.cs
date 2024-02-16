@@ -17,6 +17,7 @@ namespace DHS.EQUIPMENT
     public partial class MainForm : Form
     {
         PLCINTERFACE plcForm;
+        MESINTERFACE mesForm;
         ConfigForm configForm;
         CEquipmentData _system;
         Util util = new Util();
@@ -49,6 +50,9 @@ namespace DHS.EQUIPMENT
 
             //* PLC INTERFACE
             plcForm = PLCINTERFACE.GetInstance();
+
+            //* MES INTERFACE
+            mesForm = MESINTERFACE.GetInstance();
 
             //* Config Form
             configForm = new ConfigForm();
@@ -325,6 +329,18 @@ namespace DHS.EQUIPMENT
         {
             radbtn_Init.Text = StrLang.Initialize;
             radbtn_Config.Text = StrLang.CONFIG;
+        }
+
+        private void lblMESConnection_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mesForm.Show();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 

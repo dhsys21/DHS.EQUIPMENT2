@@ -57,13 +57,13 @@ namespace DHS.EQUIPMENT
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         
-        public delegate void SetValueToDgv(string[] pcValues, string[] mesValues);
-        public event SetValueToDgv OnSetValueToDgv = null;
-        protected void RaiseOnSetValueToDgv(string[] pcValues, string[] mesValues)
+        public delegate void SetDataToDgv(string[] pcValues, string[] mesValues);
+        public event SetDataToDgv OnSetDataToDgv = null;
+        protected void RaiseOnSetDataToDgv(string[] pcValues, string[] mesValues)
         {
-            if (OnSetValueToDgv != null)
+            if (OnSetDataToDgv != null)
             {
-                OnSetValueToDgv(pcValues, mesValues);
+                OnSetDataToDgv(pcValues, mesValues);
             }
         }
         public MesClient()
@@ -97,7 +97,7 @@ namespace DHS.EQUIPMENT
 
                     MesReadTimer();
 
-                    RaiseOnSetValueToDgv(pcData, mesData);
+                    RaiseOnSetDataToDgv(pcData, mesData);
 
                     sw.Stop();
                     //SetValue(sw.ElapsedMilliseconds.ToString());
@@ -121,36 +121,37 @@ namespace DHS.EQUIPMENT
                     case "ns=2;s=Mes/SequenceNo":
                         iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iMesSequenceNo = (int)iVal;
-                        SetValue(0, _iMesSequenceNo);
+                        SetValue(0, _iMesSequenceNo, "MES");
                         break;
                     case "ns=2;s=Mes/AcknowledgeNo":
                         iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iMesAcknowledgeNo = (int)iVal;
-                        SetValue(1, _iMesAcknowledgeNo);
+                        SetValue(1, _iMesAcknowledgeNo, "MES");
                         break;
                     case "ns=2;s=Mes/EquipmentID":
                         _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                        SetValue(2, _strMesEquipmentID);
+                        SetValue(2, _strMesEquipmentID, "MES");
                         break;
                     case "ns=2;s=Mes/TrayID":
                         _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                        SetValue(3, _strMesTrayID);
+                        SetValue(3, _strMesTrayID, "MES");
                         break;
                     case "ns=2;s=Mes/RecipeID":
                         _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                        SetValue(4, _strMesRecipeID);
+                        SetValue(4, _strMesRecipeID, "MES");
                         break;
                     case "ns=2;s=Mes/Bypass":
-                        _bMesBypass = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                        SetValue(5, _bMesBypass);
+                        var tmp = ReadValue(tag.tagName, (int)tag.tagDataType);
+                        _bMesBypass = Convert.ToBoolean(tmp.ToString());
+                        SetValue(5, _bMesBypass, "MES");
                         break;
                     case "ns=2;s=Mes/CellID":
                         _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                        SetValue(6, _strMesCellIDs);
+                        SetValue(6, _strMesCellIDs, "MES");
                         break;
                     case "ns=2;s=Mes/CellStatus":
                         _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                        SetValue(38, _strMesCellStats);
+                        SetValue(38, _strMesCellStats, "MES");
                         break;
                     default:
                         break;
@@ -166,34 +167,43 @@ namespace DHS.EQUIPMENT
                     case "ns=2;s=Equipment/SequenceNo":
                         iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iPCSequenceNo = (int)iVal;
+                        SetValue(0, _iPCSequenceNo, "PC");
                         break;
                     case "ns=2;s=Equipment/AcknowledgeNo":
                         iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iPCAcknowledgeNo = (int)iVal;
+                        SetValue(1, _iPCAcknowledgeNo, "PC");
                         break;
                     case "ns=2;s=Equipment/EquipmentID":
                         _strPCEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(2, _strPCEquipmentID, "PC");
                         break;
                     case "ns=2;s=Equipment/TrayID":
                         _strPCTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(3, _strPCTrayID, "PC");
                         break;
                     case "ns=2;s=Equipment/RecipeID":
                         _strPCRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(4, _strPCRecipeID, "PC");
                         break;
                     case "ns=2;s=Equipment/CellID":
                         _strPCCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        SetValue(5, _strPCCellIDs, "PC");
                         break;
                     case "ns=2;s=Equipment/IR":
                         iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iPCIRs = iVals.Select(x => (int)x).ToArray();
+                        SetValue(37, _iPCIRs, "PC");
                         break;
                     case "ns=2;s=Equipment/OCV":
                         iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iPCOCVs = iVals.Select(x => (int)x).ToArray();
+                        SetValue(69, _iPCOCVs, "PC");
                         break;
                     case "ns=2;s=Equipment/Result":
                         iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
                         _iPCResults = iVals.Select(x => (int)x).ToArray();
+                        SetValue(101, _iPCResults, "PC");
                         break;
                     default:
                         break;
@@ -204,13 +214,36 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region OPC UA Method
+        private void SetValue(int row, int value, string type)
+        {
+            if (type == "MES") mesData[row] = value.ToString();
+            else if (type == "PC") pcData[row] = value.ToString();
+        }
         private void SetValue(int row, string value, string type)
         {
-            
+            if (type == "MES") mesData[row] = value;
+            else if (type == "PC") pcData[row] = value;
         }
         private void SetValue(int row, bool value, string type)
         {
-            
+            if (type == "MES") mesData[row] = value.ToString();
+            else if (type == "PC") pcData[row] = value.ToString();
+        }
+        private void SetValue(int row, int[] values, string type)
+        {
+            for(int nIndex = 0; nIndex < values.Length; nIndex++)
+            {
+                if (type == "MES") mesData[row++] = values[nIndex].ToString();
+                else if (type == "PC") pcData[row++] = values[nIndex].ToString();
+            }
+        }
+        private void SetValue(int row, string[] values, string type)
+        {
+            for (int nIndex = 0; nIndex < values.Length; nIndex++)
+            {
+                if (type == "MES") mesData[row++] = values[nIndex];
+                else if (type == "PC") pcData[row++] = values[nIndex];
+            }
         }
         private object ReadValue(string node, int nDataType)
         {

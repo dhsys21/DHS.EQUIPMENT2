@@ -99,7 +99,7 @@ namespace DHS.EQUIPMENT
                 messerver = new MesServer();
 
                 mesclient = new MesClient();
-                mesclient.
+                mesclient.OnSetDataToDgv += _MesClient_SetDataToDgv;
 
                 _bMesConnected = MesClient.connection;
             }
@@ -107,11 +107,6 @@ namespace DHS.EQUIPMENT
             {
                 Console.WriteLine(ex.ToString());
             }
-
-            //* MES Timer
-            _tmrGetMesData.Interval = 1000;
-            _tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_Tick);
-            _tmrGetMesData.Enabled = true;
             #endregion
 
             ReadChannelMapping();
@@ -241,6 +236,11 @@ namespace DHS.EQUIPMENT
                 _tmrEquipStatus[nIndex].Enabled = true;
             }
             #endregion
+        }
+
+        private void _MesClient_SetDataToDgv(string[] pcValues, string[] mesValues)
+        {
+            mesinterface.SetDataToGrid(pcValues, mesValues);
         }
 
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
@@ -573,21 +573,6 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Timer
-        private void GetMesDataTimer_Tick(object sender, EventArgs e)
-        {
-            _bMesConnected = MesClient.connection;
-
-            try
-            {
-                if(_bMesConnected == true)
-                {
-                    mesinterface.setdata
-                }
-            }catch(Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-        }
         private void GetPlcDataTimer_Tick(object sender, EventArgs e)
         {
             _bPlcConnected = SIEMENSS7LIB.connection;

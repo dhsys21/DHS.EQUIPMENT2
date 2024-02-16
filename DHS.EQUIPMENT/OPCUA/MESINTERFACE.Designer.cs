@@ -80,7 +80,7 @@ namespace DHS.EQUIPMENT
             this.radpnl_MesInterfaceTitle.Text = "MES INTERFACE";
             this.radpnl_MesInterfaceTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.radpnl_MesInterfaceTitle.ThemeName = "ControlDefault";
-            this.radpnl_MesInterfaceTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.radpnl_MesInterfaceTitle_Paint);
+            this.radpnl_MesInterfaceTitle.Click += new System.EventHandler(this.radpnl_MesInterfaceTitle_Click);
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MesInterfaceTitle.GetChildAt(0))).Text = "MES INTERFACE";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MesInterfaceTitle.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MesInterfaceTitle.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
@@ -252,6 +252,7 @@ namespace DHS.EQUIPMENT
             this.Controls.Add(this.radpnl_OperationMode);
             this.Name = "MESINTERFACE";
             this.Text = "MESINTERFACE";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MESINTERFACE_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).EndInit();
             this.radpnl_OperationMode.ResumeLayout(false);

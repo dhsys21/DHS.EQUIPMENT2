@@ -34,6 +34,7 @@ namespace DHS.EQUIPMENT
             this.pnlLanguage = new System.Windows.Forms.Panel();
             this.lblLangNo = new System.Windows.Forms.Label();
             this.lblLangEn = new System.Windows.Forms.Label();
+            this.lblLangKo = new System.Windows.Forms.Label();
             this.pnlConnection = new System.Windows.Forms.Panel();
             this.radbtn_PLC = new Telerik.WinControls.UI.RadButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -171,10 +172,9 @@ namespace DHS.EQUIPMENT
             this.lblPLCConnection = new System.Windows.Forms.Label();
             this.lblMESConnection = new System.Windows.Forms.Label();
             this.radlbl_Title = new Telerik.WinControls.UI.RadLabel();
+            this.pboxTitle = new System.Windows.Forms.PictureBox();
             this.MeasurePanel = new System.Windows.Forms.Panel();
             this.BasePanel = new System.Windows.Forms.Panel();
-            this.lblLangKo = new System.Windows.Forms.Label();
-            this.pboxTitle = new System.Windows.Forms.PictureBox();
             this.pnlTitle.SuspendLayout();
             this.pnlLanguage.SuspendLayout();
             this.pnlConnection.SuspendLayout();
@@ -310,6 +310,20 @@ namespace DHS.EQUIPMENT
             this.lblLangEn.Text = "EN";
             this.lblLangEn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblLangEn.Click += new System.EventHandler(this.lblLangEn_Click);
+            // 
+            // lblLangKo
+            // 
+            this.lblLangKo.BackColor = System.Drawing.Color.Silver;
+            this.lblLangKo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLangKo.ForeColor = System.Drawing.Color.White;
+            this.lblLangKo.Location = new System.Drawing.Point(5, 12);
+            this.lblLangKo.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLangKo.Name = "lblLangKo";
+            this.lblLangKo.Size = new System.Drawing.Size(50, 48);
+            this.lblLangKo.TabIndex = 3;
+            this.lblLangKo.Text = "KO";
+            this.lblLangKo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLangKo.Click += new System.EventHandler(this.lblLangKo_Click);
             // 
             // pnlConnection
             // 
@@ -2379,6 +2393,7 @@ namespace DHS.EQUIPMENT
             this.lblMESConnection.TabIndex = 3;
             this.lblMESConnection.Text = "MES";
             this.lblMESConnection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMESConnection.Click += new System.EventHandler(this.lblMESConnection_Click);
             // 
             // radlbl_Title
             // 
@@ -2394,6 +2409,18 @@ namespace DHS.EQUIPMENT
             this.radlbl_Title.Size = new System.Drawing.Size(184, 52);
             this.radlbl_Title.TabIndex = 4;
             this.radlbl_Title.Text = "IR/OCV";
+            // 
+            // pboxTitle
+            // 
+            this.pboxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pboxTitle.Image = global::DHS.EQUIPMENT.Properties.Resources.IROCV_Backgroud;
+            this.pboxTitle.Location = new System.Drawing.Point(0, 0);
+            this.pboxTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pboxTitle.Name = "pboxTitle";
+            this.pboxTitle.Size = new System.Drawing.Size(1904, 100);
+            this.pboxTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxTitle.TabIndex = 3;
+            this.pboxTitle.TabStop = false;
             // 
             // MeasurePanel
             // 
@@ -2412,32 +2439,6 @@ namespace DHS.EQUIPMENT
             this.BasePanel.Padding = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.BasePanel.Size = new System.Drawing.Size(620, 911);
             this.BasePanel.TabIndex = 5;
-            // 
-            // lblLangKo
-            // 
-            this.lblLangKo.BackColor = System.Drawing.Color.Silver;
-            this.lblLangKo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLangKo.ForeColor = System.Drawing.Color.White;
-            this.lblLangKo.Location = new System.Drawing.Point(5, 12);
-            this.lblLangKo.Margin = new System.Windows.Forms.Padding(0);
-            this.lblLangKo.Name = "lblLangKo";
-            this.lblLangKo.Size = new System.Drawing.Size(50, 48);
-            this.lblLangKo.TabIndex = 3;
-            this.lblLangKo.Text = "KO";
-            this.lblLangKo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblLangKo.Click += new System.EventHandler(this.lblLangKo_Click);
-            // 
-            // pboxTitle
-            // 
-            this.pboxTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pboxTitle.Image = global::DHS.EQUIPMENT.Properties.Resources.IROCV_Backgroud;
-            this.pboxTitle.Location = new System.Drawing.Point(0, 0);
-            this.pboxTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pboxTitle.Name = "pboxTitle";
-            this.pboxTitle.Size = new System.Drawing.Size(1904, 100);
-            this.pboxTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxTitle.TabIndex = 3;
-            this.pboxTitle.TabStop = false;
             // 
             // MainForm
             // 

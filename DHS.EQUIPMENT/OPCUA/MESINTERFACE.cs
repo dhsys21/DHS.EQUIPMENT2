@@ -36,6 +36,13 @@ namespace DHS.EQUIPMENT
         }
         private void MakeGridView()
         {
+            //* 열 추가
+            dgvMESs[0].Columns.Add("001", "MES TAG NAME");
+            dgvMESs[0].Columns.Add("002", "MES VALUES");
+            dgvMESs[0].Columns[0].Width = 180;
+            dgvMESs[0].Columns[1].Width = 250;
+
+            //* 행 추가
             dgvMESs[0].Rows.Add(70);
             dgvMESs[0].Rows[0].Cells[0].Value = "SequenceNo";
             dgvMESs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
@@ -50,7 +57,13 @@ namespace DHS.EQUIPMENT
                 dgvMESs[0].Rows[nIndex + 32 + 6].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
             }
 
+            //* 열 추가
+            dgvPCs[0].Columns.Add("001", "PC TAG NAME");
+            dgvPCs[0].Columns.Add("002", "PC VALUES");
+            dgvPCs[0].Columns[0].Width = 200;
+            dgvPCs[0].Columns[1].Width = 250;
 
+            //* 행 추가
             dgvPCs[0].Rows.Add(133);
             dgvPCs[0].Rows[0].Cells[0].Value = "SequenceNo";
             dgvPCs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
@@ -67,32 +80,41 @@ namespace DHS.EQUIPMENT
             }
         }
 
-        public void SetDataToGrid(int[] pcData, int[] plcData, int nIndex)
+        public void SetDataToGrid(string[] pcData, string[] mesData)
         {
             #region PLC DATA VIEW
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_HEART_BEAT, plcData, 0);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ATUO_MANUAL, plcData, 1);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ERROR, plcData, 2);
+            int nIndex = 0;
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //SequenceNo
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //AcknowledgeNo
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //EquipmentID
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayID
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //RecipeID
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //Bypass
 
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_IN, plcData, 3);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_DOWN, plcData, 4);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_UP, plcData, 5);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_JOB_CHANGE, plcData, 6);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_READY_COMPLETE, plcData, 7);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_UNLOADING_COMPLETE, plcData, 8);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_ID, plcData, 9);
+            //* nIndex = 6
+            for (int i = 0; i < _Constant.ChannelCount; i++)
+            {
+                AddDataGridView(dgvMESs[0], mesData[i + 6], i + 6); //CellID
+                AddDataGridView(dgvMESs[0], mesData[i + 6 + 32], i + 6 + 32); //CellStatus
+            }
             #endregion
 
             #region PC DATA VIEW
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_HEART_BEAT, pcData, 0);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_AUTO_MANUAL, pcData, 1);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_ERROR, pcData, 2);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_TRAY_OUT, pcData, 3);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_TRAY_DOWN, pcData, 4);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_TRAY_UP, pcData, 5);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_MEASUREMENT_WAIT, pcData, 6);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_RUNNING, pcData, 7);
-            AddDataGridView(dgvPCs[nIndex], _Constant.PC_MEASUREMENT_COMPLETE, pcData, 8);
+            nIndex = 0;
+            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //SequenceNo
+            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //AcknowledgeNo
+            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //EquipmentID
+            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //TrayID
+            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //RecipeID
+
+            //* nIndex = 5
+            for (int i = 0; i < _Constant.ChannelCount; i++)
+            {
+                AddDataGridView(dgvPCs[0], pcData[i + 5], i + 5); //CellID
+                AddDataGridView(dgvPCs[0], pcData[i + 5 + 32], i + 5 + 32); //IR
+                AddDataGridView(dgvPCs[0], pcData[i + 5 + 64], i + 5 + 64); //OCV
+                AddDataGridView(dgvPCs[0], pcData[i + 5 + 96], i + 5 + 96); //RESULT
+            }
             #endregion
         }
         private void AddDataGridView(DataGridView dgv, string value, int nRow)
@@ -116,15 +138,20 @@ namespace DHS.EQUIPMENT
         }
         private void radpnl_MesInterfaceTitle_Paint(object sender, PaintEventArgs e)
         {
-            radpnl_MESTEST.Visible = !radpnl_MESTEST.Visible;
-            if (radpnl_MESTEST.Visible == true) this.Width = 1380;
-            else this.Width = 1000;
+            
         }
 
         private void MESINTERFACE_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();
+        }
+
+        private void radpnl_MesInterfaceTitle_Click(object sender, EventArgs e)
+        {
+            radpnl_MESTEST.Visible = !radpnl_MESTEST.Visible;
+            if (radpnl_MESTEST.Visible == true) this.Width = 1380;
+            else this.Width = 1000;
         }
     }
 }
