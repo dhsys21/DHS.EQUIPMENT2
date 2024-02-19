@@ -133,6 +133,8 @@ namespace DHS.EQUIPMENT
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ErrorForm";
             this.Text = "ErrorForm";
             this.TopMost = true;

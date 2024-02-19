@@ -97,16 +97,22 @@ namespace DHS.EQUIPMENT
             try
             {
                 messerver = new MesServer();
+                Task.Run(() => messerver.MesServerStartAsync());
 
                 mesclient = new MesClient();
                 mesclient.OnSetDataToDgv += _MesClient_SetDataToDgv;
 
-                _bMesConnected = MesClient.connection;
+                //_bMesConnected = MesClient.connection;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+
+            //* MES Timer
+            _tmrGetMesData.Interval = 1000;
+            _tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_TickAsync);
+            //_tmrGetMesData.Enabled = true;
             #endregion
 
             ReadChannelMapping();
@@ -236,6 +242,8 @@ namespace DHS.EQUIPMENT
                 _tmrEquipStatus[nIndex].Enabled = true;
             }
             #endregion
+
+            _tmrGetMesData.Enabled = true;
         }
 
         private void _MesClient_SetDataToDgv(string[] pcValues, string[] mesValues)
@@ -573,6 +581,20 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Timer
+        private async void GetMesDataTimer_TickAsync(object sender, EventArgs e)
+        {
+            if (MesServer.connection == true && _bMesConnected == false)
+            {
+                try
+                {
+                    _bMesConnected = await Task.Run(() => mesclient.MesClientStartAsync());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
         private void GetPlcDataTimer_Tick(object sender, EventArgs e)
         {
             _bPlcConnected = SIEMENSS7LIB.connection;
@@ -592,7 +614,6 @@ namespace DHS.EQUIPMENT
                 {
                     Console.WriteLine(ex.ToString());
                 }
-                
             }
         }
         private void EquipStatusTimer_Tick(object sender, EventArgs e)

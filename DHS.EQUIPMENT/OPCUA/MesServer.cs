@@ -17,12 +17,12 @@ namespace DHS.EQUIPMENT
         public MesServer()
         {
             connection = false;
-            MesServerStart();
+            //MesServerStartAsync();
         }
 
-        public void MesServerStart()
+        public async Task MesServerStartAsync()
         {
-            connection = ConnectMESAsync().Result;
+            connection = await Task.FromResult<bool>(ConnectMESAsync().Result);
         }
 
         public static async Task<bool> ConnectMESAsync()
@@ -51,6 +51,7 @@ namespace DHS.EQUIPMENT
 
                 Console.WriteLine("Start the server...");
 
+                connection = true;
                 return true;
             }
             catch (Exception ex)

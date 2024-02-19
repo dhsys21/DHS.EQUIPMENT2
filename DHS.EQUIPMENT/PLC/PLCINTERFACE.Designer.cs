@@ -169,7 +169,7 @@ namespace DHS.EQUIPMENT
             this.label5.ForeColor = System.Drawing.Color.SteelBlue;
             this.label5.Location = new System.Drawing.Point(43, 126);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 16);
+            this.label5.Size = new System.Drawing.Size(87, 16);
             this.label5.TabIndex = 60;
             this.label5.Text = "PC Address";
             // 
@@ -180,7 +180,7 @@ namespace DHS.EQUIPMENT
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
             this.label3.Location = new System.Drawing.Point(43, 161);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 16);
+            this.label3.Size = new System.Drawing.Size(73, 16);
             this.label3.TabIndex = 57;
             this.label3.Text = "Tag Value";
             // 
@@ -199,7 +199,7 @@ namespace DHS.EQUIPMENT
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
             this.label2.Location = new System.Drawing.Point(43, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.Size = new System.Drawing.Size(74, 16);
             this.label2.TabIndex = 55;
             this.label2.Text = "Tag Name";
             this.label2.Visible = false;
@@ -239,7 +239,7 @@ namespace DHS.EQUIPMENT
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 16);
+            this.label1.Size = new System.Drawing.Size(134, 16);
             this.label1.TabIndex = 50;
             this.label1.Text = "OPERATION MODE";
             // 
@@ -249,6 +249,8 @@ namespace DHS.EQUIPMENT
             this.ClientSize = new System.Drawing.Size(1359, 565);
             this.Controls.Add(this.radpnl_PLCTEST);
             this.Controls.Add(this.radpnl_OperationMode);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PLCINTERFACE";
             this.Text = "PLCINTERFACE";
             this.TopMost = true;
