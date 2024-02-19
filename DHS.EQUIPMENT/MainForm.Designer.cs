@@ -2451,7 +2451,7 @@ namespace DHS.EQUIPMENT
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
-            this.Text = "IR/OCV INSPECTION 2023 07 26";
+            this.Text = "IR/OCV INSPECTION 2024 02 19";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlTitle.ResumeLayout(false);
