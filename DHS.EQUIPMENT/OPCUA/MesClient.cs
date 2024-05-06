@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Opc.Ua;
 using OPCUACLIENT;
+using static DHS.EQUIPMENT.MesClient;
 
 namespace DHS.EQUIPMENT
 {
@@ -360,6 +361,9 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region MES와 IROCV간 주고 받는 Sequence 별로 구현 - MES Sequence Read/Write
+        /// <summary>
+        /// 1.12 Request Tray Information (Send Tray ID irocv -> mes)
+        /// </summary>
         public int ReadFOEQR1_12()
         {
             return _iMesAcknowledgeNo;
@@ -368,6 +372,25 @@ namespace DHS.EQUIPMENT
         {
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
+        }
+        /// <summary>
+        /// 1.7 Request Reservation (Send Tray Information mes -> irocv)
+        /// </summary>
+        public int WriteFOEQR1_7(int iAck)
+        {
+            _iPCAcknowledgeNo = iAck;
+            return _iPCAcknowledgeNo;
+        }
+        public void ReadFOEQR1_7()
+        {
+            string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
+            string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
+            string recipeid = (string)ReadValue("ns=2;s=Mes/RecipeID", (int)EnumDataType.dtString);
+            var tmp = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
+            bool bypass = Convert.ToBoolean(tmp.ToString());
+            string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
+
+            string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
         }
         #endregion
 
