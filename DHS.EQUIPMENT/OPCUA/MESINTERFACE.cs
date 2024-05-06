@@ -153,5 +153,48 @@ namespace DHS.EQUIPMENT
             if (radpnl_MESTEST.Visible == true) this.Width = 1380;
             else this.Width = 1000;
         }
+
+        private void radBtnWriteValue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbTagList_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string cbTagname = cbTagList.Text;
+            if (cbTagname == "SequenceNo" || cbTagname == "AcknowledgeNo")
+            {
+                cbTagType.Text = "UInt32";
+            }
+            else if(cbTagname == "EquipmentID" || cbTagname == "TrayID" || cbTagname == "RecipeID")
+            {
+                cbTagType.Text = "String";
+            }
+            else if(cbTagname == "CellID")
+            {
+                cbTagType.Text = "StringArr";
+
+                string tempvalue = "";
+                for (int i = 0; i < 32; i++)
+                    tempvalue += (i + 1).ToString("D3") + ",";
+                tbTagValue.Text = tempvalue;
+            }
+            else if(cbTagname == "IR" || cbTagname == "OCV")
+            {
+                cbTagType.Text = "UInt32Arr";
+                string tempvalue = "";
+                for (int i = 0; i < 32; i++)
+                    tempvalue += (i + 1).ToString("D3") + ",";
+                tbTagValue.Text = tempvalue;
+            }
+            else if (cbTagname == "Result")
+            {
+                cbTagType.Text = "UInt32Arr";
+                string tempvalue = "";
+                for (int i = 0; i < 32; i++)
+                    tempvalue += "1,";
+                tbTagValue.Text = tempvalue;
+            }
+        }
     }
 }

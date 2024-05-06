@@ -15,6 +15,7 @@ namespace DHS.EQUIPMENT
         public static IrocvProcess irocvprocess = null;
         Util util;
         SIEMENSS7LIB siemensplc;
+        OPENUACLIENT opcuames;
         MesServer messerver;
         MesClient mesclient;
         CEquipmentData _system;
@@ -41,6 +42,7 @@ namespace DHS.EQUIPMENT
 
         private int msacount = 0;
         private int offsetcount = 0;
+        private int nInspectionStep = 0;
 
         #region Connection Status 변수
         private bool[] _bIrocvConnected = new bool[_Constant.frmCount];
@@ -855,6 +857,8 @@ namespace DHS.EQUIPMENT
                 IROCV_Initialize(stageno);
 
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayIn;
+                nStep = 0;
+
                 irocvdata[stageno].SetArriveTime();
                 //irocvdata[stageno].ARRIVETIME = DateTime.Now;
 
@@ -868,6 +872,48 @@ namespace DHS.EQUIPMENT
         private void AutoInspection_StepTrayIdCheck(int stageno)
         {
             string trayid = siemensplc.PLCTRAYID;
+            string equipid = _system.EQUIPMENTID;
+            bool bAck = false;
+            //trayid = SIEMENSS7LIB.ReadString("MB10020", 20);
+
+            switch(nInspectionStep)
+            {
+                case 0:
+                    if(string.IsNullOrEmpty(trayid) == false)
+                    {
+                        irocvform[stageno].SetTrayId(trayid);
+                        irocvdata[stageno].TRAYID = trayid;
+
+                        SaveLog(stageno, "TRAY ID : " + trayid);
+
+                        nInspectionStep = 1;
+                    }
+                    break;
+                case 1:
+                    //* IROCV -> MES FOEQR1.12 : equipment id, tray id 쓰기
+                    nInspectionStep = 2;
+                    break;
+                case 2:
+                    //* MES -> IROCV FOEQR1.12 : ack 확인
+                    if(bAck == true)
+                    {
+                        if (siemensplc.PLCREADYCOMPLETE == 1)
+                        {
+                            PLC_TRAYUP(stageno);
+                            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
+                            
+                            nInspectionStep = 0;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void AutoInspection_StepTrayIdCheck2(int stageno)
+        {
+            string trayid = siemensplc.PLCTRAYID;
+            bool bAck = false;
             //trayid = SIEMENSS7LIB.ReadString("MB10020", 20);
             if (trayid != "")
             {
@@ -876,7 +922,7 @@ namespace DHS.EQUIPMENT
 
                 SaveLog(stageno, "TRAY ID : " + trayid);
 
-                if(siemensplc.PLCREADYCOMPLETE == 1)
+                if (siemensplc.PLCREADYCOMPLETE == 1)
                 {
                     PLC_TRAYUP(stageno);
                     irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;

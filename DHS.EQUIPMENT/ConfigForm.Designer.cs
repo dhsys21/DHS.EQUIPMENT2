@@ -43,6 +43,10 @@ namespace DHS.EQUIPMENT
             this.label12 = new System.Windows.Forms.Label();
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.radBtnSave = new Telerik.WinControls.UI.RadButton();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.tbEquipmentId = new System.Windows.Forms.TextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -53,6 +57,9 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radlblOffsetChannel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanel1
@@ -62,7 +69,7 @@ namespace DHS.EQUIPMENT
             this.radPanel1.Controls.Add(this.tbPlcIpaddress);
             this.radPanel1.Controls.Add(this.radLabel1);
             this.radPanel1.Controls.Add(this.label1);
-            this.radPanel1.Location = new System.Drawing.Point(12, 158);
+            this.radPanel1.Location = new System.Drawing.Point(10, 261);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Padding = new System.Windows.Forms.Padding(5);
             this.radPanel1.Size = new System.Drawing.Size(368, 124);
@@ -123,7 +130,7 @@ namespace DHS.EQUIPMENT
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 16);
+            this.label1.Size = new System.Drawing.Size(97, 16);
             this.label1.TabIndex = 50;
             this.label1.Text = "PLC SETTING";
             // 
@@ -134,7 +141,7 @@ namespace DHS.EQUIPMENT
             this.radpnl_processinfo.Controls.Add(this.tbMesIpaddress);
             this.radpnl_processinfo.Controls.Add(this.radlblOffsetChannel);
             this.radpnl_processinfo.Controls.Add(this.label12);
-            this.radpnl_processinfo.Location = new System.Drawing.Point(12, 19);
+            this.radpnl_processinfo.Location = new System.Drawing.Point(10, 122);
             this.radpnl_processinfo.Name = "radpnl_processinfo";
             this.radpnl_processinfo.Padding = new System.Windows.Forms.Padding(5);
             this.radpnl_processinfo.Size = new System.Drawing.Size(368, 124);
@@ -195,7 +202,7 @@ namespace DHS.EQUIPMENT
             this.label12.ForeColor = System.Drawing.Color.SteelBlue;
             this.label12.Location = new System.Drawing.Point(5, 5);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 16);
+            this.label12.Size = new System.Drawing.Size(101, 16);
             this.label12.TabIndex = 50;
             this.label12.Text = "MES SETTING";
             // 
@@ -203,7 +210,7 @@ namespace DHS.EQUIPMENT
             // 
             this.radBtnCancel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.radBtnCancel.ForeColor = System.Drawing.Color.Black;
-            this.radBtnCancel.Location = new System.Drawing.Point(230, 299);
+            this.radBtnCancel.Location = new System.Drawing.Point(230, 398);
             this.radBtnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnCancel.Name = "radBtnCancel";
             this.radBtnCancel.Size = new System.Drawing.Size(90, 32);
@@ -222,7 +229,7 @@ namespace DHS.EQUIPMENT
             // 
             this.radBtnSave.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.radBtnSave.ForeColor = System.Drawing.Color.Black;
-            this.radBtnSave.Location = new System.Drawing.Point(78, 299);
+            this.radBtnSave.Location = new System.Drawing.Point(78, 398);
             this.radBtnSave.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnSave.Name = "radBtnSave";
             this.radBtnSave.Size = new System.Drawing.Size(90, 32);
@@ -237,11 +244,60 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnSave.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(244)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnSave.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.White;
             // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.tbEquipmentId);
+            this.radPanel2.Controls.Add(this.radLabel5);
+            this.radPanel2.Controls.Add(this.label2);
+            this.radPanel2.Location = new System.Drawing.Point(10, 12);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Padding = new System.Windows.Forms.Padding(5);
+            this.radPanel2.Size = new System.Drawing.Size(368, 90);
+            this.radPanel2.TabIndex = 75;
+            this.radPanel2.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // tbEquipmentId
+            // 
+            this.tbEquipmentId.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbEquipmentId.Location = new System.Drawing.Point(200, 39);
+            this.tbEquipmentId.Name = "tbEquipmentId";
+            this.tbEquipmentId.Size = new System.Drawing.Size(157, 32);
+            this.tbEquipmentId.TabIndex = 70;
+            this.tbEquipmentId.Text = "IROCV001";
+            this.tbEquipmentId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.AutoSize = false;
+            this.radLabel5.BackColor = System.Drawing.Color.LightGray;
+            this.radLabel5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radLabel5.Location = new System.Drawing.Point(66, 39);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(128, 32);
+            this.radLabel5.TabIndex = 69;
+            this.radLabel5.Text = "EQUIPMENT ID";
+            this.radLabel5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label2.Location = new System.Drawing.Point(5, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 16);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "EQUIPMENT";
+            // 
             // ConfigForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(390, 344);
+            this.ClientSize = new System.Drawing.Size(390, 452);
+            this.Controls.Add(this.radPanel2);
             this.Controls.Add(this.radBtnCancel);
             this.Controls.Add(this.radBtnSave);
             this.Controls.Add(this.radPanel1);
@@ -262,6 +318,10 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radlblOffsetChannel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            this.radPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,5 +342,9 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.TextBox tbMesPort;
         private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadPanel radPanel2;
+        private System.Windows.Forms.TextBox tbEquipmentId;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private System.Windows.Forms.Label label2;
     }
 }

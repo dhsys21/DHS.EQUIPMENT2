@@ -172,7 +172,7 @@ namespace DHS.EQUIPMENT
         int iNoHeartBeatCount = 0;
         private void CheckHeartBeatTimer_Tick(object sender, EventArgs e)
         {
-            if (SIEMENSPLC.IsConnected == false)
+            if (SIEMENSPLC != null && SIEMENSPLC.IsConnected == false)
             {
                 iNoHeartBeatCount++;
                 if (iNoHeartBeatCount >= 2 && iNoHeartBeatCount < 5)

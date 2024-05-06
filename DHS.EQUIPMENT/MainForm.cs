@@ -259,6 +259,8 @@ namespace DHS.EQUIPMENT
             int stageno = 0;
             string filename = _Constant.BIN_PATH + "MainSystemInfo.inf";
 
+            util.saveConfig(filename, "EQUIPMENT", "ID", _system.EQUIPMENTID);
+
             util.saveConfig(filename, "MES", "IPADDRESS", _system.MESIPADDRESS);
             util.saveConfig(filename, "MES", "PORT", _system.MESPORT.ToString());
             util.saveConfig(filename, "PLC", "IPADDRESS", _system.PLCIPADDRESS);
@@ -271,6 +273,8 @@ namespace DHS.EQUIPMENT
             {
                 if (File.Exists(filename))
                 {
+                    _system.EQUIPMENTID = util.readConfig(filename, "EQUIPMENT", "ID");
+
                     _system.MESIPADDRESS = util.readConfig(filename, "MES", "IPADDRESS");
                     _system.MESPORT = Convert.ToInt32(util.readConfig(filename, "MES", "PORT"));
                     _system.PLCIPADDRESS = util.readConfig(filename, "PLC", "IPADDRESS");

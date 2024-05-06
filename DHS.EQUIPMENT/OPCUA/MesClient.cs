@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Opc.Ua;
 using OPCUACLIENT;
 
 namespace DHS.EQUIPMENT
@@ -87,7 +88,7 @@ namespace DHS.EQUIPMENT
             {
                 //await Task.Run(() => opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
                 //connection = true;
-                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
+                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://192.168.0.13:48000/IROCV"));
                 //opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV");
                 return connection;
                 
@@ -234,7 +235,8 @@ namespace DHS.EQUIPMENT
         }
         #endregion
 
-        #region OPC UA Method
+        #region OPC UA Read Value Method
+        //* SetValue는 opc ua 서버에서 tag를 read한 후에 값을 변수에 넣는 것.
         private void SetValue(int row, int value, string type)
         {
             if (type == "MES") mesData[row] = value.ToString();
@@ -304,6 +306,10 @@ namespace DHS.EQUIPMENT
 
             return objValue;
         }
+        #endregion
+
+        #region OPC UA Write Value Method
+        
         private object WriteValue(string node, string value, int nDataType)
         {
             object objValue = new object();
@@ -350,6 +356,18 @@ namespace DHS.EQUIPMENT
             }
 
             return objValue;
+        }
+        #endregion
+
+        #region MES와 IROCV간 주고 받는 Sequence 별로 구현 - MES Sequence Read/Write
+        public int ReadFOEQR1_12()
+        {
+            return _iMesAcknowledgeNo;
+        }
+        public void WriteFOEQR1_12(string equipmentid, string trayid)
+        {
+            WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+            WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
         }
         #endregion
 

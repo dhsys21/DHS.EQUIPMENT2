@@ -35,14 +35,14 @@ namespace DHS.EQUIPMENT
             this.dgvMES = new System.Windows.Forms.DataGridView();
             this.dgvPC = new System.Windows.Forms.DataGridView();
             this.radpnl_MESTEST = new Telerik.WinControls.UI.RadPanel();
-            this.cbPCAddress = new System.Windows.Forms.ComboBox();
+            this.cbTagList = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbTagValue = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbTagName = new System.Windows.Forms.TextBox();
             this.radBtnWriteValue = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbTagType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
@@ -125,12 +125,12 @@ namespace DHS.EQUIPMENT
             // 
             // radpnl_MESTEST
             // 
-            this.radpnl_MESTEST.Controls.Add(this.cbPCAddress);
+            this.radpnl_MESTEST.Controls.Add(this.cbTagType);
+            this.radpnl_MESTEST.Controls.Add(this.label2);
+            this.radpnl_MESTEST.Controls.Add(this.cbTagList);
             this.radpnl_MESTEST.Controls.Add(this.label5);
             this.radpnl_MESTEST.Controls.Add(this.label3);
             this.radpnl_MESTEST.Controls.Add(this.tbTagValue);
-            this.radpnl_MESTEST.Controls.Add(this.label2);
-            this.radpnl_MESTEST.Controls.Add(this.tbTagName);
             this.radpnl_MESTEST.Controls.Add(this.radBtnWriteValue);
             this.radpnl_MESTEST.Controls.Add(this.label1);
             this.radpnl_MESTEST.Location = new System.Drawing.Point(976, 25);
@@ -143,42 +143,43 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // cbPCAddress
+            // cbTagList
             // 
-            this.cbPCAddress.FormattingEnabled = true;
-            this.cbPCAddress.Items.AddRange(new object[] {
-            "PC Heart Beat",
-            "PC Auto Manual",
-            "PC Error",
-            "Tray Out",
-            "Tray Down",
-            "Tray Up",
-            "Measurement Wait",
-            "Measurement Run",
-            "Measurement Complete"});
-            this.cbPCAddress.Location = new System.Drawing.Point(195, 122);
-            this.cbPCAddress.Name = "cbPCAddress";
-            this.cbPCAddress.Size = new System.Drawing.Size(153, 20);
-            this.cbPCAddress.TabIndex = 61;
-            this.cbPCAddress.Text = "Select Address";
+            this.cbTagList.FormattingEnabled = true;
+            this.cbTagList.Items.AddRange(new object[] {
+            "SequenceNo",
+            "AcknowledgeNo",
+            "EquipmentID",
+            "TrayID",
+            "RecipeID",
+            "CellID",
+            "IR",
+            "OCV",
+            "Result"});
+            this.cbTagList.Location = new System.Drawing.Point(126, 74);
+            this.cbTagList.Name = "cbTagList";
+            this.cbTagList.Size = new System.Drawing.Size(153, 20);
+            this.cbTagList.TabIndex = 61;
+            this.cbTagList.Text = "SequenceNo";
+            this.cbTagList.SelectedValueChanged += new System.EventHandler(this.cbTagList_SelectedValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(43, 126);
+            this.label5.Location = new System.Drawing.Point(17, 78);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 16);
+            this.label5.Size = new System.Drawing.Size(103, 16);
             this.label5.TabIndex = 60;
-            this.label5.Text = "PC Address";
+            this.label5.Text = "Tag Name List";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(43, 161);
+            this.label3.Location = new System.Drawing.Point(17, 157);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 16);
             this.label3.TabIndex = 57;
@@ -186,44 +187,25 @@ namespace DHS.EQUIPMENT
             // 
             // tbTagValue
             // 
-            this.tbTagValue.Location = new System.Drawing.Point(195, 156);
+            this.tbTagValue.Location = new System.Drawing.Point(126, 152);
+            this.tbTagValue.Multiline = true;
             this.tbTagValue.Name = "tbTagValue";
-            this.tbTagValue.Size = new System.Drawing.Size(100, 21);
+            this.tbTagValue.Size = new System.Drawing.Size(225, 197);
             this.tbTagValue.TabIndex = 56;
             this.tbTagValue.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(43, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 16);
-            this.label2.TabIndex = 55;
-            this.label2.Text = "Tag Name";
-            this.label2.Visible = false;
-            // 
-            // tbTagName
-            // 
-            this.tbTagName.Location = new System.Drawing.Point(195, 49);
-            this.tbTagName.Name = "tbTagName";
-            this.tbTagName.Size = new System.Drawing.Size(100, 21);
-            this.tbTagName.TabIndex = 54;
-            this.tbTagName.Text = "DB85.DBB0";
-            this.tbTagName.Visible = false;
             // 
             // radBtnWriteValue
             // 
             this.radBtnWriteValue.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
             this.radBtnWriteValue.ForeColor = System.Drawing.Color.White;
-            this.radBtnWriteValue.Location = new System.Drawing.Point(140, 201);
+            this.radBtnWriteValue.Location = new System.Drawing.Point(124, 407);
             this.radBtnWriteValue.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnWriteValue.Name = "radBtnWriteValue";
             this.radBtnWriteValue.Size = new System.Drawing.Size(155, 60);
             this.radBtnWriteValue.TabIndex = 52;
             this.radBtnWriteValue.Text = "Write Value";
             this.radBtnWriteValue.ThemeName = "ControlDefault";
+            this.radBtnWriteValue.Click += new System.EventHandler(this.radBtnWriteValue_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteValue.GetChildAt(0))).Text = "Write Value";
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteValue.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteValue.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
@@ -241,6 +223,31 @@ namespace DHS.EQUIPMENT
             this.label1.Size = new System.Drawing.Size(134, 16);
             this.label1.TabIndex = 50;
             this.label1.Text = "OPERATION MODE";
+            // 
+            // cbTagType
+            // 
+            this.cbTagType.FormattingEnabled = true;
+            this.cbTagType.Items.AddRange(new object[] {
+            "UInt32",
+            "String",
+            "StringArr",
+            "UInt32Arr"});
+            this.cbTagType.Location = new System.Drawing.Point(126, 109);
+            this.cbTagType.Name = "cbTagType";
+            this.cbTagType.Size = new System.Drawing.Size(153, 20);
+            this.cbTagType.TabIndex = 63;
+            this.cbTagType.Text = "UInt32";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label2.Location = new System.Drawing.Point(17, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 16);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "Tag Type";
             // 
             // MESINTERFACE
             // 
@@ -279,13 +286,13 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.DataGridView dgvMES;
         private System.Windows.Forms.DataGridView dgvPC;
         private Telerik.WinControls.UI.RadPanel radpnl_MESTEST;
-        private System.Windows.Forms.ComboBox cbPCAddress;
+        private System.Windows.Forms.ComboBox cbTagList;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbTagValue;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbTagName;
         private Telerik.WinControls.UI.RadButton radBtnWriteValue;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbTagType;
+        private System.Windows.Forms.Label label2;
     }
 }

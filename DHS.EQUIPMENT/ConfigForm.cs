@@ -33,6 +33,8 @@ namespace DHS.EQUIPMENT
 
         public void SetSystemValue()
         {
+            tbEquipmentId.Text = _system.EQUIPMENTID;
+
             tbMesIpaddress.Text = _system.MESIPADDRESS;
             tbMesPort.Text = _system.MESPORT.ToString();
 
@@ -52,6 +54,8 @@ namespace DHS.EQUIPMENT
 
             _system.PLCIPADDRESS = tbPlcIpaddress.Text;
             _system.PLCDBNUMBER = Convert.ToInt32(tbPlcDbNumber.Text);
+
+            _system.EQUIPMENTID = _system.EQUIPMENTID;
 
             RaiseOnSaveConfig();
             this.Hide();

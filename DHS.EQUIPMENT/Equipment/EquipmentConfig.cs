@@ -20,6 +20,7 @@ namespace DHS.EQUIPMENT
         private string _sMESIpAddress;
         private int _iMESPort;
 
+        private string _sEquipmentId;
         private string[] _sStageName = new string[_Constant.frmCount];
         private string[] _sStageNo = new string[_Constant.frmCount];
 
@@ -104,6 +105,7 @@ namespace DHS.EQUIPMENT
         public int IDischargeTime { get => _iDischargeTime; set => _iDischargeTime = value; }
         public int[] REMEASUREUSE { get => _iRemeasureUse; set => _iRemeasureUse = value; }
         public int[] REMEASURENG { get => _iRemeasureNG; set => _iRemeasureNG = value; }
+        public string EQUIPMENTID { get => _sEquipmentId; set => _sEquipmentId = value; }
 
         private static CEquipmentData equipmentdata;
 
