@@ -392,6 +392,28 @@ namespace DHS.EQUIPMENT
 
             string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
         }
+        /// <summary>
+        /// 1.1 Data Collection (Send IR, OCV Data irocv -> mes)
+        /// </summary>
+        public int ReadFOEQR1_1()
+        {
+            return _iMesAcknowledgeNo;
+        }
+        public void WriteFOEQR1_1()
+        {
+            string equipmentid = string.Empty;
+            string trayid = string.Empty;
+            string recipeid = string.Empty;
+            string cellids = string.Empty;
+            string irs = string.Empty;
+            string ocvs = string.Empty;
+            WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+            WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
+            WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
+            WriteValue("ns=2;s=Equipment/CellID", cellids, (int)EnumDataType.dtStringArr);
+            WriteValue("ns=2;s=Equipment/IR", irs, (int)EnumDataType.dtUInt32Arr);
+            WriteValue("ns=2;s=Equipment/OCV", ocvs, (int)EnumDataType.dtUInt32Arr);
+        }
         #endregion
 
         #region OPC UA TAG
