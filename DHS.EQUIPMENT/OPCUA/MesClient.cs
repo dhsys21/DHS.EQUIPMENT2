@@ -374,20 +374,20 @@ namespace DHS.EQUIPMENT
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
         }
         /// <summary>
-        /// 1.7 Request Reservation (Send Tray Information mes -> irocv)
+        /// 1.7 Request Reservation (Receive Tray Information mes -> irocv)
         /// </summary>
-        public int WriteFOEQR1_7(int iAck)
+        public void WriteFOEQR1_7(int iAck)
         {
-            _iPCAcknowledgeNo = iAck;
-            return _iPCAcknowledgeNo;
+            string strAck = iAck.ToString();
+            WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
         }
         public void ReadFOEQR1_7()
         {
             string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
             string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
             string recipeid = (string)ReadValue("ns=2;s=Mes/RecipeID", (int)EnumDataType.dtString);
-            var tmp = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
-            bool bypass = Convert.ToBoolean(tmp.ToString());
+            var tmpBypass = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
+            bool bypass = Convert.ToBoolean(tmpBypass.ToString());
             string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
 
             string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
@@ -413,6 +413,19 @@ namespace DHS.EQUIPMENT
             WriteValue("ns=2;s=Equipment/CellID", cellids, (int)EnumDataType.dtStringArr);
             WriteValue("ns=2;s=Equipment/IR", irs, (int)EnumDataType.dtUInt32Arr);
             WriteValue("ns=2;s=Equipment/OCV", ocvs, (int)EnumDataType.dtUInt32Arr);
+        }
+        /// <summary>
+        /// 1.13 Process Result (Receive Process Result mes -> irocv) 
+        /// </summary>
+        public void WriteFOEQR1_13(int iAck)
+        {
+            string strAck = iAck.ToString();
+            WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
+        }
+        public void ReadFOEQR1_13()
+        {
+            string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
+            int result = (int)ReadValue("ns=2;s=Mes/Result", (int)EnumDataType.dtUInt32);
         }
         #endregion
 
