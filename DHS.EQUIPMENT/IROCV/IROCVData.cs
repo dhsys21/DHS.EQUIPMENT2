@@ -20,7 +20,8 @@ namespace DHS.EQUIPMENT
             return irocvdata[nIndex];
         }
 
-        #region IR/OCV DATA - stage
+        #region IR/OCV DATA
+        private string _sEQUIPMENTID;
         private string _sTRAYID;
         private string _sCELLTYPE;
         private string _sBATCHID;
@@ -69,6 +70,7 @@ namespace DHS.EQUIPMENT
         //* Channel offset (해당 셀 전후로 셀이 없는 경우 offset값
         private double[] _dIR_CHANNELOFFSET = new double[_Constant.ChannelCount];
 
+        public string EQUIPMENTID { get => _sEQUIPMENTID; set => _sEQUIPMENTID = value; }
         public string TRAYID { get => _sTRAYID; set => _sTRAYID = value; }
         public string CELLTYPE { get => _sCELLTYPE; set => _sCELLTYPE = value; }
         public string BATCHID { get => _sBATCHID; set => _sBATCHID = value; }

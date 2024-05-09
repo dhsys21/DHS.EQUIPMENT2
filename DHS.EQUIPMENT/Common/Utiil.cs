@@ -706,6 +706,21 @@ namespace DHS.EQUIPMENT
             else FileAppend(filename, strMonitoring);
 
         }
+        public void SaveMesLog(string strMessage)
+        {
+            if (strMessage == oldIROCVMessage) return;
+            oldIROCVMessage = strMessage;
+            string dir = string.Empty;
+            dir = _Constant.LOG_PATH;
+            dir += System.DateTime.Now.ToString("yyyyMMdd") + "\\";
+            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
+            string filename = dir + "MES_" + DateTime.Now.ToString("yyMMdd") + ".log";
+
+            strMessage = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + strMessage;
+            if (System.IO.File.Exists(filename) == false) FileWrite(filename, strMessage);
+            else FileAppend(filename, strMessage);
+
+        }
         #endregion Save Log
 
         #region

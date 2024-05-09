@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DHS.EQUIPMENT.Common;
 using Opc.Ua;
 using OPCUACLIENT;
 using static DHS.EQUIPMENT.MesClient;
@@ -16,6 +18,9 @@ namespace DHS.EQUIPMENT
         public static bool connection = false;
         public bool isRead = false;
         OPCUACLIENT.OPCUACLIENT opcclient = null;
+        IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
+
+        private string _strLog;
 
         private string[] mesData = new string[70];
         private string[] pcData = new string[133];
@@ -68,9 +73,24 @@ namespace DHS.EQUIPMENT
                 OnSetDataToDgv(pcValues, mesValues);
             }
         }
+        public delegate void SaveMesLog(string mesLog);
+        public event SaveMesLog OnSaveMesLog = null;
+        protected void RaiseOnSaveMesLog(string mesLog)
+        {
+            if (OnSaveMesLog != null)
+            {
+                OnSaveMesLog(mesLog);
+            }
+        }
         public MesClient()
         {
+            _strLog = string.Empty;
+
             opcclient = new OPCUACLIENT.OPCUACLIENT();
+
+            //* IROCV DATA
+            for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
+                irocvdata[nIndex] = IROCVData.GetInstance(nIndex);
 
             SetEquipmentTagList();
             SetMesTagList();
@@ -364,24 +384,35 @@ namespace DHS.EQUIPMENT
         /// <summary>
         /// 1.12 Request Tray Information (Send Tray ID irocv -> mes)
         /// </summary>
-        public int ReadFOEQR1_12()
+        public bool ReadFOEQR1_12(int stageno)
         {
-            return _iMesAcknowledgeNo;
+            _strLog = "Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+            SaveLog(stageno, "FOEQR1.12 MES -> IROCV", _strLog);
+            
+            bool bAck = _iMesAcknowledgeNo == 1 ? true : false;
+            return bAck;
         }
-        public void WriteFOEQR1_12(string equipmentid, string trayid)
+        public void WriteFOEQR1_12(int stageno, string equipmentid, string trayid, IROCVData irocvdata)
         {
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
+
+            _strLog = "Equipment: " + equipmentid + ", Trayid: " + trayid;
+            SaveLog(stageno, "FOEQR1.12 IROCV -> MES", _strLog);
         }
         /// <summary>
         /// 1.7 Request Reservation (Receive Tray Information mes -> irocv)
         /// </summary>
-        public void WriteFOEQR1_7(int iAck)
+        public void WriteFOEQR1_7(int stageno, int iAck)
         {
             string strAck = iAck.ToString();
+
+            _strLog = "Acknowledgement: " + strAck;
+            SaveLog(stageno, "FOEQR1.7 IROCV -> MES", _strLog);
+            
             WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
         }
-        public void ReadFOEQR1_7()
+        public void ReadFOEQR1_7(int stageno, IROCVData irocvdata)
         {
             string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
             string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
@@ -395,11 +426,15 @@ namespace DHS.EQUIPMENT
         /// <summary>
         /// 1.1 Data Collection (Send IR, OCV Data irocv -> mes)
         /// </summary>
-        public int ReadFOEQR1_1()
+        public bool ReadFOEQR1_1(int stageno)
         {
-            return _iMesAcknowledgeNo;
+            _strLog = "Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+            SaveLog(stageno, "FOEQR1.1 MES -> IROCV", _strLog);
+
+            bool bAck = _iMesAcknowledgeNo == 1 ? true : false;
+            return bAck;
         }
-        public void WriteFOEQR1_1()
+        public void WriteFOEQR1_1(int stageno, IROCVData irocvdata)
         {
             string equipmentid = string.Empty;
             string trayid = string.Empty;
@@ -417,15 +452,49 @@ namespace DHS.EQUIPMENT
         /// <summary>
         /// 1.13 Process Result (Receive Process Result mes -> irocv) 
         /// </summary>
-        public void WriteFOEQR1_13(int iAck)
+        public void WriteFOEQR1_13(int stageno, int iAck)
         {
             string strAck = iAck.ToString();
+
+            _strLog = "Acknowledgement: " + strAck;
+            SaveLog(stageno, "FOEQR1.13 IROCV -> MES", _strLog);
+
             WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
         }
-        public void ReadFOEQR1_13()
+        public void ReadFOEQR1_13(int stageno, IROCVData irocvdata)
         {
             string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
             int result = (int)ReadValue("ns=2;s=Mes/Result", (int)EnumDataType.dtUInt32);
+
+            string strStageNo = (stageno + 1).ToString("D2");
+            _strLog = "IROCV" + strStageNo + "> OPCUA Tag(FOEQR1.13 MES -> IROCV) - Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+            RaiseOnSaveMesLog(_strLog);
+        }
+        #endregion
+
+        #region MES LOG
+        private void SaveLog(int stageno, string nType, string strLog)
+        {
+            string _strLogMessage = string.Empty;
+
+            string strStageName = "IROCV" + (stageno + 1).ToString("D2");
+            string strType = " OPCUA Tag(" + nType + ")"; 
+            
+            _strLogMessage = strStageName + "> " + strType + " - " + strLog; 
+            RaiseOnSaveMesLog(_strLogMessage);
+        }
+        private void SaveLog(int stageno, string nType, IROCVData irocvdata)
+        {
+            string _strLogMessage = string.Empty;
+
+            string strStageName = "IROCV" + (stageno + 1).ToString("D2");
+            string strType = " OPCUA Tag(" + nType + ")";
+            _strLogMessage = strStageName + "> OPCUA Tag(FOEQR1.12 MES -> IROCV) - Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+
+            //* ir, ocv, status, result list
+
+
+            RaiseOnSaveMesLog(_strLogMessage);
         }
         #endregion
 

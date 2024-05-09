@@ -103,6 +103,7 @@ namespace DHS.EQUIPMENT
 
                 mesclient = new MesClient();
                 mesclient.OnSetDataToDgv += _MesClient_SetDataToDgv;
+                mesclient.OnSaveMesLog += _MesClient_SaveMEsLog;
 
                 //_bMesConnected = MesClient.connection;
             }
@@ -247,12 +248,20 @@ namespace DHS.EQUIPMENT
 
             _tmrGetMesData.Enabled = true;
         }
-
+        #region MES Method
         private void _MesClient_SetDataToDgv(string[] pcValues, string[] mesValues)
         {
             mesinterface.SetDataToGrid(pcValues, mesValues);
         }
+        private void _MesClient_SaveMesLog(string mesLog)
+        {
+            util.SaveMesLog(mesLog);
+        }
+        private void SaveMesLog(string mesLog)
+        {
 
+        }
+        #endregion
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
         {
             if (tagname == "PC Heart Beat") siemensplc.SetHeartBeat(stageno, nValue);
@@ -891,10 +900,14 @@ namespace DHS.EQUIPMENT
                     break;
                 case 1:
                     //* IROCV -> MES FOEQR1.12 : equipment id, tray id 쓰기
+                    mesclient.WriteFOEQR1_12(equipid, trayid);
                     nInspectionStep = 2;
                     break;
                 case 2:
                     //* MES -> IROCV FOEQR1.12 : ack 확인
+                    bAck = mesclient.ReadFOEQR1_12();
+                    strLog = "Read OPCUA Tag(FOEQR1.12) - Acknowledgement : " + bAck.ToString();
+                    SaveLog(stageno, strLog);
                     if(bAck == true)
                     {
                         if (siemensplc.PLCREADYCOMPLETE == 1)
