@@ -378,6 +378,35 @@ namespace DHS.EQUIPMENT
 
             return objValue;
         }
+        private object WriteValue(string node, string[] values, int nDataType)
+        {
+            object objValue = new object();
+
+            try
+            {
+                switch (nDataType)
+                {
+                    case (int)MesClient.EnumDataType.dtStringArr:
+                        opcclient.Write<String[]>(node, values);
+                        break;
+                    case (int)MesClient.EnumDataType.dtUInt32Arr:
+                        UInt32[] iValArr;
+                        iValArr = Array.ConvertAll(values, UInt32.Parse);
+                        opcclient.Write<UInt32[]>(node, iValArr);
+                        break;
+                    default:
+                        break;
+                }
+
+                objValue = ReadValue(node, nDataType);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return objValue;
+        }
         #endregion
 
         #region MES와 IROCV간 주고 받는 Sequence 별로 구현 - MES Sequence Read/Write
@@ -412,16 +441,40 @@ namespace DHS.EQUIPMENT
             
             WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
         }
-        public void ReadFOEQR1_7(int stageno, IROCVData irocvdata)
+        public IROCVData ReadFOEQR1_7(int stageno)
         {
+            _strLog = string.Empty;
+
             string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
+            _strLog += "Equipment ID: " + equipid;
             string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
+            _strLog += ", TRAY ID: " + trayid;
             string recipeid = (string)ReadValue("ns=2;s=Mes/RecipeID", (int)EnumDataType.dtString);
+            _strLog += ", RECIPE ID: " + recipeid;
             var tmpBypass = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
             bool bypass = Convert.ToBoolean(tmpBypass.ToString());
+            _strLog += ", BYPASS : " + tmpBypass.ToString();
+            
             string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellids[nIndex];
 
             string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellstatus.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellstatus[nIndex];
+
+            SaveLog(stageno, "FOEQR1.7 MES  -> IROCV", _strLog);
+
+            IROCVData irocvDatas = new IROCVData();
+            irocvDatas.EQUIPMENTID = equipid; ;
+            irocvDatas.TRAYID = trayid;
+            irocvDatas.RECIPEID = recipeid;
+            irocvDatas.BYPASS = bypass;
+            irocvDatas.CELLID = cellids;
+            irocvDatas.CELLSTATUS = cellstatus;
+            irocvDatas.TAGPATHNO = "FOEQR1.7";
+
+            return irocvDatas;
         }
         /// <summary>
         /// 1.1 Data Collection (Send IR, OCV Data irocv -> mes)
@@ -436,12 +489,17 @@ namespace DHS.EQUIPMENT
         }
         public void WriteFOEQR1_1(int stageno, IROCVData irocvdata)
         {
-            string equipmentid = string.Empty;
-            string trayid = string.Empty;
-            string recipeid = string.Empty;
-            string cellids = string.Empty;
-            string irs = string.Empty;
-            string ocvs = string.Empty;
+            _strLog = string.Empty;
+
+            string equipmentid = irocvdata.EQUIPMENTID;
+            _strLog += "Equipment ID: " + equipmentid;
+            string trayid = irocvdata.TRAYID;
+            _strLog += ", TRAY ID: " + trayid;
+            string recipeid = irocvdata.RECIPEID;
+            _strLog += ", RECIPE ID: " + recipeid;
+            string[] cellids = irocvdata.CELLID;
+            double[] irs = irocvdata.IR_AFTERVALUE;
+            double[] ocvs = irocvdata.OCV;
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
             WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
@@ -598,3 +656,5 @@ namespace DHS.EQUIPMENT
         #endregion
     }
 }
+
+

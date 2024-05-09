@@ -23,13 +23,16 @@ namespace DHS.EQUIPMENT
         #region IR/OCV DATA
         private string _sEQUIPMENTID;
         private string _sTRAYID;
+        private string _sRECIPEID;
+        private string _sTAGPATHNO;
         private string _sCELLTYPE;
         private string _sBATCHID;
         private string _sOLDBATCHID;
         private string _sLOTID;
         private string _sLOTNUMBER;
         private string _sCELLSERIAL;
-        private int iCELLCOUNT;
+        private int _iCELLCOUNT;
+        private bool _bBypass;
         private bool _bFIRST;
         private double _dIRMin;
         private double _dIRMax;
@@ -40,6 +43,8 @@ namespace DHS.EQUIPMENT
 
         //* CELL 정보 0 - no cell, 1 - cell exist
         private int[] _iCELL = new int[_Constant.ChannelCount];
+        private string[] _sCELLID = new string[_Constant.ChannelCount];
+        private string[] _sCELLSTATUS = new string[_Constant.ChannelCount];
         
         private double[] _dIR_ORIGINALVALUE = new double[_Constant.ChannelCount];
         private double[] _dIR_AFTERVALUE = new double[_Constant.ChannelCount];
@@ -72,13 +77,14 @@ namespace DHS.EQUIPMENT
 
         public string EQUIPMENTID { get => _sEQUIPMENTID; set => _sEQUIPMENTID = value; }
         public string TRAYID { get => _sTRAYID; set => _sTRAYID = value; }
+        public string RECIPEID { get => _sRECIPEID; set => _sRECIPEID = value; }
         public string CELLTYPE { get => _sCELLTYPE; set => _sCELLTYPE = value; }
         public string BATCHID { get => _sBATCHID; set => _sBATCHID = value; }
         public string OLDBATCHID { get => _sOLDBATCHID; set => _sOLDBATCHID = value; }
         public string LOTID { get => _sLOTID; set => _sLOTID = value; }
         public string LOTNUMBER { get => _sLOTNUMBER; set => _sLOTNUMBER = value; }
         public string CELLSERIAL { get => _sCELLSERIAL; set => _sCELLSERIAL = value; }
-        public int CELLCOUNT { get => iCELLCOUNT; set => iCELLCOUNT = value; }
+        public int CELLCOUNT { get => _iCELLCOUNT; set => _iCELLCOUNT = value; }
         public bool FIRST { get => _bFIRST; set => _bFIRST = value; }
         public DateTime ARRIVETIME { get => _dtArriveTime; set => _dtArriveTime = value; }
         public DateTime FINISHTIME { get => _dtFinishTime; set => _dtFinishTime = value; }
@@ -105,6 +111,10 @@ namespace DHS.EQUIPMENT
         public double IRMax { get => _dIRMax; set => _dIRMax = value; }
         public double OCVMin { get => _dOCVMin; set => _dOCVMin = value; }
         public double OCVMax { get => _dOCVMax; set => _dOCVMax = value; }
+        public bool BYPASS { get => _bBypass; set => _bBypass = value; }
+        public string[] CELLID { get => _sCELLID; set => _sCELLID = value; }
+        public string[] CELLSTATUS { get => _sCELLSTATUS; set => _sCELLSTATUS = value; }
+        public string TAGPATHNO { get => _sTAGPATHNO; set => _sTAGPATHNO = value; }
 
         #endregion
 
@@ -123,19 +133,23 @@ namespace DHS.EQUIPMENT
         public void InitData()
         {
             _sTRAYID = string.Empty;
+            _sRECIPEID = string.Empty;
             _sCELLTYPE = string.Empty;
             _sBATCHID = string.Empty;
             _sOLDBATCHID = string.Empty;
             _sLOTID = string.Empty;
             _sLOTNUMBER = string.Empty;
             _sCELLSERIAL = string.Empty;
-            iCELLCOUNT = 0;
+            _iCELLCOUNT = 0;
             _bFIRST = true;
             _bREMEASURE = false;
+            _bBypass = false;
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
                 _iCELL[nIndex] = 1;
+                _sCELLID[nIndex] = string.Empty;
+                _sCELLSTATUS[nIndex] = string.Empty;
                 _dIR_ORIGINALVALUE[nIndex] = 0.000;
                 _dIR_AFTERVALUE[nIndex] = 0.000;
                 _dOCV[nIndex] = 0.0;
