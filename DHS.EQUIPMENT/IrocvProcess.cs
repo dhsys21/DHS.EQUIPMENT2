@@ -710,6 +710,8 @@ namespace DHS.EQUIPMENT
                     break;
                 case enumEquipStatus.StepEnd:
                     PLC_MEASUREMENT_COMPLETE(stageno, 1);
+                    //* AutoInspection_StepEnd(stageno)로 변경할 것.
+                    //* 내부에서는 switch구문 이용하여 mes 추가 필요. 2024 05 10 
                     AutoInspection_StepTrayOut(stageno);
                     break;
                 case enumEquipStatus.StepTrayOut:
@@ -743,7 +745,10 @@ namespace DHS.EQUIPMENT
         int nStep = 0;
         private void MsaInspection_Start(int stageno, int count, string type)
         {
-            if(type == "MSA")
+            //* cell info for manual
+            irocvdata[stageno].SetTrayInfoForManual();
+
+            if (type == "MSA")
             {
                 irocv[stageno].EQUIPMODE = enumEquipMode.MANUAL;
                 irocv[stageno].MSASTATUS = enumMsaStatus.StepTrayDown;
@@ -914,34 +919,41 @@ namespace DHS.EQUIPMENT
                     {
                         //* mes에서 ack ok정보를 받으면 다음 단계로
                         nInspectionStep = 3;
-                        //* PLC - Read Tray Ready Complete
-                        if (siemensplc.PLCREADYCOMPLETE == 1)
-                        {
-                            //* PLC - Request Tray Up
-                            PLC_TRAYUP(stageno);
-                            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
-                            
-                            
-                        }
                     }
                     break;
                 case 3:
                     //* MES - Request Reservation (트레이 정보)
+                    //* MES -> IROCV FOEQR1.7 (tray information)
                     irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
                     if (irocvdata[stageno].BYPASS == true)
                     {
-                        //* PLC - tray out
+                        //* PLC - Request Tray Out
                         PLC_TRAYOUT(stageno, 1);
                     }
                     else if (irocvdata[stageno].BYPASS == false)
                     {
                         //* MES - Display Tray Info.
-                        DisplayTrayInfo(irocvdata[stageno]);
+                        DisplayTrayInfo(stageno, irocvdata[stageno]);
 
                         nInspectionStep = 4;
                     }
                     break;
                 case 4:
+                    //* MES - Response Ack 
+                    //* IROCV -> MES FOEQR1.7 (send ack to mes)
+                    mesclient.WriteFOEQR1_7(stageno, 1);
+                    if (mesclient.PCACKNOWLEDGENO == 1)
+                        nInspectionStep = 5;
+                    break;
+                case 5:
+                    //* PLC - Read Tray Ready Complete
+                    if (siemensplc.PLCREADYCOMPLETE == 1)
+                    {
+                        //* PLC - Request Tray Up
+                        PLC_TRAYUP(stageno);
+                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
+                        nInspectionStep = 0;
+                    }
                     break;
                 default:
                     break;
@@ -968,6 +980,7 @@ namespace DHS.EQUIPMENT
         }
         private void AutoInspection_StepAutoStart(int stageno)
         {
+            //* PLC Tray Up 확인
             if (siemensplc.PLCTRAYUP == 1)
             {
                 if (irocvdata[stageno].REMEASURE == false)
@@ -1032,6 +1045,15 @@ namespace DHS.EQUIPMENT
             measureinfo.InitDisplayChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
 
             InitEquipStatus(stageno);
+        }
+        public void IROCV_Refresh(int stageno)
+        {
+            //* mes에서 데이터 받아서 화면 refresh
+            util.SaveLog(stageno, "IROCV Data Initialize ...");
+            measureinfo.InitData(stageno);
+            measureinfo.InitChart();
+
+            measureinfo.InitDisplayChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
         }
         private void InitEquipStatus(int stageno)
         {
@@ -1335,9 +1357,13 @@ namespace DHS.EQUIPMENT
         #endregion PLC Action
 
         #region MES Action
-        private void DisplayTrayInfo(IROCVData irocvData)
+        private void DisplayTrayInfo(int stageno, IROCVData irocvData)
         {
+            irocvform[stageno].SetTrayId(irocvData.TRAYID);
+            irocvform[stageno].SetRecipeId(irocvData.RECIPEID);
 
+            IROCV_Refresh(stageno);
+            irocvdata[stageno].SetStartTime();
         }
         #endregion
 
@@ -1390,7 +1416,11 @@ namespace DHS.EQUIPMENT
         }
         private void _IROCVFORM_IROCVReset(int stageno)
         {
+            //* 계측기 리셋
             CmdReset(stageno);
+
+            //* IROCV step 초기화 - 2024 05 10
+            IROCV_Initialize(stageno);
         }
         private void _IROCVFORM_NGInfo(int stageno)
         {

@@ -40,6 +40,7 @@ namespace DHS.EQUIPMENT
         private double _dOCVMin;
         private double _dOCVMax;
         private DateTime _dtArriveTime;
+        private DateTime _dtStartTime;
         private DateTime _dtFinishTime;
 
         //* CELL 정보 0 - no cell, 1 - cell exist
@@ -88,6 +89,7 @@ namespace DHS.EQUIPMENT
         public int CELLCOUNT { get => _iCELLCOUNT; set => _iCELLCOUNT = value; }
         public bool FIRST { get => _bFIRST; set => _bFIRST = value; }
         public DateTime ARRIVETIME { get => _dtArriveTime; set => _dtArriveTime = value; }
+        public DateTime STARTTIME { get => _dtStartTime; set => _dtStartTime = value; }
         public DateTime FINISHTIME { get => _dtFinishTime; set => _dtFinishTime = value; }
         public int[] CELL { get => _iCELL; set => _iCELL = value; }
         public double[] IR_ORIGINALVALUE { get => _dIR_ORIGINALVALUE; set => _dIR_ORIGINALVALUE = value; }
@@ -150,7 +152,7 @@ namespace DHS.EQUIPMENT
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
-                _iCELL[nIndex] = 1;
+                _iCELL[nIndex] = 0;
                 _sCELLID[nIndex] = string.Empty;
                 _sCELLSTATUS[nIndex] = string.Empty;
                 _dIR_ORIGINALVALUE[nIndex] = 0.000;
@@ -179,6 +181,11 @@ namespace DHS.EQUIPMENT
         {
             for (int i = 0; i < iExist.Length; i++)
                 CELL[i] = iExist[i];
+        }
+        public void SetTrayInfoForManual()
+        {
+            for (int i = 0; i < _Constant.ChannelCount; i++)
+                _iCELL[i] = 1;
         }
 
         public void SetValue(string param, string type, enumEquipMode equipMode)
@@ -269,10 +276,17 @@ namespace DHS.EQUIPMENT
             _dOCVMin = dMin;
             _dOCVMax = dMax;
         }
+        //* Tray In 시간
         public void SetArriveTime()
         {
             _dtArriveTime = DateTime.Now;
         }
+        //* Mes 에서 tray info 받은 시간
+        public void SetStartTime()
+        {
+            _dtStartTime = DateTime.Now;
+        }
+        //* 측정 끝나고 결과 파일 작성 시간
         public void SetFinishTime()
         {
             _dtFinishTime = DateTime.Now;

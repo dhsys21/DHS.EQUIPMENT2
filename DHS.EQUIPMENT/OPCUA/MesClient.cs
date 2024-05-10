@@ -474,7 +474,9 @@ namespace DHS.EQUIPMENT
             //* CELL ID
             string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
             for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
+            {
                 _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellids[nIndex];
+            }
 
             //* CELL STATUS
             string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
@@ -484,11 +486,18 @@ namespace DHS.EQUIPMENT
             //* Write Log
             SaveLog(stageno, "FOEQR1.7 MES  -> IROCV", _strLog);
 
+            //* irocvdata에 mes data 저장.
+            irocvdata[stageno].InitData();
             irocvdata[stageno].EQUIPMENTID = equipid; ;
             irocvdata[stageno].TRAYID = trayid;
             irocvdata[stageno].RECIPEID = recipeid;
             irocvdata[stageno].BYPASS = bypass;
             irocvdata[stageno].CELLID = cellids;
+            for (int i = 0; i < cellids.Length; i++)
+            {
+                if (string.IsNullOrEmpty(cellids[i]) == true) irocvdata[stageno].CELL[i] = 0;
+                else irocvdata[stageno].CELL[i] = 1;
+            }
             irocvdata[stageno].CELLSTATUS = cellstatus;
             irocvdata[stageno].TAGPATHNO = "FOEQR1.7";
 
