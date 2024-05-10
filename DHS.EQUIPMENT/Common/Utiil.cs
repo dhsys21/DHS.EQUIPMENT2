@@ -643,26 +643,6 @@ namespace DHS.EQUIPMENT
 
         #region Save Log
         string strPLCMessage = string.Empty;
-        public void SavePLCLog(int nIndex, string strMessage)
-        {
-            if (strMessage == strPLCMessage) return;
-            strPLCMessage = strMessage;
-
-            string dir = "";
-            string StageTitle = "STAGE" + (nIndex + 1).ToString();
-            dir = _Constant.LOG_PATH;
-            dir += System.DateTime.Now.ToString("yyyyMMdd") + "\\" + StageTitle + "\\";
-            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
-            string filename = dir + StageTitle + "_PLC_" + DateTime.Now.ToString("yyMMdd-HH") + ".log";
-            string strMonitoring = "";
-
-            strMonitoring = strMessage;
-
-            strMonitoring = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\t" + strMonitoring;
-            if (System.IO.File.Exists(filename) == false) FileWrite(filename, strMonitoring);
-            else FileAppend(filename, strMonitoring);
-
-        }
         public void SaveLog(int nIndex, string strMessage, string type)
         {
             string dir = "";
@@ -702,6 +682,26 @@ namespace DHS.EQUIPMENT
             strMonitoring = strMessage;
 
             strMonitoring = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + strMonitoring;
+            if (System.IO.File.Exists(filename) == false) FileWrite(filename, strMonitoring);
+            else FileAppend(filename, strMonitoring);
+
+        }
+        public void SavePLCLog(int nIndex, string strMessage)
+        {
+            if (strMessage == strPLCMessage) return;
+            strPLCMessage = strMessage;
+
+            string dir = "";
+            string StageTitle = "STAGE" + (nIndex + 1).ToString();
+            dir = _Constant.LOG_PATH;
+            dir += System.DateTime.Now.ToString("yyyyMMdd") + "\\" + StageTitle + "\\";
+            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
+            string filename = dir + StageTitle + "_PLC_" + DateTime.Now.ToString("yyMMdd-HH") + ".log";
+            string strMonitoring = "";
+
+            strMonitoring = strMessage;
+
+            strMonitoring = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\t" + strMonitoring;
             if (System.IO.File.Exists(filename) == false) FileWrite(filename, strMonitoring);
             else FileAppend(filename, strMonitoring);
 

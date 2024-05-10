@@ -103,7 +103,7 @@ namespace DHS.EQUIPMENT
 
                 mesclient = new MesClient();
                 mesclient.OnSetDataToDgv += _MesClient_SetDataToDgv;
-                mesclient.OnSaveMesLog += _MesClient_SaveMEsLog;
+                mesclient.OnSaveMesLog += _MesClient_SaveMesLog;
 
                 //_bMesConnected = MesClient.connection;
             }
@@ -888,10 +888,12 @@ namespace DHS.EQUIPMENT
             switch(nInspectionStep)
             {
                 case 0:
+                    //* PLC - Read Tray ID
                     if(string.IsNullOrEmpty(trayid) == false)
                     {
                         irocvform[stageno].SetTrayId(trayid);
                         irocvdata[stageno].TRAYID = trayid;
+                        irocvdata[stageno].EQUIPMENTID = equipid;
 
                         SaveLog(stageno, "TRAY ID : " + trayid);
 
@@ -899,25 +901,47 @@ namespace DHS.EQUIPMENT
                     }
                     break;
                 case 1:
+                    //* MES - Request Tray Information
                     //* IROCV -> MES FOEQR1.12 : equipment id, tray id 쓰기
-                    mesclient.WriteFOEQR1_12(equipid, trayid);
+                    mesclient.WriteFOEQR1_12(stageno, equipid, trayid);
                     nInspectionStep = 2;
                     break;
                 case 2:
+                    //* MES - Verify Acknowledge No.
                     //* MES -> IROCV FOEQR1.12 : ack 확인
-                    bAck = mesclient.ReadFOEQR1_12();
-                    strLog = "Read OPCUA Tag(FOEQR1.12) - Acknowledgement : " + bAck.ToString();
-                    SaveLog(stageno, strLog);
+                    bAck = mesclient.ReadFOEQR1_12(stageno);
                     if(bAck == true)
                     {
+                        //* mes에서 ack ok정보를 받으면 다음 단계로
+                        nInspectionStep = 3;
+                        //* PLC - Read Tray Ready Complete
                         if (siemensplc.PLCREADYCOMPLETE == 1)
                         {
+                            //* PLC - Request Tray Up
                             PLC_TRAYUP(stageno);
                             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
                             
-                            nInspectionStep = 0;
+                            
                         }
                     }
+                    break;
+                case 3:
+                    //* MES - Request Reservation (트레이 정보)
+                    irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
+                    if (irocvdata[stageno].BYPASS == true)
+                    {
+                        //* PLC - tray out
+                        PLC_TRAYOUT(stageno, 1);
+                    }
+                    else if (irocvdata[stageno].BYPASS == false)
+                    {
+                        //* MES - Display Tray Info.
+                        DisplayTrayInfo(irocvdata[stageno]);
+
+                        nInspectionStep = 4;
+                    }
+                    break;
+                case 4:
                     break;
                 default:
                     break;
@@ -1309,6 +1333,13 @@ namespace DHS.EQUIPMENT
             SaveLog(stageno, "SET MEASUREMENT COMPLETE ON");
         }
         #endregion PLC Action
+
+        #region MES Action
+        private void DisplayTrayInfo(IROCVData irocvData)
+        {
+
+        }
+        #endregion
 
         #region DELEGATE
 

@@ -118,6 +118,10 @@ namespace DHS.EQUIPMENT
             SetValueToLabel(lblTrayId, trayid);
             SetValueToTextBox(tbTrayId, trayid);
         }
+        public void SetRecipeId(string recipeid)
+        {
+
+        }
         #endregion
 
         #region Method
@@ -278,7 +282,7 @@ namespace DHS.EQUIPMENT
         }
         #endregion
 
-        #region Channel Info Panel
+        #region Channel Info Panel - init
         private void makeGridView()
         {
             #region 행/열 제목, 갯수
@@ -429,8 +433,6 @@ namespace DHS.EQUIPMENT
         {
             RaiseOnOperationMode(this.stageno, true);
         }
-        #endregion
-
         private void radBtnConfig_Click(object sender, EventArgs e)
         {
             //configForm.ShowDialog();
@@ -445,7 +447,7 @@ namespace DHS.EQUIPMENT
             {
                 RaiseOnIROCVReset(this.stageno);
             }
-                
+
         }
 
         private void radbtn_NGINFO_Click(object sender, EventArgs e)
@@ -457,6 +459,6 @@ namespace DHS.EQUIPMENT
         {
             RaiseOnRemeasureInfo(this.stageno);
         }
+        #endregion
     }
-    
 }

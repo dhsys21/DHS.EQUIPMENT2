@@ -32,6 +32,7 @@ namespace DHS.EQUIPMENT
         private string _sLOTNUMBER;
         private string _sCELLSERIAL;
         private int _iCELLCOUNT;
+        private int _iMESRESULT;
         private bool _bBypass;
         private bool _bFIRST;
         private double _dIRMin;
@@ -115,6 +116,7 @@ namespace DHS.EQUIPMENT
         public string[] CELLID { get => _sCELLID; set => _sCELLID = value; }
         public string[] CELLSTATUS { get => _sCELLSTATUS; set => _sCELLSTATUS = value; }
         public string TAGPATHNO { get => _sTAGPATHNO; set => _sTAGPATHNO = value; }
+        public int MESRESULT { get => _iMESRESULT; set => _iMESRESULT = value; }
 
         #endregion
 
@@ -144,6 +146,7 @@ namespace DHS.EQUIPMENT
             _bFIRST = true;
             _bREMEASURE = false;
             _bBypass = false;
+            _iMESRESULT = 0; //* 1 -> Tray Emission, 2 -> Tray Retry
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {

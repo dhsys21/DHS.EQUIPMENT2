@@ -30,10 +30,10 @@ namespace DHS.EQUIPMENT
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            Telerik.WinControls.ThemeSource themeSource2 = new Telerik.WinControls.ThemeSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            Telerik.WinControls.ThemeSource themeSource1 = new Telerik.WinControls.ThemeSource();
             this.radpanel_Title = new Telerik.WinControls.UI.RadPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.radpanel_body = new Telerik.WinControls.UI.RadPanel();
@@ -81,7 +81,7 @@ namespace DHS.EQUIPMENT
             this.label1 = new System.Windows.Forms.Label();
             this.lblProcessTitle = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblRecipeId = new System.Windows.Forms.Label();
             this.lblRecipeTitle = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -230,7 +230,7 @@ namespace DHS.EQUIPMENT
             this.label34.ForeColor = System.Drawing.Color.SteelBlue;
             this.label34.Location = new System.Drawing.Point(5, 5);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(145, 16);
+            this.label34.Size = new System.Drawing.Size(144, 16);
             this.label34.TabIndex = 50;
             this.label34.Text = "STAGE INFOMATION";
             // 
@@ -429,7 +429,7 @@ namespace DHS.EQUIPMENT
             this.label14.ForeColor = System.Drawing.Color.SteelBlue;
             this.label14.Location = new System.Drawing.Point(5, 5);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(135, 16);
+            this.label14.Size = new System.Drawing.Size(134, 16);
             this.label14.TabIndex = 50;
             this.label14.Text = "OPERATION MODE";
             // 
@@ -677,7 +677,7 @@ namespace DHS.EQUIPMENT
             this.label12.ForeColor = System.Drawing.Color.SteelBlue;
             this.label12.Location = new System.Drawing.Point(5, 5);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(169, 16);
+            this.label12.Size = new System.Drawing.Size(168, 16);
             this.label12.TabIndex = 50;
             this.label12.Text = "IR/OCV PROCESS INFO.";
             // 
@@ -851,7 +851,7 @@ namespace DHS.EQUIPMENT
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.lblRecipeId);
             this.panel3.Controls.Add(this.lblRecipeTitle);
             this.panel3.Location = new System.Drawing.Point(4, 149);
             this.panel3.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
@@ -860,19 +860,19 @@ namespace DHS.EQUIPMENT
             this.panel3.Size = new System.Drawing.Size(352, 40);
             this.panel3.TabIndex = 9;
             // 
-            // label7
+            // lblRecipeId
             // 
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(98, 2);
-            this.label7.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(252, 36);
-            this.label7.TabIndex = 18;
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRecipeId.BackColor = System.Drawing.Color.White;
+            this.lblRecipeId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblRecipeId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRecipeId.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecipeId.ForeColor = System.Drawing.Color.Black;
+            this.lblRecipeId.Location = new System.Drawing.Point(98, 2);
+            this.lblRecipeId.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblRecipeId.Name = "lblRecipeId";
+            this.lblRecipeId.Size = new System.Drawing.Size(252, 36);
+            this.lblRecipeId.TabIndex = 18;
+            this.lblRecipeId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblRecipeTitle
             // 
@@ -973,7 +973,7 @@ namespace DHS.EQUIPMENT
             this.label11.ForeColor = System.Drawing.Color.SteelBlue;
             this.label11.Location = new System.Drawing.Point(5, 5);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(136, 16);
+            this.label11.Size = new System.Drawing.Size(135, 16);
             this.label11.TabIndex = 50;
             this.label11.Text = "TRAY INFOMATION";
             // 
@@ -1205,19 +1205,19 @@ namespace DHS.EQUIPMENT
             this.gridView.AllowUserToAddRows = false;
             this.gridView.AllowUserToResizeColumns = false;
             this.gridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.gridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridView.BackgroundColor = System.Drawing.Color.White;
             this.gridView.ColumnHeadersHeight = 29;
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.GridColor = System.Drawing.Color.Black;
             this.gridView.Location = new System.Drawing.Point(2, 2);
@@ -1225,10 +1225,10 @@ namespace DHS.EQUIPMENT
             this.gridView.Name = "gridView";
             this.gridView.ReadOnly = true;
             this.gridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.gridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.gridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridView.RowTemplate.Height = 23;
             this.gridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -1243,14 +1243,14 @@ namespace DHS.EQUIPMENT
             this.label4.ForeColor = System.Drawing.Color.SteelBlue;
             this.label4.Location = new System.Drawing.Point(5, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(166, 16);
+            this.label4.Size = new System.Drawing.Size(165, 16);
             this.label4.TabIndex = 50;
             this.label4.Text = "CHANNEL INFOMATION";
             // 
             // radThemeManager1
             // 
             this.radThemeManager1.LoadedThemes.AddRange(new Telerik.WinControls.ThemeSource[] {
-            themeSource2});
+            themeSource1});
             // 
             // IROCVForm
             // 
@@ -1386,7 +1386,7 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProcessTitle;
         public System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblRecipeId;
         private System.Windows.Forms.Label lblRecipeTitle;
         public System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label9;
