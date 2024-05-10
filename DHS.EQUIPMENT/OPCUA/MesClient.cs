@@ -415,7 +415,10 @@ namespace DHS.EQUIPMENT
         /// </summary>
         public bool ReadFOEQR1_12(int stageno)
         {
+            //* Acknowlegement No
             _strLog = "Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+            
+            //* Save Log
             SaveLog(stageno, "FOEQR1.12 MES -> IROCV", _strLog);
             
             bool bAck = _iMesAcknowledgeNo == 1 ? true : false;
@@ -423,9 +426,13 @@ namespace DHS.EQUIPMENT
         }
         public void WriteFOEQR1_12(int stageno, string equipmentid, string trayid, IROCVData irocvdata)
         {
+            //* EQUIPMENT ID
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+
+            //* TRAY ID
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
 
+            //* Save Log
             _strLog = "Equipment: " + equipmentid + ", Trayid: " + trayid;
             SaveLog(stageno, "FOEQR1.12 IROCV -> MES", _strLog);
         }
@@ -436,33 +443,45 @@ namespace DHS.EQUIPMENT
         {
             string strAck = iAck.ToString();
 
+            //* Acknowlegement No
+            WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
+
+            //* Save Log
             _strLog = "Acknowledgement: " + strAck;
             SaveLog(stageno, "FOEQR1.7 IROCV -> MES", _strLog);
-            
-            WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
         }
         public IROCVData ReadFOEQR1_7(int stageno)
         {
             _strLog = string.Empty;
 
+            //* EQUIPMENT ID
             string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
             _strLog += "Equipment ID: " + equipid;
+            
+            //* TRAY ID
             string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
             _strLog += ", TRAY ID: " + trayid;
+            
+            //* RECIPE ID
             string recipeid = (string)ReadValue("ns=2;s=Mes/RecipeID", (int)EnumDataType.dtString);
             _strLog += ", RECIPE ID: " + recipeid;
+            
+            //* BYPASS
             var tmpBypass = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
             bool bypass = Convert.ToBoolean(tmpBypass.ToString());
             _strLog += ", BYPASS : " + tmpBypass.ToString();
             
+            //* CELL ID
             string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
             for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
                 _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellids[nIndex];
 
+            //* CELL STATUS
             string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
             for (int nIndex = 0; nIndex < cellstatus.Length; nIndex++)
                 _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellstatus[nIndex];
 
+            //* Write Log
             SaveLog(stageno, "FOEQR1.7 MES  -> IROCV", _strLog);
 
             IROCVData irocvDatas = new IROCVData();
@@ -481,7 +500,10 @@ namespace DHS.EQUIPMENT
         /// </summary>
         public bool ReadFOEQR1_1(int stageno)
         {
+            //* Acknowledgement No
             _strLog = "Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+
+            //* Save Log
             SaveLog(stageno, "FOEQR1.1 MES -> IROCV", _strLog);
 
             bool bAck = _iMesAcknowledgeNo == 1 ? true : false;
@@ -491,21 +513,39 @@ namespace DHS.EQUIPMENT
         {
             _strLog = string.Empty;
 
+            //* EQUIPMENT ID
             string equipmentid = irocvdata.EQUIPMENTID;
-            _strLog += "Equipment ID: " + equipmentid;
-            string trayid = irocvdata.TRAYID;
-            _strLog += ", TRAY ID: " + trayid;
-            string recipeid = irocvdata.RECIPEID;
-            _strLog += ", RECIPE ID: " + recipeid;
-            string[] cellids = irocvdata.CELLID;
-            double[] irs = irocvdata.IR_AFTERVALUE;
-            double[] ocvs = irocvdata.OCV;
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+            _strLog += "Equipment ID: " + equipmentid;
+
+            //* TRAY ID
+            string trayid = irocvdata.TRAYID;
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
+            _strLog += ", TRAY ID: " + trayid;
+
+            //* RECIPE ID
+            string recipeid = irocvdata.RECIPEID;
             WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
+            _strLog += ", RECIPE ID: " + recipeid;
+
+            //* CELL ID
+            string[] cellids = irocvdata.CELLID;
             WriteValue("ns=2;s=Equipment/CellID", cellids, (int)EnumDataType.dtStringArr);
-            WriteValue("ns=2;s=Equipment/IR", irs, (int)EnumDataType.dtUInt32Arr);
-            WriteValue("ns=2;s=Equipment/OCV", ocvs, (int)EnumDataType.dtUInt32Arr);
+            for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ":" + cellids[nIndex];
+
+            //* IR Values
+            double[] irs = irocvdata.IR_AFTERVALUE;
+            //string[] sIRs = irs.ToString().Split(',');
+            string[] strIRs = Array.ConvertAll(irs, x => x.ToString());
+            for (int nIndex = 0; nIndex < irs.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ":" + irs[nIndex].ToString();
+            WriteValue("ns=2;s=Equipment/IR", strIRs, (int)EnumDataType.dtUInt32Arr);
+
+            //* OCV Values
+            double[] ocvs = irocvdata.OCV;
+            string[] strOCVs = Array.ConvertAll(ocvs, x => x.ToString());
+            WriteValue("ns=2;s=Equipment/OCV", strOCVs, (int)EnumDataType.dtUInt32Arr);
         }
         /// <summary>
         /// 1.13 Process Result (Receive Process Result mes -> irocv) 
@@ -514,10 +554,12 @@ namespace DHS.EQUIPMENT
         {
             string strAck = iAck.ToString();
 
+            //* Acknowledgement No
             _strLog = "Acknowledgement: " + strAck;
-            SaveLog(stageno, "FOEQR1.13 IROCV -> MES", _strLog);
-
             WriteValue("ns=2;s=Equipment/AcknowledgeNo", strAck, (int)EnumDataType.dtUInt32);
+
+            //* Save Log
+            SaveLog(stageno, "FOEQR1.13 IROCV -> MES", _strLog);
         }
         public void ReadFOEQR1_13(int stageno, IROCVData irocvdata)
         {
