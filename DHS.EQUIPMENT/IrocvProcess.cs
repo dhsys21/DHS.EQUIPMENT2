@@ -712,7 +712,8 @@ namespace DHS.EQUIPMENT
                     PLC_MEASUREMENT_COMPLETE(stageno, 1);
                     //* AutoInspection_StepEnd(stageno)로 변경할 것.
                     //* 내부에서는 switch구문 이용하여 mes 추가 필요. 2024 05 10 
-                    AutoInspection_StepTrayOut(stageno);
+                    //AutoInspection_StepTrayOut(stageno);
+                    AutoInspection_StepEnd(stageno);
                     break;
                 case enumEquipStatus.StepTrayOut:
                     AutoInspection_StepFinish(stageno);
@@ -959,6 +960,7 @@ namespace DHS.EQUIPMENT
                     break;
             }
         }
+        //* MES 적용 전 버전
         private void AutoInspection_StepTrayIdCheck2(int stageno)
         {
             string trayid = siemensplc.PLCTRAYID;
@@ -990,6 +992,64 @@ namespace DHS.EQUIPMENT
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepRun;
             }
         }
+        private void AutoInspection_StepEnd(int stageno)
+        {
+            bool bAck = false;
+            switch (nInspectionStep)
+            {
+                case 0:
+                    //* MES - Data Collection
+                    //* IROCV -> MES FOEQR1.1 (send ir, ocv data to mes)
+                    if (siemensplc.PLCTRAYDOWN == 1)
+                    {
+                        mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
+                        nInspectionStep = 1;
+                    }
+                    break;
+                case 1:
+                    //* MES - Verify Acknowledge No.
+                    //* MES -> IROCV FOEQR1.1 : ack 확인
+                    bAck = mesclient.ReadFOEQR1_1(stageno);
+                    if (bAck == true)
+                    {
+                        //* mes에서 ack ok정보를 받으면 다음 단계로
+                        nInspectionStep = 2;
+                    }
+                    break;
+                case 2:
+                    //* MES - Request Process Result (트레이 배출 또는 재측정)
+                    //* MES -> IROCV FOEQR1.13 (Process Result) 1 : Tray Emission  2: Tray Retry
+                    irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
+                    if (irocvdata[stageno].MESRESULT == 1)
+                    {
+                        PLC_TRAYOUT(stageno, 1);
+                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
+
+                        SaveResultFile(stageno);
+                    }
+                    else if (irocvdata[stageno].MESRESULT == 2)
+                    {
+                        //* PLC - Request Tray Up
+                        PLC_TRAYUP(stageno);
+                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
+                        nInspectionStep = 0;
+                    }
+                    break;
+                case 21:
+                    
+                    break;
+                default:
+                    break;
+            }
+            if (siemensplc.PLCTRAYDOWN == 1)
+            {
+                PLC_TRAYOUT(stageno, 1);
+                irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
+
+                SaveResultFile(stageno);
+            }
+        }
+        //* MES 적용 전 버전
         private void AutoInspection_StepTrayOut(int stageno)
         {
             if (siemensplc.PLCTRAYDOWN == 1)

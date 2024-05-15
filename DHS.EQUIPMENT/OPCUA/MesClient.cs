@@ -569,7 +569,7 @@ namespace DHS.EQUIPMENT
             //* Save Log
             SaveLog(stageno, "FOEQR1.13 IROCV -> MES", _strLog);
         }
-        public void ReadFOEQR1_13(int stageno, IROCVData irocvdata)
+        public IROCVData ReadFOEQR1_13(int stageno)
         {
             _strLog = string.Empty;
 
@@ -587,6 +587,8 @@ namespace DHS.EQUIPMENT
             IROCVData irocvDatas = new IROCVData();
             irocvDatas.EQUIPMENTID = equipid;
             irocvDatas.MESRESULT = result;
+
+            return irocvDatas;
         }
         #endregion
 
