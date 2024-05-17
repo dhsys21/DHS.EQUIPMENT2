@@ -205,3 +205,4 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Sy
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\System.Numerics.Vectors.xml
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUI.BACF75B6.Up2Date
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\obj\Debug\DHS.EQUIPMENT.PasswordForm.resources

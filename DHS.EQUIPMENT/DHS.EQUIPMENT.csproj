@@ -186,6 +186,12 @@
     <Compile Include="OPCUA\ReferenceServer.cs" />
     <Compile Include="OPCUA\ReferenceServerConfiguration.cs" />
     <Compile Include="OPCUA\ReferenceServerUtils.cs" />
+    <Compile Include="PasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordForm.Designer.cs">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PRECHARGER\PrechargerData.cs" />
     <Compile Include="IrocvProcess.cs" />
     <Compile Include="MainForm.cs">
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OPCUA\MESINTERFACE.resx">
       <DependentUpon>MESINTERFACE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordForm.resx">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PLC\PLCINTERFACE.resx">
       <DependentUpon>PLCINTERFACE.cs</DependentUpon>

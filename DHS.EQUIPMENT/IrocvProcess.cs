@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace DHS.EQUIPMENT
         IROCVForm[] irocvform = new IROCVForm[_Constant.frmCount];
         IROCVConfig[] irocvconfig = new IROCVConfig[_Constant.frmCount];
         NGInfo nginfo;
+        PasswordForm pwdForm;
         
         IROCVMeasureInfoForm measureinfo;
         IROCVRemeasureInfo remeasureinfo;
@@ -152,6 +154,9 @@ namespace DHS.EQUIPMENT
             remeasureinfo.OnRemeasureClick += _REMEASUREINFOFORM_Remeasure;
             remeasureinfo.OnTrayOutClick += _REMEASUREINFOFORM_TrayOut;
             #endregion
+
+            //* Password Form
+            pwdForm = new PasswordForm();
 
             //* NG INFO
             nginfo = NGInfo.GetInstance();
@@ -1500,8 +1505,17 @@ namespace DHS.EQUIPMENT
         }
         private void _IROCVFORM_ConfigForm(int stageno)
         {
-            irocvconfig[stageno].Show();
-            irocvconfig[stageno].STAGENO = stageno;
+            using (var f = new PasswordForm())
+            {
+                f.StartPosition = FormStartPosition.Manual;
+                f.Location = new Point(300, 300);
+                DialogResult dr = f.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    irocvconfig[stageno].Show();
+                    irocvconfig[stageno].STAGENO = stageno;
+                }
+            }
         }
 
         #endregion Delegate Event IROCV Form Event

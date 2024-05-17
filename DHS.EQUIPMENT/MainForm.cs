@@ -250,7 +250,18 @@ namespace DHS.EQUIPMENT
 
         private void radbtn_Config_Click(object sender, EventArgs e)
         {
-            configForm.ShowDialog();
+            using (var f = new PasswordForm())
+            {
+                f.StartPosition = FormStartPosition.Manual;
+                f.Location = new Point(1300, 100);
+                DialogResult dr = f.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    configForm.StartPosition = FormStartPosition.Manual;
+                    configForm.Location = new Point(1300, 160);
+                    configForm.ShowDialog();
+                }
+            }
         }
 
         #region Config Read / Save
