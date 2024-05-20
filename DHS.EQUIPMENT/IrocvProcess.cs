@@ -363,8 +363,7 @@ namespace DHS.EQUIPMENT
         {
             string filename = _Constant.BIN_PATH + "SystemInfo_" + (stageno + 1) + ".inf";
 
-            util.saveConfig(filename, "STAGE_INFO", "STAGE_NAME", _system.STAGENAME[stageno]);
-            util.saveConfig(filename, "STAGE_INFO", "STAGE_NO", _system.STAGENO[stageno]);
+            util.saveConfig(filename, "EQUIPMENT_ID", "ID", _system.EQUIPMENTID[stageno]);
             util.saveConfig(filename, "IROCV", "IPADDRESS", _system.IPADDRESS[stageno]);
             util.saveConfig(filename, "OUTFLOW", "OCV_MIN", _system.OCVMINVALUE.ToString());
             util.saveConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT", _system.AUTOREMEASURECOUNT[stageno].ToString());
@@ -388,9 +387,8 @@ namespace DHS.EQUIPMENT
             {
                 if (File.Exists(filename))
                 {
-                    _system.STAGENAME[stageno] = util.readConfig(filename, "STAGE_INFO", "STAGE_NAME");
-                    irocvform[stageno].SetStageTitle(_system.STAGENAME[stageno]);
-                    _system.STAGENO[stageno] = util.readConfig(filename, "STAGE_INFO", "STAGE_NO");
+                    _system.EQUIPMENTID[stageno] = util.readConfig(filename, "EQUIPMENT_ID", "ID");
+                    irocvform[stageno].SetStageTitle(_system.EQUIPMENTID[stageno]);
                     _system.IPADDRESS[stageno] = util.readConfig(filename, "IROCV", "IPADDRESS");
                     _system.AUTOREMEASURECOUNT[stageno] = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT"));
 
@@ -462,8 +460,8 @@ namespace DHS.EQUIPMENT
                 util.WriteCsvFile(filename, strOffset);
             }catch(Exception ex)
             {
-                return false;
                 Console.WriteLine(ex.ToString());
+                return false;
             }
             return true;
         }
@@ -487,8 +485,8 @@ namespace DHS.EQUIPMENT
             }
             catch (Exception ex)
             {
-                return false;
                 Console.WriteLine(ex.ToString());
+                return false;
             }
 
             return true;
@@ -523,8 +521,8 @@ namespace DHS.EQUIPMENT
             }
             catch(Exception ex)
             {
-                return false;
                 Console.WriteLine(ex.ToString());
+                return false;
             }
             
             return true;
@@ -917,7 +915,7 @@ namespace DHS.EQUIPMENT
         private void AutoInspection_StepTrayIdCheck(int stageno)
         {
             string trayid = siemensplc.PLCTRAYID;
-            string equipid = _system.EQUIPMENTID;
+            string equipid = _system.EQUIPMENTID[stageno];
             bool bAck = false;
             //trayid = SIEMENSS7LIB.ReadString("MB10020", 20);
 
@@ -1231,14 +1229,17 @@ namespace DHS.EQUIPMENT
             //* Tray Down to PLC
             PLC_TRAYDOWN(stageno);
         }
+        /// <summary>
+        /// MEASURERESULT : 0 -> OK, 
+        /// 2 -> IR NG, 3 -> OCV NG, 
+        /// 4 -> IR REMEASURE NG, 5-> OCV REMEASURE NG
+        /// </summary>
         private void SetRemeasureList(int stageno)
         {
             bool bRemeasure = false;
-            int iRemeasureCount = 0;
-            double ir_min = 0;
-            double ir_max = 1;
-            double ocv_min = 0;
-            double ocv_max = 4200;
+            //int iRemeasureCount = 0;
+            double irvalue = 0.0, ocvvalue = 0.0;
+
             //if (irocv[stageno].AUTOMODE == true)
             if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
             {
@@ -1246,29 +1247,41 @@ namespace DHS.EQUIPMENT
 
                 for (int index = 0; index < _Constant.ChannelCount; ++index)
                 {
+                    irvalue = irocvdata[stageno].IR_AFTERVALUE[index];
+                    ocvvalue = irocvdata[stageno].OCV[index];
+
                     if (irocvdata[stageno].CELL[index] == 1)
                     {
-                        //* IR Error
-                        if (irocvdata[stageno].IR_AFTERVALUE[index] < ir_min || irocvdata[stageno].IR_AFTERVALUE[index] > ir_max)
+                        //* IR Remeasure Error
+                        if (irvalue < _system.IRREMEAMIN || irvalue > _system.IRREMEAMAX)
+                        {
+                            irocvdata[stageno].MEASURERESULT[index] = 4;
+                            irocvdata[stageno].REMEASURECELLCOUNT++;
+                            //iRemeasureCount += 1;
+                        }
+                        //* IR Spec Error
+                        else if (irvalue < _system.IRMIN || irvalue > _system.IRMAX)
                         {
                             irocvdata[stageno].MEASURERESULT[index] = 2;
-                            irocvdata[stageno].REMEASURECELLCOUNT++;
-
-                            iRemeasureCount += 1;
-                            if (irocvdata[stageno].FIRST == true)
-                                irocvdata[stageno].CELLNGCOUNT[index] += 1;
                         }
-                        //* OCV Error
-                        else if (irocvdata[stageno].OCV[index] < ocv_min || irocvdata[stageno].OCV[index] > ocv_max)
+
+                        //* OCV Remeasure Error
+                        else if (ocvvalue < _system.OCVREMEAMIN || ocvvalue > _system.OCVREMEAMAX)
                         {
-                            if (irocvdata[stageno].MEASURERESULT[index] != 2)
+                            if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
+                            {
+                                irocvdata[stageno].MEASURERESULT[index] = 5;
+                                irocvdata[stageno].REMEASURECELLCOUNT++;
+                            }
+                        }
+                        //* OCV Spec Error
+                        else if (ocvvalue < _system.OCVMIN || ocvvalue > _system.OCVMAX)
+                        {
+                            if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
                             {
                                 irocvdata[stageno].MEASURERESULT[index] = 3;
                                 irocvdata[stageno].REMEASURECELLCOUNT++;
-                                iRemeasureCount += 1;
-
-                                if (irocvdata[stageno].FIRST)
-                                    irocvdata[stageno].CELLNGCOUNT[index] += 1;
+                                //iRemeasureCount += 1;
                             }
                         }
                         else
@@ -1280,10 +1293,8 @@ namespace DHS.EQUIPMENT
                         irocvdata[stageno].MEASURERESULT[index] = 0;
                 }
 
-                irocvdata[stageno].FIRST = false;
-
-                if (iRemeasureCount < 16 && iRemeasureCount > 0) bRemeasure = true;
-                else bRemeasure = false;
+                //if (iRemeasureCount < 16 && iRemeasureCount > 0) bRemeasure = true;
+                //else bRemeasure = false;
 
                 AutoTestStop(stageno);     // Tray Down
 

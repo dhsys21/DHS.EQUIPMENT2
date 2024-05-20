@@ -19,10 +19,7 @@ namespace DHS.EQUIPMENT
 
         private string _sMESIpAddress;
         private int _iMESPort;
-
-        private string _sEquipmentId;
-        private string[] _sStageName = new string[_Constant.frmCount];
-        private string[] _sStageNo = new string[_Constant.frmCount];
+        private string[] _sEquipmentID = new string[_Constant.frmCount];
 
         private int[] _iAutoRemeasureCount = new int[_Constant.frmCount];
 
@@ -77,8 +74,7 @@ namespace DHS.EQUIPMENT
         public string MESIPADDRESS { get => _sMESIpAddress; set => _sMESIpAddress = value; }
         public int MESPORT { get => _iMESPort; set => _iMESPort = value; }
 
-        public string[] STAGENAME { get => _sStageName; set => _sStageName = value; }
-        public string[] STAGENO { get => _sStageNo; set => _sStageNo = value; }
+        public string[] EQUIPMENTID { get => _sEquipmentID; set => _sEquipmentID = value; }
 
         public double OCVMINVALUE { get => _dOcvMinValue; set => _dOcvMinValue = value; }
         public int[] AUTOREMEASURECOUNT { get => _iAutoRemeasureCount; set => _iAutoRemeasureCount = value; }
@@ -111,7 +107,6 @@ namespace DHS.EQUIPMENT
         public int IDischargeTime { get => _iDischargeTime; set => _iDischargeTime = value; }
         public int[] REMEASUREUSE { get => _iRemeasureUse; set => _iRemeasureUse = value; }
         public int[] REMEASURENG { get => _iRemeasureNG; set => _iRemeasureNG = value; }
-        public string EQUIPMENTID { get => _sEquipmentId; set => _sEquipmentId = value; }
         public double IRMIN { get => _dIRMin; set => _dIRMin = value; }
         public double IRMAX { get => _dIRMax; set => _dIRMax = value; }
         public double IRREMEAMIN { get => _dIRRemeaMin; set => _dIRRemeaMin = value; }
