@@ -21,7 +21,8 @@ namespace DHS.EQUIPMENT
         private int _iMESPort;
         private string[] _sEquipmentID = new string[_Constant.frmCount];
 
-        private int[] _iAutoRemeasureCount = new int[_Constant.frmCount];
+        private int _iAutoRemeasureCount;
+        private int _iRemeasureMaxCount;
 
         private int _iPLCChannelNo;
         private int _iPLCNetworkNumber;
@@ -77,8 +78,8 @@ namespace DHS.EQUIPMENT
         public string[] EQUIPMENTID { get => _sEquipmentID; set => _sEquipmentID = value; }
 
         public double OCVMINVALUE { get => _dOcvMinValue; set => _dOcvMinValue = value; }
-        public int[] AUTOREMEASURECOUNT { get => _iAutoRemeasureCount; set => _iAutoRemeasureCount = value; }
-
+        public int AUTOREMEASURECOUNT { get => _iAutoRemeasureCount; set => _iAutoRemeasureCount = value; }
+        public int REMEASUREMAXCOUNT { get => _iRemeasureMaxCount; set => _iRemeasureMaxCount = value; }
 
         public int PLCCHANNELNO { get => _iPLCChannelNo; set => _iPLCChannelNo = value; }
         public int PLCNETWORKNUMBER { get => _iPLCNetworkNumber; set => _iPLCNetworkNumber = value; }
@@ -93,7 +94,7 @@ namespace DHS.EQUIPMENT
         public string SCell_Model { get => _sCell_Model; set => _sCell_Model = value; }
         public string SLot_Number { get => _sLot_Number; set => _sLot_Number = value; }
         public int IRemeasureAlarmCount { get => _iRemeasureAlarmCount; set => _iRemeasureAlarmCount = value; }
-
+        
         public bool BLOGALLCHANNEL { get => _bLogAllChannel; set => _bLogAllChannel = value; }
         public bool BAgingUse { get => _bAgingUse; set => _bAgingUse = value; }
         public int IAgingTime { get => _iAgingTime; set => _iAgingTime = value; }

@@ -54,7 +54,7 @@ namespace DHS.EQUIPMENT
             tbIrocvIpaddress.Text = _system.IPADDRESS[_iStage];
 
             tbOcvMinOutflow.Text = _system.OCVMINVALUE.ToString();
-            tbAutoRemeasureCount.Text = _system.AUTOREMEASURECOUNT[_iStage].ToString();
+            tbAutoRemeasureCount.Text = _system.AUTOREMEASURECOUNT.ToString();
         }
 
         private void radBtnSave_Click(object sender, EventArgs e)
@@ -63,7 +63,8 @@ namespace DHS.EQUIPMENT
 
             _system.IPADDRESS[STAGENO] = tbIrocvIpaddress.Text;
             _system.OCVMINVALUE = Convert.ToDouble(tbOcvMinOutflow.Text);
-            _system.AUTOREMEASURECOUNT[STAGENO] = Convert.ToInt32(tbAutoRemeasureCount.Text);
+            _system.AUTOREMEASURECOUNT = Convert.ToInt32(tbAutoRemeasureCount.Text);
+            _system.REMEASUREMAXCOUNT = Convert.ToInt32(tbRemeasureMaxCount.Text);
 
             double dIrMin = 0.0, dIrMax = 0.0;
             double dIrRemeaMin = 0.0, dIrRemeaMax = 0.0;

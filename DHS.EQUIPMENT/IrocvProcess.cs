@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using Telerik.Collections.Generic;
 
 
 namespace DHS.EQUIPMENT
@@ -366,7 +367,8 @@ namespace DHS.EQUIPMENT
             util.saveConfig(filename, "EQUIPMENT_ID", "ID", _system.EQUIPMENTID[stageno]);
             util.saveConfig(filename, "IROCV", "IPADDRESS", _system.IPADDRESS[stageno]);
             util.saveConfig(filename, "OUTFLOW", "OCV_MIN", _system.OCVMINVALUE.ToString());
-            util.saveConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT", _system.AUTOREMEASURECOUNT[stageno].ToString());
+            util.saveConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT", _system.AUTOREMEASURECOUNT.ToString());
+            util.saveConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT", _system.AUTOREMEASURECOUNT.ToString());
 
             //* IR SPEC
             util.saveConfig(filename, "SPEC", "IRMIN", _system.IRMIN.ToString());
@@ -390,7 +392,8 @@ namespace DHS.EQUIPMENT
                     _system.EQUIPMENTID[stageno] = util.readConfig(filename, "EQUIPMENT_ID", "ID");
                     irocvform[stageno].SetStageTitle(_system.EQUIPMENTID[stageno]);
                     _system.IPADDRESS[stageno] = util.readConfig(filename, "IROCV", "IPADDRESS");
-                    _system.AUTOREMEASURECOUNT[stageno] = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT"));
+                    _system.AUTOREMEASURECOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT"));
+                    _system.REMEASUREMAXCOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT"));
 
                     irocvconfig[stageno].SetStageSystemValue();
 
@@ -1207,8 +1210,8 @@ namespace DHS.EQUIPMENT
         }
         private void AutoTestFinish(int stageno)
         {
-            irocv[stageno].AMS = false;
-            irocv[stageno].AMF = true;
+            //irocv[stageno].AMS = false;
+            //irocv[stageno].AMF = true;
             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepEnd;
 
             if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
@@ -1240,11 +1243,11 @@ namespace DHS.EQUIPMENT
             //int iRemeasureCount = 0;
             double irvalue = 0.0, ocvvalue = 0.0;
 
-            //if (irocv[stageno].AUTOMODE == true)
             if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
             {
                 irocvdata[stageno].REMEASURECELLCOUNT = 0;
 
+                #region IR/ OCV Error 처리
                 for (int index = 0; index < _Constant.ChannelCount; ++index)
                 {
                     irvalue = irocvdata[stageno].IR_AFTERVALUE[index];
@@ -1292,36 +1295,39 @@ namespace DHS.EQUIPMENT
                     else
                         irocvdata[stageno].MEASURERESULT[index] = 0;
                 }
+                #endregion
 
-                //if (iRemeasureCount < 16 && iRemeasureCount > 0) bRemeasure = true;
-                //else bRemeasure = false;
+                //AutoTestStop(stageno);     // Tray Down
 
-                AutoTestStop(stageno);     // Tray Down
-
-                //*
-                /* Remeasure 관련 처리는 나중에 구현해야 함. MES ?
-                if (bRemeasure == false)
+                if (irocv[stageno].AMF = true || irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT)
                 {
-                    AutoTestStop(stageno);     // Tray Down
+                    AutoTestStop(stageno);
                 }
                 else
                 {
-                    //tray.rem_mode = 1;
-                    //retest.re_index = 0;
                     RemeasureExcute(stageno);
                 }
-                */
             }
             else
             {
                 AutoTestStop(stageno);
             }
 
+            irocv[stageno].AMF = true;
+            CmdAmf(stageno);
+
             //WriteCommLog("IR/OCV STOP", "SetRemeasureList()");
         }
         private void RemeasureExcute(int stageno)
         {
-
+            for (int nChannel = 0; nChannel < _Constant.ChannelCount; ++nChannel)
+            {
+                if (irocvdata[stageno].MEASURERESULT[nChannel] != 0)
+                {
+                    CmdFetchIr(stageno, nChannel);
+                    CmdFetchOcv(stageno, nChannel);
+                }
+            }
         }
         #endregion IR/OCV Method
 
@@ -1341,6 +1347,10 @@ namespace DHS.EQUIPMENT
         private void CmdFetchOcv(int stageno, int channel)
         {
             irocv[stageno].CmdOCV(channel);
+        }
+        private void CmdAmf(int stageno)
+        {
+            irocv[stageno].CmdAMF();
         }
         private void CmdReset(int stageno)
         {

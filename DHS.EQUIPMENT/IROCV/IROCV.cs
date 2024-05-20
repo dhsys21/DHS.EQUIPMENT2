@@ -353,7 +353,7 @@ namespace DHS.EQUIPMENT
                     RaiseOnProcessAms(this._iStage);
                     break;
                 case "AMF":
-                    CmdAMF();
+                    //CmdAMF();
                     RaiseOnProcessAmf(this._iStage);
                     break;
                 case "STP":
