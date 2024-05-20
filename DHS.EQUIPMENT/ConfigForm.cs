@@ -53,8 +53,6 @@ namespace DHS.EQUIPMENT
             _system.PLCIPADDRESS = tbPlcIpaddress.Text;
             _system.PLCDBNUMBER = Convert.ToInt32(tbPlcDbNumber.Text);
 
-            _system.EQUIPMENTID = _system.EQUIPMENTID;
-
             RaiseOnSaveConfig();
             this.Hide();
         }
