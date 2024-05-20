@@ -333,7 +333,7 @@ namespace DHS.EQUIPMENT
         #endregion Precharger Result File
 
         #region IROCV Result File
-        public void SaveResultFile_IROCV(int stageno, IROCVData irocvdata)
+        public void SaveResultFile_IROCV(int stageno, IROCVData irocvdata, CEquipmentData systemconfig)
         {
             string filename, dir, id, ir, ir_offset, ocv, ok_ng = string.Empty;
 
@@ -357,8 +357,10 @@ namespace DHS.EQUIPMENT
             //file = file + "LOT NUMBER," + irocvdata.LOTNUMBER + Environment.NewLine;
             file = file + "ARRIVE TIME," + irocvdata.ARRIVETIME.ToString("yyyy/MM/dd HH:mm:ss") + Environment.NewLine;
             file = file + "FINISH TIME," + irocvdata.FINISHTIME.ToString("yyyy/MM/dd HH:mm:ss") + Environment.NewLine;
-            file = file + "IR RANGE," + irocvdata.IRMin + "~" + irocvdata.IRMax + Environment.NewLine;
-            file = file + "OCV RANGE," + irocvdata.OCVMin + "~" + irocvdata.OCVMax + Environment.NewLine;
+            file = file + "IR RANGE," + systemconfig.IRMIN + "~" + systemconfig.IRMAX + Environment.NewLine;
+            file = file + "IR REMEASURE RANGE," + systemconfig.IRREMEAMIN + "~" + systemconfig.IRREMEAMAX + Environment.NewLine;
+            file = file + "OCV RANGE," + systemconfig.OCVMIN + "~" + systemconfig.OCVMAX + Environment.NewLine;
+            file = file + "OCV REMEASURE RANGE," + systemconfig.OCVREMEAMIN + "~" + systemconfig.OCVREMEAMAX + Environment.NewLine;
 
             file += "CH,IR,IR OFFSET,OCV,RESULT" + Environment.NewLine;
 

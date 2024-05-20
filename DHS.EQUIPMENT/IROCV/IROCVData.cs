@@ -35,10 +35,6 @@ namespace DHS.EQUIPMENT
         private int _iMESRESULT;
         private bool _bBypass;
         private bool _bFIRST;
-        private double _dIRMin;
-        private double _dIRMax;
-        private double _dOCVMin;
-        private double _dOCVMax;
         private DateTime _dtArriveTime;
         private DateTime _dtStartTime;
         private DateTime _dtFinishTime;
@@ -110,10 +106,6 @@ namespace DHS.EQUIPMENT
         public double[] IR_OFFSETMEASUREAVERAGE { get => _dIR_OFFSETAVERAGE; set => _dIR_OFFSETAVERAGE = value; }
         public double OCV_OFFSET { get => _dOCV_OFFSET; set => _dOCV_OFFSET = value; }
         public double[] IR_CHANNELOFFSET { get => _dIR_CHANNELOFFSET; set => _dIR_CHANNELOFFSET = value; }
-        public double IRMin { get => _dIRMin; set => _dIRMin = value; }
-        public double IRMax { get => _dIRMax; set => _dIRMax = value; }
-        public double OCVMin { get => _dOCVMin; set => _dOCVMin = value; }
-        public double OCVMax { get => _dOCVMax; set => _dOCVMax = value; }
         public bool BYPASS { get => _bBypass; set => _bBypass = value; }
         public string[] CELLID { get => _sCELLID; set => _sCELLID = value; }
         public string[] CELLSTATUS { get => _sCELLSTATUS; set => _sCELLSTATUS = value; }
@@ -261,20 +253,10 @@ namespace DHS.EQUIPMENT
 
             if (_dOCV[channel_no] < 100) _clrOCV[channel_no] = _Constant.ColorOCVNG;
             
-            if(CELL[channel_no] == 0 && _dOCV[channel_no] >= _dOCVMin)
+            if(CELL[channel_no] == 0 && _dOCV[channel_no] >= _system.OCVMINVALUE)
             {
                 _clrOCV[channel_no] = _Constant.ColorOutFlow;
             }
-        }
-        public void SetIRMinMax(double dMin, double dMax)
-        {
-            _dIRMin = dMin;
-            _dIRMax = dMax;
-        }
-        public void SetOCVMinMax(double dMin, double dMax)
-        {
-            _dOCVMin = dMin;
-            _dOCVMax = dMax;
         }
         //* Tray In 시간
         public void SetArriveTime()

@@ -15,6 +15,7 @@ namespace DHS.EQUIPMENT
     {
         Util util = new Util();
         CEquipmentData _system;
+        IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
 
         private Dictionary<string, string> configvalue = new Dictionary<string, string>();
         private int _iStage;
@@ -53,7 +54,7 @@ namespace DHS.EQUIPMENT
 
             tbIrocvIpaddress.Text = _system.IPADDRESS[_iStage];
 
-            tbOcvMin.Text = _system.OCVMINVALUE[_iStage].ToString();
+            tbOcvMinOutflow.Text = _system.OCVMINVALUE.ToString();
             tbAutoRemeasureCount.Text = _system.AUTOREMEASURECOUNT[_iStage].ToString();
         }
 
@@ -63,8 +64,25 @@ namespace DHS.EQUIPMENT
             _system.STAGENO[STAGENO] = tbStageNo.Text;
 
             _system.IPADDRESS[STAGENO] = tbIrocvIpaddress.Text;
-            _system.OCVMINVALUE[STAGENO] = Convert.ToDouble(tbOcvMin.Text);
+            _system.OCVMINVALUE = Convert.ToDouble(tbOcvMinOutflow.Text);
             _system.AUTOREMEASURECOUNT[STAGENO] = Convert.ToInt32(tbAutoRemeasureCount.Text);
+
+            double dIrMin = 0.0, dIrMax = 0.0;
+            double dIrRemeaMin = 0.0, dIrRemeaMax = 0.0;
+            double dOcvMin = 0.0, dOcvMax = 0.0;
+            double dOcvRemeaMin = 0.0, dOcvRemeaMax = 0.0;
+
+            //* IR SPEC
+            _system.IRMIN = util.TryParseDouble(tbIRMin.Text, dIrMin);
+            _system.IRMAX = util.TryParseDouble(tbIRMax.Text, dIrMax);
+            _system.IRREMEAMIN = util.TryParseDouble(tbIRRemeaMin.Text, dIrRemeaMin);
+            _system.IRREMEAMAX = util.TryParseDouble(tbIRRemeaMax.Text, dIrRemeaMax);
+
+            //* OCV SPEC
+            _system.OCVMIN = util.TryParseDouble(tbOcvMin.Text, dOcvMin);
+            _system.OCVMAX = util.TryParseDouble(tbOcvMax.Text, dOcvMax);
+            _system.OCVREMEAMIN = util.TryParseDouble(tbOcvRemeaMin.Text, dOcvRemeaMin);
+            _system.OCVREMEAMAX = util.TryParseDouble(tbOcvRemeaMax.Text, dOcvRemeaMax);
 
             RaiseOnSaveConfig(STAGENO);
             this.Hide();
@@ -80,5 +98,6 @@ namespace DHS.EQUIPMENT
             e.Cancel = true;
             this.Hide();
         }
+        
     }
 }

@@ -24,7 +24,6 @@ namespace DHS.EQUIPMENT
         private string[] _sStageName = new string[_Constant.frmCount];
         private string[] _sStageNo = new string[_Constant.frmCount];
 
-        private double[] _dOcvMinValue = new double[_Constant.frmCount];
         private int[] _iAutoRemeasureCount = new int[_Constant.frmCount];
 
         private int _iPLCChannelNo;
@@ -34,8 +33,15 @@ namespace DHS.EQUIPMENT
         private int[] _iRemeasureUse = new int[_Constant.ChannelCount];
         private int[] _iRemeasureNG = new int[_Constant.ChannelCount];
 
-
-
+        private double _dOcvMinValue;
+        private double _dIRMin;
+        private double _dIRMax;
+        private double _dIRRemeaMin;
+        private double _dIRRemeaMax;
+        private double _dOCVMin;
+        private double _dOCVMax;
+        private double _dOCVRemeaMin;
+        private double _dOCVRemeaMax;
         private int _iMaxVoltage;
         private int _iMaxCurrent;
         private int _iMaxTime;
@@ -74,7 +80,7 @@ namespace DHS.EQUIPMENT
         public string[] STAGENAME { get => _sStageName; set => _sStageName = value; }
         public string[] STAGENO { get => _sStageNo; set => _sStageNo = value; }
 
-        public double[] OCVMINVALUE { get => _dOcvMinValue; set => _dOcvMinValue = value; }
+        public double OCVMINVALUE { get => _dOcvMinValue; set => _dOcvMinValue = value; }
         public int[] AUTOREMEASURECOUNT { get => _iAutoRemeasureCount; set => _iAutoRemeasureCount = value; }
 
 
@@ -106,6 +112,14 @@ namespace DHS.EQUIPMENT
         public int[] REMEASUREUSE { get => _iRemeasureUse; set => _iRemeasureUse = value; }
         public int[] REMEASURENG { get => _iRemeasureNG; set => _iRemeasureNG = value; }
         public string EQUIPMENTID { get => _sEquipmentId; set => _sEquipmentId = value; }
+        public double IRMIN { get => _dIRMin; set => _dIRMin = value; }
+        public double IRMAX { get => _dIRMax; set => _dIRMax = value; }
+        public double IRREMEAMIN { get => _dIRRemeaMin; set => _dIRRemeaMin = value; }
+        public double IRREMEAMAX { get => _dIRRemeaMax; set => _dIRRemeaMax = value; }
+        public double OCVMIN { get => _dOCVMin; set => _dOCVMin = value; }
+        public double OCVMAX { get => _dOCVMax; set => _dOCVMax = value; }
+        public double OCVREMEAMIN { get => _dOCVRemeaMin; set => _dOCVRemeaMin = value; }
+        public double OCVREMEAMAX { get => _dOCVRemeaMax; set => _dOCVRemeaMax = value; }
 
         private static CEquipmentData equipmentdata;
 

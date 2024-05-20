@@ -366,8 +366,20 @@ namespace DHS.EQUIPMENT
             util.saveConfig(filename, "STAGE_INFO", "STAGE_NAME", _system.STAGENAME[stageno]);
             util.saveConfig(filename, "STAGE_INFO", "STAGE_NO", _system.STAGENO[stageno]);
             util.saveConfig(filename, "IROCV", "IPADDRESS", _system.IPADDRESS[stageno]);
-            util.saveConfig(filename, "OUTFLOW", "OCV_MIN", _system.OCVMINVALUE[stageno].ToString());
+            util.saveConfig(filename, "OUTFLOW", "OCV_MIN", _system.OCVMINVALUE.ToString());
             util.saveConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT", _system.AUTOREMEASURECOUNT[stageno].ToString());
+
+            //* IR SPEC
+            util.saveConfig(filename, "SPEC", "IRMIN", _system.IRMIN.ToString());
+            util.saveConfig(filename, "SPEC", "IRMAX", _system.IRMAX.ToString());
+            util.saveConfig(filename, "SPEC", "IRREMEAMIN", _system.IRREMEAMIN.ToString());
+            util.saveConfig(filename, "SPEC", "IRREMEAMAX", _system.IRREMEAMAX.ToString());
+
+            //* OCV SPEC
+            util.saveConfig(filename, "SPEC", "OCVMIN", _system.OCVMIN.ToString());
+            util.saveConfig(filename, "SPEC", "OCVMAX", _system.OCVMAX.ToString());
+            util.saveConfig(filename, "SPEC", "OCVREMEAMIN", _system.OCVREMEAMIN.ToString());
+            util.saveConfig(filename, "SPEC", "OCVREMEAMAX", _system.OCVREMEAMAX.ToString());
         }
         private void ReadConfigFile(int stageno)
         {
@@ -380,13 +392,26 @@ namespace DHS.EQUIPMENT
                     irocvform[stageno].SetStageTitle(_system.STAGENAME[stageno]);
                     _system.STAGENO[stageno] = util.readConfig(filename, "STAGE_INFO", "STAGE_NO");
                     _system.IPADDRESS[stageno] = util.readConfig(filename, "IROCV", "IPADDRESS");
-                    _system.OCVMINVALUE[stageno] = Convert.ToDouble(util.readConfig(filename, "OUTFLOW", "OCV_MIN"));
                     _system.AUTOREMEASURECOUNT[stageno] = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT"));
 
                     irocvconfig[stageno].SetStageSystemValue();
 
                     //HOST, PORT, nIndex, "ACTIVE");
                     irocv[stageno].ChangeSetting(_system.IPADDRESS[stageno], 45000, stageno, "ACTIVE");
+
+                    _system.OCVMINVALUE = Convert.ToDouble(util.readConfig(filename, "OUTFLOW", "OCV_MIN"));
+
+                    //* IR SPEC
+                    _system.IRMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRMIN"));
+                    _system.IRMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRMAX"));
+                    _system.IRREMEAMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRREMEAMIN"));
+                    _system.IRREMEAMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRREMEAMAX"));
+
+                    //* OCV SPEC
+                    _system.OCVMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMIN"));
+                    _system.OCVMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMAX"));
+                    _system.OCVMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"));
+                    _system.OCVMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"));
                 }
                 else
                 {
@@ -510,7 +535,7 @@ namespace DHS.EQUIPMENT
         private void SaveResultFile(int stageno)
         {
             irocvdata[stageno].SetFinishTime();
-            util.SaveResultFile_IROCV(stageno, irocvdata[stageno]);
+            util.SaveResultFile_IROCV(stageno, irocvdata[stageno], _system);
         }
         private void SaveMsaResultFile(int stageno, int nCount)
         {

@@ -34,7 +34,7 @@ namespace DHS.EQUIPMENT
             this.radlblOffsetChannel = new Telerik.WinControls.UI.RadLabel();
             this.label12 = new System.Windows.Forms.Label();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.tbOcvMin = new System.Windows.Forms.TextBox();
+            this.tbOcvMinOutflow = new System.Windows.Forms.TextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
@@ -50,27 +50,27 @@ namespace DHS.EQUIPMENT
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.radBtnSave = new Telerik.WinControls.UI.RadButton();
             this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbIRMin = new System.Windows.Forms.TextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbIRMax = new System.Windows.Forms.TextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.lblIRRange = new System.Windows.Forms.Label();
             this.radPanel5 = new Telerik.WinControls.UI.RadPanel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbOcvMin = new System.Windows.Forms.TextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbOcvMax = new System.Windows.Forms.TextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.radPanel6 = new Telerik.WinControls.UI.RadPanel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbOcvRemeaMin = new System.Windows.Forms.TextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbOcvRemeaMax = new System.Windows.Forms.TextBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.label5 = new System.Windows.Forms.Label();
             this.radPanel7 = new Telerik.WinControls.UI.RadPanel();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.tbIRRemeaMin = new System.Windows.Forms.TextBox();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tbIRRemeaMax = new System.Windows.Forms.TextBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_processinfo)).BeginInit();
@@ -157,7 +157,7 @@ namespace DHS.EQUIPMENT
             // 
             // radPanel1
             // 
-            this.radPanel1.Controls.Add(this.tbOcvMin);
+            this.radPanel1.Controls.Add(this.tbOcvMinOutflow);
             this.radPanel1.Controls.Add(this.radLabel1);
             this.radPanel1.Controls.Add(this.label1);
             this.radPanel1.Location = new System.Drawing.Point(12, 545);
@@ -170,15 +170,15 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // tbOcvMin
+            // tbOcvMinOutflow
             // 
-            this.tbOcvMin.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.tbOcvMin.Location = new System.Drawing.Point(180, 39);
-            this.tbOcvMin.Name = "tbOcvMin";
-            this.tbOcvMin.Size = new System.Drawing.Size(177, 32);
-            this.tbOcvMin.TabIndex = 70;
-            this.tbOcvMin.Text = "1000";
-            this.tbOcvMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbOcvMinOutflow.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbOcvMinOutflow.Location = new System.Drawing.Point(180, 39);
+            this.tbOcvMinOutflow.Name = "tbOcvMinOutflow";
+            this.tbOcvMinOutflow.Size = new System.Drawing.Size(177, 32);
+            this.tbOcvMinOutflow.TabIndex = 70;
+            this.tbOcvMinOutflow.Text = "1000";
+            this.tbOcvMinOutflow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel1
             // 
@@ -366,9 +366,9 @@ namespace DHS.EQUIPMENT
             // 
             // radPanel4
             // 
-            this.radPanel4.Controls.Add(this.textBox1);
+            this.radPanel4.Controls.Add(this.tbIRMin);
             this.radPanel4.Controls.Add(this.radLabel5);
-            this.radPanel4.Controls.Add(this.textBox2);
+            this.radPanel4.Controls.Add(this.tbIRMax);
             this.radPanel4.Controls.Add(this.radLabel6);
             this.radPanel4.Controls.Add(this.lblIRRange);
             this.radPanel4.Location = new System.Drawing.Point(12, 172);
@@ -381,16 +381,16 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel4.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel4.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // textBox1
+            // tbIRMin
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox1.Location = new System.Drawing.Point(180, 71);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(177, 32);
-            this.textBox1.TabIndex = 72;
-            this.textBox1.Text = "101";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbIRMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbIRMin.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbIRMin.Location = new System.Drawing.Point(180, 71);
+            this.tbIRMin.Name = "tbIRMin";
+            this.tbIRMin.Size = new System.Drawing.Size(177, 32);
+            this.tbIRMin.TabIndex = 72;
+            this.tbIRMin.Text = "0";
+            this.tbIRMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel5
             // 
@@ -404,16 +404,16 @@ namespace DHS.EQUIPMENT
             this.radLabel5.Text = "MIN.";
             this.radLabel5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // tbIRMax
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox2.Location = new System.Drawing.Point(180, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(177, 32);
-            this.textBox2.TabIndex = 70;
-            this.textBox2.Text = "Stage1";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbIRMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbIRMax.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbIRMax.Location = new System.Drawing.Point(180, 33);
+            this.tbIRMax.Name = "tbIRMax";
+            this.tbIRMax.Size = new System.Drawing.Size(177, 32);
+            this.tbIRMax.TabIndex = 70;
+            this.tbIRMax.Text = "1";
+            this.tbIRMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel6
             // 
@@ -440,9 +440,9 @@ namespace DHS.EQUIPMENT
             // 
             // radPanel5
             // 
-            this.radPanel5.Controls.Add(this.textBox3);
+            this.radPanel5.Controls.Add(this.tbOcvMin);
             this.radPanel5.Controls.Add(this.radLabel7);
-            this.radPanel5.Controls.Add(this.textBox4);
+            this.radPanel5.Controls.Add(this.tbOcvMax);
             this.radPanel5.Controls.Add(this.radLabel8);
             this.radPanel5.Controls.Add(this.label4);
             this.radPanel5.Location = new System.Drawing.Point(386, 172);
@@ -455,16 +455,16 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel5.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel5.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // textBox3
+            // tbOcvMin
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox3.Location = new System.Drawing.Point(180, 71);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(177, 32);
-            this.textBox3.TabIndex = 72;
-            this.textBox3.Text = "101";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbOcvMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbOcvMin.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbOcvMin.Location = new System.Drawing.Point(180, 71);
+            this.tbOcvMin.Name = "tbOcvMin";
+            this.tbOcvMin.Size = new System.Drawing.Size(177, 32);
+            this.tbOcvMin.TabIndex = 72;
+            this.tbOcvMin.Text = "2500";
+            this.tbOcvMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel7
             // 
@@ -478,16 +478,16 @@ namespace DHS.EQUIPMENT
             this.radLabel7.Text = "MIN.";
             this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox4
+            // tbOcvMax
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox4.Location = new System.Drawing.Point(180, 33);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(177, 32);
-            this.textBox4.TabIndex = 70;
-            this.textBox4.Text = "Stage1";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbOcvMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbOcvMax.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbOcvMax.Location = new System.Drawing.Point(180, 33);
+            this.tbOcvMax.Name = "tbOcvMax";
+            this.tbOcvMax.Size = new System.Drawing.Size(177, 32);
+            this.tbOcvMax.TabIndex = 70;
+            this.tbOcvMax.Text = "4000";
+            this.tbOcvMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel8
             // 
@@ -514,9 +514,9 @@ namespace DHS.EQUIPMENT
             // 
             // radPanel6
             // 
-            this.radPanel6.Controls.Add(this.textBox5);
+            this.radPanel6.Controls.Add(this.tbOcvRemeaMin);
             this.radPanel6.Controls.Add(this.radLabel9);
-            this.radPanel6.Controls.Add(this.textBox6);
+            this.radPanel6.Controls.Add(this.tbOcvRemeaMax);
             this.radPanel6.Controls.Add(this.radLabel10);
             this.radPanel6.Controls.Add(this.label5);
             this.radPanel6.Location = new System.Drawing.Point(386, 290);
@@ -529,16 +529,16 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel6.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel6.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // textBox5
+            // tbOcvRemeaMin
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox5.Location = new System.Drawing.Point(180, 71);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(177, 32);
-            this.textBox5.TabIndex = 72;
-            this.textBox5.Text = "101";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbOcvRemeaMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbOcvRemeaMin.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbOcvRemeaMin.Location = new System.Drawing.Point(180, 71);
+            this.tbOcvRemeaMin.Name = "tbOcvRemeaMin";
+            this.tbOcvRemeaMin.Size = new System.Drawing.Size(177, 32);
+            this.tbOcvRemeaMin.TabIndex = 72;
+            this.tbOcvRemeaMin.Text = "1500";
+            this.tbOcvRemeaMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel9
             // 
@@ -552,16 +552,16 @@ namespace DHS.EQUIPMENT
             this.radLabel9.Text = "MIN.";
             this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox6
+            // tbOcvRemeaMax
             // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox6.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox6.Location = new System.Drawing.Point(180, 33);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(177, 32);
-            this.textBox6.TabIndex = 70;
-            this.textBox6.Text = "Stage1";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbOcvRemeaMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbOcvRemeaMax.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbOcvRemeaMax.Location = new System.Drawing.Point(180, 33);
+            this.tbOcvRemeaMax.Name = "tbOcvRemeaMax";
+            this.tbOcvRemeaMax.Size = new System.Drawing.Size(177, 32);
+            this.tbOcvRemeaMax.TabIndex = 70;
+            this.tbOcvRemeaMax.Text = "4200";
+            this.tbOcvRemeaMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel10
             // 
@@ -588,9 +588,9 @@ namespace DHS.EQUIPMENT
             // 
             // radPanel7
             // 
-            this.radPanel7.Controls.Add(this.textBox7);
+            this.radPanel7.Controls.Add(this.tbIRRemeaMin);
             this.radPanel7.Controls.Add(this.radLabel11);
-            this.radPanel7.Controls.Add(this.textBox8);
+            this.radPanel7.Controls.Add(this.tbIRRemeaMax);
             this.radPanel7.Controls.Add(this.radLabel12);
             this.radPanel7.Controls.Add(this.label6);
             this.radPanel7.Location = new System.Drawing.Point(12, 290);
@@ -603,16 +603,16 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel7.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel7.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // textBox7
+            // tbIRRemeaMin
             // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox7.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox7.Location = new System.Drawing.Point(180, 71);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(177, 32);
-            this.textBox7.TabIndex = 72;
-            this.textBox7.Text = "101";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbIRRemeaMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbIRRemeaMin.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbIRRemeaMin.Location = new System.Drawing.Point(180, 71);
+            this.tbIRRemeaMin.Name = "tbIRRemeaMin";
+            this.tbIRRemeaMin.Size = new System.Drawing.Size(177, 32);
+            this.tbIRRemeaMin.TabIndex = 72;
+            this.tbIRRemeaMin.Text = "0";
+            this.tbIRRemeaMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel11
             // 
@@ -626,16 +626,16 @@ namespace DHS.EQUIPMENT
             this.radLabel11.Text = "MIN.";
             this.radLabel11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox8
+            // tbIRRemeaMax
             // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.textBox8.Location = new System.Drawing.Point(180, 33);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(177, 32);
-            this.textBox8.TabIndex = 70;
-            this.textBox8.Text = "Stage1";
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbIRRemeaMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbIRRemeaMax.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbIRRemeaMax.Location = new System.Drawing.Point(180, 33);
+            this.tbIRRemeaMax.Name = "tbIRRemeaMax";
+            this.tbIRRemeaMax.Size = new System.Drawing.Size(177, 32);
+            this.tbIRRemeaMax.TabIndex = 70;
+            this.tbIRRemeaMax.Text = "2";
+            this.tbIRRemeaMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel12
             // 
@@ -664,7 +664,7 @@ namespace DHS.EQUIPMENT
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(765, 471);
+            this.ClientSize = new System.Drawing.Size(765, 470);
             this.Controls.Add(this.radPanel6);
             this.Controls.Add(this.radPanel7);
             this.Controls.Add(this.radPanel5);
@@ -729,7 +729,7 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadLabel radlblOffsetChannel;
         private System.Windows.Forms.TextBox tbIrocvIpaddress;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private System.Windows.Forms.TextBox tbOcvMin;
+        private System.Windows.Forms.TextBox tbOcvMinOutflow;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.Label label1;
         private Telerik.WinControls.UI.RadPanel radPanel2;
@@ -745,27 +745,27 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadButton radBtnCancel;
         private Telerik.WinControls.UI.RadButton radBtnSave;
         private Telerik.WinControls.UI.RadPanel radPanel4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbIRMin;
         private Telerik.WinControls.UI.RadLabel radLabel5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbIRMax;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private System.Windows.Forms.Label lblIRRange;
         private Telerik.WinControls.UI.RadPanel radPanel5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbOcvMin;
         private Telerik.WinControls.UI.RadLabel radLabel7;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tbOcvMax;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private System.Windows.Forms.Label label4;
         private Telerik.WinControls.UI.RadPanel radPanel6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tbOcvRemeaMin;
         private Telerik.WinControls.UI.RadLabel radLabel9;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox tbOcvRemeaMax;
         private Telerik.WinControls.UI.RadLabel radLabel10;
         private System.Windows.Forms.Label label5;
         private Telerik.WinControls.UI.RadPanel radPanel7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox tbIRRemeaMin;
         private Telerik.WinControls.UI.RadLabel radLabel11;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox tbIRRemeaMax;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private System.Windows.Forms.Label label6;
     }
