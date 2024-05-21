@@ -23,6 +23,7 @@ namespace DHS.EQUIPMENT
 
         private int _iAutoRemeasureCount;
         private int _iRemeasureMaxCount;
+        private bool _bUnuseMes;
 
         private int _iPLCChannelNo;
         private int _iPLCNetworkNumber;
@@ -116,6 +117,7 @@ namespace DHS.EQUIPMENT
         public double OCVMAX { get => _dOCVMax; set => _dOCVMax = value; }
         public double OCVREMEAMIN { get => _dOCVRemeaMin; set => _dOCVRemeaMin = value; }
         public double OCVREMEAMAX { get => _dOCVRemeaMax; set => _dOCVRemeaMax = value; }
+        public bool UNUSEMES { get => _bUnuseMes; set => _bUnuseMes = value; }
 
         private static CEquipmentData equipmentdata;
 

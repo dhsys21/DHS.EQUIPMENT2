@@ -65,6 +65,7 @@ namespace DHS.EQUIPMENT
             _system.OCVMINVALUE = Convert.ToDouble(tbOcvMinOutflow.Text);
             _system.AUTOREMEASURECOUNT = Convert.ToInt32(tbAutoRemeasureCount.Text);
             _system.REMEASUREMAXCOUNT = Convert.ToInt32(tbRemeasureMaxCount.Text);
+            _system.UNUSEMES = chkUnuseMes.Checked;
 
             double dIrMin = 0.0, dIrMax = 0.0;
             double dIrRemeaMin = 0.0, dIrRemeaMax = 0.0;

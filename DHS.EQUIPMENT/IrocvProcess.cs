@@ -934,7 +934,11 @@ namespace DHS.EQUIPMENT
 
                         SaveLog(stageno, "TRAY ID : " + trayid);
 
-                        nInspectionStep = 1;
+                        //* MES사용확인 - 사용하지 않으면 5로 넘어감.
+                        if (_system.UNUSEMES == true)
+                            nInspectionStep = 5;
+                        else
+                            nInspectionStep = 1;
                     }
                     break;
                 case 1:
@@ -1065,7 +1069,11 @@ namespace DHS.EQUIPMENT
                             nInspectionStep = 0;
                         } else
                         {
-                            nInspectionStep = 1;
+                            //* MES사용확인 - 사용하지 않으면 5로 넘어감.
+                            if (_system.UNUSEMES == true)
+                                nInspectionStep = 4;
+                            else
+                                nInspectionStep = 1;
                         }
                     }
                     break;
@@ -1088,8 +1096,11 @@ namespace DHS.EQUIPMENT
                 case 3:
                     //* MES - Request Process Result (트레이 배출 또는 재측정)
                     //* MES -> IROCV FOEQR1.13 (Process Result) 1 : Tray Emission  2: Tray Retry
-                    //* Process Result 삭제. IR/OCV에서 자체 판단하여 재측정 후 내보냄.
+                    //* 20240521 Process Result 삭제. IR/OCV에서 자체 판단하여 재측정 후 내보냄.
                     irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
+                    nInspectionStep = 4;
+                    break;
+                case 4:
                     PLC_TRAYOUT(stageno, 1);
                     irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
                     SaveResultFile(stageno);
