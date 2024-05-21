@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -102,7 +102,7 @@
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IROCV\\IROCV.cs",
               "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCV.cs",
               "RelativeToolTip": "DHS.EQUIPMENT\\IROCV\\IROCV.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAIAwwGgAAAAsAAAA",
+              "ViewState": "AQIAAFYBAAAAAAAAAAAkwGQBAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T20:47:44.758Z",
               "EditorCaption": ""
@@ -119,6 +119,10 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T14:17:01.19Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -140,7 +144,7 @@
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IrocvProcess.cs",
               "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IrocvProcess.cs",
               "RelativeToolTip": "DHS.EQUIPMENT\\IrocvProcess.cs",
-              "ViewState": "AQIAABQFAAAAAAAAAAAWwB4FAAAQAAAA",
+              "ViewState": "AQIAAE0EAAAAAAAAAAAtwGAEAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-09T01:33:36.769Z",
               "EditorCaption": ""

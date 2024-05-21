@@ -982,7 +982,7 @@ namespace DHS.EQUIPMENT
                     if (siemensplc.PLCREADYCOMPLETE == 1)
                     {
                         //* PLC - Request Tray Up
-                        PLC_TRAYUP(stageno);
+                        //PLC_TRAYUP(stageno); ==> 2024 05 21 StepReady 상태에서 수행하도록 변경
                         irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
                         nInspectionStep = 0;
                     }
@@ -1013,6 +1013,32 @@ namespace DHS.EQUIPMENT
         }
         private void AutoInspection_StepAutoStart(int stageno)
         {
+            switch(nInspectionStep)
+            {
+                case 0:
+                    PLC_TRAYUP(stageno);
+                    nInspectionStep = 1;
+                    break;
+                case 1:
+                    if (siemensplc.PCTRAYUP == 1)
+                        nInspectionStep = 2;
+                    else
+                        PLC_TRAYUP(stageno);
+                    break;
+                case 2:
+                    //* PLC Tray Up 확인
+                    if (siemensplc.PLCTRAYUP == 1)
+                    {
+                        CmdAutoStart(stageno);
+                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepRun;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void AutoInspection_StepAutoStart2(int stageno)
+        {
             //* PLC Tray Up 확인
             if (siemensplc.PLCTRAYUP == 1)
             {
@@ -1029,55 +1055,49 @@ namespace DHS.EQUIPMENT
             switch (nInspectionStep)
             {
                 case 0:
-                    //* MES - Data Collection
-                    //* IROCV -> MES FOEQR1.1 (send ir, ocv data to mes)
-                    if (siemensplc.PLCTRAYDOWN == 1)
+                    //* Remeasure check
+                    if(siemensplc.PLCTRAYDOWN == 1)
                     {
-                        mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
-                        nInspectionStep = 1;
+                        if (irocvdata[stageno].REMEASURECELLCOUNT > 0)
+                        {
+                            PLC_TRAYUP(stageno);
+                            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
+                            nInspectionStep = 0;
+                        } else
+                        {
+                            nInspectionStep = 1;
+                        }
                     }
                     break;
                 case 1:
+                    //* MES - Data Collection
+                    //* IROCV -> MES FOEQR1.1 (send ir, ocv data to mes)
+                    mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
+                    nInspectionStep = 2;
+                    break;
+                case 2:
                     //* MES - Verify Acknowledge No.
                     //* MES -> IROCV FOEQR1.1 : ack 확인
                     bAck = mesclient.ReadFOEQR1_1(stageno);
                     if (bAck == true)
                     {
                         //* mes에서 ack ok정보를 받으면 다음 단계로
-                        nInspectionStep = 2;
+                        nInspectionStep = 3;
                     }
                     break;
-                case 2:
+                case 3:
                     //* MES - Request Process Result (트레이 배출 또는 재측정)
                     //* MES -> IROCV FOEQR1.13 (Process Result) 1 : Tray Emission  2: Tray Retry
+                    //* Process Result 삭제. IR/OCV에서 자체 판단하여 재측정 후 내보냄.
                     irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
-                    if (irocvdata[stageno].MESRESULT == 1)
-                    {
-                        PLC_TRAYOUT(stageno, 1);
-                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
+                    PLC_TRAYOUT(stageno, 1);
+                    irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
+                    SaveResultFile(stageno);
 
-                        SaveResultFile(stageno);
-                    }
-                    else if (irocvdata[stageno].MESRESULT == 2)
-                    {
-                        //* PLC - Request Tray Up
-                        PLC_TRAYUP(stageno);
-                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
-                        nInspectionStep = 0;
-                    }
-                    break;
-                case 21:
-                    
+                    nInspectionStep = 0;
                     break;
                 default:
                     break;
-            }
-            if (siemensplc.PLCTRAYDOWN == 1)
-            {
-                PLC_TRAYOUT(stageno, 1);
-                irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
-
-                SaveResultFile(stageno);
             }
         }
         //* MES 적용 전 버전
@@ -1307,10 +1327,6 @@ namespace DHS.EQUIPMENT
                 {
                     RemeasureExcute(stageno);
                 }
-            }
-            else
-            {
-                AutoTestStop(stageno);
             }
 
             irocv[stageno].AMF = true;
