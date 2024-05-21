@@ -49,7 +49,7 @@ namespace DHS.EQUIPMENT
 
         public void SetStageSystemValue()
         {
-            tbEquipmentID.Text = _system.EQUIPMENTID[_iStage];
+            tbEquipmentID.Text = _system.EQUIPMENTID;
 
             tbIrocvIpaddress.Text = _system.IPADDRESS[_iStage];
 
@@ -59,7 +59,7 @@ namespace DHS.EQUIPMENT
 
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            _system.EQUIPMENTID[STAGENO] = tbEquipmentID.Text;
+            _system.EQUIPMENTID = tbEquipmentID.Text;
 
             _system.IPADDRESS[STAGENO] = tbIrocvIpaddress.Text;
             _system.OCVMINVALUE = Convert.ToDouble(tbOcvMinOutflow.Text);

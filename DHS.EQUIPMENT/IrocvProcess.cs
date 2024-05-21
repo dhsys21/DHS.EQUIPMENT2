@@ -152,7 +152,6 @@ namespace DHS.EQUIPMENT
             #region Remeasure Info Form
             remeasureinfo = IROCVRemeasureInfo.GetInstance();
             remeasureinfo.OnRemeasureAllClick += _REMEASUREINFOFORM_RemeasureAll;
-            remeasureinfo.OnRemeasureClick += _REMEASUREINFOFORM_Remeasure;
             remeasureinfo.OnTrayOutClick += _REMEASUREINFOFORM_TrayOut;
             #endregion
 
@@ -364,7 +363,7 @@ namespace DHS.EQUIPMENT
         {
             string filename = _Constant.BIN_PATH + "SystemInfo_" + (stageno + 1) + ".inf";
 
-            util.saveConfig(filename, "EQUIPMENT_ID", "ID", _system.EQUIPMENTID[stageno]);
+            util.saveConfig(filename, "EQUIPMENT_ID", "ID", _system.EQUIPMENTID);
             util.saveConfig(filename, "IROCV", "IPADDRESS", _system.IPADDRESS[stageno]);
             util.saveConfig(filename, "OUTFLOW", "OCV_MIN", _system.OCVMINVALUE.ToString());
             util.saveConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT", _system.AUTOREMEASURECOUNT.ToString());
@@ -389,8 +388,8 @@ namespace DHS.EQUIPMENT
             {
                 if (File.Exists(filename))
                 {
-                    _system.EQUIPMENTID[stageno] = util.readConfig(filename, "EQUIPMENT_ID", "ID");
-                    irocvform[stageno].SetStageTitle(_system.EQUIPMENTID[stageno]);
+                    _system.EQUIPMENTID = util.readConfig(filename, "EQUIPMENT_ID", "ID");
+                    irocvform[stageno].SetStageTitle(_system.EQUIPMENTID);
                     _system.IPADDRESS[stageno] = util.readConfig(filename, "IROCV", "IPADDRESS");
                     _system.AUTOREMEASURECOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT"));
                     _system.REMEASUREMAXCOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT"));
@@ -737,13 +736,11 @@ namespace DHS.EQUIPMENT
                     AutoInspection_StepAutoStart(stageno);
                     break;
                 case enumEquipStatus.StepRun:
+                    //* 측정이 끝나면 case "AMF": 에서 AutoTestFinish() 실행
                     PLC_MEASUREMENT_RUNNING(stageno, 1);
                     break;
                 case enumEquipStatus.StepEnd:
                     PLC_MEASUREMENT_COMPLETE(stageno, 1);
-                    //* AutoInspection_StepEnd(stageno)로 변경할 것.
-                    //* 내부에서는 switch구문 이용하여 mes 추가 필요. 2024 05 10 
-                    //AutoInspection_StepTrayOut(stageno);
                     AutoInspection_StepEnd(stageno);
                     break;
                 case enumEquipStatus.StepTrayOut:
@@ -918,7 +915,7 @@ namespace DHS.EQUIPMENT
         private void AutoInspection_StepTrayIdCheck(int stageno)
         {
             string trayid = siemensplc.PLCTRAYID;
-            string equipid = _system.EQUIPMENTID[stageno];
+            string equipid = _system.EQUIPMENTID;
             bool bAck = false;
             //trayid = SIEMENSS7LIB.ReadString("MB10020", 20);
 
@@ -1328,8 +1325,10 @@ namespace DHS.EQUIPMENT
                 }
                 #endregion
 
-                //AutoTestStop(stageno);     // Tray Down
+                AddRemeaseList(stageno);
 
+                //* AMF 이거나 재측정 수가 일정 갯수가 넘으면 트레이 다운 후 [트레이 배출 또는 전체 재측정]
+                //* AMF 상태가 아니거나 재측정 수가 일정 갯수 이하면 현재 컨택 상태에서 에러난 채널만 부분 재측정
                 if (irocv[stageno].AMF = true || irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT)
                 {
                     AutoTestStop(stageno);
@@ -1353,6 +1352,24 @@ namespace DHS.EQUIPMENT
                 {
                     CmdFetchIr(stageno, nChannel);
                     CmdFetchOcv(stageno, nChannel);
+                }
+            }
+        }
+        private void AddRemeaseList(int stageno)
+        {
+            int nRow = 0;
+            int mResult = 0;
+            double ir = 0.0, ocv = 0.0;
+
+            remeasureinfo.InitData(stageno, irocvdata[stageno].REMEASURECELLCOUNT);
+            for (int nChannel = 0; nChannel < _Constant.ChannelCount; ++nChannel)
+            {
+                mResult = irocvdata[stageno].MEASURERESULT[nChannel];
+                ir = irocvdata[stageno].IR_AFTERVALUE[nChannel];
+                ocv = irocvdata[stageno].OCV[nChannel];
+                if ( mResult != 0)
+                {
+                    remeasureinfo.AddRemeasureList(nRow++, nChannel, mResult, ir, ocv);
                 }
             }
         }
@@ -1573,7 +1590,27 @@ namespace DHS.EQUIPMENT
         }
         private void _IROCVFORM_REMEASUREInfo(int stageno)
         {
-            remeasureinfo.InitData(stageno);
+            //* test
+            irocvdata[stageno].REMEASURECELLCOUNT = 4;
+            irocvdata[stageno].MEASURERESULT[2] = 2;
+            irocvdata[stageno].IR_AFTERVALUE[2] = 0.322;
+            irocvdata[stageno].OCV[2] = 3672.21;
+
+            irocvdata[stageno].MEASURERESULT[12] = 3;
+            irocvdata[stageno].IR_AFTERVALUE[12] = 0.302;
+            irocvdata[stageno].OCV[12] = 3676.11;
+
+            irocvdata[stageno].MEASURERESULT[23] = 4;
+            irocvdata[stageno].IR_AFTERVALUE[23] = 0.312;
+            irocvdata[stageno].OCV[23] = 3662.31;
+
+            irocvdata[stageno].MEASURERESULT[29] = 5;
+            irocvdata[stageno].IR_AFTERVALUE[29] = 0.352;
+            irocvdata[stageno].OCV[29] = 3652.31;
+
+
+            AddRemeaseList(stageno);
+
             remeasureinfo.Show();
         }
         private void _IROCVFORM_ConfigForm(int stageno)

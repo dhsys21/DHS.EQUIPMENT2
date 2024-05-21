@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.VirtualKeyboard;
 
 namespace DHS.EQUIPMENT
 {
@@ -56,24 +57,41 @@ namespace DHS.EQUIPMENT
             remeasureinfoForm = this;
         }
 
-        public void InitData(int stageno)
+        public void InitData(int stageno, int remeasurelen)
         {
             _iStage = stageno;
-        }
 
-        private void radbtn_AllRemeasure_Click(object sender, EventArgs e)
-        {
-            RaiseOnRemeasureAll(this._iStage);
-        }
-
-        private void radbtn_Remeasure_Click(object sender, EventArgs e)
-        {
-            RaiseOnRemeasure(this._iStage);
+            dgvNGList.Rows.Clear();
+            dgvNGList.Rows.Add(remeasurelen);
         }
 
         private void radbtn_TrayOut_Click(object sender, EventArgs e)
         {
             RaiseOnTrayOut(this._iStage);
+        }
+
+        private void radbtn_RemeasureAll_Click(object sender, EventArgs e)
+        {
+            RaiseOnRemeasureAll(this._iStage);
+        }
+        public void AddRemeasureList(int nRow, int channel, int errCode, double irvalue, double ocvvalue)
+        {
+            string desc = string.Empty;
+            if (errCode == 2) desc = "IR NG";
+            else if (errCode == 3) desc = "OCV NG";
+            else if (errCode == 4) desc = "IR REMEASURE NG";
+            else if (errCode == 5) desc = "OCV REMEASURE NG";
+
+            dgvNGList.Rows[nRow].Cells[0].Value = channel.ToString();
+            dgvNGList.Rows[nRow].Cells[1].Value = desc;
+            dgvNGList.Rows[nRow].Cells[2].Value = irvalue.ToString();
+            dgvNGList.Rows[nRow].Cells[3].Value = ocvvalue.ToString();
+        }
+
+        private void dgvNGList_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            dgvNGList.Rows[0].Selected = false;
+            dgvNGList.ClearSelection();
         }
     }
 }

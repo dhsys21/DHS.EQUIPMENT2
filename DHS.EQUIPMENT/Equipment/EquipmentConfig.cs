@@ -19,7 +19,7 @@ namespace DHS.EQUIPMENT
 
         private string _sMESIpAddress;
         private int _iMESPort;
-        private string[] _sEquipmentID = new string[_Constant.frmCount];
+        private string _sEquipmentID;
 
         private int _iAutoRemeasureCount;
         private int _iRemeasureMaxCount;
@@ -76,7 +76,7 @@ namespace DHS.EQUIPMENT
         public string MESIPADDRESS { get => _sMESIpAddress; set => _sMESIpAddress = value; }
         public int MESPORT { get => _iMESPort; set => _iMESPort = value; }
 
-        public string[] EQUIPMENTID { get => _sEquipmentID; set => _sEquipmentID = value; }
+        public string EQUIPMENTID { get => _sEquipmentID; set => _sEquipmentID = value; }
 
         public double OCVMINVALUE { get => _dOcvMinValue; set => _dOcvMinValue = value; }
         public int AUTOREMEASURECOUNT { get => _iAutoRemeasureCount; set => _iAutoRemeasureCount = value; }
