@@ -26,6 +26,12 @@ namespace DHS.EQUIPMENT.Common
 
         #endregion
 
+        #region IR/OCV Equipment Status
+        public static string STEPVACANCY = "IR/OCV is ready... ";
+        public static string IROCVCONNECTION = "IR/OCV is not connected";
+        public static string PLCCONNECTION = "PLC is not connected";
+        #endregion
+
         #region Color Status
         //* 측정 color
         public static readonly Color ColorReady = Color.LightBlue;

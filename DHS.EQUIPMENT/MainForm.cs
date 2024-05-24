@@ -69,6 +69,9 @@ namespace DHS.EQUIPMENT
             _tmrConnectionChange.Interval = 2000;
             _tmrConnectionChange.Tick += new EventHandler(ConnectionChangeTimer_Tick);
             _tmrConnectionChange.Enabled = true;
+
+            //* 언어 / 영어를 기본
+            lblLangEn_Click(new object(), new EventArgs());
         }
 
         private void _CONFIGFORM_SaveConfigure()
@@ -344,6 +347,7 @@ namespace DHS.EQUIPMENT
         {
             radbtn_Init.Text = StrLang.Initialize;
             radbtn_Config.Text = StrLang.CONFIG;
+            this.Text = StrLang.MAINTITLE;
         }
 
         private void lblMESConnection_Click(object sender, EventArgs e)

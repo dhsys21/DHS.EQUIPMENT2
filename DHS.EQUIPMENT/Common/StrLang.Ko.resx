@@ -174,6 +174,9 @@
   <data name="LBLTRAYSETTING" xml:space="preserve">
     <value>트레이 셋팅</value>
   </data>
+  <data name="MAINTITLE" xml:space="preserve">
+    <value>IR/OCV 검사 2024 05 24</value>
+  </data>
   <data name="MANUAL" xml:space="preserve">
     <value>수동</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="NGINFO" xml:space="preserve">
     <value>NG 정보</value>
+  </data>
+  <data name="PLCCONNECTION" xml:space="preserve">
+    <value>PLC가 연결되지 않았습니다.</value>
   </data>
   <data name="PNLBARCODE" xml:space="preserve">
     <value>바코드</value>
@@ -209,6 +215,21 @@
   </data>
   <data name="RESET" xml:space="preserve">
     <value>리셋</value>
+  </data>
+  <data name="STEPEND" xml:space="preserve">
+    <value>IR/OCV 측정 종료.</value>
+  </data>
+  <data name="STEPRUNNING" xml:space="preserve">
+    <value>IR/OCV 측정 중.</value>
+  </data>
+  <data name="STEPTRAYIN" xml:space="preserve">
+    <value>IR/OCV 트레이 도착.</value>
+  </data>
+  <data name="STEPTRAYUP" xml:space="preserve">
+    <value>IR/OCV 트레이 상승.</value>
+  </data>
+  <data name="STEPVACANCY" xml:space="preserve">
+    <value>IR/OCV가 대기상태입니다.</value>
   </data>
   <data name="TRAYOUT" xml:space="preserve">
     <value>배출</value>

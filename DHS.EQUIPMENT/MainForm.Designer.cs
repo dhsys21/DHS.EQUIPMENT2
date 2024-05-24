@@ -2448,10 +2448,12 @@ namespace DHS.EQUIPMENT
             this.Controls.Add(this.MeasurePanel);
             this.Controls.Add(this.BasePanel);
             this.Controls.Add(this.pnlTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "IR/OCV INSPECTION 2024 02 19";
+            this.Text = "IR/OCV INSPECTION 2024 05 24";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlTitle.ResumeLayout(false);

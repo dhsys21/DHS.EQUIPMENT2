@@ -154,6 +154,9 @@ namespace DHS.EQUIPMENT
             lblRecipeTitle.Text = StrLang.LBLRECIPE;
             lblIrRangeTitle.Text = StrLang.LBLIRRANGE;
             lblOcvRangeTitle.Text = StrLang.LBLOCVRANGE;
+
+            SetValueToLabel(lblStatus, StrLang.PLCCONNECTION, Color.Red);
+            SetValueToLabel(lblStatus, StrLang.STEPVACANCY);
         }
         public void SetStageTitle(string stagename)
         {
@@ -368,38 +371,44 @@ namespace DHS.EQUIPMENT
             {
                 case enumEquipStatus.StepVacancy:
                     pictureStatus.Image = Properties.Resources.vacancy;
-                    SetValueToLabel(lblStatus, "IR/OCV is ready... ");
+                    //SetValueToLabel(lblStatus, "IR/OCV is ready ...");
+                    SetValueToLabel(lblStatus, StrLang.STEPVACANCY);
                     break;
                 case enumEquipStatus.StepTrayIn:
                     pictureStatus.Image = Properties.Resources.TrayIn;
-                    SetValueToLabel(lblStatus, "IR/OCV Tray In ...");
+                    //SetValueToLabel(lblStatus, "IR/OCV Tray In ...");
+                    SetValueToLabel(lblStatus, StrLang.STEPTRAYIN);
                     break;
                 case enumEquipStatus.StepReady:
                     pictureStatus.Image = Properties.Resources.Ready;
-                    SetValueToLabel(lblStatus, "Tray Up ...");
+                    //SetValueToLabel(lblStatus, "IR/OCV Tray Up.");
+                    SetValueToLabel(lblStatus, StrLang.STEPTRAYUP);
                     break;
                 case enumEquipStatus.StepRun:
                     pictureStatus.Image = Properties.Resources.Run;
-                    SetValueToLabel(lblStatus, "IR/OCV is runnig ...");
+                    //SetValueToLabel(lblStatus, "IR/OCV is runnig.");
+                    SetValueToLabel(lblStatus, StrLang.STEPRUNNING);
                     break;
                 case enumEquipStatus.StepEnd:
                     pictureStatus.Image = Properties.Resources.End;
-                    SetValueToLabel(lblStatus, "IR/OCV Measurement is finish ...");
+                    //SetValueToLabel(lblStatus, "IR/OCV Measurement is finish.");
+                    SetValueToLabel(lblStatus, StrLang.STEPEND);
                     break;
                 case enumEquipStatus.StepTrayOut:
                     pictureStatus.Image = Properties.Resources.TrayOut;
-                    SetValueToLabel(lblStatus, "IR/OCV Tray Out ...");
+                    //SetValueToLabel(lblStatus, "IR/OCV Tray Out.");
+                    SetValueToLabel(lblStatus, "IR/OCV Tray Out.");
                     break;
                 case enumEquipStatus.StepManual:
                     pictureStatus.Image = Properties.Resources.Local;
-                    SetValueToLabel(lblStatus, "IR/OCV is Manual Mode");
-                    //pictureStatus.Image = Image.FromFile(Application.StartupPath + @"\Image\" + "in_tray.png");
+                    SetValueToLabel(lblStatus, "IR/OCV is Manual Mode.");
+                    //SetValueToLabel(lblStatus, "IR/OCV is Manual Mode");
                     break;
                 case enumEquipStatus.StepNoAnswer:
                     pictureStatus.Image = Properties.Resources.NOANSWER;
-                    SetValueToLabel(lblStatus, "IR/OCV is not connected", Color.Red);
+                    //SetValueToLabel(lblStatus, "IR/OCV is not connected", Color.Red);
+                    SetValueToLabel(lblStatus, "IR/OCV is not connected.", Color.Red);
                     break;
-
                 default:
                     break;
             }
@@ -407,7 +416,8 @@ namespace DHS.EQUIPMENT
             //* 2023 07 25 순서 PLC 연결 -> MES 연결 -> PLC 매뉴얼
             if (_bPlcConnected == false)
             {
-                SetValueToLabel(lblStatus, "PLC is not connected", Color.Red);
+                //SetValueToLabel(lblStatus, "PLC is not connected", Color.Red);
+                SetValueToLabel(lblStatus, StrLang.PLCCONNECTION, Color.Red);
             }
             //* 2023 07 25 아직 MES 연결안되어서 주석처리함
             //else if(_bMesConnected == false)
@@ -460,5 +470,6 @@ namespace DHS.EQUIPMENT
             RaiseOnRemeasureInfo(this.stageno);
         }
         #endregion
+
     }
 }

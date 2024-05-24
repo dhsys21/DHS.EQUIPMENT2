@@ -19,7 +19,7 @@ namespace DHS.EQUIPMENT.Common {
     // 클래스에서 자동으로 생성되었습니다.
     // 멤버를 추가하거나 제거하려면 .ResX 파일을 편집한 다음 /str 옵션을 사용하여 ResGen을
     // 다시 실행하거나 VS 프로젝트를 다시 빌드하십시오.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class StrLang {
@@ -232,6 +232,15 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   IR/OCV INSPECTION 2024 05 24과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MAINTITLE {
+            get {
+                return ResourceManager.GetString("MAINTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   MANUAL과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MANUAL {
@@ -255,6 +264,15 @@ namespace DHS.EQUIPMENT.Common {
         internal static string NGINFO {
             get {
                 return ResourceManager.GetString("NGINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PLC is not connected과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PLCCONNECTION {
+            get {
+                return ResourceManager.GetString("PLCCONNECTION", resourceCulture);
             }
         }
         
@@ -336,6 +354,51 @@ namespace DHS.EQUIPMENT.Common {
         internal static string RESET {
             get {
                 return ResourceManager.GetString("RESET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV Measurement is finish.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STEPEND {
+            get {
+                return ResourceManager.GetString("STEPEND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV is runnig.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STEPRUNNING {
+            get {
+                return ResourceManager.GetString("STEPRUNNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV Tray In.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STEPTRAYIN {
+            get {
+                return ResourceManager.GetString("STEPTRAYIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV Tray Up.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STEPTRAYUP {
+            get {
+                return ResourceManager.GetString("STEPTRAYUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV is ready.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STEPVACANCY {
+            get {
+                return ResourceManager.GetString("STEPVACANCY", resourceCulture);
             }
         }
         
