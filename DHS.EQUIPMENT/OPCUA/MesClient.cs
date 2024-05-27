@@ -22,17 +22,18 @@ namespace DHS.EQUIPMENT
 
         private string _strLog;
 
-        private string[] mesData = new string[70];
+        private string[] mesData = new string[72];
         private string[] pcData = new string[133];
 
         private int _iMesSequenceNo;
         private int _iMesAcknowledgeNo;
 
-        private int _iErrorCode;
-        private string _sErrorMsg;
+        private int _iMesErrorCode;
+        private string _strMesErrorMsg;
 
         private string _strMesEquipmentID;
         private string _strMesTrayID;
+        private string _strMesTrayStatusCode;
         private string[] _strMesCellIDs;
         private string[] _strMesCellStatus;
 
@@ -59,8 +60,9 @@ namespace DHS.EQUIPMENT
         public string[] PCCELLSTATUS { get => _strPCCellStatus; set => _strPCCellStatus = value; }
         public int[] PCIRS { get => _iPCIRs; set => _iPCIRs = value; }
         public int[] PCOCVS { get => _iPCOCVs; set => _iPCOCVs = value; }
-        public int ERRORCODE { get => _iErrorCode; set => _iErrorCode = value; }
-        public string ERRORMSG { get => _sErrorMsg; set => _sErrorMsg = value; }
+        public int MESERRORCODE { get => _iMesErrorCode; set => _iMesErrorCode = value; }
+        public string MESERRORMSG { get => _strMesErrorMsg; set => _strMesErrorMsg = value; }
+        public string MESTRAYSTATUSCODE { get => _strMesTrayStatusCode; set => _strMesTrayStatusCode = value; }
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         
@@ -109,7 +111,7 @@ namespace DHS.EQUIPMENT
             {
                 //await Task.Run(() => opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
                 //connection = true;
-                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://172.20.10.3:48000/IROCV"));
+                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://10.2.2.154:48000/IROCV"));
                 //opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV");
                 return connection;
                 
@@ -174,17 +176,26 @@ namespace DHS.EQUIPMENT
                             _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
                             SetValue(3, _strMesTrayID, "MES");
                             break;
-                        //case "ns=2;s=Mes/TrayStatusCode":
-                        //    _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                        //    SetValue(4, _strMesRecipeID, "MES");
-                        //    break;
+                        case "ns=2;s=Mes/TrayStatusCode":
+                            _strMesTrayStatusCode = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(4, _strMesTrayStatusCode, "MES");
+                            break;
+                        case "ns=2;s=Mes/ErrorCode":
+                            iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            _iMesErrorCode = (int)iVal;
+                            SetValue(5, _iMesErrorCode, "MES");
+                            break;
+                        case "ns=2;s=Mes/ErrorMessage":
+                            _strMesErrorMsg = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(6, _strMesErrorMsg, "MES");
+                            break;
                         case "ns=2;s=Mes/CellID":
                             _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(6, _strMesCellIDs, "MES");
+                            SetValue(7, _strMesCellIDs, "MES");
                             break;
                         case "ns=2;s=Mes/CellStatus":
                             _strMesCellStatus = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(38, _strMesCellStatus, "MES");
+                            SetValue(39, _strMesCellStatus, "MES");
                             break;
                         default:
                             break;
@@ -217,21 +228,21 @@ namespace DHS.EQUIPMENT
                             break;
                         case "ns=2;s=Equipment/CellID":
                             _strPCCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(5, _strPCCellIDs, "PC");
+                            SetValue(4, _strPCCellIDs, "PC");
                             break;
                         case "ns=2;s=Equipment/CellStatus":
                             _strPCCellStatus = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(38, _strPCCellStatus, "PC");
+                            SetValue(100, _strPCCellStatus, "PC");
                             break;
                         case "ns=2;s=Equipment/IR":
                             iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
                             _iPCIRs = iVals.Select(x => (int)x).ToArray();
-                            SetValue(37, _iPCIRs, "PC");
+                            SetValue(36, _iPCIRs, "PC");
                             break;
                         case "ns=2;s=Equipment/OCV":
                             iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
                             _iPCOCVs = iVals.Select(x => (int)x).ToArray();
-                            SetValue(69, _iPCOCVs, "PC");
+                            SetValue(68, _iPCOCVs, "PC");
                             break;
                         default:
                             break;

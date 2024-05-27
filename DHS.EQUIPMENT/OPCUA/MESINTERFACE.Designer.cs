@@ -35,14 +35,14 @@ namespace DHS.EQUIPMENT
             this.dgvMES = new System.Windows.Forms.DataGridView();
             this.dgvPC = new System.Windows.Forms.DataGridView();
             this.radpnl_MESTEST = new Telerik.WinControls.UI.RadPanel();
+            this.cbTagType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbTagList = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbTagValue = new System.Windows.Forms.TextBox();
             this.radBtnWriteValue = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbTagType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
@@ -61,7 +61,7 @@ namespace DHS.EQUIPMENT
             this.radpnl_OperationMode.Location = new System.Drawing.Point(25, 25);
             this.radpnl_OperationMode.Name = "radpnl_OperationMode";
             this.radpnl_OperationMode.Padding = new System.Windows.Forms.Padding(5);
-            this.radpnl_OperationMode.Size = new System.Drawing.Size(936, 534);
+            this.radpnl_OperationMode.Size = new System.Drawing.Size(936, 734);
             this.radpnl_OperationMode.TabIndex = 12;
             this.radpnl_OperationMode.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_OperationMode.GetChildAt(0))).Text = "";
@@ -93,7 +93,7 @@ namespace DHS.EQUIPMENT
             this.pnl_PlcInterface.Location = new System.Drawing.Point(5, 94);
             this.pnl_PlcInterface.Name = "pnl_PlcInterface";
             this.pnl_PlcInterface.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_PlcInterface.Size = new System.Drawing.Size(926, 435);
+            this.pnl_PlcInterface.Size = new System.Drawing.Size(926, 635);
             this.pnl_PlcInterface.TabIndex = 51;
             // 
             // dgvMES
@@ -106,7 +106,7 @@ namespace DHS.EQUIPMENT
             this.dgvMES.RowHeadersVisible = false;
             this.dgvMES.RowHeadersWidth = 51;
             this.dgvMES.RowTemplate.Height = 23;
-            this.dgvMES.Size = new System.Drawing.Size(450, 415);
+            this.dgvMES.Size = new System.Drawing.Size(450, 615);
             this.dgvMES.TabIndex = 0;
             // 
             // dgvPC
@@ -120,7 +120,7 @@ namespace DHS.EQUIPMENT
             this.dgvPC.RowHeadersVisible = false;
             this.dgvPC.RowHeadersWidth = 51;
             this.dgvPC.RowTemplate.Height = 23;
-            this.dgvPC.Size = new System.Drawing.Size(450, 415);
+            this.dgvPC.Size = new System.Drawing.Size(450, 615);
             this.dgvPC.TabIndex = 1;
             // 
             // radpnl_MESTEST
@@ -142,6 +142,31 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // cbTagType
+            // 
+            this.cbTagType.FormattingEnabled = true;
+            this.cbTagType.Items.AddRange(new object[] {
+            "UInt32",
+            "String",
+            "StringArr",
+            "UInt32Arr"});
+            this.cbTagType.Location = new System.Drawing.Point(126, 109);
+            this.cbTagType.Name = "cbTagType";
+            this.cbTagType.Size = new System.Drawing.Size(153, 20);
+            this.cbTagType.TabIndex = 63;
+            this.cbTagType.Text = "UInt32";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label2.Location = new System.Drawing.Point(17, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 16);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "Tag Type";
             // 
             // cbTagList
             // 
@@ -224,37 +249,12 @@ namespace DHS.EQUIPMENT
             this.label1.TabIndex = 50;
             this.label1.Text = "OPERATION MODE";
             // 
-            // cbTagType
-            // 
-            this.cbTagType.FormattingEnabled = true;
-            this.cbTagType.Items.AddRange(new object[] {
-            "UInt32",
-            "String",
-            "StringArr",
-            "UInt32Arr"});
-            this.cbTagType.Location = new System.Drawing.Point(126, 109);
-            this.cbTagType.Name = "cbTagType";
-            this.cbTagType.Size = new System.Drawing.Size(153, 20);
-            this.cbTagType.TabIndex = 63;
-            this.cbTagType.Text = "UInt32";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(17, 113);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 16);
-            this.label2.TabIndex = 62;
-            this.label2.Text = "Tag Type";
-            // 
             // MESINTERFACE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1359, 565);
+            this.ClientSize = new System.Drawing.Size(1359, 765);
             this.Controls.Add(this.radpnl_MESTEST);
             this.Controls.Add(this.radpnl_OperationMode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

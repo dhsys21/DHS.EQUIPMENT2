@@ -88,14 +88,15 @@ namespace DHS.EQUIPMENT
             AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //AcknowledgeNo
             AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //EquipmentID
             AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayID
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //RecipeID
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //Bypass
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayStatusCode
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //ErrorCode
+            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //ErrorMessage
 
             //* nIndex = 6
             for (int i = 0; i < _Constant.ChannelCount; i++)
             {
-                AddDataGridView(dgvMESs[0], mesData[i + 6], i + 6); //CellID
-                AddDataGridView(dgvMESs[0], mesData[i + 6 + 32], i + 6 + 32); //CellStatus
+                AddDataGridView(dgvMESs[0], mesData[i + 7], i + 7); //CellID
+                AddDataGridView(dgvMESs[0], mesData[i + 7 + 32], i + 7 + 32); //CellStatus
             }
             #endregion
 
@@ -105,15 +106,14 @@ namespace DHS.EQUIPMENT
             AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //AcknowledgeNo
             AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //EquipmentID
             AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //TrayID
-            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //RecipeID
 
             //* nIndex = 5
             for (int i = 0; i < _Constant.ChannelCount; i++)
             {
-                AddDataGridView(dgvPCs[0], pcData[i + 5], i + 5); //CellID
-                AddDataGridView(dgvPCs[0], pcData[i + 5 + 32], i + 5 + 32); //IR
-                AddDataGridView(dgvPCs[0], pcData[i + 5 + 64], i + 5 + 64); //OCV
-                AddDataGridView(dgvPCs[0], pcData[i + 5 + 96], i + 5 + 96); //RESULT
+                AddDataGridView(dgvPCs[0], pcData[i + 4], i + 4); //CellID
+                AddDataGridView(dgvPCs[0], pcData[i + 4 + 32], i + 4 + 32); //IR
+                AddDataGridView(dgvPCs[0], pcData[i + 4 + 64], i + 4 + 64); //OCV
+                AddDataGridView(dgvPCs[0], pcData[i + 4 + 96], i + 4 + 96); //CellStatus
             }
             #endregion
         }
