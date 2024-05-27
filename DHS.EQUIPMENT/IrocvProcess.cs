@@ -80,7 +80,7 @@ namespace DHS.EQUIPMENT
             try
             {
                 //siemensplc = new SIEMENSS7LIB("192.168.10.1");
-                siemensplc = new SIEMENSS7LIB(_system.PLCIPADDRESS, _system.PLCDBNUMBER);
+                siemensplc = new SIEMENSS7LIB(_system.PLCIPADDRESS, _system.PLCDBNUMBER, _system.PLCDBNUMBERSYS);
                 _bPlcConnected = SIEMENSS7LIB.connection;
             }
             catch (Exception ex)
@@ -650,7 +650,7 @@ namespace DHS.EQUIPMENT
                     //        plcinterface.SetDataToGrid(tagname, siemensplc.PLCVALUES[tagname].ToString(), 0);
                     //}
                     //plcinterface.SetDataToGrid("MB10020", siemensplc.PLCTRAYID, 0);
-                    plcinterface.SetDataToGrid(siemensplc.PCVALUES, siemensplc.PLCVALUES, 0);
+                    plcinterface.SetDataToGrid(siemensplc.PCVALUES, siemensplc.PLCVALUES, siemensplc.PLCVALUESSYS, 0);
                 }catch(Exception ex)
                 {
                     Console.WriteLine(ex.ToString());

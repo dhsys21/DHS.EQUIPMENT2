@@ -43,6 +43,8 @@ namespace DHS.EQUIPMENT
             this.label12 = new System.Windows.Forms.Label();
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.radBtnSave = new Telerik.WinControls.UI.RadButton();
+            this.tbPlcDbNumberSys = new System.Windows.Forms.TextBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -53,10 +55,13 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radlblOffsetChannel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanel1
             // 
+            this.radPanel1.Controls.Add(this.tbPlcDbNumberSys);
+            this.radPanel1.Controls.Add(this.radLabel4);
             this.radPanel1.Controls.Add(this.tbPlcDbNumber);
             this.radPanel1.Controls.Add(this.radLabel2);
             this.radPanel1.Controls.Add(this.tbPlcIpaddress);
@@ -65,7 +70,7 @@ namespace DHS.EQUIPMENT
             this.radPanel1.Location = new System.Drawing.Point(10, 151);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel1.Size = new System.Drawing.Size(368, 124);
+            this.radPanel1.Size = new System.Drawing.Size(368, 161);
             this.radPanel1.TabIndex = 13;
             this.radPanel1.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Text = "";
@@ -207,7 +212,7 @@ namespace DHS.EQUIPMENT
             // 
             this.radBtnCancel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.radBtnCancel.ForeColor = System.Drawing.Color.Black;
-            this.radBtnCancel.Location = new System.Drawing.Point(230, 296);
+            this.radBtnCancel.Location = new System.Drawing.Point(228, 345);
             this.radBtnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnCancel.Name = "radBtnCancel";
             this.radBtnCancel.Size = new System.Drawing.Size(90, 32);
@@ -226,7 +231,7 @@ namespace DHS.EQUIPMENT
             // 
             this.radBtnSave.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.radBtnSave.ForeColor = System.Drawing.Color.Black;
-            this.radBtnSave.Location = new System.Drawing.Point(78, 296);
+            this.radBtnSave.Location = new System.Drawing.Point(76, 345);
             this.radBtnSave.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnSave.Name = "radBtnSave";
             this.radBtnSave.Size = new System.Drawing.Size(90, 32);
@@ -241,11 +246,34 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnSave.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(244)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnSave.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.White;
             // 
+            // tbPlcDbNumberSys
+            // 
+            this.tbPlcDbNumberSys.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPlcDbNumberSys.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbPlcDbNumberSys.Location = new System.Drawing.Point(200, 115);
+            this.tbPlcDbNumberSys.Name = "tbPlcDbNumberSys";
+            this.tbPlcDbNumberSys.Size = new System.Drawing.Size(157, 32);
+            this.tbPlcDbNumberSys.TabIndex = 74;
+            this.tbPlcDbNumberSys.Text = "66";
+            this.tbPlcDbNumberSys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.AutoSize = false;
+            this.radLabel4.BackColor = System.Drawing.Color.LightGray;
+            this.radLabel4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radLabel4.Location = new System.Drawing.Point(66, 115);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(128, 32);
+            this.radLabel4.TabIndex = 73;
+            this.radLabel4.Text = "DB(Sys) No.";
+            this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ConfigForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(390, 342);
+            this.ClientSize = new System.Drawing.Size(390, 390);
             this.Controls.Add(this.radBtnCancel);
             this.Controls.Add(this.radBtnSave);
             this.Controls.Add(this.radPanel1);
@@ -266,6 +294,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radlblOffsetChannel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,5 +315,7 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.TextBox tbMesPort;
         private Telerik.WinControls.UI.RadLabel radLabel3;
+        private System.Windows.Forms.TextBox tbPlcDbNumberSys;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
     }
 }

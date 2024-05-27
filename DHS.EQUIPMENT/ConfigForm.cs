@@ -38,6 +38,7 @@ namespace DHS.EQUIPMENT
 
             tbPlcIpaddress.Text = _system.PLCIPADDRESS;
             tbPlcDbNumber.Text = _system.PLCDBNUMBER.ToString();
+            tbPlcDbNumberSys.Text = _system.PLCDBNUMBERSYS.ToString();
         }
 
         private void radBtnCancel_Click(object sender, EventArgs e)
@@ -52,6 +53,7 @@ namespace DHS.EQUIPMENT
 
             _system.PLCIPADDRESS = tbPlcIpaddress.Text;
             _system.PLCDBNUMBER = Convert.ToInt32(tbPlcDbNumber.Text);
+            _system.PLCDBNUMBERSYS = Convert.ToInt32(tbPlcDbNumberSys.Text);
 
             RaiseOnSaveConfig();
             this.Hide();

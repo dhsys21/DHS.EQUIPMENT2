@@ -47,6 +47,7 @@ namespace DHS.EQUIPMENT
                     Console.WriteLine("Application instance certificate invalid!");
                 }
 
+                //* ReferenceNodeManager.cs -> CreateAddressSpace()로 넘어감
                 application.Start(new SharpNodeSettingsServer()).Wait();
 
                 Console.WriteLine("Start the server...");

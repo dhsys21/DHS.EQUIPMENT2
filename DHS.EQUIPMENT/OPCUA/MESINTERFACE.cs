@@ -48,13 +48,14 @@ namespace DHS.EQUIPMENT
             dgvMESs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
             dgvMESs[0].Rows[2].Cells[0].Value = "EquipmentID";
             dgvMESs[0].Rows[3].Cells[0].Value = "TrayID";
-            dgvMESs[0].Rows[4].Cells[0].Value = "RecipeID";
-            dgvMESs[0].Rows[5].Cells[0].Value = "Bypass";
+            dgvMESs[0].Rows[4].Cells[0].Value = "TrayStatusCode";
+            dgvMESs[0].Rows[5].Cells[0].Value = "ErrorCode";
+            dgvMESs[0].Rows[6].Cells[0].Value = "ErrorMessage";
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
-                dgvMESs[0].Rows[nIndex + 6].Cells[0].Value = "CellID " + (nIndex + 1).ToString("D2");
-                dgvMESs[0].Rows[nIndex + 32 + 6].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
+                dgvMESs[0].Rows[nIndex + 7].Cells[0].Value = "CellID " + (nIndex + 1).ToString("D2");
+                dgvMESs[0].Rows[nIndex + 32 + 7].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
             }
 
             //* 열 추가
@@ -69,14 +70,13 @@ namespace DHS.EQUIPMENT
             dgvPCs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
             dgvPCs[0].Rows[2].Cells[0].Value = "EquipmentID";
             dgvPCs[0].Rows[3].Cells[0].Value = "TrayID";
-            dgvPCs[0].Rows[4].Cells[0].Value = "RecipeID";
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
-                dgvPCs[0].Rows[nIndex + 5].Cells[0].Value = "CellID " + (nIndex + 1).ToString("D2");
-                dgvPCs[0].Rows[nIndex + 32 + 5].Cells[0].Value = "IR " + (nIndex + 1).ToString("D2");
-                dgvPCs[0].Rows[nIndex + 64 + 5].Cells[0].Value = "OCV " + (nIndex + 1).ToString("D2");
-                dgvPCs[0].Rows[nIndex + 96 + 5].Cells[0].Value = "RESULT " + (nIndex + 1).ToString("D2");
+                dgvPCs[0].Rows[nIndex + 4].Cells[0].Value = "CellID " + (nIndex + 1).ToString("D2");
+                dgvPCs[0].Rows[nIndex + 32 + 4].Cells[0].Value = "IR " + (nIndex + 1).ToString("D2");
+                dgvPCs[0].Rows[nIndex + 64 + 4].Cells[0].Value = "OCV " + (nIndex + 1).ToString("D2");
+                dgvPCs[0].Rows[nIndex + 96 + 4].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
             }
         }
 

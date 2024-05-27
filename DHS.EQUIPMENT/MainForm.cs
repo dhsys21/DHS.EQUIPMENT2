@@ -279,6 +279,7 @@ namespace DHS.EQUIPMENT
             util.saveConfig(filename, "MES", "PORT", _system.MESPORT.ToString());
             util.saveConfig(filename, "PLC", "IPADDRESS", _system.PLCIPADDRESS);
             util.saveConfig(filename, "PLC", "DB NUMBER", _system.PLCDBNUMBER.ToString());
+            util.saveConfig(filename, "PLC", "DB(SYS) NUMBER", _system.PLCDBNUMBERSYS.ToString());
         }
         private void ReadConfigFile()
         {
@@ -293,10 +294,11 @@ namespace DHS.EQUIPMENT
                     _system.MESPORT = Convert.ToInt32(util.readConfig(filename, "MES", "PORT"));
                     _system.PLCIPADDRESS = util.readConfig(filename, "PLC", "IPADDRESS");
                     _system.PLCDBNUMBER = Convert.ToInt32(util.readConfig(filename, "PLC", "DB NUMBER"));
+                    _system.PLCDBNUMBERSYS = Convert.ToInt32(util.readConfig(filename, "PLC", "DB(SYS) NUMBER"));
 
                     configForm.SetSystemValue();
 
-                    SIEMENSS7LIB.ChangeSetting(_system.PLCIPADDRESS, _system.PLCDBNUMBER);
+                    SIEMENSS7LIB.ChangeSetting(_system.PLCIPADDRESS, _system.PLCDBNUMBER, _system.PLCDBNUMBERSYS);
                 }
                 else
                 {

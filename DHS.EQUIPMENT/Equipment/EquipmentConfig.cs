@@ -16,6 +16,7 @@ namespace DHS.EQUIPMENT
         
         private string _sPLCIpAddress;
         private int _iPLCDbNumber;
+        private int _iPLCDbNumberSys;
 
         private string _sMESIpAddress;
         private int _iMESPort;
@@ -73,6 +74,7 @@ namespace DHS.EQUIPMENT
         
         public string PLCIPADDRESS { get => _sPLCIpAddress; set => _sPLCIpAddress = value; }
         public int PLCDBNUMBER { get => _iPLCDbNumber; set => _iPLCDbNumber = value; }
+        public int PLCDBNUMBERSYS { get => _iPLCDbNumberSys; set => _iPLCDbNumberSys = value; }
         public string MESIPADDRESS { get => _sMESIpAddress; set => _sMESIpAddress = value; }
         public int MESPORT { get => _iMESPort; set => _iMESPort = value; }
 

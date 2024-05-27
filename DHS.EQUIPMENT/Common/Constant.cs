@@ -72,6 +72,7 @@ namespace DHS.EQUIPMENT.Common
         public static readonly int PC_DATA_LENGTH = 50;
         public static readonly int TRAY_ID_LENGTH = 20;
 
+        //* FOR PLC
         public static readonly int PLC_HEART_BEAT = 0;
         public static readonly int PLC_ATUO_MANUAL = 1;
         public static readonly int PLC_ERROR = 2;
@@ -83,7 +84,7 @@ namespace DHS.EQUIPMENT.Common
         public static readonly int PLC_UNLOADING_COMPLETE = 8;
         public static readonly int PLC_TRAY_ID = 10;
 
-        
+        //* FOR PC
         public static readonly int PC_HEART_BEAT = 0;
         public static readonly int PC_AUTO_MANUAL = 1;
         public static readonly int PC_ERROR = 2;
@@ -94,6 +95,40 @@ namespace DHS.EQUIPMENT.Common
         public static readonly int PC_RUNNING = 7;
         public static readonly int PC_MEASUREMENT_COMPLETE = 8;
 
+        //* PLC 데이터를 MES로 넘겨주기 위해 만듦 2024 05 27
+        //public static readonly int DB_NUMBER_SYS = 66;
+        public static readonly int PLC_DATA_LENGTH_SYS = 256;
+        public static readonly int PLC_SYS_STRING_LENGTH = 98;
+
+        public static readonly int PLC_INTERFACE_VERSION_PROJECT = 0;
+        public static readonly int PLC_EQUIPMENT_NAME = 100;
+        public static readonly int PLC_EQUIPMENT_TYPE_ID = 200;
+        public static readonly int PLC_LINE_ID = 202;
+        public static readonly int PLC_AREA_ID = 204;
+        public static readonly int PLC_VENDOR_ID = 206;
+        public static readonly int PLC_EQUIPMENT_ID = 208;
+        public static readonly int PLC_STATE = 210;
+        public static readonly int PLC_MODE = 212;
+        public static readonly int PLC_BLOCKED = 214;
+        public static readonly int PLC_STARVED = 215;
+        public static readonly int PLC_CURRNET_SPEED = 216;
+        public static readonly int PLC_DESIGNED_SPEED = 218;
+        public static readonly int PLC_DEFECTOR_COUNTER = 220;
+        public static readonly int PLC_GOOD_COUNTER = 220;
+        public static readonly int PLC_TOTAL_COUNTER = 220;
+        public static readonly int PLC_STAND_STILL_REASON = 222;
+        public static readonly int PLC_STACK_LIGHT0_COLOR = 224;
+        public static readonly int PLC_STACK_LIGHT0_BEHAVIOR = 226;
+        public static readonly int PLC_STACK_LIGHT1_COLOR = 228;
+        public static readonly int PLC_STACK_LIGHT1_BEHAVIOR = 230;
+        public static readonly int PLC_STACK_LIGHT2_COLOR = 232;
+        public static readonly int PLC_STACK_LIGHT2_BEHAVIOR = 234;
+        public static readonly int PLC_STACK_LIGHT3_COLOR = 236;
+        public static readonly int PLC_STACK_LIGHT3_BEHAVIOR = 238;
+        public static readonly int PLC_STACK_LIGHT4_COLOR = 240;
+        public static readonly int PLC_STACK_LIGHT4_BEHAVIOR = 242;
+        public static readonly int PLC_STACK_LIGHT5_COLOR = 244;
+        public static readonly int PLC_STACK_LIGHT5_BEHAVIOR = 246;
         #endregion
 
     }

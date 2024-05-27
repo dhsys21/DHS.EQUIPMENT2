@@ -298,6 +298,11 @@ namespace DHS.EQUIPMENT
                     {
                         SetValueToLabel(lblIRMeasure[nIndex], "0.0000", _Constant.ColorMeasure);
                     }
+                    else if(equipMode == enumEquipMode.MANUAL)
+                    {
+                        SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);
+                        SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorOCV);
+                    }
                     else
                     {
                         if (irocvdata.CELL[nIndex] == 1)

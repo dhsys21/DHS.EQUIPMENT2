@@ -27,40 +27,40 @@ namespace DHS.EQUIPMENT
 
         private int _iMesSequenceNo;
         private int _iMesAcknowledgeNo;
+
+        private int _iErrorCode;
+        private string _sErrorMsg;
+
         private string _strMesEquipmentID;
         private string _strMesTrayID;
-        private string _strMesRecipeID;
-        private bool _bMesBypass;
         private string[] _strMesCellIDs;
-        private string[] _strMesCellStats;
+        private string[] _strMesCellStatus;
 
         private int _iPCSequenceNo;
         private int _iPCAcknowledgeNo;
         private string _strPCEquipmentID;
         private string _strPCTrayID;
-        private string _strPCRecipeID;
         private string[] _strPCCellIDs;
+        private string[] _strPCCellStatus;
         private int[] _iPCIRs;
         private int[] _iPCOCVs;
-        private int[] _iPCResults;
 
         public int MESSEQUENCENO { get => _iMesSequenceNo; set => _iMesSequenceNo = value; }
         public int MESACKNOWLEDGENO { get => _iMesAcknowledgeNo; set => _iMesAcknowledgeNo = value; }
         public string MESEQUIPMENTID { get => _strMesEquipmentID; set => _strMesEquipmentID = value; }
         public string MESTRAYID { get => _strMesTrayID; set => _strMesTrayID = value; }
-        public string MESRECIPEID { get => _strMesRecipeID; set => _strMesRecipeID = value; }
-        public bool MESBYPASS { get => _bMesBypass; set => _bMesBypass = value; }
         public string[] MESCELLIDS { get => _strMesCellIDs; set => _strMesCellIDs = value; }
-        public string[] MESCELLSTATS { get => _strMesCellStats; set => _strMesCellStats = value; }
+        public string[] MESCELLSTATUS { get => _strMesCellStatus; set => _strMesCellStatus = value; }
         public int PCSEQUENCENO { get => _iPCSequenceNo; set => _iPCSequenceNo = value; }
         public int PCACKNOWLEDGENO { get => _iPCAcknowledgeNo; set => _iPCAcknowledgeNo = value; }
         public string PCEQUIPMENTID { get => _strPCEquipmentID; set => _strPCEquipmentID = value; }
         public string PCTRAYID { get => _strPCTrayID; set => _strPCTrayID = value; }
-        public string PCRECIPEID { get => _strPCRecipeID; set => _strPCRecipeID = value; }
         public string[] PCCELLIDS { get => _strPCCellIDs; set => _strPCCellIDs = value; }
+        public string[] PCCELLSTATUS { get => _strPCCellStatus; set => _strPCCellStatus = value; }
         public int[] PCIRS { get => _iPCIRs; set => _iPCIRs = value; }
         public int[] PCOCVS { get => _iPCOCVs; set => _iPCOCVs = value; }
-        public int[] PCRESULTS { get => _iPCResults; set => _iPCResults = value; }
+        public int ERRORCODE { get => _iErrorCode; set => _iErrorCode = value; }
+        public string ERRORMSG { get => _sErrorMsg; set => _sErrorMsg = value; }
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         
@@ -109,7 +109,7 @@ namespace DHS.EQUIPMENT
             {
                 //await Task.Run(() => opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
                 //connection = true;
-                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://192.168.0.13:48000/IROCV"));
+                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://172.20.10.3:48000/IROCV"));
                 //opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV");
                 return connection;
                 
@@ -174,22 +174,17 @@ namespace DHS.EQUIPMENT
                             _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
                             SetValue(3, _strMesTrayID, "MES");
                             break;
-                        case "ns=2;s=Mes/RecipeID":
-                            _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(4, _strMesRecipeID, "MES");
-                            break;
-                        case "ns=2;s=Mes/Bypass":
-                            var tmp = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _bMesBypass = Convert.ToBoolean(tmp.ToString());
-                            SetValue(5, _bMesBypass, "MES");
-                            break;
+                        //case "ns=2;s=Mes/TrayStatusCode":
+                        //    _strMesRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
+                        //    SetValue(4, _strMesRecipeID, "MES");
+                        //    break;
                         case "ns=2;s=Mes/CellID":
                             _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
                             SetValue(6, _strMesCellIDs, "MES");
                             break;
                         case "ns=2;s=Mes/CellStatus":
-                            _strMesCellStats = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(38, _strMesCellStats, "MES");
+                            _strMesCellStatus = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(38, _strMesCellStatus, "MES");
                             break;
                         default:
                             break;
@@ -220,13 +215,13 @@ namespace DHS.EQUIPMENT
                             _strPCTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
                             SetValue(3, _strPCTrayID, "PC");
                             break;
-                        case "ns=2;s=Equipment/RecipeID":
-                            _strPCRecipeID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(4, _strPCRecipeID, "PC");
-                            break;
                         case "ns=2;s=Equipment/CellID":
                             _strPCCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
                             SetValue(5, _strPCCellIDs, "PC");
+                            break;
+                        case "ns=2;s=Equipment/CellStatus":
+                            _strPCCellStatus = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(38, _strPCCellStatus, "PC");
                             break;
                         case "ns=2;s=Equipment/IR":
                             iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
@@ -237,11 +232,6 @@ namespace DHS.EQUIPMENT
                             iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
                             _iPCOCVs = iVals.Select(x => (int)x).ToArray();
                             SetValue(69, _iPCOCVs, "PC");
-                            break;
-                        case "ns=2;s=Equipment/Result":
-                            iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iPCResults = iVals.Select(x => (int)x).ToArray();
-                            SetValue(101, _iPCResults, "PC");
                             break;
                         default:
                             break;
@@ -409,7 +399,124 @@ namespace DHS.EQUIPMENT
         }
         #endregion
 
-        #region MES와 IROCV간 주고 받는 Sequence 별로 구현 - MES Sequence Read/Write
+        #region Version 2. - MES와 IROCV간 주고 받는 Sequence 별로 구현
+        public void WriteFOEQR2_1(int stageno, string equipmentid, string trayid)
+        {
+            //* EQUIPMENT ID
+            WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+
+            //* TRAY ID
+            WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
+
+            //* Save Log
+            _strLog = "Equipment: " + equipmentid + ", Trayid: " + trayid;
+            SaveLog(stageno, "FOEQR1.12 IROCV -> MES", _strLog);
+        }
+        public IROCVData ReadFOEQR2_1(int stageno)
+        {
+            _strLog = string.Empty;
+
+            //* EQUIPMENT ID
+            string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
+            _strLog += "Equipment ID: " + equipid;
+
+            //* TRAY ID
+            string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
+            _strLog += ", TRAY ID: " + trayid;
+
+            //* RECIPE ID
+            string recipeid = (string)ReadValue("ns=2;s=Mes/RecipeID", (int)EnumDataType.dtString);
+            _strLog += ", RECIPE ID: " + recipeid;
+
+            //* BYPASS
+            var tmpBypass = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
+            bool bypass = Convert.ToBoolean(tmpBypass.ToString());
+            _strLog += ", BYPASS : " + tmpBypass.ToString();
+
+            //* CELL ID
+            string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
+            {
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellids[nIndex];
+            }
+
+            //* CELL STATUS
+            string[] cellstatus = (string[])ReadValue("ns=2;s=Mes/CellStatus", (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellstatus.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellstatus[nIndex];
+
+            //* Write Log
+            SaveLog(stageno, "FOEQR1.7 MES  -> IROCV", _strLog);
+
+            //* irocvdata에 mes data 저장.
+            irocvdata[stageno].InitData();
+            irocvdata[stageno].EQUIPMENTID = equipid; ;
+            irocvdata[stageno].TRAYID = trayid;
+            irocvdata[stageno].RECIPEID = recipeid;
+            irocvdata[stageno].BYPASS = bypass;
+            irocvdata[stageno].CELLID = cellids;
+            for (int i = 0; i < cellids.Length; i++)
+            {
+                if (string.IsNullOrEmpty(cellids[i]) == true) irocvdata[stageno].CELL[i] = 0;
+                else irocvdata[stageno].CELL[i] = 1;
+            }
+            irocvdata[stageno].CELLSTATUS = cellstatus;
+            irocvdata[stageno].TAGPATHNO = "FOEQR1.7";
+
+            return irocvdata[stageno];
+        }
+        public void WriteFOEQR2_2(int stageno, IROCVData irocvdata)
+        {
+            _strLog = string.Empty;
+
+            //* EQUIPMENT ID
+            string equipmentid = irocvdata.EQUIPMENTID;
+            WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+            _strLog += "Equipment ID: " + equipmentid;
+
+            //* TRAY ID
+            string trayid = irocvdata.TRAYID;
+            WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
+            _strLog += ", TRAY ID: " + trayid;
+
+            //* RECIPE ID
+            string recipeid = irocvdata.RECIPEID;
+            WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
+            _strLog += ", RECIPE ID: " + recipeid;
+
+            //* CELL ID
+            string[] cellids = irocvdata.CELLID;
+            WriteValue("ns=2;s=Equipment/CellID", cellids, (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ":" + cellids[nIndex];
+
+            //* IR Values
+            double[] irs = irocvdata.IR_AFTERVALUE;
+            //string[] sIRs = irs.ToString().Split(',');
+            string[] strIRs = Array.ConvertAll(irs, x => x.ToString());
+            for (int nIndex = 0; nIndex < irs.Length; nIndex++)
+                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ":" + irs[nIndex].ToString();
+            WriteValue("ns=2;s=Equipment/IR", strIRs, (int)EnumDataType.dtUInt32Arr);
+
+            //* OCV Values
+            double[] ocvs = irocvdata.OCV;
+            string[] strOCVs = Array.ConvertAll(ocvs, x => x.ToString());
+            WriteValue("ns=2;s=Equipment/OCV", strOCVs, (int)EnumDataType.dtUInt32Arr);
+        }
+        public bool ReadFOEQR2_2(int stageno)
+        {
+            //* Acknowledgement No
+            _strLog = "Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+
+            //* Save Log
+            SaveLog(stageno, "FOEQR1.1 MES -> IROCV", _strLog);
+
+            bool bAck = _iMesAcknowledgeNo == 1 ? true : false;
+            return bAck;
+        }
+        #endregion
+
+        #region Version 1. - MES와 IROCV간 주고 받는 Sequence 별로 구현 - MES Sequence Read/Write
         /// <summary>
         /// 1.12 Request Tray Information (Send Tray ID irocv -> mes)
         /// </summary>
@@ -657,10 +764,6 @@ namespace DHS.EQUIPMENT
             tag.tagDataType = EnumDataType.dtString;
             EquipTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=Equipment/RecipeID";
-            tag.tagDataType = EnumDataType.dtString;
-            EquipTagList.Add(tag);
-
             tag.tagName = "ns=2;s=Equipment/CellID";
             tag.tagDataType = EnumDataType.dtStringArr;
             EquipTagList.Add(tag);
@@ -673,8 +776,8 @@ namespace DHS.EQUIPMENT
             tag.tagDataType = EnumDataType.dtUInt32Arr;
             EquipTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=Equipment/Result";
-            tag.tagDataType = EnumDataType.dtUInt32Arr;
+            tag.tagName = "ns=2;s=Equipment/CellStatus";
+            tag.tagDataType = EnumDataType.dtStringArr;
             EquipTagList.Add(tag);
             #endregion
         }
@@ -690,6 +793,14 @@ namespace DHS.EQUIPMENT
             tag.tagDataType = EnumDataType.dtUInt32;
             MesTagList.Add(tag);
 
+            tag.tagName = "ns=2;s=Mes/ErrorCode";
+            tag.tagDataType = EnumDataType.dtUInt32;
+            MesTagList.Add(tag);
+
+            tag.tagName = "ns=2;s=Mes/ErrorMessage";
+            tag.tagDataType = EnumDataType.dtString;
+            MesTagList.Add(tag);
+
             tag.tagName = "ns=2;s=Mes/EquipmentID";
             tag.tagDataType = EnumDataType.dtString;
             MesTagList.Add(tag);
@@ -698,12 +809,8 @@ namespace DHS.EQUIPMENT
             tag.tagDataType = EnumDataType.dtString;
             MesTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=Mes/RecipeID";
+            tag.tagName = "ns=2;s=Mes/TrayStatusCode";
             tag.tagDataType = EnumDataType.dtString;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/Bypass";
-            tag.tagDataType = EnumDataType.dtBoolean;
             MesTagList.Add(tag);
 
             tag.tagName = "ns=2;s=Mes/CellID";

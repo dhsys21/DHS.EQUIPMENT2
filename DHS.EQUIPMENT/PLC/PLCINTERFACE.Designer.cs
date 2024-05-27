@@ -61,7 +61,7 @@ namespace DHS.EQUIPMENT
             this.radpnl_OperationMode.Location = new System.Drawing.Point(25, 25);
             this.radpnl_OperationMode.Name = "radpnl_OperationMode";
             this.radpnl_OperationMode.Padding = new System.Windows.Forms.Padding(5);
-            this.radpnl_OperationMode.Size = new System.Drawing.Size(936, 534);
+            this.radpnl_OperationMode.Size = new System.Drawing.Size(936, 734);
             this.radpnl_OperationMode.TabIndex = 11;
             this.radpnl_OperationMode.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_OperationMode.GetChildAt(0))).Text = "";
@@ -93,7 +93,7 @@ namespace DHS.EQUIPMENT
             this.pnl_PlcInterface.Location = new System.Drawing.Point(5, 94);
             this.pnl_PlcInterface.Name = "pnl_PlcInterface";
             this.pnl_PlcInterface.Padding = new System.Windows.Forms.Padding(10);
-            this.pnl_PlcInterface.Size = new System.Drawing.Size(926, 435);
+            this.pnl_PlcInterface.Size = new System.Drawing.Size(926, 635);
             this.pnl_PlcInterface.TabIndex = 51;
             // 
             // dgvPLC1
@@ -106,7 +106,7 @@ namespace DHS.EQUIPMENT
             this.dgvPLC1.RowHeadersVisible = false;
             this.dgvPLC1.RowHeadersWidth = 51;
             this.dgvPLC1.RowTemplate.Height = 23;
-            this.dgvPLC1.Size = new System.Drawing.Size(450, 415);
+            this.dgvPLC1.Size = new System.Drawing.Size(450, 615);
             this.dgvPLC1.TabIndex = 0;
             // 
             // dgvPC1
@@ -120,7 +120,7 @@ namespace DHS.EQUIPMENT
             this.dgvPC1.RowHeadersVisible = false;
             this.dgvPC1.RowHeadersWidth = 51;
             this.dgvPC1.RowTemplate.Height = 23;
-            this.dgvPC1.Size = new System.Drawing.Size(450, 415);
+            this.dgvPC1.Size = new System.Drawing.Size(450, 615);
             this.dgvPC1.TabIndex = 1;
             // 
             // radpnl_PLCTEST
@@ -246,7 +246,7 @@ namespace DHS.EQUIPMENT
             // PLCINTERFACE
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1359, 565);
+            this.ClientSize = new System.Drawing.Size(1359, 765);
             this.Controls.Add(this.radpnl_PLCTEST);
             this.Controls.Add(this.radpnl_OperationMode);
             this.MaximizeBox = false;

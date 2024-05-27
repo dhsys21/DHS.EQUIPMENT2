@@ -55,29 +55,61 @@ namespace DHS.EQUIPMENT
                 dgvPLCs[nIndex].Columns.Add("002", "PLC Name");
                 dgvPLCs[nIndex].Columns.Add("003", "PLC Value");
 
-                dgvPLCs[nIndex].Columns[0].Width = 119;
+                dgvPLCs[nIndex].Columns[0].Width = 104;
                 dgvPLCs[nIndex].Columns[1].Width = 170;
                 dgvPLCs[nIndex].Columns[2].Width = 156;
 
                 //* 행 추가
-                dgvPLCs[nIndex].Rows.Add(16);
+                dgvPLCs[nIndex].Rows.Add(16 + 30); //* PLC SYS 정보 추가
 
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_HEART_BEAT), "PLC HEART BEAT", 0);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_ATUO_MANUAL), "PLC AUTO/MANUAL", 1);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_ERROR), "PLC ERROR", 2);
+                int nRowIndex = 0;
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_HEART_BEAT), "PLC HEART BEAT", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_ATUO_MANUAL), "PLC AUTO/MANUAL", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_ERROR), "PLC ERROR", nRowIndex++);
                 
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_IN), "PLC TRAY IN", 3);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_DOWN), "PLC TRAY DOWN", 4);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_UP), "PLC TRAY UP", 5);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_JOB_CHANGE), "PLC JOB CHANGE", 6);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_READY_COMPLETE), "PLC READY COMPLETE", 7);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_UNLOADING_COMPLETE), "PLC UNLOAD COMPLETE", 8);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, 9, "", 9);
-                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_ID), "PLC TRAY ID", 10);
-
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_IN), "PLC TRAY IN", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_DOWN), "PLC TRAY DOWN", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_UP), "PLC TRAY UP", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_JOB_CHANGE), "PLC JOB CHANGE", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_READY_COMPLETE), "PLC READY COMPLETE", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_UNLOADING_COMPLETE), "PLC UNLOAD COMPLETE", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, nRowIndex, "", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, (_Constant.PLC_TRAY_ID), "PLC TRAY ID", nRowIndex++);
 
                 dgvPLCs[nIndex].ScrollBars = ScrollBars.Both;
                 dgvPLCs[nIndex].PerformLayout();
+                #endregion
+
+                #region PLC SYSTEM INFO
+                nRowIndex = 13;
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, 9999, "EQUIPMENT INFORMATION", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_INTERFACE_VERSION_PROJECT, "PLC INTERFACE VERSION", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_EQUIPMENT_NAME, "PLC EQUIPMENT NAME", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_EQUIPMENT_TYPE_ID, "EQUIPMENT TYPE ID", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_LINE_ID, "LINE ID", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_AREA_ID, "AREA ID", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_VENDOR_ID, "VENDOR ID", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_EQUIPMENT_ID, "EQUIPMENT ID", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STATE, "STATE", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_MODE, "MODE", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_BLOCKED, "BLOCKED", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STARVED, "STARVED", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_CURRNET_SPEED, "CURRENT SPEED", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_DESIGNED_SPEED, "DESIGN SPEED", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_TOTAL_COUNTER, "TOTAL COUNTER", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STAND_STILL_REASON, "STAND STILL REASON", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT0_COLOR, "STACK LIGHT 0 COLOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT0_COLOR, "STACK LIGHT 0 BEHAVIOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT1_COLOR, "STACK LIGHT 1 COLOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT1_COLOR, "STACK LIGHT 1 BEHAVIOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT2_COLOR, "STACK LIGHT 2 COLOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT2_COLOR, "STACK LIGHT 2 BEHAVIOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT3_COLOR, "STACK LIGHT 3 COLOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT3_COLOR, "STACK LIGHT 3 BEHAVIOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT4_COLOR, "STACK LIGHT 4 COLOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT4_COLOR, "STACK LIGHT 4 BEHAVIOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT5_COLOR, "STACK LIGHT 5 COLOR", nRowIndex++);
+                AddTitleGridView(dgvPLCs[nIndex], nIndex, _Constant.PLC_STACK_LIGHT5_COLOR, "STACK LIGHT 5 BEHAVIOR", nRowIndex++);
                 #endregion
 
                 #region PC
@@ -91,17 +123,18 @@ namespace DHS.EQUIPMENT
 
                 dgvPCs[nIndex].Rows.Add(16);
 
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_HEART_BEAT, "PC HEART BEAT", 0);
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_AUTO_MANUAL, "PC AUTO MANUAL", 1);
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_ERROR, "PC ERROR", 2);
+                nRowIndex = 0;
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_HEART_BEAT, "PC HEART BEAT", nRowIndex++);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_AUTO_MANUAL, "PC AUTO MANUAL", nRowIndex++);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_ERROR, "PC ERROR", nRowIndex++);
                 
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_TRAY_OUT, "PC TRAY OUT", 3);
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_TRAY_DOWN, "PC TRAY DOWN", 4);
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_TRAY_UP, "PC TRAY UP", 5);
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_MEASUREMENT_WAIT, "PC MEASUREMENT WAIT", 6);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_TRAY_OUT, "PC TRAY OUT", nRowIndex++);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_TRAY_DOWN, "PC TRAY DOWN", nRowIndex++);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_TRAY_UP, "PC TRAY UP", nRowIndex++);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_MEASUREMENT_WAIT, "PC MEASUREMENT WAIT", nRowIndex++);
 
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_RUNNING, "PC RUNNING", 7);
-                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_MEASUREMENT_COMPLETE, "PC MEASUREMENT COMPLETE", 8);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_RUNNING, "PC RUNNING", nRowIndex++);
+                AddTitleGridView(dgvPCs[nIndex], nIndex, _Constant.PC_MEASUREMENT_COMPLETE, "PC MEASUREMENT COMPLETE", nRowIndex++);
 
                 dgvPCs[nIndex].ScrollBars = ScrollBars.Both;
                 dgvPCs[nIndex].PerformLayout();
@@ -115,6 +148,8 @@ namespace DHS.EQUIPMENT
             ////else if (dgv.Name.Contains("dgvPC")) sAddress = "MW" + (11000 + (iAddress * 2)).ToString();
             if (dgv.Name.Contains("dgvPLC")) sAddress = (10000 + iAddress).ToString();
             else if (dgv.Name.Contains("dgvPC")) sAddress = (11000 + iAddress).ToString();
+
+            if (iAddress == 9999) sAddress = string.Empty;
             
             dgv.Rows[nRow].Cells[0].Value = sAddress;
             dgv.Rows[nRow].Cells[1].Value = sName;
@@ -124,6 +159,13 @@ namespace DHS.EQUIPMENT
         {
             dgv.Rows[nRow].Cells[2].Value = pData[iAddress].ToString();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dgv">DataGridView 이름</param>
+        /// <param name="iAddress"> 데이터의 시작 주소</param>
+        /// <param name="pData">데이터</param>
+        /// <param name="nRow">DataGridView의 열번호</param>
         private void AddDataGridView(DataGridView dgv, int iAddress, object[] pData, int nRow)
         {
             if(pData[iAddress] != null)
@@ -133,19 +175,20 @@ namespace DHS.EQUIPMENT
         {
             dgv.Rows[nRow].Cells[2].Value = value;
         }
-        public void SetDataToGrid(int[] pcData, int[] plcData, int nIndex)
+        public void SetDataToGrid(int[] pcData, int[] plcData, int[] plcSysData, int nIndex)
         {
             #region PLC DATA VIEW
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_HEART_BEAT, plcData, 0);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ATUO_MANUAL, plcData, 1);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ERROR, plcData, 2);
+            int nRowIndex = 0;
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_HEART_BEAT, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ATUO_MANUAL, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ERROR, plcData, nRowIndex++);
             
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_IN, plcData, 3);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_DOWN, plcData, 4);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_UP, plcData, 5);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_JOB_CHANGE, plcData, 6);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_READY_COMPLETE, plcData, 7);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_UNLOADING_COMPLETE, plcData, 8);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_IN, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_DOWN, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_UP, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_JOB_CHANGE, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_READY_COMPLETE, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_UNLOADING_COMPLETE, plcData, nRowIndex++);
             AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_ID, plcData, 9);
             #endregion
 
@@ -164,20 +207,32 @@ namespace DHS.EQUIPMENT
         /// <summary>
         /// nIndex => grid view에서 순서
         /// </summary>
-        public void SetDataToGrid(object[] pcData, object[] plcData, int nIndex)
+        public void SetDataToGrid(object[] pcData, object[] plcData, object[] plcSysData, int nIndex)
         {
             #region PLC DATA VIEW
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_HEART_BEAT, plcData, 0);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ATUO_MANUAL, plcData, 1);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ERROR, plcData, 2);
+            int nRowIndex = 0;
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_HEART_BEAT, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ATUO_MANUAL, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_ERROR, plcData, nRowIndex++);
 
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_IN, plcData, 3);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_DOWN, plcData, 4);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_UP, plcData, 5);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_JOB_CHANGE, plcData, 6);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_READY_COMPLETE, plcData, 7);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_UNLOADING_COMPLETE, plcData, 8);
-            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_ID, plcData, 10);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_IN, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_DOWN, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_UP, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_JOB_CHANGE, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_READY_COMPLETE, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_UNLOADING_COMPLETE, plcData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_ID, plcData, nRowIndex++);
+            #endregion
+
+            #region PLC SYS Data VIEW
+            nRowIndex = nRowIndex + 2;
+            AddDataGridView(dgvPLCs[nIndex], 0, plcSysData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], 1, plcSysData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], 2, plcSysData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], 3, plcSysData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], 4, plcSysData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], 5, plcSysData, nRowIndex++);
+            AddDataGridView(dgvPLCs[nIndex], 6, plcSysData, nRowIndex++);
             #endregion
 
             #region PC DATA VIEW
