@@ -228,13 +228,6 @@ namespace DHS.EQUIPMENT
             nRowIndex = 14;
             for (int i = 0; i < plcSysData.Length; i++)
                 AddDataGridView(dgvPLCs[nIndex], i, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 0, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 1, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 2, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 3, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 4, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 5, plcSysData, nRowIndex++);
-            //AddDataGridView(dgvPLCs[nIndex], 6, plcSysData, nRowIndex++);
             #endregion
 
             #region PC DATA VIEW
