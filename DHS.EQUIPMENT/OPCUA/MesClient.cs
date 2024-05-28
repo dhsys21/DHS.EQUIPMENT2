@@ -463,7 +463,7 @@ namespace DHS.EQUIPMENT
             SaveLog(stageno, "FOEQR2.1 MES  -> IROCV", _strLog);
 
             //* irocvdata에 mes data 저장.
-            irocvdata[stageno].InitData();
+            //irocvdata[stageno].InitData();
             irocvdata[stageno].EQUIPMENTID = equipid; ;
             irocvdata[stageno].TRAYID = trayid;
             irocvdata[stageno].TRAYSTATUSCODE = traystatuscode;
@@ -532,10 +532,12 @@ namespace DHS.EQUIPMENT
             //* ERROR CODE
             int errorcode = (int)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
             _strLog += ", ERROR CODE: " + errorcode.ToString();
+            irocvdata[stageno].ERRORCODE = errorcode;
 
             //* ERROR MESSAGE
             string errormsg = (string)ReadValue("ns=2;s=Mes/ErrorMessage", (int)EnumDataType.dtString);
             _strLog += ", ERROR MESSAGE: " + errormsg;
+            irocvdata[stageno].ERRORMESSAGE = errormsg;
 
             //* Save Log
             SaveLog(stageno, "FOEQR2.2 MES -> IROCV", _strLog);
@@ -623,7 +625,7 @@ namespace DHS.EQUIPMENT
             SaveLog(stageno, "FOEQR1.7 MES  -> IROCV", _strLog);
 
             //* irocvdata에 mes data 저장.
-            irocvdata[stageno].InitData();
+            //irocvdata[stageno].InitData();
             irocvdata[stageno].EQUIPMENTID = equipid; ;
             irocvdata[stageno].TRAYID = trayid;
             //irocvdata[stageno].RECIPEID = recipeid;

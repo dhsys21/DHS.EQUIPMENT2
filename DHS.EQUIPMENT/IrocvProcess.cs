@@ -1059,13 +1059,16 @@ namespace DHS.EQUIPMENT
         private void AutoInspection_StepEnd(int stageno)
         {
             bool bAck = false;
+            int remeasurecellcount = irocvdata[stageno].REMEASURECELLCOUNT / irocvdata[stageno].CELLCOUNT;
             switch (nInspectionStep)
             {
                 case 0:
                     //* Remeasure check
-                    if(siemensplc.PLCTRAYDOWN == 1)
+                    //* irocvdata[stageno].REMEASURECELLCOUNT > 0 config에서 설정한 %를 넘어가는 지 확인
+                    //* remeasure count확인
+                    if (siemensplc.PLCTRAYDOWN == 1)
                     {
-                        if (irocvdata[stageno].REMEASURECELLCOUNT > 0)
+                        if (remeasurecellcount > _system.REMEASUREPERCENT || irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
                         {
                             PLC_TRAYUP(stageno);
                             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
@@ -1086,7 +1089,7 @@ namespace DHS.EQUIPMENT
                     //* FORIR2.2 2024 05 28 수정
                     //mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
                     mesclient.WriteFOEQR2_2(stageno, irocvdata[stageno]);
-                    nInspectionStep = 2;
+                    nInspectionStep = 3;
                     break;
                 case 2:
                     //* MES - Verify Acknowledge No.
@@ -1102,7 +1105,9 @@ namespace DHS.EQUIPMENT
                     //* MES - Request Process Result (트레이 배출 또는 재측정)
                     //* MES -> IROCV FOEQR1.13 (Process Result) 1 : Tray Emission  2: Tray Retry
                     //* 20240521 Process Result 삭제. IR/OCV에서 자체 판단하여 재측정 후 내보냄.
-                    irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
+                    //* FORIR2.2 2024 05 28 수정
+                    //irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
+                    bAck = mesclient.ReadFOEQR2_2(stageno);
                     nInspectionStep = 4;
                     break;
                 case 4:
@@ -1248,7 +1253,7 @@ namespace DHS.EQUIPMENT
         {
             //irocv[stageno].AMS = false;
             //irocv[stageno].AMF = true;
-            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepEnd;
+            //irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepEnd;
 
             if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
             {
@@ -1264,6 +1269,9 @@ namespace DHS.EQUIPMENT
             //* STP to IROCV
             irocv[stageno].AMS = false;
             irocv[stageno].AMF = true;
+
+            //* 
+            irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepEnd;
 
             //* Tray Down to PLC
             PLC_TRAYDOWN(stageno);

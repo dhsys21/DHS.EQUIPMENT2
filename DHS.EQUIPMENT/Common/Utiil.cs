@@ -353,6 +353,9 @@ namespace DHS.EQUIPMENT
 
             string file;
             file = "TRAY ID," + irocvdata.TRAYID.Replace("?", "TEST").Replace("\0", string.Empty) + Environment.NewLine;
+            file += "EQUIPMENT ID," + irocvdata.EQUIPMENTID + Environment.NewLine;
+            file += "ERROR CODE," + irocvdata.ERRORCODE.ToString() + Environment.NewLine;
+            file += "ERROR MESSAGE," + irocvdata.ERRORMESSAGE + Environment.NewLine;
             //file = file + "CELL MODEL," + irocvdata.CELLMODEL + Environment.NewLine;
             //file = file + "LOT NUMBER," + irocvdata.LOTNUMBER + Environment.NewLine;
             file = file + "ARRIVE TIME," + irocvdata.ARRIVETIME.ToString("yyyy/MM/dd HH:mm:ss") + Environment.NewLine;

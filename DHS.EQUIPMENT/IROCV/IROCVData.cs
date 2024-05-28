@@ -52,9 +52,11 @@ namespace DHS.EQUIPMENT
         private double[] _dOCV = new double[_Constant.ChannelCount];
         //* Measure Result 0 - OK, 2 - IR Error, 3 - OCV Error
         private int[] _iMEASURERESULT = new int[_Constant.ChannelCount];
-        //* Remeasure Cell Count
+        //* Remeasure Cell Count (ng count 갯수)
         private int _iREMEASURECELLCOUNT;
-        //* Remeasure Mode true - remeasure ng channel, false - remeausre all or test all
+        //* Remeasure Count (자동 재측정 횟수)
+        private int _iREMEASURECOUNT;
+        //* Remeasure Mode true - remeasure ng channel(부분재측정), false - remeausre all or test all(전체재측정)
         private bool _bREMEASURE;
         //* Remeasure Count per every cell
         private int[] _iCellNgCount = new int[_Constant.ChannelCount];
@@ -95,6 +97,7 @@ namespace DHS.EQUIPMENT
         public double[] OCV { get => _dOCV; set => _dOCV = value; }
         public int[] MEASURERESULT { get => _iMEASURERESULT; set => _iMEASURERESULT = value; }
         public int REMEASURECELLCOUNT { get => _iREMEASURECELLCOUNT; set => _iREMEASURECELLCOUNT = value; }
+        public int REMEASURECOUNT { get => _iREMEASURECOUNT; set => _iREMEASURECOUNT = value; }
         public bool REMEASURE { get => _bREMEASURE; set => _bREMEASURE = value; }
         public int[] CELLNGCOUNT { get => _iCellNgCount; set => _iCellNgCount = value; }
         public int[] IRRESULT { get => _iIRRESULT; set => _iIRRESULT = value; }
@@ -116,7 +119,7 @@ namespace DHS.EQUIPMENT
         public string TRAYSTATUSCODE { get => _sTRAYSTATUSCODE; set => _sTRAYSTATUSCODE = value; }
         public int ERRORCODE { get => _iERRORCODE; set => _iERRORCODE = value; }
         public string ERRORMESSAGE { get => _sERRORMESSAGE; set => _sERRORMESSAGE = value; }
-
+        
         #endregion
 
         public IROCVData()
@@ -147,6 +150,8 @@ namespace DHS.EQUIPMENT
             _bFIRST = true;
             _bREMEASURE = false;
             _iMESRESULT = 0; //* 1 -> Tray Emission, 2 -> Tray Retry
+            _iREMEASURECELLCOUNT = 0;
+            _iREMEASURECOUNT = 0;
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
