@@ -262,9 +262,10 @@ namespace DHS.EQUIPMENT
         public void SetOcvValue(int channel, double ocv)
         {
             int channel_no = _system.CHANNELMAPPING[channel] - 1;
-            if (ocv == 10000) _dOCV[channel_no] = 0.0;
+            if (ocv >= 10000) 
+                _dOCV[channel_no] = 0.0;
             else
-            _dOCV[channel_no] = ocv - _dOCV_OFFSET;
+                _dOCV[channel_no] = ocv - _dOCV_OFFSET;
 
             //* OCV 값을 측정을 했는지 확인
             _iOCVRESULT[channel_no] = 1;

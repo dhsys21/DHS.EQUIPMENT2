@@ -783,5 +783,10 @@ namespace DHS.EQUIPMENT
             radbtn_MsaStart.Text = StrLang.BTNMSASTART;
             radbtn_MsaStop.Text = StrLang.BTNMSASTOP;
         }
+
+        private void radBtnSaveData_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
