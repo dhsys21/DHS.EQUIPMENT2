@@ -357,12 +357,18 @@ namespace DHS.EQUIPMENT
             {
                 for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
                 {
+                    //* IR 처리
                     if ((nIndex == channel) && irocvdata.IRRESULT[nIndex] == 1)
                     {
                         if (equipMode == enumEquipMode.OFFSET)
                         {
                             SetValueToLabel(lblIRMeasure[nIndex], irocvdata.IR_ORIGINALVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
                             SetValueToChart(nIndex, irocvdata.IR_ORIGINALVALUE[nIndex], IRCHART);
+                        }
+                        else if(equipMode == enumEquipMode.MANUAL)
+                        {
+                            SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
+                            SetValueToChart(nIndex, irocvdata.IR_AFTERVALUE[nIndex], IRCHART);
                         }
                         else
                         {
@@ -374,10 +380,23 @@ namespace DHS.EQUIPMENT
                         }
 
                     }
+
+                    //* OCV 처리
                     if ((nIndex == channel) && irocvdata.OCVRESULT[nIndex] == 1)
                     {
-                        SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("F2"), irocvdata.OCVCOLOR[nIndex]);
-                        SetValueToChart(nIndex, irocvdata.OCV[nIndex], OCVCHART);
+                        if(equipMode == enumEquipMode.MANUAL || equipMode == enumEquipMode.OFFSET)
+                        {
+                            SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("F2"), irocvdata.OCVCOLOR[nIndex]);
+                            SetValueToChart(nIndex, irocvdata.OCV[nIndex], OCVCHART);
+                        }
+                        else if(equipMode == enumEquipMode.AUTO)
+                        {
+                            if (irocvdata.CELL[nIndex] == 1)
+                            {
+                                SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("F2"), irocvdata.OCVCOLOR[nIndex]);
+                                SetValueToChart(nIndex, irocvdata.OCV[nIndex], OCVCHART);
+                            }
+                        }
                     }
                 }
             }

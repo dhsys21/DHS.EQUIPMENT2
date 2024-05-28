@@ -241,15 +241,21 @@ namespace DHS.EQUIPMENT
             //* IR 값을 측정을 했는지 확인
             _iIRRESULT[channel_no] = 1;
 
-            if(equipMode == enumEquipMode.OFFSET)
+            if (equipMode == enumEquipMode.OFFSET)
             {
                 if (_dIR_ORIGINALVALUE[channel_no] == 0) _clrIR[channel_no] = _Constant.ColorIRNG;
                 else _clrIR[channel_no] = _Constant.ColorMeasure;
             }
             else
             {
-                if (_dIR_AFTERVALUE[channel_no] == 0) _clrIR[channel_no] = _Constant.ColorIRNG;
-                else _clrIR[channel_no] = _Constant.ColorIR;
+                if (_dIR_AFTERVALUE[channel_no] == 0) 
+                    _clrIR[channel_no] = _Constant.ColorIRNG;
+                else if (_dIR_AFTERVALUE[channel_no] < _system.IRMIN || _dIR_AFTERVALUE[channel_no] > _system.IRMAX)
+                    _clrIR[channel_no] = _Constant.ColorIRNG;
+                else if (_dIR_AFTERVALUE[channel_no] < _system.IRREMEAMIN || _dIR_AFTERVALUE[channel_no] > _system.IRREMEAMAX)
+                    _clrIR[channel_no] = _Constant.ColorIRNG;
+                else 
+                    _clrIR[channel_no] = _Constant.ColorIR;
             }
             
         }
@@ -263,12 +269,16 @@ namespace DHS.EQUIPMENT
             //* OCV 값을 측정을 했는지 확인
             _iOCVRESULT[channel_no] = 1;
 
-            if (_dOCV[channel_no] < 100) _clrOCV[channel_no] = _Constant.ColorOCVNG;
-            
-            if(CELL[channel_no] == 0 && _dOCV[channel_no] >= _system.OCVMINVALUE)
-            {
+            if (CELL[channel_no] == 0 && _dOCV[channel_no] >= _system.OCVMINVALUE)
                 _clrOCV[channel_no] = _Constant.ColorOutFlow;
-            }
+            else if (_dOCV[channel_no] < 100)
+                _clrOCV[channel_no] = _Constant.ColorOCVNG;
+            else if (_dOCV[channel_no] < _system.OCVMIN || _dOCV[channel_no] > _system.OCVMAX)
+                _clrOCV[channel_no] = _Constant.ColorOCVNG;
+            else if (_dOCV[channel_no] < _system.OCVREMEAMIN || _dOCV[channel_no] > _system.OCVREMEAMAX)
+                _clrOCV[channel_no] = _Constant.ColorOCVNG;
+            else
+                _clrOCV[channel_no] = _Constant.ColorOCV;
         }
         //* Tray In 시간
         public void SetArriveTime()
