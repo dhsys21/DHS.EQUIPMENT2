@@ -149,7 +149,7 @@ namespace DHS.EQUIPMENT
             if (dgv.Name.Contains("dgvPLC")) sAddress = (10000 + iAddress).ToString();
             else if (dgv.Name.Contains("dgvPC")) sAddress = (11000 + iAddress).ToString();
 
-            if (iAddress == 9999) sAddress = string.Empty;
+            if (iAddress == 9999) sAddress = "Address";
             
             dgv.Rows[nRow].Cells[0].Value = sAddress;
             dgv.Rows[nRow].Cells[1].Value = sName;
@@ -225,14 +225,16 @@ namespace DHS.EQUIPMENT
             #endregion
 
             #region PLC SYS Data VIEW
-            nRowIndex = nRowIndex + 2;
-            AddDataGridView(dgvPLCs[nIndex], 0, plcSysData, nRowIndex++);
-            AddDataGridView(dgvPLCs[nIndex], 1, plcSysData, nRowIndex++);
-            AddDataGridView(dgvPLCs[nIndex], 2, plcSysData, nRowIndex++);
-            AddDataGridView(dgvPLCs[nIndex], 3, plcSysData, nRowIndex++);
-            AddDataGridView(dgvPLCs[nIndex], 4, plcSysData, nRowIndex++);
-            AddDataGridView(dgvPLCs[nIndex], 5, plcSysData, nRowIndex++);
-            AddDataGridView(dgvPLCs[nIndex], 6, plcSysData, nRowIndex++);
+            nRowIndex = 14;
+            for (int i = 0; i < plcSysData.Length; i++)
+                AddDataGridView(dgvPLCs[nIndex], i, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 0, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 1, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 2, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 3, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 4, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 5, plcSysData, nRowIndex++);
+            //AddDataGridView(dgvPLCs[nIndex], 6, plcSysData, nRowIndex++);
             #endregion
 
             #region PC DATA VIEW

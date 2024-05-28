@@ -366,8 +366,9 @@ namespace DHS.EQUIPMENT
             util.saveConfig(filename, "EQUIPMENT_ID", "ID", _system.EQUIPMENTID);
             util.saveConfig(filename, "IROCV", "IPADDRESS", _system.IPADDRESS[stageno]);
             util.saveConfig(filename, "OUTFLOW", "OCV_MIN", _system.OCVMINVALUE.ToString());
-            util.saveConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT", _system.AUTOREMEASURECOUNT.ToString());
-            util.saveConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT", _system.AUTOREMEASURECOUNT.ToString());
+            util.saveConfig(filename, "REMEASURE", "REMEASURE_COUNT", _system.REMEASURECOUNT.ToString());
+            util.saveConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT", _system.REMEASUREMAXCOUNT.ToString());
+            util.saveConfig(filename, "REMEASURE", "REMEASURE_PERCENT", _system.REMEASUREPERCENT.ToString());
 
             //* IR SPEC
             util.saveConfig(filename, "SPEC", "IRMIN", _system.IRMIN.ToString());
@@ -391,8 +392,9 @@ namespace DHS.EQUIPMENT
                     _system.EQUIPMENTID = util.readConfig(filename, "EQUIPMENT_ID", "ID");
                     irocvform[stageno].SetStageTitle(_system.EQUIPMENTID);
                     _system.IPADDRESS[stageno] = util.readConfig(filename, "IROCV", "IPADDRESS");
-                    _system.AUTOREMEASURECOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "AUTO_REMEASURE_COUNT"));
+                    _system.REMEASURECOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_COUNT"));
                     _system.REMEASUREMAXCOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT"));
+                    _system.REMEASUREPERCENT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_PERCENT"));
 
                     irocvconfig[stageno].SetStageSystemValue();
 

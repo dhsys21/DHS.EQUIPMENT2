@@ -22,8 +22,9 @@ namespace DHS.EQUIPMENT
         private int _iMESPort;
         private string _sEquipmentID;
 
-        private int _iAutoRemeasureCount;
+        private int _iRemeasureCount;
         private int _iRemeasureMaxCount;
+        private int _iRemeasurePercent;
         private bool _bUnuseMes;
 
         private int _iPLCChannelNo;
@@ -81,9 +82,9 @@ namespace DHS.EQUIPMENT
         public string EQUIPMENTID { get => _sEquipmentID; set => _sEquipmentID = value; }
 
         public double OCVMINVALUE { get => _dOcvMinValue; set => _dOcvMinValue = value; }
-        public int AUTOREMEASURECOUNT { get => _iAutoRemeasureCount; set => _iAutoRemeasureCount = value; }
+        public int REMEASURECOUNT { get => _iRemeasureCount; set => _iRemeasureCount = value; }
         public int REMEASUREMAXCOUNT { get => _iRemeasureMaxCount; set => _iRemeasureMaxCount = value; }
-
+        public int REMEASUREPERCENT { get => _iRemeasurePercent; set => _iRemeasurePercent = value; }
         public int PLCCHANNELNO { get => _iPLCChannelNo; set => _iPLCChannelNo = value; }
         public int PLCNETWORKNUMBER { get => _iPLCNetworkNumber; set => _iPLCNetworkNumber = value; }
         public int PLCSTATIONNUMBER { get => _iPLCStationNumber; set => _iPLCStationNumber = value; }
@@ -120,6 +121,7 @@ namespace DHS.EQUIPMENT
         public double OCVREMEAMIN { get => _dOCVRemeaMin; set => _dOCVRemeaMin = value; }
         public double OCVREMEAMAX { get => _dOCVRemeaMax; set => _dOCVRemeaMax = value; }
         public bool UNUSEMES { get => _bUnuseMes; set => _bUnuseMes = value; }
+        
 
         private static CEquipmentData equipmentdata;
 

@@ -2453,7 +2453,7 @@ namespace DHS.EQUIPMENT
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "IR/OCV INSPECTION 2024 05 27";
+            this.Text = "IR/OCV INSPECTION 2024 05 28";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlTitle.ResumeLayout(false);

@@ -38,7 +38,7 @@ namespace DHS.EQUIPMENT
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.tbAutoRemeasureCount = new System.Windows.Forms.TextBox();
+            this.tbRemeasureCount = new System.Windows.Forms.TextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
@@ -71,13 +71,13 @@ namespace DHS.EQUIPMENT
             this.tbIRRemeaMax = new System.Windows.Forms.TextBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.label6 = new System.Windows.Forms.Label();
-            this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
             this.tbRemeasureMaxCount = new System.Windows.Forms.TextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.label7 = new System.Windows.Forms.Label();
             this.radPanel9 = new Telerik.WinControls.UI.RadPanel();
-            this.label8 = new System.Windows.Forms.Label();
             this.chkUnuseMes = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbRemeasurePercent = new System.Windows.Forms.TextBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_processinfo)).BeginInit();
             this.radpnl_processinfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radlblOffsetChannel)).BeginInit();
@@ -108,11 +108,10 @@ namespace DHS.EQUIPMENT
             this.radPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
-            this.radPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel9)).BeginInit();
             this.radPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             this.SuspendLayout();
             // 
             // radpnl_processinfo
@@ -214,29 +213,33 @@ namespace DHS.EQUIPMENT
             // 
             // radPanel2
             // 
-            this.radPanel2.Controls.Add(this.tbAutoRemeasureCount);
+            this.radPanel2.Controls.Add(this.tbRemeasurePercent);
+            this.radPanel2.Controls.Add(this.radLabel4);
+            this.radPanel2.Controls.Add(this.tbRemeasureMaxCount);
+            this.radPanel2.Controls.Add(this.tbRemeasureCount);
+            this.radPanel2.Controls.Add(this.radLabel13);
             this.radPanel2.Controls.Add(this.radLabel2);
             this.radPanel2.Controls.Add(this.label2);
             this.radPanel2.Location = new System.Drawing.Point(386, 12);
             this.radPanel2.Name = "radPanel2";
             this.radPanel2.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel2.Size = new System.Drawing.Size(368, 64);
+            this.radPanel2.Size = new System.Drawing.Size(368, 134);
             this.radPanel2.TabIndex = 12;
             this.radPanel2.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // tbAutoRemeasureCount
+            // tbRemeasureCount
             // 
-            this.tbAutoRemeasureCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbAutoRemeasureCount.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.tbAutoRemeasureCount.Location = new System.Drawing.Point(180, 27);
-            this.tbAutoRemeasureCount.Name = "tbAutoRemeasureCount";
-            this.tbAutoRemeasureCount.Size = new System.Drawing.Size(177, 32);
-            this.tbAutoRemeasureCount.TabIndex = 70;
-            this.tbAutoRemeasureCount.Text = "1";
-            this.tbAutoRemeasureCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbRemeasureCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRemeasureCount.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbRemeasureCount.Location = new System.Drawing.Point(180, 27);
+            this.tbRemeasureCount.Name = "tbRemeasureCount";
+            this.tbRemeasureCount.Size = new System.Drawing.Size(177, 32);
+            this.tbRemeasureCount.TabIndex = 70;
+            this.tbRemeasureCount.Text = "3";
+            this.tbRemeasureCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // radLabel2
             // 
@@ -247,7 +250,7 @@ namespace DHS.EQUIPMENT
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(122, 32);
             this.radLabel2.TabIndex = 69;
-            this.radLabel2.Text = "Auto Remeasure";
+            this.radLabel2.Text = "Remeasure";
             this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -257,9 +260,9 @@ namespace DHS.EQUIPMENT
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
             this.label2.Location = new System.Drawing.Point(5, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 16);
+            this.label2.Size = new System.Drawing.Size(87, 16);
             this.label2.TabIndex = 50;
-            this.label2.Text = "Remeasure Repeat Count";
+            this.label2.Text = "Remeasure";
             // 
             // radPanel3
             // 
@@ -644,26 +647,11 @@ namespace DHS.EQUIPMENT
             this.label6.TabIndex = 50;
             this.label6.Text = "REMEASURE IR SPEC";
             // 
-            // radPanel8
-            // 
-            this.radPanel8.Controls.Add(this.tbRemeasureMaxCount);
-            this.radPanel8.Controls.Add(this.radLabel13);
-            this.radPanel8.Controls.Add(this.label7);
-            this.radPanel8.Location = new System.Drawing.Point(386, 82);
-            this.radPanel8.Name = "radPanel8";
-            this.radPanel8.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel8.Size = new System.Drawing.Size(368, 64);
-            this.radPanel8.TabIndex = 77;
-            this.radPanel8.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel8.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel8.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel8.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
-            // 
             // tbRemeasureMaxCount
             // 
             this.tbRemeasureMaxCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbRemeasureMaxCount.Font = new System.Drawing.Font("Times New Roman", 16F);
-            this.tbRemeasureMaxCount.Location = new System.Drawing.Point(180, 27);
+            this.tbRemeasureMaxCount.Location = new System.Drawing.Point(180, 62);
             this.tbRemeasureMaxCount.Name = "tbRemeasureMaxCount";
             this.tbRemeasureMaxCount.Size = new System.Drawing.Size(177, 32);
             this.tbRemeasureMaxCount.TabIndex = 70;
@@ -675,23 +663,12 @@ namespace DHS.EQUIPMENT
             this.radLabel13.AutoSize = false;
             this.radLabel13.BackColor = System.Drawing.Color.LightGray;
             this.radLabel13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.radLabel13.Location = new System.Drawing.Point(52, 27);
+            this.radLabel13.Location = new System.Drawing.Point(52, 62);
             this.radLabel13.Name = "radLabel13";
             this.radLabel13.Size = new System.Drawing.Size(122, 32);
             this.radLabel13.TabIndex = 69;
             this.radLabel13.Text = "Max Count";
             this.radLabel13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label7.Location = new System.Drawing.Point(5, 5);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(166, 16);
-            this.label7.TabIndex = 50;
-            this.label7.Text = "Remeasure Max Count";
             // 
             // radPanel9
             // 
@@ -700,12 +677,23 @@ namespace DHS.EQUIPMENT
             this.radPanel9.Location = new System.Drawing.Point(12, 377);
             this.radPanel9.Name = "radPanel9";
             this.radPanel9.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel9.Size = new System.Drawing.Size(368, 64);
+            this.radPanel9.Size = new System.Drawing.Size(368, 58);
             this.radPanel9.TabIndex = 78;
             this.radPanel9.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel9.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel9.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel9.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // chkUnuseMes
+            // 
+            this.chkUnuseMes.AutoSize = true;
+            this.chkUnuseMes.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkUnuseMes.Location = new System.Drawing.Point(180, 21);
+            this.chkUnuseMes.Name = "chkUnuseMes";
+            this.chkUnuseMes.Size = new System.Drawing.Size(99, 24);
+            this.chkUnuseMes.TabIndex = 51;
+            this.chkUnuseMes.Text = "Unuse MES";
+            this.chkUnuseMes.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -718,16 +706,28 @@ namespace DHS.EQUIPMENT
             this.label8.TabIndex = 50;
             this.label8.Text = "MES";
             // 
-            // chkUnuseMes
+            // tbRemeasurePercent
             // 
-            this.chkUnuseMes.AutoSize = true;
-            this.chkUnuseMes.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkUnuseMes.Location = new System.Drawing.Point(180, 21);
-            this.chkUnuseMes.Name = "chkUnuseMes";
-            this.chkUnuseMes.Size = new System.Drawing.Size(96, 24);
-            this.chkUnuseMes.TabIndex = 51;
-            this.chkUnuseMes.Text = "Unuse Mes";
-            this.chkUnuseMes.UseVisualStyleBackColor = true;
+            this.tbRemeasurePercent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbRemeasurePercent.Font = new System.Drawing.Font("Times New Roman", 16F);
+            this.tbRemeasurePercent.Location = new System.Drawing.Point(180, 98);
+            this.tbRemeasurePercent.Name = "tbRemeasurePercent";
+            this.tbRemeasurePercent.Size = new System.Drawing.Size(177, 32);
+            this.tbRemeasurePercent.TabIndex = 72;
+            this.tbRemeasurePercent.Text = "20";
+            this.tbRemeasurePercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.AutoSize = false;
+            this.radLabel4.BackColor = System.Drawing.Color.LightGray;
+            this.radLabel4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radLabel4.Location = new System.Drawing.Point(52, 98);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(122, 32);
+            this.radLabel4.TabIndex = 71;
+            this.radLabel4.Text = "Percent(%)";
+            this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // IROCVConfig
             // 
@@ -735,7 +735,6 @@ namespace DHS.EQUIPMENT
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(765, 443);
             this.Controls.Add(this.radPanel9);
-            this.Controls.Add(this.radPanel8);
             this.Controls.Add(this.radPanel6);
             this.Controls.Add(this.radPanel7);
             this.Controls.Add(this.radPanel5);
@@ -788,13 +787,11 @@ namespace DHS.EQUIPMENT
             this.radPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
-            this.radPanel8.ResumeLayout(false);
-            this.radPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel9)).EndInit();
             this.radPanel9.ResumeLayout(false);
             this.radPanel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -810,7 +807,7 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.Label label1;
         private Telerik.WinControls.UI.RadPanel radPanel2;
-        private System.Windows.Forms.TextBox tbAutoRemeasureCount;
+        private System.Windows.Forms.TextBox tbRemeasureCount;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.Label label2;
         private Telerik.WinControls.UI.RadPanel radPanel3;
@@ -843,12 +840,12 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.TextBox tbIRRemeaMax;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private System.Windows.Forms.Label label6;
-        private Telerik.WinControls.UI.RadPanel radPanel8;
         private System.Windows.Forms.TextBox tbRemeasureMaxCount;
         private Telerik.WinControls.UI.RadLabel radLabel13;
-        private System.Windows.Forms.Label label7;
         private Telerik.WinControls.UI.RadPanel radPanel9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chkUnuseMes;
+        private System.Windows.Forms.TextBox tbRemeasurePercent;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
     }
 }
