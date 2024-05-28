@@ -943,8 +943,10 @@ namespace DHS.EQUIPMENT
                 case 1:
                     //* MES - Request Tray Information
                     //* IROCV -> MES FOEQR1.12 : equipment id, tray id 쓰기
-                    mesclient.WriteFOEQR1_12(stageno, equipid, trayid);
-                    nInspectionStep = 2;
+                    //* FORIR 2.1 2024 05 28 수정
+                    //mesclient.WriteFOEQR1_12(stageno, equipid, trayid);
+                    mesclient.WriteFOEQR2_1(stageno, equipid, trayid);
+                    nInspectionStep = 3;
                     break;
                 case 2:
                     //* MES - Verify Acknowledge No.
@@ -959,18 +961,20 @@ namespace DHS.EQUIPMENT
                 case 3:
                     //* MES - Request Reservation (트레이 정보)
                     //* MES -> IROCV FOEQR1.7 (tray information)
-                    irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
-                    if (irocvdata[stageno].BYPASS == true)
-                    {
-                        //* PLC - Request Tray Out
-                        PLC_TRAYOUT(stageno, 1);
-                    }
-                    else if (irocvdata[stageno].BYPASS == false)
+                    //* FORIR 2.1 2024 05 28 수정
+                    //irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
+                    irocvdata[stageno] = mesclient.ReadFOEQR2_1(stageno);
+                    if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
                     {
                         //* MES - Display Tray Info.
                         DisplayTrayInfo(stageno, irocvdata[stageno]);
 
-                        nInspectionStep = 4;
+                        nInspectionStep = 5;
+                    }
+                    else if (irocvdata[stageno].TRAYSTATUSCODE == "DT" || irocvdata[stageno].TRAYSTATUSCODE == "NT")
+                    {
+                        //* PLC - Request Tray Out
+                        PLC_TRAYOUT(stageno, 1);
                     }
                     break;
                 case 4:
@@ -1079,7 +1083,9 @@ namespace DHS.EQUIPMENT
                 case 1:
                     //* MES - Data Collection
                     //* IROCV -> MES FOEQR1.1 (send ir, ocv data to mes)
-                    mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
+                    //* FORIR2.2 2024 05 28 수정
+                    //mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
+                    mesclient.WriteFOEQR2_2(stageno, irocvdata[stageno]);
                     nInspectionStep = 2;
                     break;
                 case 2:
@@ -1517,7 +1523,7 @@ namespace DHS.EQUIPMENT
         private void DisplayTrayInfo(int stageno, IROCVData irocvData)
         {
             irocvform[stageno].SetTrayId(irocvData.TRAYID);
-            irocvform[stageno].SetRecipeId(irocvData.RECIPEID);
+            //irocvform[stageno].SetRecipeId(irocvData.RECIPEID);
 
             IROCV_Refresh(stageno);
             irocvdata[stageno].SetStartTime();

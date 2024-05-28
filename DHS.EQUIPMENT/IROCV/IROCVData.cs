@@ -23,7 +23,9 @@ namespace DHS.EQUIPMENT
         #region IR/OCV DATA
         private string _sEQUIPMENTID;
         private string _sTRAYID;
-        private string _sRECIPEID;
+        private string _sTRAYSTATUSCODE;
+        private int _iERRORCODE;
+        private string _sERRORMESSAGE;
         private string _sTAGPATHNO;
         private string _sCELLTYPE;
         private string _sBATCHID;
@@ -33,7 +35,7 @@ namespace DHS.EQUIPMENT
         private string _sCELLSERIAL;
         private int _iCELLCOUNT;
         private int _iMESRESULT;
-        private bool _bBypass;
+
         private bool _bFIRST;
         private DateTime _dtArriveTime;
         private DateTime _dtStartTime;
@@ -42,8 +44,9 @@ namespace DHS.EQUIPMENT
         //* CELL 정보 0 - no cell, 1 - cell exist
         private int[] _iCELL = new int[_Constant.ChannelCount];
         private string[] _sCELLID = new string[_Constant.ChannelCount];
-        private string[] _sCELLSTATUS = new string[_Constant.ChannelCount];
-        
+        private string[] _sCELLSTATUSMES = new string[_Constant.ChannelCount];
+        private string[] _sCELLSTATUSIROCV = new string[_Constant.ChannelCount];
+
         private double[] _dIR_ORIGINALVALUE = new double[_Constant.ChannelCount];
         private double[] _dIR_AFTERVALUE = new double[_Constant.ChannelCount];
         private double[] _dOCV = new double[_Constant.ChannelCount];
@@ -75,7 +78,6 @@ namespace DHS.EQUIPMENT
 
         public string EQUIPMENTID { get => _sEQUIPMENTID; set => _sEQUIPMENTID = value; }
         public string TRAYID { get => _sTRAYID; set => _sTRAYID = value; }
-        public string RECIPEID { get => _sRECIPEID; set => _sRECIPEID = value; }
         public string CELLTYPE { get => _sCELLTYPE; set => _sCELLTYPE = value; }
         public string BATCHID { get => _sBATCHID; set => _sBATCHID = value; }
         public string OLDBATCHID { get => _sOLDBATCHID; set => _sOLDBATCHID = value; }
@@ -106,11 +108,14 @@ namespace DHS.EQUIPMENT
         public double[] IR_OFFSETMEASUREAVERAGE { get => _dIR_OFFSETAVERAGE; set => _dIR_OFFSETAVERAGE = value; }
         public double OCV_OFFSET { get => _dOCV_OFFSET; set => _dOCV_OFFSET = value; }
         public double[] IR_CHANNELOFFSET { get => _dIR_CHANNELOFFSET; set => _dIR_CHANNELOFFSET = value; }
-        public bool BYPASS { get => _bBypass; set => _bBypass = value; }
         public string[] CELLID { get => _sCELLID; set => _sCELLID = value; }
-        public string[] CELLSTATUS { get => _sCELLSTATUS; set => _sCELLSTATUS = value; }
+        public string[] CELLSTATUSMES { get => _sCELLSTATUSMES; set => _sCELLSTATUSMES = value; }
+        public string[] CELLSTATUSIROCV { get => _sCELLSTATUSIROCV; set => _sCELLSTATUSIROCV = value; }
         public string TAGPATHNO { get => _sTAGPATHNO; set => _sTAGPATHNO = value; }
         public int MESRESULT { get => _iMESRESULT; set => _iMESRESULT = value; }
+        public string TRAYSTATUSCODE { get => _sTRAYSTATUSCODE; set => _sTRAYSTATUSCODE = value; }
+        public int ERRORCODE { get => _iERRORCODE; set => _iERRORCODE = value; }
+        public string ERRORMESSAGE { get => _sERRORMESSAGE; set => _sERRORMESSAGE = value; }
 
         #endregion
 
@@ -129,7 +134,9 @@ namespace DHS.EQUIPMENT
         public void InitData()
         {
             _sTRAYID = string.Empty;
-            _sRECIPEID = string.Empty;
+            _sTRAYSTATUSCODE = string.Empty;
+            _iERRORCODE = 0;
+            _sERRORMESSAGE = string.Empty;
             _sCELLTYPE = string.Empty;
             _sBATCHID = string.Empty;
             _sOLDBATCHID = string.Empty;
@@ -139,14 +146,14 @@ namespace DHS.EQUIPMENT
             _iCELLCOUNT = 0;
             _bFIRST = true;
             _bREMEASURE = false;
-            _bBypass = false;
             _iMESRESULT = 0; //* 1 -> Tray Emission, 2 -> Tray Retry
 
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
                 _iCELL[nIndex] = 0;
                 _sCELLID[nIndex] = string.Empty;
-                _sCELLSTATUS[nIndex] = string.Empty;
+                _sCELLSTATUSMES[nIndex] = string.Empty;
+                _sCELLSTATUSIROCV[nIndex] = string.Empty;
                 _dIR_ORIGINALVALUE[nIndex] = 0.000;
                 _dIR_AFTERVALUE[nIndex] = 0.000;
                 _dOCV[nIndex] = 0.0;

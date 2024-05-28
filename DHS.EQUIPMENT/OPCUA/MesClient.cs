@@ -421,7 +421,7 @@ namespace DHS.EQUIPMENT
 
             //* Save Log
             _strLog = "Equipment: " + equipmentid + ", Trayid: " + trayid;
-            SaveLog(stageno, "FOEQR1.12 IROCV -> MES", _strLog);
+            SaveLog(stageno, "FOEQR2.1 IROCV -> MES", _strLog);
         }
         public IROCVData ReadFOEQR2_1(int stageno)
         {
@@ -435,14 +435,17 @@ namespace DHS.EQUIPMENT
             string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
             _strLog += ", TRAY ID: " + trayid;
 
-            //* RECIPE ID
-            string recipeid = (string)ReadValue("ns=2;s=Mes/RecipeID", (int)EnumDataType.dtString);
-            _strLog += ", RECIPE ID: " + recipeid;
+            //* TRAY STATUS CODE
+            string traystatuscode = (string)ReadValue("ns=2;s=Mes/TrayStatusCode", (int)EnumDataType.dtString);
+            _strLog += ", TRAY STATUS CODE: " + traystatuscode;
 
-            //* BYPASS
-            var tmpBypass = ReadValue("ns=2;s=Mes/Bypass", (int)EnumDataType.dtBoolean);
-            bool bypass = Convert.ToBoolean(tmpBypass.ToString());
-            _strLog += ", BYPASS : " + tmpBypass.ToString();
+            //* ERROR CODE
+            int errorcode = (int)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
+            _strLog += ", ERROR CODE: " + errorcode.ToString();
+
+            //* ERROR MESSAGE
+            string errormsg = (string)ReadValue("ns=2;s=Mes/ErrorMessage", (int)EnumDataType.dtString);
+            _strLog += ", ERROR MESSAGE: " + errormsg;
 
             //* CELL ID
             string[] cellids = (string[])ReadValue("ns=2;s=Mes/CellID", (int)EnumDataType.dtStringArr);
@@ -457,22 +460,23 @@ namespace DHS.EQUIPMENT
                 _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ": " + cellstatus[nIndex];
 
             //* Write Log
-            SaveLog(stageno, "FOEQR1.7 MES  -> IROCV", _strLog);
+            SaveLog(stageno, "FOEQR2.1 MES  -> IROCV", _strLog);
 
             //* irocvdata에 mes data 저장.
             irocvdata[stageno].InitData();
             irocvdata[stageno].EQUIPMENTID = equipid; ;
             irocvdata[stageno].TRAYID = trayid;
-            irocvdata[stageno].RECIPEID = recipeid;
-            irocvdata[stageno].BYPASS = bypass;
+            irocvdata[stageno].TRAYSTATUSCODE = traystatuscode;
+            irocvdata[stageno].ERRORCODE = errorcode;
+            irocvdata[stageno].ERRORMESSAGE = errormsg;
             irocvdata[stageno].CELLID = cellids;
+            irocvdata[stageno].CELLSTATUSMES = cellstatus;
+            irocvdata[stageno].TAGPATHNO = "FOEQR2.1";
             for (int i = 0; i < cellids.Length; i++)
             {
                 if (string.IsNullOrEmpty(cellids[i]) == true) irocvdata[stageno].CELL[i] = 0;
                 else irocvdata[stageno].CELL[i] = 1;
             }
-            irocvdata[stageno].CELLSTATUS = cellstatus;
-            irocvdata[stageno].TAGPATHNO = "FOEQR1.7";
 
             return irocvdata[stageno];
         }
@@ -490,39 +494,53 @@ namespace DHS.EQUIPMENT
             WriteValue("ns=2;s=Equipment/TrayID", trayid, (int)EnumDataType.dtString);
             _strLog += ", TRAY ID: " + trayid;
 
-            //* RECIPE ID
-            string recipeid = irocvdata.RECIPEID;
-            WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
-            _strLog += ", RECIPE ID: " + recipeid;
-
             //* CELL ID
             string[] cellids = irocvdata.CELLID;
             WriteValue("ns=2;s=Equipment/CellID", cellids, (int)EnumDataType.dtStringArr);
             for (int nIndex = 0; nIndex < cellids.Length; nIndex++)
-                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ":" + cellids[nIndex];
+                _strLog += ", CELLNO" + (nIndex + 1).ToString("D2") + ":" + cellids[nIndex];
+
+            //* CELL STATUS
+            string[] cellstatus = irocvdata.CELLSTATUSIROCV;
+            WriteValue("ns=2;s=Equipment/CellStatus", cellstatus, (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellstatus.Length; nIndex++)
+                _strLog += ", CELLSTATUS" + (nIndex + 1).ToString("D2") + ":" + cellstatus[nIndex];
 
             //* IR Values
             double[] irs = irocvdata.IR_AFTERVALUE;
             //string[] sIRs = irs.ToString().Split(',');
             string[] strIRs = Array.ConvertAll(irs, x => x.ToString());
             for (int nIndex = 0; nIndex < irs.Length; nIndex++)
-                _strLog += ", CELLNO_" + (nIndex + 1).ToString("D2") + ":" + irs[nIndex].ToString();
+                _strLog += ", IR" + (nIndex + 1).ToString("D2") + ":" + irs[nIndex].ToString();
             WriteValue("ns=2;s=Equipment/IR", strIRs, (int)EnumDataType.dtUInt32Arr);
 
             //* OCV Values
             double[] ocvs = irocvdata.OCV;
             string[] strOCVs = Array.ConvertAll(ocvs, x => x.ToString());
+            for (int nIndex = 0; nIndex < ocvs.Length; nIndex++)
+                _strLog += ", OCV" + (nIndex + 1).ToString("D2") + ":" + ocvs[nIndex].ToString();
             WriteValue("ns=2;s=Equipment/OCV", strOCVs, (int)EnumDataType.dtUInt32Arr);
+
+            //* Write Log
+            SaveLog(stageno, "FOEQR2.2 IROCV  -> MES", _strLog);
         }
         public bool ReadFOEQR2_2(int stageno)
         {
             //* Acknowledgement No
-            _strLog = "Acknowledgement : " + _iMesAcknowledgeNo.ToString();
+            _strLog = string.Empty;
+
+            //* ERROR CODE
+            int errorcode = (int)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
+            _strLog += ", ERROR CODE: " + errorcode.ToString();
+
+            //* ERROR MESSAGE
+            string errormsg = (string)ReadValue("ns=2;s=Mes/ErrorMessage", (int)EnumDataType.dtString);
+            _strLog += ", ERROR MESSAGE: " + errormsg;
 
             //* Save Log
-            SaveLog(stageno, "FOEQR1.1 MES -> IROCV", _strLog);
+            SaveLog(stageno, "FOEQR2.2 MES -> IROCV", _strLog);
 
-            bool bAck = _iMesAcknowledgeNo == 1 ? true : false;
+            bool bAck = errorcode == 0 ? true : false;
             return bAck;
         }
         #endregion
@@ -608,15 +626,15 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].InitData();
             irocvdata[stageno].EQUIPMENTID = equipid; ;
             irocvdata[stageno].TRAYID = trayid;
-            irocvdata[stageno].RECIPEID = recipeid;
-            irocvdata[stageno].BYPASS = bypass;
+            //irocvdata[stageno].RECIPEID = recipeid;
+            //irocvdata[stageno].BYPASS = bypass;
             irocvdata[stageno].CELLID = cellids;
             for (int i = 0; i < cellids.Length; i++)
             {
                 if (string.IsNullOrEmpty(cellids[i]) == true) irocvdata[stageno].CELL[i] = 0;
                 else irocvdata[stageno].CELL[i] = 1;
             }
-            irocvdata[stageno].CELLSTATUS = cellstatus;
+           // irocvdata[stageno].CELLSTATUS = cellstatus;
             irocvdata[stageno].TAGPATHNO = "FOEQR1.7";
 
             return irocvdata[stageno];
@@ -650,9 +668,9 @@ namespace DHS.EQUIPMENT
             _strLog += ", TRAY ID: " + trayid;
 
             //* RECIPE ID
-            string recipeid = irocvdata.RECIPEID;
-            WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
-            _strLog += ", RECIPE ID: " + recipeid;
+            //string recipeid = irocvdata.RECIPEID;
+            //WriteValue("ns=2;s=Equipment/RecipeID", recipeid, (int)EnumDataType.dtString);
+            //_strLog += ", RECIPE ID: " + recipeid;
 
             //* CELL ID
             string[] cellids = irocvdata.CELLID;
