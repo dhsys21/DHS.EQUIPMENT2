@@ -1072,6 +1072,7 @@ namespace DHS.EQUIPMENT
                         {
                             PLC_TRAYUP(stageno);
                             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
+                            irocvdata[stageno].REMEASURECOUNT += 1;
                             nInspectionStep = 0;
                         } else
                         {

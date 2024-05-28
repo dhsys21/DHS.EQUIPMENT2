@@ -39,6 +39,7 @@ namespace DHS.EQUIPMENT.Common
         public static readonly Color ColorOutFlow = Color.Yellow;
         public static readonly Color ColorOCVNG = Color.FromArgb(0, 94, 255);
         public static readonly Color ColorIRNG = Color.Salmon;
+ 
 
         //* msa /offset color
         public static readonly Color ColorIR = Color.Wheat;//Color.FromArgb(187, 210, 251);

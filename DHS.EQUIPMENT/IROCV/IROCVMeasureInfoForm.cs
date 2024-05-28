@@ -305,16 +305,16 @@ namespace DHS.EQUIPMENT
                     }
                     else
                     {
-                        if (irocvdata.CELL[nIndex] == 1)
-                        {
-                            SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);
-                            SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorOCV);
-                        }
-                        else
-                        {
-                            SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorNoCell);
-                            SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorNoCell);
-                        }
+                        //if (irocvdata.CELL[nIndex] == 1)
+                        //{
+                        SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);
+                        SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorOCV);
+                        //}
+                        //else
+                        //{
+                        //    SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorNoCell);
+                        //    SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorNoCell);
+                        //}
                     }
                 }
             }
@@ -582,7 +582,7 @@ namespace DHS.EQUIPMENT
 
             IRCHART.ChartAreas[0].AxisY.Interval = 0.03;
             IRCHART.ChartAreas[0].AxisY.Minimum = 0.2;
-            IRCHART.ChartAreas[0].AxisY.Maximum = 0.5;
+            IRCHART.ChartAreas[0].AxisY.Maximum = 0.6;
 
         }
         private void InitOCVChart()
