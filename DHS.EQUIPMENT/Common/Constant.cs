@@ -195,4 +195,67 @@ namespace DHS.EQUIPMENT.Common
         Eng = 1,
         Nor = 2
     }
+    public enum enumMachineState
+    {
+        Undefined,
+        Clearing,
+        Stopped,
+        Starting,
+        Idle,
+        Suspended,
+        Execute,
+        Stopping,
+        Aborting,
+        Aborted,
+        Holding,
+        Held,
+        Unholding,
+        Suspending,
+        Unsuspending,
+        Resetting,
+        Completing,
+        Complete,
+        Setup,
+        EmergencyStop,
+        HeldEquipmentFailure,
+        HeldExternalFailure,
+        SuspendedPrepared,
+        SuspendedLack,
+        SuspendedTailback,
+        SuspendedLackBranchLine,
+        SuspendedTailbackBranchLine
+    }
+    public enum enumMachineMode
+    {
+        Undefined,
+        Manual,
+        Maintenance,
+        Automatic,
+        SemiAutomatic,
+        Remote,
+        StepMode
+    }
+    public enum enumStandStillReason
+    {
+        Undefined,
+        MachineInternalEStop,
+        MachineInternalSafeties,
+        MachineInternalOperatorAction,
+        MachineInternalProductAndMaterialRelated,
+        MachineInternalEquipmentFault,
+        MachineInternalAllOtherFaults,
+        MachineExtUpstreamProcessReason,
+        MachineExtdownstreamProcessReason,
+        OutOfService,
+        OtherExternalReasons
+    }
+    public enum  enumStackLightColor
+    {
+        Undefined,
+        Red,
+        Yellow,
+        Green,
+        Blue,
+        White
+    }
 }

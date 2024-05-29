@@ -768,7 +768,7 @@ namespace DHS.EQUIPMENT
         }
         #endregion Save Log
 
-        #region
+        #region NG Info
         public void SaveNGInfo(int stageno, bool bIncrease, int[] ngUse, int[] ngCount)
         {
             string filename = _Constant.BIN_PATH + "RemeasureInfo_" + (stageno + 1) + ".inf";
@@ -826,6 +826,225 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(ex.ToString());
             }
 
+        }
+        #endregion
+
+        #region PLC SYSTEM INFO ENUM
+
+        public string MachineState(int enumNo)
+        {
+            string machinestate = string.Empty;
+            switch(enumNo)
+            {
+                case 0:
+                    machinestate = "Undefined";
+                    break;
+                case 1:
+                    machinestate = "Clearing";
+                    break;
+                case 2:
+                    machinestate = "Stopped";
+                    break;
+                case 3:
+                    machinestate = "Starting";
+                    break;
+                case 4:
+                    machinestate = "Idle";
+                    break;
+                case 5:
+                    machinestate = "Suspended";
+                    break;
+                case 6:
+                    machinestate = "Execute";
+                    break;
+                case 7:
+                    machinestate = "Stopping";
+                    break;
+                case 8:
+                    machinestate = "Aborting";
+                    break;
+                case 9:
+                    machinestate = "Aborted";
+                    break;
+                case 10:
+                    machinestate = "Holding";
+                    break;
+                case 11:
+                    machinestate = "Held";
+                    break;
+                case 12:
+                    machinestate = "Unholding";
+                    break;
+                case 13:
+                    machinestate = "Suspending";
+                    break;
+                case 14:
+                    machinestate = "Unsuspending";
+                    break;
+                case 15:
+                    machinestate = "Resetting";
+                    break;
+                case 16:
+                    machinestate = "Completing";
+                    break;
+                case 17:
+                    machinestate = "Complete";
+                    break;
+                case 18:
+                    machinestate = "Setup";
+                    break;
+                case 19:
+                    machinestate = "EmergencyStop";
+                    break;
+                case 20:
+                    machinestate = "HeldEquipmentFailure";
+                    break;
+                case 21:
+                    machinestate = "HeldExternalFailure";
+                    break;
+                case 22:
+                    machinestate = "SuspendedPrepared";
+                    break;
+                case 23:
+                    machinestate = "SuspendedLack";
+                    break;
+                case 24:
+                    machinestate = "SuspendedTailback";
+                    break;
+                case 25:
+                    machinestate = "SuspendedLackBranchLine";
+                    break;
+                case 26:
+                    machinestate = "SuspendedTailbackBranchLine";
+                    break;
+                default:
+                    break;
+            }
+            return machinestate;
+        }
+        public string MachineMode(int enumNo)
+        {
+            string machinemode = string.Empty;
+            switch(enumNo)
+            {
+                case 0:
+                    machinemode = "Undefined";
+                    break;
+                case 1:
+                    machinemode = "Manual";
+                    break;
+                case 2:
+                    machinemode = "Maintenance";
+                    break;
+                case 3:
+                    machinemode = "Automatic";
+                    break;
+                case 4:
+                    machinemode = "SemiAutomatic";
+                    break;
+                case 5:
+                    machinemode = "Remote";
+                    break;
+                case 6:
+                    machinemode = "StepMode";
+                    break;
+                default:
+                    break;
+            }
+            return machinemode;
+        }
+        public string StandStillReason(int enumNo)
+        {
+            string standstillreason = string.Empty;
+            switch(enumNo)
+            {
+                case 0:
+                    standstillreason = "Undefined";
+                    break;
+                case 1:
+                    standstillreason = "MachineInternalEStop";
+                    break;
+                case 2:
+                    standstillreason = "MachineInternalSafeties";
+                    break;
+                case 33:
+                    standstillreason = "MachineInternalOperatorAction";
+                    break;
+                case 65:
+                    standstillreason = "MachineInternalProductAndMaterialRelated";
+                    break;
+                case 257:
+                    standstillreason = "MachineInternalEquipmentFault";
+                    break;
+                case 513:
+                    standstillreason = "MachineInternalAllOtherFaults";
+                    break;
+                case 2000:
+                    standstillreason = "MachineExtUpstreamProcessReason";
+                    break;
+                case 3000:
+                    standstillreason = "MachineExtdownstreamProcessReason";
+                    break;
+                case 4000:
+                    standstillreason = "OutOfService";
+                    break;
+                case 4500:
+                    standstillreason = "OtherExternalReasons";
+                    break;
+                default:
+                    break;
+            }
+            return standstillreason;            
+        }
+        public string StackLightColor(int enumNo)
+        {
+            string stacklightcolor = string.Empty;
+            switch(enumNo)
+            {
+                case 0:
+                    stacklightcolor = "Undefined";
+                    break;
+                case 1:
+                    stacklightcolor = "Red";
+                    break;
+                case 2:
+                    stacklightcolor = "Yellow";
+                    break;
+                case 3:
+                    stacklightcolor = "Green";
+                    break;
+                case 4:
+                    stacklightcolor = "Blue";
+                    break;
+                case 5:
+                    stacklightcolor = "White";
+                    break;
+                default:
+                    break;
+            }
+            return stacklightcolor;            
+        }
+        public string StackLightBehavior(int enumNo)
+        {
+            string stacklightbehavior = string.Empty;
+            switch (enumNo)
+            {
+                case 0:
+                    stacklightbehavior = "Undefined";
+                    break;
+                case 1:
+                    stacklightbehavior = "OFF";
+                    break;
+                case 2:
+                    stacklightbehavior = "Solid";
+                    break;
+                case 3:
+                    stacklightbehavior = "Flahing";
+                    break;
+                default:
+                    break;
+            }
+            return stacklightbehavior;
         }
         #endregion
 
