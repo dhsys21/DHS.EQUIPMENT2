@@ -50,7 +50,6 @@ namespace DHS.EQUIPMENT
         public void SetStageSystemValue()
         {
             tbEquipmentID.Text = _system.EQUIPMENTID;
-
             tbIrocvIpaddress.Text = _system.IPADDRESS[_iStage];
 
             tbOcvMinOutflow.Text = _system.OCVMINVALUE.ToString();
@@ -108,12 +107,14 @@ namespace DHS.EQUIPMENT
             tbIRMin.Text = _system.IRMIN.ToString();
 
             _system.IRMAX = util.TryParseDouble(tbIRMax.Text, dIrMax);
+            if (_system.IRMAX < _system.IRMIN) _system.IRMAX = 1;
             tbIRMax.Text = _system.IRMAX.ToString();
 
             _system.IRREMEAMIN = util.TryParseDouble(tbIRRemeaMin.Text, dIrRemeaMin);
             tbIRRemeaMin.Text = _system.IRREMEAMIN.ToString();
 
             _system.IRREMEAMAX = util.TryParseDouble(tbIRRemeaMax.Text, dIrRemeaMax);
+            if (_system.IRREMEAMAX < _system.IRREMEAMAX) _system.IRREMEAMAX = 1;
             tbIRRemeaMax.Text = _system.IRREMEAMAX.ToString();
 
             //* OCV SPEC
@@ -121,12 +122,14 @@ namespace DHS.EQUIPMENT
             tbOcvMin.Text = _system.OCVMIN.ToString();
 
             _system.OCVMAX = util.TryParseDouble(tbOcvMax.Text, dOcvMax);
+            if (_system.OCVMAX < _system.OCVMIN) _system.OCVMAX = 4200;
             tbOcvMax.Text = _system.OCVMAX.ToString();
 
             _system.OCVREMEAMIN = util.TryParseDouble(tbOcvRemeaMin.Text, dOcvRemeaMin);
             tbOcvRemeaMin.Text = _system.OCVREMEAMIN.ToString();
 
             _system.OCVREMEAMAX = util.TryParseDouble(tbOcvRemeaMax.Text, dOcvRemeaMax);
+            if (_system.OCVREMEAMAX < _system.OCVREMEAMIN) _system.OCVREMEAMAX = 4200;
             tbOcvRemeaMax.Text= _system.OCVREMEAMAX.ToString();
 
             RaiseOnSaveConfig(stageno);
