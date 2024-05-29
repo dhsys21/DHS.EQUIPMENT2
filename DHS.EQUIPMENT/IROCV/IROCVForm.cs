@@ -122,6 +122,22 @@ namespace DHS.EQUIPMENT
         {
 
         }
+        public void SetIrSpec(double irmin, double irmax, double irremeamin, double irremeamax)
+        {
+            string irspec = string.Empty, irremeaspec = string.Empty;
+            irspec = irmin.ToString() + " ~ " + irmax.ToString();
+            irremeaspec = irremeamin.ToString() + " ~ " + irremeamax.ToString();
+            SetValueToLabel(lblIrSpec, irspec);
+            SetValueToLabel(lblIrRemeasureSpec, irremeaspec);
+        }
+        public void SetOcvSpec(double ocvmin, double ocvmax, double ocvremeamin, double ocvremeamax)
+        {
+            string ocvspec = string.Empty, ocvremeaspec = string.Empty;
+            ocvspec = ocvmin.ToString() + " ~ " + ocvmax.ToString();
+            ocvremeaspec = ocvremeamin.ToString() + " ~ " + ocvremeamax.ToString();
+            SetValueToLabel(lblOcvSpec, ocvspec);
+            SetValueToLabel(lblOcvRemeasureSpec, ocvremeaspec);
+        }
         #endregion
 
         #region Method
@@ -151,7 +167,6 @@ namespace DHS.EQUIPMENT
             lblStatusTitle.Text = StrLang.LBLSTATUS;
             lblTrayIdTitle.Text = StrLang.LBLTRAYID;
             lblProcessTitle.Text = StrLang.LBLPROCESS;
-            lblRecipeTitle.Text = StrLang.LBLRECIPE;
             lblIrRangeTitle.Text = StrLang.LBLIRRANGE;
             lblOcvRangeTitle.Text = StrLang.LBLOCVRANGE;
 

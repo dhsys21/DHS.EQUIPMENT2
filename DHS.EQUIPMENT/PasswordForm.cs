@@ -26,10 +26,9 @@ namespace DHS.EQUIPMENT
         {
             
         }
-
-        private void radBtnOk_Click(object sender, EventArgs e)
+        private void CheckPassword()
         {
-            if(tbPassword.Text == "morrow")
+            if (tbPassword.Text == "morrow")
             {
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -40,11 +39,20 @@ namespace DHS.EQUIPMENT
                 lblMsg.ForeColor = Color.Red;
             }
         }
+        private void radBtnOk_Click(object sender, EventArgs e)
+        {
+            CheckPassword();
+        }
 
         private void tbPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             lblMsg.Text = "Please insert password";
             lblMsg.ForeColor = Color.SteelBlue;
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                CheckPassword();
+            }
         }
     }
 }

@@ -215,7 +215,7 @@ namespace DHS.EQUIPMENT
                     channel = Convert.ToInt32(param.Substring(0, 3));
                     dValue = Convert.ToDouble(param.Substring(3, param.Length - channelLength - checksumLength));
                     
-                    SetOcvValue(channel, dValue * 1000.0);
+                    SetOcvValue(channel, dValue * 1000.0, equipMode);
                 }
 
             }
@@ -259,7 +259,7 @@ namespace DHS.EQUIPMENT
             }
             
         }
-        public void SetOcvValue(int channel, double ocv)
+        public void SetOcvValue(int channel, double ocv, enumEquipMode equipMode)
         {
             int channel_no = _system.CHANNELMAPPING[channel] - 1;
             if (ocv >= 10000) 
@@ -270,10 +270,12 @@ namespace DHS.EQUIPMENT
             //* OCV 값을 측정을 했는지 확인
             _iOCVRESULT[channel_no] = 1;
 
-            if (CELL[channel_no] == 0 && _dOCV[channel_no] >= _system.OCVMINVALUE)
+            //* 1000 mV는 임의로 설정해 놓은값. 셀이 없는데 전압이 뜨면 outflow
+            if (equipMode == enumEquipMode.AUTO && CELL[channel_no] == 0 && _dOCV[channel_no] >= 1000)
                 _clrOCV[channel_no] = _Constant.ColorOutFlow;
-            else if (_dOCV[channel_no] < 100)
-                _clrOCV[channel_no] = _Constant.ColorOCVNG;
+            //* spec 확인을 하기때문에 필요 없음
+            //else if (_dOCV[channel_no] < 100)   
+            //    _clrOCV[channel_no] = _Constant.ColorOCVNG;
             else if (_dOCV[channel_no] < _system.OCVMIN || _dOCV[channel_no] > _system.OCVMAX)
                 _clrOCV[channel_no] = _Constant.ColorOCVNG;
             else if (_dOCV[channel_no] < _system.OCVREMEAMIN || _dOCV[channel_no] > _system.OCVREMEAMAX)

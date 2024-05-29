@@ -414,6 +414,9 @@ namespace DHS.EQUIPMENT
                     _system.OCVMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMAX"));
                     _system.OCVREMEAMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"));
                     _system.OCVREMEAMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"));
+
+                    //* IROCV FORM에 SPEC 표시
+                    DisplaySpec(stageno);
                 }
                 else
                 {
@@ -428,6 +431,11 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(ex.ToString());
             }
             
+        }
+        private void DisplaySpec(int stageno)
+        {
+            irocvform[stageno].SetIrSpec(_system.IRMIN, _system.IRMAX, _system.IRREMEAMIN, _system.IRREMEAMAX);
+            irocvform[stageno].SetOcvSpec(_system.OCVMIN, _system.OCVMAX, _system.OCVREMEAMIN, _system.OCVREMEAMAX);
         }
         private void OpenOffsetFile(int stageno)
         {
