@@ -412,8 +412,8 @@ namespace DHS.EQUIPMENT
                     //* OCV SPEC
                     _system.OCVMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMIN"));
                     _system.OCVMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMAX"));
-                    _system.OCVMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"));
-                    _system.OCVMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"));
+                    _system.OCVREMEAMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"));
+                    _system.OCVREMEAMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"));
                 }
                 else
                 {
