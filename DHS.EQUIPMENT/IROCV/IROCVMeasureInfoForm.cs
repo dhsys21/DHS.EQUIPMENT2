@@ -600,11 +600,6 @@ namespace DHS.EQUIPMENT
             IRCHART.Series[0].XValueType = ChartValueType.Int32;
             IRCHART.Series[0].IsVisibleInLegend = false;
 
-            for(int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
-            {
-                IRCHART.Series[0].Points.AddXY(nIndex + 1, -1);
-            }
-
             IRCHART.ChartAreas[0].AxisX.Interval = 1;
             IRCHART.ChartAreas[0].AxisX.Minimum = 1;
             IRCHART.ChartAreas[0].AxisX.Maximum = 32;
@@ -612,11 +607,41 @@ namespace DHS.EQUIPMENT
 
             IRCHART.ChartAreas[0].AxisY.Interval = 0.04;
             IRCHART.ChartAreas[0].AxisY.Minimum = 0.2;
-            IRCHART.ChartAreas[0].AxisY.Maximum = 0.6;
+            IRCHART.ChartAreas[0].AxisY.Maximum = 0.56;
             IRCHART.ChartAreas[0].AxisY.LineColor = Color.Black;
 
+            //* 최소 선 추가
+            IRCHART.Series[1].ChartType = SeriesChartType.Line;
+            IRCHART.Series[1].XValueType = ChartValueType.Int32;
+            IRCHART.Series[1].IsVisibleInLegend = false;
+
+            IRCHART.Series[3].ChartType = SeriesChartType.Line;
+            IRCHART.Series[3].XValueType = ChartValueType.Int32;
+            IRCHART.Series[3].IsVisibleInLegend = false;
+
+            //* 최대 선 추가
+            IRCHART.Series[2].ChartType = SeriesChartType.Line;
+            IRCHART.Series[2].XValueType = ChartValueType.Int32;
+            IRCHART.Series[2].IsVisibleInLegend = false;
+
+            IRCHART.Series[4].ChartType = SeriesChartType.Line;
+            IRCHART.Series[4].XValueType = ChartValueType.Int32;
+            IRCHART.Series[4].IsVisibleInLegend = false;
+
+            //* 그리드 선 색상 변경
             IRCHART.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gray;
             IRCHART.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gray;
+
+            //* 초기화
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                IRCHART.Series[0].Points.AddXY(nIndex + 1, -1);
+                IRCHART.Series[1].Points.AddXY(nIndex + 1, 0.3);
+                IRCHART.Series[2].Points.AddXY(nIndex + 1, 0.45);
+
+                IRCHART.Series[3].Points.AddXY(nIndex + 1, 0.25);
+                IRCHART.Series[4].Points.AddXY(nIndex + 1, 0.5);
+            }
 
         }
         private void InitOCVChart()
@@ -655,6 +680,20 @@ namespace DHS.EQUIPMENT
             else
             {
                 chart.Series[0].Points[channel].YValues[0] = value;
+                chart.Invalidate();
+            }
+
+        }
+        private void SetValueToChart(int channel, double value, Chart chart, int SeriesIndex)
+        {
+            if (chart.InvokeRequired)
+            {
+                MethodInvoker action = delegate { chart.Series[SeriesIndex].Points[channel].YValues[0] = value; chart.Invalidate(); };
+                chart.Invoke(action);
+            }
+            else
+            {
+                chart.Series[SeriesIndex].Points[channel].YValues[0] = value;
                 chart.Invalidate();
             }
 
