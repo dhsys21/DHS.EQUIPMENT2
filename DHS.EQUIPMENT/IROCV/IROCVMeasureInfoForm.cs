@@ -70,6 +70,16 @@ namespace DHS.EQUIPMENT
             }
         }
 
+        public delegate void ManualSaveClick(int stageno);
+        public event ManualSaveClick OnManualSaveClick = null;
+        protected void RaiseOnManualSave(int stageno)
+        {
+            if (OnManualSaveClick != null)
+            {
+                OnManualSaveClick(stageno);
+            }
+        }
+
         public delegate void OffsetSaveClick(int stageno, string[] strOffset);
         public event OffsetSaveClick OnOffsetSaveClick = null;
         protected void RaiseOnOffsetSave(int stageno, string[] strOffset)
@@ -786,7 +796,7 @@ namespace DHS.EQUIPMENT
 
         private void radBtnSaveData_Click(object sender, EventArgs e)
         {
-
+            RaiseOnManualSave(_iStage);
         }
     }
 }

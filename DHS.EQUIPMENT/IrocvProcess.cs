@@ -142,6 +142,7 @@ namespace DHS.EQUIPMENT
             measureinfo.OnOffsetCmdIrClick += _MEASUREINFOFORM_OffsetCmdIr;
             measureinfo.OnOffsetOpenClick += _MEASUREINFOFORM_OffsetOpen;
             measureinfo.OnOffsetSaveClick += _MEASUREINFOFORM_OffsetSave;
+            measureinfo.OnManualSaveClick += _MEASUREINFOFORM_ManualSave;
             measureinfo.OnIRFetchClick += _MEASUREINFOFORM_IRFetch;
             measureinfo.OnOCVFetchClick += _MEASUREINFOFORM_OCVFetch;
             measureinfo.OnAmsStartClick += _MEASUREINFOFORM_AmsStart;
@@ -393,28 +394,42 @@ namespace DHS.EQUIPMENT
                     _system.EQUIPMENTID = util.readConfig(filename, "EQUIPMENT_ID", "ID");
                     irocvform[stageno].SetStageTitle(_system.EQUIPMENTID);
                     _system.IPADDRESS[stageno] = util.readConfig(filename, "IROCV", "IPADDRESS");
-                    _system.REMEASURECOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_COUNT"));
-                    _system.REMEASUREMAXCOUNT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT"));
-                    _system.REMEASUREPERCENT = Convert.ToInt32(util.readConfig(filename, "REMEASURE", "REMEASURE_PERCENT"));
 
-                    irocvconfig[stageno].SetStageSystemValue();
+                    int remeasurecount = 0;
+                    _system.REMEASURECOUNT = util.TryParseInt(util.readConfig(filename, "REMEASURE", "REMEASURE_COUNT"), remeasurecount);
+                    int remeasuremaxcount = 0;
+                    _system.REMEASUREMAXCOUNT = util.TryParseInt(util.readConfig(filename, "REMEASURE", "REMEASURE_MAX_COUNT"), remeasuremaxcount);
+                    int remeasurepercent = 0;
+                    _system.REMEASUREPERCENT = util.TryParseInt(util.readConfig(filename, "REMEASURE", "REMEASURE_PERCENT"), remeasurepercent);
 
                     //HOST, PORT, nIndex, "ACTIVE");
                     irocv[stageno].ChangeSetting(_system.IPADDRESS[stageno], 45000, stageno, "ACTIVE");
 
-                    _system.OCVMINVALUE = Convert.ToDouble(util.readConfig(filename, "OUTFLOW", "OCV_MIN"));
+                    int ocvminvalue = 0;
+                    _system.OCVMINVALUE = util.TryParseInt(util.readConfig(filename, "OUTFLOW", "OCV_MIN"), ocvminvalue);
 
                     //* IR SPEC
-                    _system.IRMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRMIN"));
-                    _system.IRMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRMAX"));
-                    _system.IRREMEAMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRREMEAMIN"));
-                    _system.IRREMEAMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "IRREMEAMAX"));
+                    double irmin = 0.0;
+                    _system.IRMIN = util.TryParseDouble(util.readConfig(filename, "SPEC", "IRMIN"), irmin);
+                    double irmax = 0.0;
+                    _system.IRMAX = util.TryParseDouble(util.readConfig(filename, "SPEC", "IRMAX"), irmax);
+                    double irremeamin = 0.0;
+                    _system.IRREMEAMIN = util.TryParseDouble(util.readConfig(filename, "SPEC", "IRREMEAMIN"), irremeamin);
+                    double irremeamax = 0.0;
+                    _system.IRREMEAMAX = util.TryParseDouble(util.readConfig(filename, "SPEC", "IRREMEAMAX"), irremeamax);
 
                     //* OCV SPEC
-                    _system.OCVMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMIN"));
-                    _system.OCVMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVMAX"));
-                    _system.OCVREMEAMIN = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"));
-                    _system.OCVREMEAMAX = Convert.ToDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"));
+                    double ocvmin = 0.0;
+                    _system.OCVMIN = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVMIN"), ocvmin);
+                    double ocvmax = 0.0;
+                    _system.OCVMAX = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVMAX"), ocvmax);
+                    double ocvremeamin = 0.0;
+                    _system.OCVREMEAMIN = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"), ocvremeamin);
+                    double ocvremeamax = 0.0;
+                    _system.OCVREMEAMAX = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"), ocvremeamax);
+
+                    //* IROCV CONFIG FORM에 설정값 표시
+                    irocvconfig[stageno].SetStageSystemValue();
 
                     //* IROCV FORM에 SPEC 표시
                     DisplaySpec(stageno);
@@ -547,6 +562,10 @@ namespace DHS.EQUIPMENT
         {
             irocvdata[stageno].SetFinishTime();
             util.SaveResultFile_IROCV(stageno, irocvdata[stageno], _system);
+        }
+        private void SaveManualResultFile(int stageno)
+        {
+            util.SaveManualResultFile_IROCV(stageno, irocvdata[stageno], _system);
         }
         private void SaveMsaResultFile(int stageno, int nCount)
         {
@@ -1358,8 +1377,9 @@ namespace DHS.EQUIPMENT
                 AddRemeaseList(stageno);
 
                 //* AMF 이거나 재측정 수가 일정 갯수가 넘으면 트레이 다운 후 [트레이 배출 또는 전체 재측정]
-                //* AMF 상태가 아니거나 재측정 수가 일정 갯수 이하면 현재 컨택 상태에서 에러난 채널만 부분 재측정
-                if (irocv[stageno].AMF = true || irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT)
+                //* AMF 상태가 아니거나 재측정 수가 일정 갯수(5개) 이하면 현재 컨택 상태에서 에러난 채널만 부분 재측정
+                //*irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT
+                if (irocv[stageno].AMF = true || irocvdata[stageno].REMEASURECELLCOUNT > 5)
                 {
                     AutoTestStop(stageno);
                 }
@@ -1707,7 +1727,10 @@ namespace DHS.EQUIPMENT
         {
             MsaInspection_Start(stageno, count, "MSA");
         }
-
+        private void _MEASUREINFOFORM_ManualSave(int stageno)
+        {
+            SaveManualResultFile(stageno);
+        }
         //* OFFSET
         private void _MEASUREINFOFORM_OffsetSave(int stageno, string[] strOffset)
         {

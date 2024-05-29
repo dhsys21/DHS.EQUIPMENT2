@@ -55,17 +55,47 @@ namespace DHS.EQUIPMENT
 
             tbOcvMinOutflow.Text = _system.OCVMINVALUE.ToString();
             tbRemeasureCount.Text = _system.REMEASURECOUNT.ToString();
-        }
+            tbRemeasureMaxCount.Text = _system.REMEASUREMAXCOUNT.ToString();
+            tbRemeasurePercent.Text = _system.REMEASUREPERCENT.ToString();
 
-        private void radBtnSave_Click(object sender, EventArgs e)
+            tbIRMin.Text = _system.IRMIN.ToString();
+            tbIRMax.Text = _system.IRMAX.ToString();
+            tbIRRemeaMin.Text = _system.IRREMEAMIN.ToString();
+            tbIRRemeaMax.Text = _system.IRREMEAMAX.ToString();
+            
+            tbOcvMin.Text = _system.OCVMIN.ToString();
+            tbOcvMax.Text = _system.OCVMAX.ToString();
+            tbOcvRemeaMin.Text = _system.OCVREMEAMIN.ToString();
+            tbOcvRemeaMax.Text = _system.OCVREMEAMAX.ToString();
+        }
+        private void SaveConfig(int stageno)
         {
             _system.EQUIPMENTID = tbEquipmentID.Text;
 
-            _system.IPADDRESS[STAGENO] = tbIrocvIpaddress.Text;
-            _system.OCVMINVALUE = Convert.ToDouble(tbOcvMinOutflow.Text);
-            _system.REMEASURECOUNT = Convert.ToInt32(tbRemeasureCount.Text);
-            _system.REMEASUREMAXCOUNT = Convert.ToInt32(tbRemeasureMaxCount.Text);
-            _system.REMEASUREPERCENT = Convert.ToInt32(tbRemeasurePercent.Text);
+            //* IROCV CONTROLLER IP ADDRESS
+            _system.IPADDRESS[stageno] = tbIrocvIpaddress.Text;
+
+            //* OCV MIN VALUE
+            double ocvminvalue = 0.0;
+            _system.OCVMINVALUE = util.TryParseDouble(tbOcvMinOutflow.Text, ocvminvalue);
+            tbOcvMinOutflow.Text = _system.OCVMINVALUE.ToString();
+
+            //* REMEASURE COUNT (재측정 횟수)
+            int remeasurecount = 0;
+            _system.REMEASURECOUNT = util.TryParseInt(tbRemeasureCount.Text, remeasurecount);
+            tbRemeasureCount.Text = _system.REMEASURECOUNT.ToString();
+
+            //* REMEASURE MAX COUNT (불량 갯수가 일정수 이하면 컨택상태에서 불량셀만 재측정)
+            int remeasuremaxcount = 0;
+            _system.REMEASUREMAXCOUNT = util.TryParseInt(tbRemeasureMaxCount.Text, remeasuremaxcount);
+            tbRemeasureMaxCount.Text = _system.REMEASUREMAXCOUNT.ToString();
+
+            //* REMEASURE PERCENT (재측정 하기 위한 불량 percent)
+            int remeasurepercent = 0;
+            _system.REMEASUREPERCENT = util.TryParseInt(tbRemeasurePercent.Text, remeasurepercent);
+            tbRemeasurePercent.Text = _system.REMEASUREPERCENT.ToString();
+
+            //* MES 사용여부
             _system.UNUSEMES = chkUnuseMes.Checked;
 
             double dIrMin = 0.0, dIrMax = 0.0;
@@ -75,17 +105,35 @@ namespace DHS.EQUIPMENT
 
             //* IR SPEC
             _system.IRMIN = util.TryParseDouble(tbIRMin.Text, dIrMin);
+            tbIRMin.Text = _system.IRMIN.ToString();
+
             _system.IRMAX = util.TryParseDouble(tbIRMax.Text, dIrMax);
+            tbIRMax.Text = _system.IRMAX.ToString();
+
             _system.IRREMEAMIN = util.TryParseDouble(tbIRRemeaMin.Text, dIrRemeaMin);
+            tbIRRemeaMin.Text = _system.IRREMEAMIN.ToString();
+
             _system.IRREMEAMAX = util.TryParseDouble(tbIRRemeaMax.Text, dIrRemeaMax);
+            tbIRRemeaMax.Text = _system.IRREMEAMAX.ToString();
 
             //* OCV SPEC
             _system.OCVMIN = util.TryParseDouble(tbOcvMin.Text, dOcvMin);
-            _system.OCVMAX = util.TryParseDouble(tbOcvMax.Text, dOcvMax);
-            _system.OCVREMEAMIN = util.TryParseDouble(tbOcvRemeaMin.Text, dOcvRemeaMin);
-            _system.OCVREMEAMAX = util.TryParseDouble(tbOcvRemeaMax.Text, dOcvRemeaMax);
+            tbOcvMin.Text = _system.OCVMIN.ToString();
 
-            RaiseOnSaveConfig(STAGENO);
+            _system.OCVMAX = util.TryParseDouble(tbOcvMax.Text, dOcvMax);
+            tbOcvMax.Text = _system.OCVMAX.ToString();
+
+            _system.OCVREMEAMIN = util.TryParseDouble(tbOcvRemeaMin.Text, dOcvRemeaMin);
+            tbOcvRemeaMin.Text = _system.OCVREMEAMIN.ToString();
+
+            _system.OCVREMEAMAX = util.TryParseDouble(tbOcvRemeaMax.Text, dOcvRemeaMax);
+            tbOcvRemeaMax.Text= _system.OCVREMEAMAX.ToString();
+
+            RaiseOnSaveConfig(stageno);
+        }
+        private void radBtnSave_Click(object sender, EventArgs e)
+        {
+            SaveConfig(STAGENO);
             this.Hide();
         }
 
