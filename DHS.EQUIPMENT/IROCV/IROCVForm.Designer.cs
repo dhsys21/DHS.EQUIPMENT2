@@ -54,6 +54,7 @@ namespace DHS.EQUIPMENT
             this.label36 = new System.Windows.Forms.Label();
             this.roundRectShape1 = new Telerik.WinControls.RoundRectShape(this.components);
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.radlblControlMessage = new Telerik.WinControls.UI.RadLabel();
             this.pictureStatus = new System.Windows.Forms.PictureBox();
             this.label34 = new System.Windows.Forms.Label();
             this.radpnl_OperationMode = new Telerik.WinControls.UI.RadPanel();
@@ -121,7 +122,14 @@ namespace DHS.EQUIPMENT
             this.gridView = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
-            this.radlblControlMessage = new Telerik.WinControls.UI.RadLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblRequestTrayInfo = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblReplyTrayInfo = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblDataCollection = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblDataCollectionReply = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_Title)).BeginInit();
             this.radpanel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_body)).BeginInit();
@@ -135,6 +143,7 @@ namespace DHS.EQUIPMENT
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radlblControlMessage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
@@ -170,7 +179,10 @@ namespace DHS.EQUIPMENT
             this.panel1.SuspendLayout();
             this.pBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radlblControlMessage)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // radpanel_Title
@@ -435,6 +447,17 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(1))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(9)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
             // 
+            // radlblControlMessage
+            // 
+            this.radlblControlMessage.AutoSize = false;
+            this.radlblControlMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radlblControlMessage.Location = new System.Drawing.Point(246, 4);
+            this.radlblControlMessage.Name = "radlblControlMessage";
+            this.radlblControlMessage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radlblControlMessage.Size = new System.Drawing.Size(354, 19);
+            this.radlblControlMessage.TabIndex = 65;
+            this.radlblControlMessage.Text = "status";
+            // 
             // pictureStatus
             // 
             this.pictureStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -678,16 +701,20 @@ namespace DHS.EQUIPMENT
             this.flowLayoutPanel6.Controls.Add(this.pnlReady);
             this.flowLayoutPanel6.Controls.Add(this.pnlTrayIn);
             this.flowLayoutPanel6.Controls.Add(this.pnlBarcode);
+            this.flowLayoutPanel6.Controls.Add(this.panel3);
+            this.flowLayoutPanel6.Controls.Add(this.panel4);
             this.flowLayoutPanel6.Controls.Add(this.pnlProbeDown);
             this.flowLayoutPanel6.Controls.Add(this.pnlMeasure);
+            this.flowLayoutPanel6.Controls.Add(this.panel5);
+            this.flowLayoutPanel6.Controls.Add(this.panel6);
             this.flowLayoutPanel6.Controls.Add(this.pnlFinish);
             this.flowLayoutPanel6.Controls.Add(this.pnlProbeOpen);
             this.flowLayoutPanel6.Controls.Add(this.pnlTrayOut);
             this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel6.Location = new System.Drawing.Point(5, 30);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.flowLayoutPanel6.Padding = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.flowLayoutPanel6.Size = new System.Drawing.Size(596, 95);
             this.flowLayoutPanel6.TabIndex = 51;
             // 
@@ -695,11 +722,11 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlReady.BackColor = System.Drawing.Color.LightGray;
             this.pnlReady.Controls.Add(this.lblReady);
-            this.pnlReady.Location = new System.Drawing.Point(4, 2);
+            this.pnlReady.Location = new System.Drawing.Point(3, 2);
             this.pnlReady.Margin = new System.Windows.Forms.Padding(2);
             this.pnlReady.Name = "pnlReady";
             this.pnlReady.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlReady.Size = new System.Drawing.Size(144, 44);
+            this.pnlReady.Size = new System.Drawing.Size(95, 44);
             this.pnlReady.TabIndex = 51;
             // 
             // lblReady
@@ -711,7 +738,7 @@ namespace DHS.EQUIPMENT
             this.lblReady.Location = new System.Drawing.Point(4, 4);
             this.lblReady.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblReady.Name = "lblReady";
-            this.lblReady.Size = new System.Drawing.Size(136, 36);
+            this.lblReady.Size = new System.Drawing.Size(87, 36);
             this.lblReady.TabIndex = 16;
             this.lblReady.Text = "READY";
             this.lblReady.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -720,11 +747,11 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlTrayIn.BackColor = System.Drawing.Color.LightGray;
             this.pnlTrayIn.Controls.Add(this.lblTrayIn);
-            this.pnlTrayIn.Location = new System.Drawing.Point(152, 2);
+            this.pnlTrayIn.Location = new System.Drawing.Point(102, 2);
             this.pnlTrayIn.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTrayIn.Name = "pnlTrayIn";
             this.pnlTrayIn.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlTrayIn.Size = new System.Drawing.Size(144, 44);
+            this.pnlTrayIn.Size = new System.Drawing.Size(95, 44);
             this.pnlTrayIn.TabIndex = 50;
             // 
             // lblTrayIn
@@ -736,7 +763,7 @@ namespace DHS.EQUIPMENT
             this.lblTrayIn.Location = new System.Drawing.Point(4, 4);
             this.lblTrayIn.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblTrayIn.Name = "lblTrayIn";
-            this.lblTrayIn.Size = new System.Drawing.Size(136, 36);
+            this.lblTrayIn.Size = new System.Drawing.Size(87, 36);
             this.lblTrayIn.TabIndex = 16;
             this.lblTrayIn.Text = "TRAY IN";
             this.lblTrayIn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -745,11 +772,11 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlBarcode.BackColor = System.Drawing.Color.LightGray;
             this.pnlBarcode.Controls.Add(this.lblBarcode);
-            this.pnlBarcode.Location = new System.Drawing.Point(300, 2);
+            this.pnlBarcode.Location = new System.Drawing.Point(201, 2);
             this.pnlBarcode.Margin = new System.Windows.Forms.Padding(2);
             this.pnlBarcode.Name = "pnlBarcode";
             this.pnlBarcode.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlBarcode.Size = new System.Drawing.Size(144, 44);
+            this.pnlBarcode.Size = new System.Drawing.Size(95, 44);
             this.pnlBarcode.TabIndex = 49;
             // 
             // lblBarcode
@@ -761,7 +788,7 @@ namespace DHS.EQUIPMENT
             this.lblBarcode.Location = new System.Drawing.Point(4, 4);
             this.lblBarcode.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblBarcode.Name = "lblBarcode";
-            this.lblBarcode.Size = new System.Drawing.Size(136, 36);
+            this.lblBarcode.Size = new System.Drawing.Size(87, 36);
             this.lblBarcode.TabIndex = 16;
             this.lblBarcode.Text = "BARCODE";
             this.lblBarcode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -770,11 +797,11 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlProbeDown.BackColor = System.Drawing.Color.LightGray;
             this.pnlProbeDown.Controls.Add(this.lblProbeDown);
-            this.pnlProbeDown.Location = new System.Drawing.Point(448, 2);
+            this.pnlProbeDown.Location = new System.Drawing.Point(498, 2);
             this.pnlProbeDown.Margin = new System.Windows.Forms.Padding(2);
             this.pnlProbeDown.Name = "pnlProbeDown";
             this.pnlProbeDown.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlProbeDown.Size = new System.Drawing.Size(144, 44);
+            this.pnlProbeDown.Size = new System.Drawing.Size(95, 44);
             this.pnlProbeDown.TabIndex = 54;
             // 
             // lblProbeDown
@@ -786,7 +813,7 @@ namespace DHS.EQUIPMENT
             this.lblProbeDown.Location = new System.Drawing.Point(4, 4);
             this.lblProbeDown.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblProbeDown.Name = "lblProbeDown";
-            this.lblProbeDown.Size = new System.Drawing.Size(136, 36);
+            this.lblProbeDown.Size = new System.Drawing.Size(87, 36);
             this.lblProbeDown.TabIndex = 16;
             this.lblProbeDown.Text = "TRAY UP";
             this.lblProbeDown.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -795,11 +822,11 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlMeasure.BackColor = System.Drawing.Color.LightGray;
             this.pnlMeasure.Controls.Add(this.lblMeasure);
-            this.pnlMeasure.Location = new System.Drawing.Point(4, 50);
+            this.pnlMeasure.Location = new System.Drawing.Point(3, 50);
             this.pnlMeasure.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMeasure.Name = "pnlMeasure";
             this.pnlMeasure.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlMeasure.Size = new System.Drawing.Size(144, 44);
+            this.pnlMeasure.Size = new System.Drawing.Size(95, 44);
             this.pnlMeasure.TabIndex = 53;
             // 
             // lblMeasure
@@ -811,7 +838,7 @@ namespace DHS.EQUIPMENT
             this.lblMeasure.Location = new System.Drawing.Point(4, 4);
             this.lblMeasure.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblMeasure.Name = "lblMeasure";
-            this.lblMeasure.Size = new System.Drawing.Size(136, 36);
+            this.lblMeasure.Size = new System.Drawing.Size(87, 36);
             this.lblMeasure.TabIndex = 16;
             this.lblMeasure.Text = "MEASURE";
             this.lblMeasure.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -820,11 +847,11 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlFinish.BackColor = System.Drawing.Color.LightGray;
             this.pnlFinish.Controls.Add(this.lblFinish);
-            this.pnlFinish.Location = new System.Drawing.Point(152, 50);
+            this.pnlFinish.Location = new System.Drawing.Point(300, 50);
             this.pnlFinish.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFinish.Name = "pnlFinish";
             this.pnlFinish.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlFinish.Size = new System.Drawing.Size(144, 44);
+            this.pnlFinish.Size = new System.Drawing.Size(95, 44);
             this.pnlFinish.TabIndex = 52;
             // 
             // lblFinish
@@ -836,7 +863,7 @@ namespace DHS.EQUIPMENT
             this.lblFinish.Location = new System.Drawing.Point(4, 4);
             this.lblFinish.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblFinish.Name = "lblFinish";
-            this.lblFinish.Size = new System.Drawing.Size(136, 36);
+            this.lblFinish.Size = new System.Drawing.Size(87, 36);
             this.lblFinish.TabIndex = 16;
             this.lblFinish.Text = "FINISH";
             this.lblFinish.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -845,23 +872,23 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlProbeOpen.BackColor = System.Drawing.Color.LightGray;
             this.pnlProbeOpen.Controls.Add(this.lblProbeOpen);
-            this.pnlProbeOpen.Location = new System.Drawing.Point(300, 50);
+            this.pnlProbeOpen.Location = new System.Drawing.Point(399, 50);
             this.pnlProbeOpen.Margin = new System.Windows.Forms.Padding(2);
             this.pnlProbeOpen.Name = "pnlProbeOpen";
             this.pnlProbeOpen.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlProbeOpen.Size = new System.Drawing.Size(144, 44);
+            this.pnlProbeOpen.Size = new System.Drawing.Size(95, 44);
             this.pnlProbeOpen.TabIndex = 55;
             // 
             // lblProbeOpen
             // 
             this.lblProbeOpen.BackColor = System.Drawing.Color.DarkGray;
             this.lblProbeOpen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblProbeOpen.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProbeOpen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProbeOpen.ForeColor = System.Drawing.Color.Black;
             this.lblProbeOpen.Location = new System.Drawing.Point(4, 4);
             this.lblProbeOpen.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblProbeOpen.Name = "lblProbeOpen";
-            this.lblProbeOpen.Size = new System.Drawing.Size(136, 36);
+            this.lblProbeOpen.Size = new System.Drawing.Size(87, 36);
             this.lblProbeOpen.TabIndex = 16;
             this.lblProbeOpen.Text = "TRAY DOWN";
             this.lblProbeOpen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -870,23 +897,23 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlTrayOut.BackColor = System.Drawing.Color.LightGray;
             this.pnlTrayOut.Controls.Add(this.lblTrayOut);
-            this.pnlTrayOut.Location = new System.Drawing.Point(448, 50);
+            this.pnlTrayOut.Location = new System.Drawing.Point(498, 50);
             this.pnlTrayOut.Margin = new System.Windows.Forms.Padding(2);
             this.pnlTrayOut.Name = "pnlTrayOut";
             this.pnlTrayOut.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlTrayOut.Size = new System.Drawing.Size(144, 44);
+            this.pnlTrayOut.Size = new System.Drawing.Size(95, 44);
             this.pnlTrayOut.TabIndex = 56;
             // 
             // lblTrayOut
             // 
             this.lblTrayOut.BackColor = System.Drawing.Color.DarkGray;
             this.lblTrayOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTrayOut.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTrayOut.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrayOut.ForeColor = System.Drawing.Color.Black;
             this.lblTrayOut.Location = new System.Drawing.Point(4, 4);
             this.lblTrayOut.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblTrayOut.Name = "lblTrayOut";
-            this.lblTrayOut.Size = new System.Drawing.Size(136, 36);
+            this.lblTrayOut.Size = new System.Drawing.Size(87, 36);
             this.lblTrayOut.TabIndex = 16;
             this.lblTrayOut.Text = "TRAY OUT";
             this.lblTrayOut.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1434,16 +1461,105 @@ namespace DHS.EQUIPMENT
             this.radThemeManager1.LoadedThemes.AddRange(new Telerik.WinControls.ThemeSource[] {
             themeSource1});
             // 
-            // radlblControlMessage
+            // panel3
             // 
-            this.radlblControlMessage.AutoSize = false;
-            this.radlblControlMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radlblControlMessage.Location = new System.Drawing.Point(246, 4);
-            this.radlblControlMessage.Name = "radlblControlMessage";
-            this.radlblControlMessage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radlblControlMessage.Size = new System.Drawing.Size(354, 19);
-            this.radlblControlMessage.TabIndex = 65;
-            this.radlblControlMessage.Text = "status";
+            this.panel3.BackColor = System.Drawing.Color.LightGray;
+            this.panel3.Controls.Add(this.lblRequestTrayInfo);
+            this.panel3.Location = new System.Drawing.Point(300, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(4);
+            this.panel3.Size = new System.Drawing.Size(95, 44);
+            this.panel3.TabIndex = 58;
+            // 
+            // lblRequestTrayInfo
+            // 
+            this.lblRequestTrayInfo.BackColor = System.Drawing.Color.DarkGray;
+            this.lblRequestTrayInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRequestTrayInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequestTrayInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblRequestTrayInfo.Location = new System.Drawing.Point(4, 4);
+            this.lblRequestTrayInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblRequestTrayInfo.Name = "lblRequestTrayInfo";
+            this.lblRequestTrayInfo.Size = new System.Drawing.Size(87, 36);
+            this.lblRequestTrayInfo.TabIndex = 16;
+            this.lblRequestTrayInfo.Text = "TRAY ID → MES";
+            this.lblRequestTrayInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightGray;
+            this.panel4.Controls.Add(this.lblReplyTrayInfo);
+            this.panel4.Location = new System.Drawing.Point(399, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(4);
+            this.panel4.Size = new System.Drawing.Size(95, 44);
+            this.panel4.TabIndex = 57;
+            // 
+            // lblReplyTrayInfo
+            // 
+            this.lblReplyTrayInfo.BackColor = System.Drawing.Color.DarkGray;
+            this.lblReplyTrayInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblReplyTrayInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReplyTrayInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblReplyTrayInfo.Location = new System.Drawing.Point(4, 4);
+            this.lblReplyTrayInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblReplyTrayInfo.Name = "lblReplyTrayInfo";
+            this.lblReplyTrayInfo.Size = new System.Drawing.Size(87, 36);
+            this.lblReplyTrayInfo.TabIndex = 16;
+            this.lblReplyTrayInfo.Text = "TRAYINFO ← MES";
+            this.lblReplyTrayInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.LightGray;
+            this.panel5.Controls.Add(this.lblDataCollection);
+            this.panel5.Location = new System.Drawing.Point(102, 50);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(4);
+            this.panel5.Size = new System.Drawing.Size(95, 44);
+            this.panel5.TabIndex = 60;
+            // 
+            // lblDataCollection
+            // 
+            this.lblDataCollection.BackColor = System.Drawing.Color.DarkGray;
+            this.lblDataCollection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataCollection.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataCollection.ForeColor = System.Drawing.Color.Black;
+            this.lblDataCollection.Location = new System.Drawing.Point(4, 4);
+            this.lblDataCollection.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblDataCollection.Name = "lblDataCollection";
+            this.lblDataCollection.Size = new System.Drawing.Size(87, 36);
+            this.lblDataCollection.TabIndex = 16;
+            this.lblDataCollection.Text = "DATA → MES";
+            this.lblDataCollection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.LightGray;
+            this.panel6.Controls.Add(this.lblDataCollectionReply);
+            this.panel6.Location = new System.Drawing.Point(201, 50);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(4);
+            this.panel6.Size = new System.Drawing.Size(95, 44);
+            this.panel6.TabIndex = 59;
+            // 
+            // lblDataCollectionReply
+            // 
+            this.lblDataCollectionReply.BackColor = System.Drawing.Color.DarkGray;
+            this.lblDataCollectionReply.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataCollectionReply.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataCollectionReply.ForeColor = System.Drawing.Color.Black;
+            this.lblDataCollectionReply.Location = new System.Drawing.Point(4, 4);
+            this.lblDataCollectionReply.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblDataCollectionReply.Name = "lblDataCollectionReply";
+            this.lblDataCollectionReply.Size = new System.Drawing.Size(87, 36);
+            this.lblDataCollectionReply.TabIndex = 16;
+            this.lblDataCollectionReply.Text = "REPLY ← MES";
+            this.lblDataCollectionReply.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // IROCVForm
             // 
@@ -1474,6 +1590,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radlblControlMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).EndInit();
             this.radpnl_OperationMode.ResumeLayout(false);
@@ -1514,7 +1631,10 @@ namespace DHS.EQUIPMENT
             this.panel1.ResumeLayout(false);
             this.pBase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radlblControlMessage)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1608,5 +1728,13 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label36;
         private Telerik.WinControls.UI.RadLabel radlblControlMessage;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblRequestTrayInfo;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblReplyTrayInfo;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lblDataCollection;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lblDataCollectionReply;
     }
 }

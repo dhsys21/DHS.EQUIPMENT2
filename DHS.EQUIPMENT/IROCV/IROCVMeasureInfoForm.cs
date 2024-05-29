@@ -608,10 +608,15 @@ namespace DHS.EQUIPMENT
             IRCHART.ChartAreas[0].AxisX.Interval = 1;
             IRCHART.ChartAreas[0].AxisX.Minimum = 1;
             IRCHART.ChartAreas[0].AxisX.Maximum = 32;
+            IRCHART.ChartAreas[0].AxisX.LineColor = Color.Black;
 
-            IRCHART.ChartAreas[0].AxisY.Interval = 0.03;
+            IRCHART.ChartAreas[0].AxisY.Interval = 0.04;
             IRCHART.ChartAreas[0].AxisY.Minimum = 0.2;
             IRCHART.ChartAreas[0].AxisY.Maximum = 0.6;
+            IRCHART.ChartAreas[0].AxisY.LineColor = Color.Black;
+
+            IRCHART.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gray;
+            IRCHART.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gray;
 
         }
         private void InitOCVChart()
@@ -629,10 +634,15 @@ namespace DHS.EQUIPMENT
             OCVCHART.ChartAreas[0].AxisX.Interval = 1;
             OCVCHART.ChartAreas[0].AxisX.Minimum = 1;
             OCVCHART.ChartAreas[0].AxisX.Maximum = 32;
+            OCVCHART.ChartAreas[0].AxisX.LineColor = Color.Black;
 
             OCVCHART.ChartAreas[0].AxisY.Interval = 320;
             OCVCHART.ChartAreas[0].AxisY.Minimum = 1000;
             OCVCHART.ChartAreas[0].AxisY.Maximum = 4200;
+            OCVCHART.ChartAreas[0].AxisY.LineColor = Color.Black;
+
+            OCVCHART.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gray;
+            OCVCHART.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gray;
 
         }
         private void SetValueToChart(int channel, double value, Chart chart)
