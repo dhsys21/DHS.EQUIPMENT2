@@ -118,9 +118,9 @@ namespace DHS.EQUIPMENT
             SetValueToLabel(lblTrayId, trayid);
             SetValueToTextBox(tbTrayId, trayid);
         }
-        public void SetRecipeId(string recipeid)
+        public void SetControlMessage(string controlmessage)
         {
-
+            radlblControlMessage.Text = controlmessage;
         }
         public void SetIrSpec(double irmin, double irmax, double irremeamin, double irremeamax)
         {

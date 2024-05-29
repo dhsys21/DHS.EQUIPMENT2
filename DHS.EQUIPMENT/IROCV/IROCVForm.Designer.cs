@@ -37,10 +37,25 @@ namespace DHS.EQUIPMENT
             this.radpanel_Title = new Telerik.WinControls.UI.RadPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.radpanel_body = new Telerik.WinControls.UI.RadPanel();
+            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.lblIrSpec = new System.Windows.Forms.Label();
+            this.lblIrRangeTitle = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.lblIrRemeasureSpec = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.lblOcvSpec = new System.Windows.Forms.Label();
+            this.lblOcvRangeTitle = new System.Windows.Forms.Label();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.lblOcvRemeasureSpec = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.roundRectShape1 = new Telerik.WinControls.RoundRectShape(this.components);
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.pictureStatus = new System.Windows.Forms.PictureBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.roundRectShape1 = new Telerik.WinControls.RoundRectShape(this.components);
             this.radpnl_OperationMode = new Telerik.WinControls.UI.RadPanel();
             this.radBtnConfig = new Telerik.WinControls.UI.RadButton();
             this.radbtn_TRAYOUT = new Telerik.WinControls.UI.RadButton();
@@ -80,6 +95,12 @@ namespace DHS.EQUIPMENT
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTrayStatusCode = new System.Windows.Forms.Label();
             this.lblProcessTitle = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lblErrorCode = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblErrorMessage = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.radpanel_connectionstatus = new Telerik.WinControls.UI.RadPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -100,31 +121,18 @@ namespace DHS.EQUIPMENT
             this.gridView = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.lblErrorCode = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.lblErrorMessage = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.lblIrSpec = new System.Windows.Forms.Label();
-            this.lblIrRangeTitle = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.lblIrRemeasureSpec = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.lblOcvSpec = new System.Windows.Forms.Label();
-            this.lblOcvRangeTitle = new System.Windows.Forms.Label();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.lblOcvRemeasureSpec = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
+            this.radlblControlMessage = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_Title)).BeginInit();
             this.radpanel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_body)).BeginInit();
             this.radpanel_body.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
+            this.radPanel3.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStatus)).BeginInit();
@@ -153,6 +161,8 @@ namespace DHS.EQUIPMENT
             this.pnlStatus.SuspendLayout();
             this.pnlTrayId.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_connectionstatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
@@ -160,15 +170,7 @@ namespace DHS.EQUIPMENT
             this.panel1.SuspendLayout();
             this.pBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
-            this.radPanel3.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radlblControlMessage)).BeginInit();
             this.SuspendLayout();
             // 
             // radpanel_Title
@@ -210,8 +212,212 @@ namespace DHS.EQUIPMENT
             this.radpanel_body.TabIndex = 1;
             this.radpanel_body.ThemeName = "ControlDefault";
             // 
+            // radPanel3
+            // 
+            this.radPanel3.Controls.Add(this.flowLayoutPanel3);
+            this.radPanel3.Controls.Add(this.label36);
+            this.radPanel3.Location = new System.Drawing.Point(4, 420);
+            this.radPanel3.Name = "radPanel3";
+            this.radPanel3.Padding = new System.Windows.Forms.Padding(5);
+            this.radPanel3.Size = new System.Drawing.Size(606, 126);
+            this.radPanel3.TabIndex = 14;
+            this.radPanel3.ThemeName = "ControlDefault";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).Shape = this.roundRectShape1;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).BottomWidth = 5F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(3)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(9)))), ((int)(((byte)(248)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.panel12);
+            this.flowLayoutPanel3.Controls.Add(this.panel13);
+            this.flowLayoutPanel3.Controls.Add(this.panel14);
+            this.flowLayoutPanel3.Controls.Add(this.panel15);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(5, 27);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(3);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(596, 94);
+            this.flowLayoutPanel3.TabIndex = 51;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.lblIrSpec);
+            this.panel12.Controls.Add(this.lblIrRangeTitle);
+            this.panel12.Location = new System.Drawing.Point(4, 5);
+            this.panel12.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel12.Name = "panel12";
+            this.panel12.Padding = new System.Windows.Forms.Padding(2);
+            this.panel12.Size = new System.Drawing.Size(292, 40);
+            this.panel12.TabIndex = 9;
+            // 
+            // lblIrSpec
+            // 
+            this.lblIrSpec.BackColor = System.Drawing.Color.White;
+            this.lblIrSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblIrSpec.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIrSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIrSpec.ForeColor = System.Drawing.Color.Black;
+            this.lblIrSpec.Location = new System.Drawing.Point(98, 2);
+            this.lblIrSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblIrSpec.Name = "lblIrSpec";
+            this.lblIrSpec.Size = new System.Drawing.Size(192, 36);
+            this.lblIrSpec.TabIndex = 18;
+            this.lblIrSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblIrRangeTitle
+            // 
+            this.lblIrRangeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblIrRangeTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblIrRangeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblIrRangeTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblIrRangeTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblIrRangeTitle.Name = "lblIrRangeTitle";
+            this.lblIrRangeTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblIrRangeTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblIrRangeTitle.TabIndex = 0;
+            this.lblIrRangeTitle.Text = "IR SPEC";
+            this.lblIrRangeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.lblIrRemeasureSpec);
+            this.panel13.Controls.Add(this.label26);
+            this.panel13.Location = new System.Drawing.Point(298, 5);
+            this.panel13.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel13.Name = "panel13";
+            this.panel13.Padding = new System.Windows.Forms.Padding(2);
+            this.panel13.Size = new System.Drawing.Size(292, 40);
+            this.panel13.TabIndex = 10;
+            // 
+            // lblIrRemeasureSpec
+            // 
+            this.lblIrRemeasureSpec.BackColor = System.Drawing.Color.White;
+            this.lblIrRemeasureSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblIrRemeasureSpec.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblIrRemeasureSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIrRemeasureSpec.ForeColor = System.Drawing.Color.Black;
+            this.lblIrRemeasureSpec.Location = new System.Drawing.Point(98, 2);
+            this.lblIrRemeasureSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblIrRemeasureSpec.Name = "lblIrRemeasureSpec";
+            this.lblIrRemeasureSpec.Size = new System.Drawing.Size(192, 36);
+            this.lblIrRemeasureSpec.TabIndex = 18;
+            this.lblIrRemeasureSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label26
+            // 
+            this.label26.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label26.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label26.Location = new System.Drawing.Point(2, 2);
+            this.label26.Margin = new System.Windows.Forms.Padding(1);
+            this.label26.Name = "label26";
+            this.label26.Padding = new System.Windows.Forms.Padding(1);
+            this.label26.Size = new System.Drawing.Size(96, 36);
+            this.label26.TabIndex = 0;
+            this.label26.Text = "REMEA. SPEC";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.lblOcvSpec);
+            this.panel14.Controls.Add(this.lblOcvRangeTitle);
+            this.panel14.Location = new System.Drawing.Point(4, 49);
+            this.panel14.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel14.Name = "panel14";
+            this.panel14.Padding = new System.Windows.Forms.Padding(2);
+            this.panel14.Size = new System.Drawing.Size(292, 40);
+            this.panel14.TabIndex = 11;
+            // 
+            // lblOcvSpec
+            // 
+            this.lblOcvSpec.BackColor = System.Drawing.Color.White;
+            this.lblOcvSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblOcvSpec.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblOcvSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOcvSpec.ForeColor = System.Drawing.Color.Black;
+            this.lblOcvSpec.Location = new System.Drawing.Point(98, 2);
+            this.lblOcvSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblOcvSpec.Name = "lblOcvSpec";
+            this.lblOcvSpec.Size = new System.Drawing.Size(192, 36);
+            this.lblOcvSpec.TabIndex = 18;
+            this.lblOcvSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOcvRangeTitle
+            // 
+            this.lblOcvRangeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblOcvRangeTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblOcvRangeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblOcvRangeTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblOcvRangeTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblOcvRangeTitle.Name = "lblOcvRangeTitle";
+            this.lblOcvRangeTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblOcvRangeTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblOcvRangeTitle.TabIndex = 0;
+            this.lblOcvRangeTitle.Text = "OCV SPEC";
+            this.lblOcvRangeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.lblOcvRemeasureSpec);
+            this.panel15.Controls.Add(this.label30);
+            this.panel15.Location = new System.Drawing.Point(298, 49);
+            this.panel15.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel15.Name = "panel15";
+            this.panel15.Padding = new System.Windows.Forms.Padding(2);
+            this.panel15.Size = new System.Drawing.Size(292, 40);
+            this.panel15.TabIndex = 12;
+            // 
+            // lblOcvRemeasureSpec
+            // 
+            this.lblOcvRemeasureSpec.BackColor = System.Drawing.Color.White;
+            this.lblOcvRemeasureSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblOcvRemeasureSpec.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblOcvRemeasureSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOcvRemeasureSpec.ForeColor = System.Drawing.Color.Black;
+            this.lblOcvRemeasureSpec.Location = new System.Drawing.Point(98, 2);
+            this.lblOcvRemeasureSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblOcvRemeasureSpec.Name = "lblOcvRemeasureSpec";
+            this.lblOcvRemeasureSpec.Size = new System.Drawing.Size(192, 36);
+            this.lblOcvRemeasureSpec.TabIndex = 18;
+            this.lblOcvRemeasureSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label30
+            // 
+            this.label30.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label30.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label30.Location = new System.Drawing.Point(2, 2);
+            this.label30.Margin = new System.Windows.Forms.Padding(1);
+            this.label30.Name = "label30";
+            this.label30.Padding = new System.Windows.Forms.Padding(1);
+            this.label30.Size = new System.Drawing.Size(96, 36);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "REMEA. SPEC";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label36.Location = new System.Drawing.Point(5, 5);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(135, 16);
+            this.label36.TabIndex = 50;
+            this.label36.Text = "TRAY INFOMATION";
+            // 
+            // roundRectShape1
+            // 
+            this.roundRectShape1.Radius = 10;
+            // 
             // radPanel2
             // 
+            this.radPanel2.Controls.Add(this.radlblControlMessage);
             this.radPanel2.Controls.Add(this.pictureStatus);
             this.radPanel2.Controls.Add(this.label34);
             this.radPanel2.Location = new System.Drawing.Point(5, 555);
@@ -252,10 +458,6 @@ namespace DHS.EQUIPMENT
             this.label34.Size = new System.Drawing.Size(144, 16);
             this.label34.TabIndex = 50;
             this.label34.Text = "STAGE INFOMATION";
-            // 
-            // roundRectShape1
-            // 
-            this.roundRectShape1.Radius = 10;
             // 
             // radpnl_OperationMode
             // 
@@ -867,6 +1069,84 @@ namespace DHS.EQUIPMENT
             this.lblProcessTitle.Text = "TRAY STATUS CODE";
             this.lblProcessTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.lblErrorCode);
+            this.panel7.Controls.Add(this.label10);
+            this.panel7.Location = new System.Drawing.Point(4, 105);
+            this.panel7.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(2);
+            this.panel7.Size = new System.Drawing.Size(292, 40);
+            this.panel7.TabIndex = 13;
+            // 
+            // lblErrorCode
+            // 
+            this.lblErrorCode.BackColor = System.Drawing.Color.White;
+            this.lblErrorCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblErrorCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblErrorCode.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorCode.ForeColor = System.Drawing.Color.Black;
+            this.lblErrorCode.Location = new System.Drawing.Point(98, 2);
+            this.lblErrorCode.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblErrorCode.Name = "lblErrorCode";
+            this.lblErrorCode.Size = new System.Drawing.Size(192, 36);
+            this.lblErrorCode.TabIndex = 18;
+            this.lblErrorCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(2, 2);
+            this.label10.Margin = new System.Windows.Forms.Padding(1);
+            this.label10.Name = "label10";
+            this.label10.Padding = new System.Windows.Forms.Padding(1);
+            this.label10.Size = new System.Drawing.Size(96, 36);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "ERROR CODE";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.lblErrorMessage);
+            this.panel8.Controls.Add(this.label16);
+            this.panel8.Location = new System.Drawing.Point(298, 105);
+            this.panel8.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            this.panel8.Name = "panel8";
+            this.panel8.Padding = new System.Windows.Forms.Padding(2);
+            this.panel8.Size = new System.Drawing.Size(292, 40);
+            this.panel8.TabIndex = 14;
+            // 
+            // lblErrorMessage
+            // 
+            this.lblErrorMessage.BackColor = System.Drawing.Color.White;
+            this.lblErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblErrorMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblErrorMessage.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorMessage.ForeColor = System.Drawing.Color.Black;
+            this.lblErrorMessage.Location = new System.Drawing.Point(98, 2);
+            this.lblErrorMessage.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblErrorMessage.Name = "lblErrorMessage";
+            this.lblErrorMessage.Size = new System.Drawing.Size(192, 36);
+            this.lblErrorMessage.TabIndex = 18;
+            this.lblErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label16.Location = new System.Drawing.Point(2, 2);
+            this.label16.Margin = new System.Windows.Forms.Padding(1);
+            this.label16.Name = "label16";
+            this.label16.Padding = new System.Windows.Forms.Padding(1);
+            this.label16.Size = new System.Drawing.Size(96, 36);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "ERROR MESSAGE";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -1154,282 +1434,16 @@ namespace DHS.EQUIPMENT
             this.radThemeManager1.LoadedThemes.AddRange(new Telerik.WinControls.ThemeSource[] {
             themeSource1});
             // 
-            // panel7
+            // radlblControlMessage
             // 
-            this.panel7.Controls.Add(this.lblErrorCode);
-            this.panel7.Controls.Add(this.label10);
-            this.panel7.Location = new System.Drawing.Point(4, 105);
-            this.panel7.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(2);
-            this.panel7.Size = new System.Drawing.Size(292, 40);
-            this.panel7.TabIndex = 13;
-            // 
-            // lblErrorCode
-            // 
-            this.lblErrorCode.BackColor = System.Drawing.Color.White;
-            this.lblErrorCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblErrorCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblErrorCode.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorCode.ForeColor = System.Drawing.Color.Black;
-            this.lblErrorCode.Location = new System.Drawing.Point(98, 2);
-            this.lblErrorCode.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblErrorCode.Name = "lblErrorCode";
-            this.lblErrorCode.Size = new System.Drawing.Size(192, 36);
-            this.lblErrorCode.TabIndex = 18;
-            this.lblErrorCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(2, 2);
-            this.label10.Margin = new System.Windows.Forms.Padding(1);
-            this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(1);
-            this.label10.Size = new System.Drawing.Size(96, 36);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "ERROR CODE";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.lblErrorMessage);
-            this.panel8.Controls.Add(this.label16);
-            this.panel8.Location = new System.Drawing.Point(298, 105);
-            this.panel8.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.panel8.Name = "panel8";
-            this.panel8.Padding = new System.Windows.Forms.Padding(2);
-            this.panel8.Size = new System.Drawing.Size(292, 40);
-            this.panel8.TabIndex = 14;
-            // 
-            // lblErrorMessage
-            // 
-            this.lblErrorMessage.BackColor = System.Drawing.Color.White;
-            this.lblErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblErrorMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblErrorMessage.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorMessage.ForeColor = System.Drawing.Color.Black;
-            this.lblErrorMessage.Location = new System.Drawing.Point(98, 2);
-            this.lblErrorMessage.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblErrorMessage.Name = "lblErrorMessage";
-            this.lblErrorMessage.Size = new System.Drawing.Size(192, 36);
-            this.lblErrorMessage.TabIndex = 18;
-            this.lblErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label16
-            // 
-            this.label16.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(2, 2);
-            this.label16.Margin = new System.Windows.Forms.Padding(1);
-            this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(1);
-            this.label16.Size = new System.Drawing.Size(96, 36);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "ERROR MESSAGE";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radPanel3
-            // 
-            this.radPanel3.Controls.Add(this.flowLayoutPanel3);
-            this.radPanel3.Controls.Add(this.label36);
-            this.radPanel3.Location = new System.Drawing.Point(4, 420);
-            this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel3.Size = new System.Drawing.Size(606, 126);
-            this.radPanel3.TabIndex = 14;
-            this.radPanel3.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel3.GetChildAt(0))).Shape = this.roundRectShape1;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).BottomWidth = 5F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(3)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(9)))), ((int)(((byte)(248)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.Controls.Add(this.panel12);
-            this.flowLayoutPanel3.Controls.Add(this.panel13);
-            this.flowLayoutPanel3.Controls.Add(this.panel14);
-            this.flowLayoutPanel3.Controls.Add(this.panel15);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(5, 27);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(596, 94);
-            this.flowLayoutPanel3.TabIndex = 51;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.lblIrSpec);
-            this.panel12.Controls.Add(this.lblIrRangeTitle);
-            this.panel12.Location = new System.Drawing.Point(4, 5);
-            this.panel12.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.panel12.Name = "panel12";
-            this.panel12.Padding = new System.Windows.Forms.Padding(2);
-            this.panel12.Size = new System.Drawing.Size(292, 40);
-            this.panel12.TabIndex = 9;
-            // 
-            // lblIrSpec
-            // 
-            this.lblIrSpec.BackColor = System.Drawing.Color.White;
-            this.lblIrSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblIrSpec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblIrSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIrSpec.ForeColor = System.Drawing.Color.Black;
-            this.lblIrSpec.Location = new System.Drawing.Point(98, 2);
-            this.lblIrSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblIrSpec.Name = "lblIrSpec";
-            this.lblIrSpec.Size = new System.Drawing.Size(192, 36);
-            this.lblIrSpec.TabIndex = 18;
-            this.lblIrSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblIrRangeTitle
-            // 
-            this.lblIrRangeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lblIrRangeTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblIrRangeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.lblIrRangeTitle.Location = new System.Drawing.Point(2, 2);
-            this.lblIrRangeTitle.Margin = new System.Windows.Forms.Padding(1);
-            this.lblIrRangeTitle.Name = "lblIrRangeTitle";
-            this.lblIrRangeTitle.Padding = new System.Windows.Forms.Padding(1);
-            this.lblIrRangeTitle.Size = new System.Drawing.Size(96, 36);
-            this.lblIrRangeTitle.TabIndex = 0;
-            this.lblIrRangeTitle.Text = "IR SPEC";
-            this.lblIrRangeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.lblIrRemeasureSpec);
-            this.panel13.Controls.Add(this.label26);
-            this.panel13.Location = new System.Drawing.Point(298, 5);
-            this.panel13.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.panel13.Name = "panel13";
-            this.panel13.Padding = new System.Windows.Forms.Padding(2);
-            this.panel13.Size = new System.Drawing.Size(292, 40);
-            this.panel13.TabIndex = 10;
-            // 
-            // lblIrRemeasureSpec
-            // 
-            this.lblIrRemeasureSpec.BackColor = System.Drawing.Color.White;
-            this.lblIrRemeasureSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblIrRemeasureSpec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblIrRemeasureSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIrRemeasureSpec.ForeColor = System.Drawing.Color.Black;
-            this.lblIrRemeasureSpec.Location = new System.Drawing.Point(98, 2);
-            this.lblIrRemeasureSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblIrRemeasureSpec.Name = "lblIrRemeasureSpec";
-            this.lblIrRemeasureSpec.Size = new System.Drawing.Size(192, 36);
-            this.lblIrRemeasureSpec.TabIndex = 18;
-            this.lblIrRemeasureSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label26
-            // 
-            this.label26.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label26.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label26.Location = new System.Drawing.Point(2, 2);
-            this.label26.Margin = new System.Windows.Forms.Padding(1);
-            this.label26.Name = "label26";
-            this.label26.Padding = new System.Windows.Forms.Padding(1);
-            this.label26.Size = new System.Drawing.Size(96, 36);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "REMEA. SPEC";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel14
-            // 
-            this.panel14.Controls.Add(this.lblOcvSpec);
-            this.panel14.Controls.Add(this.lblOcvRangeTitle);
-            this.panel14.Location = new System.Drawing.Point(4, 49);
-            this.panel14.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.panel14.Name = "panel14";
-            this.panel14.Padding = new System.Windows.Forms.Padding(2);
-            this.panel14.Size = new System.Drawing.Size(292, 40);
-            this.panel14.TabIndex = 11;
-            // 
-            // lblOcvSpec
-            // 
-            this.lblOcvSpec.BackColor = System.Drawing.Color.White;
-            this.lblOcvSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOcvSpec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblOcvSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOcvSpec.ForeColor = System.Drawing.Color.Black;
-            this.lblOcvSpec.Location = new System.Drawing.Point(98, 2);
-            this.lblOcvSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblOcvSpec.Name = "lblOcvSpec";
-            this.lblOcvSpec.Size = new System.Drawing.Size(192, 36);
-            this.lblOcvSpec.TabIndex = 18;
-            this.lblOcvSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblOcvRangeTitle
-            // 
-            this.lblOcvRangeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lblOcvRangeTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblOcvRangeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.lblOcvRangeTitle.Location = new System.Drawing.Point(2, 2);
-            this.lblOcvRangeTitle.Margin = new System.Windows.Forms.Padding(1);
-            this.lblOcvRangeTitle.Name = "lblOcvRangeTitle";
-            this.lblOcvRangeTitle.Padding = new System.Windows.Forms.Padding(1);
-            this.lblOcvRangeTitle.Size = new System.Drawing.Size(96, 36);
-            this.lblOcvRangeTitle.TabIndex = 0;
-            this.lblOcvRangeTitle.Text = "OCV SPEC";
-            this.lblOcvRangeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.lblOcvRemeasureSpec);
-            this.panel15.Controls.Add(this.label30);
-            this.panel15.Location = new System.Drawing.Point(298, 49);
-            this.panel15.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            this.panel15.Name = "panel15";
-            this.panel15.Padding = new System.Windows.Forms.Padding(2);
-            this.panel15.Size = new System.Drawing.Size(292, 40);
-            this.panel15.TabIndex = 12;
-            // 
-            // lblOcvRemeasureSpec
-            // 
-            this.lblOcvRemeasureSpec.BackColor = System.Drawing.Color.White;
-            this.lblOcvRemeasureSpec.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblOcvRemeasureSpec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblOcvRemeasureSpec.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOcvRemeasureSpec.ForeColor = System.Drawing.Color.Black;
-            this.lblOcvRemeasureSpec.Location = new System.Drawing.Point(98, 2);
-            this.lblOcvRemeasureSpec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblOcvRemeasureSpec.Name = "lblOcvRemeasureSpec";
-            this.lblOcvRemeasureSpec.Size = new System.Drawing.Size(192, 36);
-            this.lblOcvRemeasureSpec.TabIndex = 18;
-            this.lblOcvRemeasureSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label30
-            // 
-            this.label30.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label30.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label30.Location = new System.Drawing.Point(2, 2);
-            this.label30.Margin = new System.Windows.Forms.Padding(1);
-            this.label30.Name = "label30";
-            this.label30.Padding = new System.Windows.Forms.Padding(1);
-            this.label30.Size = new System.Drawing.Size(96, 36);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "REMEA. SPEC";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label36.Location = new System.Drawing.Point(5, 5);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(135, 16);
-            this.label36.TabIndex = 50;
-            this.label36.Text = "TRAY INFOMATION";
+            this.radlblControlMessage.AutoSize = false;
+            this.radlblControlMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radlblControlMessage.Location = new System.Drawing.Point(246, 4);
+            this.radlblControlMessage.Name = "radlblControlMessage";
+            this.radlblControlMessage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radlblControlMessage.Size = new System.Drawing.Size(354, 19);
+            this.radlblControlMessage.TabIndex = 65;
+            this.radlblControlMessage.Text = "status";
             // 
             // IROCVForm
             // 
@@ -1449,6 +1463,14 @@ namespace DHS.EQUIPMENT
             this.radpanel_Title.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_body)).EndInit();
             this.radpanel_body.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
+            this.radPanel3.ResumeLayout(false);
+            this.radPanel3.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
@@ -1482,6 +1504,8 @@ namespace DHS.EQUIPMENT
             this.pnlTrayId.ResumeLayout(false);
             this.pnlTrayId.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_connectionstatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
@@ -1490,16 +1514,7 @@ namespace DHS.EQUIPMENT
             this.panel1.ResumeLayout(false);
             this.pBase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
-            this.radPanel3.ResumeLayout(false);
-            this.radPanel3.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radlblControlMessage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1592,5 +1607,6 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.Label lblOcvRemeasureSpec;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label36;
+        private Telerik.WinControls.UI.RadLabel radlblControlMessage;
     }
 }

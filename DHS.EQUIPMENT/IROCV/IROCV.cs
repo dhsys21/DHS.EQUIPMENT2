@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using static DHS.EQUIPMENT.IROCV;
 
 namespace DHS.EQUIPMENT
 {
@@ -135,6 +136,15 @@ namespace DHS.EQUIPMENT
             if (OnProcessOcv != null)
             {
                 OnProcessOcv(stageno, param);
+            }
+        }
+        public delegate void ShowControlMessage(int stageno, string param);
+        public event ShowControlMessage OnShowControlMessage = null;
+        protected void RaiseOnShowControlMessage(int stageno, string param)
+        {
+            if (OnShowControlMessage != null)
+            {
+                OnShowControlMessage(stageno, param);
             }
         }
         #endregion

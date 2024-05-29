@@ -207,6 +207,7 @@ namespace DHS.EQUIPMENT
                 irocv[nIndex].OnProcessIr += _IROCV_ProcessIr;
                 irocv[nIndex].OnProcessOcv += _IROCV_ProcessOcv;
                 irocv[nIndex].OnIROCVError += _IROCV_Error;
+                irocv[nIndex].OnShowControlMessage += _IROCV_ShowControlMessage;
 
                 _bIrocvConnected[nIndex] = false;
                 #endregion
@@ -1236,6 +1237,10 @@ namespace DHS.EQUIPMENT
             //* display [manual mode] in measure info form
             measureinfo.SetOperationMode(bAuto);
         }
+        private void ShowControlMessage(int stageno, string param)
+        {
+            irocvform[stageno].SetControlMessage(param);
+        }
         private void ProcessIr(int stageno, string param)
         {
             int channel = Convert.ToInt32(param.Substring(0, 3));
@@ -1550,6 +1555,10 @@ namespace DHS.EQUIPMENT
         #region DELEGATE
 
         #region Delegate Event IROCV Equipment (Socket)
+        private void _IROCV_ShowControlMessage(int stageno, string param)
+        {
+            ShowControlMessage(stageno, param);
+        }
         private void _IROCV_ProcessOcv(int stageno, string param)
         {
             ProcessOcv(stageno, param);
