@@ -636,6 +636,7 @@ namespace DHS.EQUIPMENT
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
                 IRCHART.Series[0].Points.AddXY(nIndex + 1, -1);
+
                 IRCHART.Series[1].Points.AddXY(nIndex + 1, 0.3);
                 IRCHART.Series[2].Points.AddXY(nIndex + 1, 0.45);
 
@@ -651,11 +652,6 @@ namespace DHS.EQUIPMENT
             OCVCHART.Series[0].XValueType = ChartValueType.Int32;
             OCVCHART.Series[0].IsVisibleInLegend = false;
 
-            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
-            {
-                OCVCHART.Series[0].Points.AddXY(nIndex + 1, -1);
-            }
-
             OCVCHART.ChartAreas[0].AxisX.Interval = 1;
             OCVCHART.ChartAreas[0].AxisX.Minimum = 1;
             OCVCHART.ChartAreas[0].AxisX.Maximum = 32;
@@ -666,8 +662,39 @@ namespace DHS.EQUIPMENT
             OCVCHART.ChartAreas[0].AxisY.Maximum = 4200;
             OCVCHART.ChartAreas[0].AxisY.LineColor = Color.Black;
 
+            //* 최소 선 추가
+            OCVCHART.Series[1].ChartType = SeriesChartType.Line;
+            OCVCHART.Series[1].XValueType = ChartValueType.Int32;
+            OCVCHART.Series[1].IsVisibleInLegend = false;
+
+            OCVCHART.Series[3].ChartType = SeriesChartType.Line;
+            OCVCHART.Series[3].XValueType = ChartValueType.Int32;
+            OCVCHART.Series[3].IsVisibleInLegend = false;
+
+            //* 최대 선 추가
+            OCVCHART.Series[2].ChartType = SeriesChartType.Line;
+            OCVCHART.Series[2].XValueType = ChartValueType.Int32;
+            OCVCHART.Series[2].IsVisibleInLegend = false;
+
+            OCVCHART.Series[4].ChartType = SeriesChartType.Line;
+            OCVCHART.Series[4].XValueType = ChartValueType.Int32;
+            OCVCHART.Series[4].IsVisibleInLegend = false;
+
+            //* 그리드 선 색상 변경
             OCVCHART.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gray;
             OCVCHART.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gray;
+
+            //* 초기화
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                OCVCHART.Series[0].Points.AddXY(nIndex + 1, -1);
+
+                OCVCHART.Series[1].Points.AddXY(nIndex + 1, 2500);
+                OCVCHART.Series[2].Points.AddXY(nIndex + 1, 4000);
+
+                OCVCHART.Series[3].Points.AddXY(nIndex + 1, 2000);
+                OCVCHART.Series[4].Points.AddXY(nIndex + 1, 4200);
+            }
 
         }
         private void SetValueToChart(int channel, double value, Chart chart)
