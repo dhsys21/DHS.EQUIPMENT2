@@ -76,7 +76,7 @@ namespace DHS.EQUIPMENT
             dgvPCs[0].Columns[1].Width = 250;
 
             //* 행 추가
-            dgvPCs[0].Rows.Add(133);
+            dgvPCs[0].Rows.Add(172);
             dgvPCs[0].Rows[0].Cells[0].Value = "SequenceNo";
             dgvPCs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
             dgvPCs[0].Rows[2].Cells[0].Value = "EquipmentID";
@@ -89,6 +89,29 @@ namespace DHS.EQUIPMENT
                 dgvPCs[0].Rows[nIndex + 64 + 4].Cells[0].Value = "OCV " + (nIndex + 1).ToString("D2");
                 dgvPCs[0].Rows[nIndex + 96 + 4].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
             }
+
+            dgvPCs[0].Rows[140].Cells[0].Value = "InterfaceVersionProject";
+            dgvPCs[0].Rows[141].Cells[0].Value = "EquipmentName";
+            dgvPCs[0].Rows[142].Cells[0].Value = "EquipmentTypeID";
+            dgvPCs[0].Rows[143].Cells[0].Value = "LineID";
+            dgvPCs[0].Rows[144].Cells[0].Value = "AreaID";
+            dgvPCs[0].Rows[145].Cells[0].Value = "EquipmentID";
+            dgvPCs[0].Rows[146].Cells[0].Value = "State";
+            dgvPCs[0].Rows[147].Cells[0].Value = "Mode";
+            dgvPCs[0].Rows[148].Cells[0].Value = "Blocked";
+            dgvPCs[0].Rows[149].Cells[0].Value = "Starved";
+            dgvPCs[0].Rows[150].Cells[0].Value = "CurrentSpeed";
+            dgvPCs[0].Rows[151].Cells[0].Value = "DesignSpeed";
+            dgvPCs[0].Rows[152].Cells[0].Value = "TotalCounter";
+            dgvPCs[0].Rows[153].Cells[0].Value = "StandstillReason";
+            dgvPCs[0].Rows[154].Cells[0].Value = "Stacklight0Color";
+            dgvPCs[0].Rows[155].Cells[0].Value = "Stacklight0Behavior";
+            dgvPCs[0].Rows[156].Cells[0].Value = "Stacklight1Color";
+            dgvPCs[0].Rows[157].Cells[0].Value = "Stacklight1Behavior";
+            dgvPCs[0].Rows[158].Cells[0].Value = "Stacklight2Color";
+            dgvPCs[0].Rows[159].Cells[0].Value = "Stacklight2Behavior";
+            dgvPCs[0].Rows[160].Cells[0].Value = "Stacklight3Color";
+            dgvPCs[0].Rows[161].Cells[0].Value = "Stacklight3Behavior";
         }
 
         public void SetDataToGrid(string[] pcData, string[] mesData)
@@ -200,7 +223,7 @@ namespace DHS.EQUIPMENT
             }
             else if(cbTagname == "IR" || cbTagname == "OCV")
             {
-                cbTagType.Text = "UInt32Arr";
+                cbTagType.Text = "FloatArr";
                 string tempvalue = "";
                 for (int i = 0; i < 32; i++)
                     tempvalue += (i + 1).ToString("D3") + ",";

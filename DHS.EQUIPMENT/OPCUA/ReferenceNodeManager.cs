@@ -279,34 +279,72 @@ namespace OPCUASERVER
 
 
                 //* PLC System 정보
-                CreateVariable(rootMy2, "InterfaceVersionProject", DataTypeIds.String, ValueRanks.Scalar, "");
-                CreateVariable(rootMy2, "EquipmentName", DataTypeIds.String, ValueRanks.Scalar, "");
-                CreateVariable(rootMy2, "EquipmentTypeID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "LineID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "AreaID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "VendorID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "InterfaceVersionProject", DataTypeIds.String, ValueRanks.Scalar, "");
+                //CreateVariable(rootMy2, "EquipmentName", DataTypeIds.String, ValueRanks.Scalar, "");
+                //CreateVariable(rootMy2, "EquipmentTypeID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "LineID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "AreaID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "VendorID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 //CreateVariable(rootMy2, "EquipmentID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "State", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "Mode", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "Blocked", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "Starved", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "CurrentSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "DesignSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "DefectCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "GoodCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "TotalCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StandstillReason", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "State", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "Mode", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "Blocked", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "Starved", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "CurrentSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "DesignSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "DefectCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "GoodCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "TotalCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StandstillReason", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
 
-                CreateVariable(rootMy2, "StackLight0Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight0Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight1Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight1Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight2Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight2Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight3Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "StackLight3Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight0Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight0Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight1Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight1Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight2Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight2Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight3Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "StackLight3Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
 
                 AddPredefinedNode(SystemContext, rootMy2);
+                #endregion
+
+                #region PLC TAG LIST
+                FolderState rootMy3 = CreateFolder(null, "PLC");
+                rootMy3.AddReference(ReferenceTypes.Organizes, true, ObjectIds.ObjectsFolder);
+                references.Add(new NodeStateReference(ReferenceTypes.Organizes, false, rootMy3.NodeId));
+                rootMy3.EventNotifier = EventNotifiers.SubscribeToEvents;
+                AddRootNotifier(rootMy3);
+
+                //* PLC System 정보
+                CreateVariable(rootMy3, "InterfaceVersionProject", DataTypeIds.String, ValueRanks.Scalar, "");
+                CreateVariable(rootMy3, "EquipmentName", DataTypeIds.String, ValueRanks.Scalar, "");
+                CreateVariable(rootMy3, "EquipmentTypeID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "LineID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "AreaID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "VendorID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "EquipmentID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "State", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "Mode", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "Blocked", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "Starved", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "CurrentSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "DesignSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "DefectCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "GoodCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "TotalCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StandstillReason", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+
+                CreateVariable(rootMy3, "StackLight0Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight0Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight1Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight1Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight2Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight2Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight3Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StackLight3Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+
+                AddPredefinedNode(SystemContext, rootMy3);
                 #endregion
             }
         }
