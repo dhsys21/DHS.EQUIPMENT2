@@ -10,6 +10,7 @@ using DHS.EQUIPMENT.Common;
 using Opc.Ua;
 using OPCUACLIENT;
 using static DHS.EQUIPMENT.MesClient;
+using static Telerik.WinControls.UI.ValueMapper;
 
 namespace DHS.EQUIPMENT
 {
@@ -45,6 +46,8 @@ namespace DHS.EQUIPMENT
         private string[] _strPCCellStatus;
         private int[] _iPCIRs;
         private int[] _iPCOCVs;
+        private float[] _fPCIRs;
+        private float[] _fPCOCVs;
 
         public int MESSEQUENCENO { get => _iMesSequenceNo; set => _iMesSequenceNo = value; }
         public int MESACKNOWLEDGENO { get => _iMesAcknowledgeNo; set => _iMesAcknowledgeNo = value; }
@@ -58,11 +61,13 @@ namespace DHS.EQUIPMENT
         public string PCTRAYID { get => _strPCTrayID; set => _strPCTrayID = value; }
         public string[] PCCELLIDS { get => _strPCCellIDs; set => _strPCCellIDs = value; }
         public string[] PCCELLSTATUS { get => _strPCCellStatus; set => _strPCCellStatus = value; }
-        public int[] PCIRS { get => _iPCIRs; set => _iPCIRs = value; }
-        public int[] PCOCVS { get => _iPCOCVs; set => _iPCOCVs = value; }
+        //public int[] PCIRS { get => _iPCIRs; set => _iPCIRs = value; }
+        //public int[] PCOCVS { get => _iPCOCVs; set => _iPCOCVs = value; }
         public int MESERRORCODE { get => _iMesErrorCode; set => _iMesErrorCode = value; }
         public string MESERRORMSG { get => _strMesErrorMsg; set => _strMesErrorMsg = value; }
         public string MESTRAYSTATUSCODE { get => _strMesTrayStatusCode; set => _strMesTrayStatusCode = value; }
+        public float[] PCIRS { get => _fPCIRs; set => _fPCIRs = value; }
+        public float[] PCOCVS { get => _fPCOCVs; set => _fPCOCVs = value; }
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         
@@ -154,6 +159,7 @@ namespace DHS.EQUIPMENT
                 #region Get Value from MES Tag
                 UInt32 iVal = 0;
                 UInt32[] iVals;
+                float[] fVals;
                 foreach (var tag in MesTagList)
                 {
                     switch (tag.tagName)
@@ -235,15 +241,25 @@ namespace DHS.EQUIPMENT
                             SetValue(100, _strPCCellStatus, "PC");
                             break;
                         case "ns=2;s=Equipment/IR":
-                            iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iPCIRs = iVals.Select(x => (int)x).ToArray();
-                            SetValue(36, _iPCIRs, "PC");
+                            fVals = (float[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                            _fPCIRs = fVals.Select(x => (float)x).ToArray();
+                            SetValue(36, _fPCIRs, "PC");
                             break;
                         case "ns=2;s=Equipment/OCV":
-                            iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iPCOCVs = iVals.Select(x => (int)x).ToArray();
-                            SetValue(68, _iPCOCVs, "PC");
+                            fVals = (float[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                            _fPCOCVs = fVals.Select(x => (float)x).ToArray();
+                            SetValue(68, _fPCOCVs, "PC");
                             break;
+                        //case "ns=2;s=Equipment/IR":
+                        //    iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        //    _iPCIRs = iVals.Select(x => (int)x).ToArray();
+                        //    SetValue(36, _iPCIRs, "PC");
+                        //    break;
+                        //case "ns=2;s=Equipment/OCV":
+                        //    iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
+                        //    _iPCOCVs = iVals.Select(x => (int)x).ToArray();
+                        //    SetValue(68, _iPCOCVs, "PC");
+                        //    break;
                         default:
                             break;
                     }
@@ -282,6 +298,14 @@ namespace DHS.EQUIPMENT
                 else if (type == "PC") pcData[row++] = values[nIndex].ToString();
             }
         }
+        private void SetValue(int row, float[] values, string type)
+        {
+            for (int nIndex = 0; nIndex < values.Length; nIndex++)
+            {
+                if (type == "MES") mesData[row++] = values[nIndex].ToString();
+                else if (type == "PC") pcData[row++] = values[nIndex].ToString();
+            }
+        }
         private void SetValue(int row, string[] values, string type)
         {
             for (int nIndex = 0; nIndex < values.Length; nIndex++)
@@ -311,6 +335,10 @@ namespace DHS.EQUIPMENT
                         break;
                     case (int)MesClient.EnumDataType.dtUInt32Arr:
                         objValue = (UInt32[])opcclient.Read<UInt32[]>(node);
+                        if (objValue == null) return 0;
+                        break;
+                    case (int)MesClient.EnumDataType.dtFloatArr:
+                        objValue = (float[])opcclient.Read<float[]>(node);
                         if (objValue == null) return 0;
                         break;
                     case (int)MesClient.EnumDataType.dtBoolean:
@@ -407,6 +435,22 @@ namespace DHS.EQUIPMENT
             }
 
             return objValue;
+        }
+        #endregion
+
+        #region MES Write/Read
+        public void WriteValue(string node, string value)
+        {
+            switch (node)
+            {
+                case "EquipmentID":
+                    WriteValue("ns=2;s=Equipment/EquipmentID", value, (int)EnumDataType.dtString);
+                    break;
+                case "TrayID":
+                    WriteValue("ns=2;s=TrayID/EquipmentID", value, (int)EnumDataType.dtString);
+                    break;
+                default : break;
+            }
         }
         #endregion
 
@@ -763,6 +807,7 @@ namespace DHS.EQUIPMENT
             dtStringArr,
             dtUInt32,
             dtUInt32Arr,
+            dtFloatArr,
             dtBoolean
         }
 
@@ -800,12 +845,20 @@ namespace DHS.EQUIPMENT
             EquipTagList.Add(tag);
 
             tag.tagName = "ns=2;s=Equipment/IR";
-            tag.tagDataType = EnumDataType.dtUInt32Arr;
+            tag.tagDataType = EnumDataType.dtFloatArr;
             EquipTagList.Add(tag);
 
             tag.tagName = "ns=2;s=Equipment/OCV";
-            tag.tagDataType = EnumDataType.dtUInt32Arr;
+            tag.tagDataType = EnumDataType.dtFloatArr;
             EquipTagList.Add(tag);
+
+            //tag.tagName = "ns=2;s=Equipment/IR";
+            //tag.tagDataType = EnumDataType.dtUInt32Arr;
+            //EquipTagList.Add(tag);
+
+            //tag.tagName = "ns=2;s=Equipment/OCV";
+            //tag.tagDataType = EnumDataType.dtUInt32Arr;
+            //EquipTagList.Add(tag);
 
             tag.tagName = "ns=2;s=Equipment/CellStatus";
             tag.tagDataType = EnumDataType.dtStringArr;

@@ -97,6 +97,7 @@ namespace DHS.EQUIPMENT
             #region MES
             _bMesConnected = false;
             mesinterface = MESINTERFACE.GetInstance();
+            mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
 
             //* MES Connection
             try
@@ -256,6 +257,10 @@ namespace DHS.EQUIPMENT
             _tmrGetMesData.Enabled = true;
         }
         #region MES Method
+        private void _MesClient_WriteMesValue(string node, string value, int nDataType)
+        {
+            mesclient.WriteValue(node, value);
+        }
         private void _MesClient_SetDataToDgv(string[] pcValues, string[] mesValues)
         {
             mesinterface.SetDataToGrid(pcValues, mesValues);

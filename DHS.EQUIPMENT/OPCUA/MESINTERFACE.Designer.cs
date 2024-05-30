@@ -147,9 +147,9 @@ namespace DHS.EQUIPMENT
             // 
             this.cbTagType.FormattingEnabled = true;
             this.cbTagType.Items.AddRange(new object[] {
-            "UInt32",
             "String",
             "StringArr",
+            "UInt32",
             "UInt32Arr"});
             this.cbTagType.Location = new System.Drawing.Point(126, 109);
             this.cbTagType.Name = "cbTagType";
@@ -180,7 +180,7 @@ namespace DHS.EQUIPMENT
             "CellID",
             "IR",
             "OCV",
-            "Result"});
+            "CellStatus"});
             this.cbTagList.Location = new System.Drawing.Point(126, 74);
             this.cbTagList.Name = "cbTagList";
             this.cbTagList.Size = new System.Drawing.Size(153, 20);
@@ -215,7 +215,7 @@ namespace DHS.EQUIPMENT
             this.tbTagValue.Location = new System.Drawing.Point(126, 152);
             this.tbTagValue.Multiline = true;
             this.tbTagValue.Name = "tbTagValue";
-            this.tbTagValue.Size = new System.Drawing.Size(225, 197);
+            this.tbTagValue.Size = new System.Drawing.Size(225, 32);
             this.tbTagValue.TabIndex = 56;
             this.tbTagValue.Text = "0";
             // 
@@ -223,7 +223,7 @@ namespace DHS.EQUIPMENT
             // 
             this.radBtnWriteValue.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
             this.radBtnWriteValue.ForeColor = System.Drawing.Color.White;
-            this.radBtnWriteValue.Location = new System.Drawing.Point(124, 407);
+            this.radBtnWriteValue.Location = new System.Drawing.Point(126, 465);
             this.radBtnWriteValue.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnWriteValue.Name = "radBtnWriteValue";
             this.radBtnWriteValue.Size = new System.Drawing.Size(155, 60);

@@ -248,14 +248,18 @@ namespace OPCUASERVER
                 rootMy2.EventNotifier = EventNotifiers.SubscribeToEvents;
                 AddRootNotifier(rootMy2);
 
-                UInt32[] uiIR = new UInt32[channelcount];
-                UInt32[] uiOCV = new uint[channelcount];
+                //UInt32[] uiIR = new UInt32[channelcount];
+                //UInt32[] uiOCV = new uint[channelcount];
+                float[] fIR = new float[channelcount];
+                float[] fOCV = new float[channelcount];
                 string[] strCellStatus2 = new string[channelcount];
                 string[] strCellID2 = new string[channelcount];
                 for (int i = 0; i < channelcount; i++)
                 {
-                    uiIR[i] = (UInt32)0;
-                    uiOCV[i] = (UInt32)0;
+                    //uiIR[i] = (UInt32)0;
+                    //uiOCV[i] = (UInt32)0;
+                    fIR[i] = (float)0.0;
+                    fOCV[i] = (float)0.0;
                     strCellStatus2[i] = "";
                     strCellID2[i] = "";
                 }
@@ -268,8 +272,10 @@ namespace OPCUASERVER
 
                 CreateVariable(rootMy2, "CellID", DataTypeIds.String, ValueRanks.OneDimension, strCellID2);
                 CreateVariable(rootMy2, "CellStatus", DataTypeIds.String, ValueRanks.OneDimension, strCellStatus2);
-                CreateVariable(rootMy2, "IR", DataTypeIds.UInt32, ValueRanks.OneDimension, uiIR);
-                CreateVariable(rootMy2, "OCV", DataTypeIds.UInt32, ValueRanks.OneDimension, uiOCV);
+                //CreateVariable(rootMy2, "IR", DataTypeIds.UInt32, ValueRanks.OneDimension, uiIR);
+                //CreateVariable(rootMy2, "OCV", DataTypeIds.UInt32, ValueRanks.OneDimension, uiOCV);
+                CreateVariable(rootMy2, "IR", DataTypeIds.Float, ValueRanks.OneDimension, fIR);
+                CreateVariable(rootMy2, "OCV", DataTypeIds.Float, ValueRanks.OneDimension, fOCV);
 
 
                 //* PLC System 정보
@@ -279,7 +285,7 @@ namespace OPCUASERVER
                 CreateVariable(rootMy2, "LineID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy2, "AreaID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy2, "VendorID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy2, "EquipmentID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy2, "EquipmentID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy2, "State", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy2, "Mode", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy2, "Blocked", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);

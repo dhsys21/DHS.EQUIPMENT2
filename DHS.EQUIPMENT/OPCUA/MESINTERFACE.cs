@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using static DHS.EQUIPMENT.MesClient;
 
 namespace DHS.EQUIPMENT
 {
@@ -16,6 +17,16 @@ namespace DHS.EQUIPMENT
         private static MESINTERFACE mesform;
         DataGridView[] dgvPCs = new DataGridView[_Constant.frmCount];
         DataGridView[] dgvMESs = new DataGridView[_Constant.frmCount];
+
+        public delegate void WriteButtonClick(string node, string value, int nDataType);
+        public event WriteButtonClick OnWriteButtonClick = null;
+        protected void RaiseOnWriteMes(string node, string value, int nDataType)
+        {
+            if (OnWriteButtonClick != null)
+            {
+                OnWriteButtonClick(node, value, nDataType);
+            }
+        }
 
         public static MESINTERFACE GetInstance()
         {
@@ -156,7 +167,15 @@ namespace DHS.EQUIPMENT
 
         private void radBtnWriteValue_Click(object sender, EventArgs e)
         {
+            //WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
+            string node = string.Empty, value = string.Empty;
+            int nDataType = 0;
 
+            //node = "ns=2;s=Equipment/" + cbTagList.Text;
+            node = cbTagList.Text;
+            value = tbTagValue.Text;
+            nDataType = cbTagType.SelectedIndex;
+            OnWriteButtonClick(node, value, nDataType);
         }
 
         private void cbTagList_SelectedValueChanged(object sender, EventArgs e)
@@ -187,9 +206,9 @@ namespace DHS.EQUIPMENT
                     tempvalue += (i + 1).ToString("D3") + ",";
                 tbTagValue.Text = tempvalue;
             }
-            else if (cbTagname == "Result")
+            else if (cbTagname == "CellStatus")
             {
-                cbTagType.Text = "UInt32Arr";
+                cbTagType.Text = "StringArr";
                 string tempvalue = "";
                 for (int i = 0; i < 32; i++)
                     tempvalue += "1,";
