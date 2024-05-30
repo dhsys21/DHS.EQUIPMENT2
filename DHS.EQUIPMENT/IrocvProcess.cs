@@ -418,6 +418,8 @@ namespace DHS.EQUIPMENT
                     double irremeamax = 0.0;
                     _system.IRREMEAMAX = util.TryParseDouble(util.readConfig(filename, "SPEC", "IRREMEAMAX"), irremeamax);
 
+                    measureinfo.SetIRMinMax(_system.IRMIN, _system.IRMAX, _system.IRREMEAMIN, _system.IRREMEAMAX);
+
                     //* OCV SPEC
                     double ocvmin = 0.0;
                     _system.OCVMIN = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVMIN"), ocvmin);
@@ -427,6 +429,10 @@ namespace DHS.EQUIPMENT
                     _system.OCVREMEAMIN = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVREMEAMIN"), ocvremeamin);
                     double ocvremeamax = 0.0;
                     _system.OCVREMEAMAX = util.TryParseDouble(util.readConfig(filename, "SPEC", "OCVREMEAMAX"), ocvremeamax);
+
+                    measureinfo.SetOCVMinMax(_system.OCVMIN, _system.OCVMAX, _system.OCVREMEAMIN, _system.OCVREMEAMAX);
+
+                    measureinfo.SetChartMinMax();
 
                     //* IROCV CONFIG FORM에 설정값 표시
                     irocvconfig[stageno].SetStageSystemValue();
@@ -1201,7 +1207,7 @@ namespace DHS.EQUIPMENT
             util.SaveLog(stageno, "IROCV Initialize ...");
             irocvdata[stageno].InitData();
             measureinfo.InitData(stageno);
-            measureinfo.InitChart();
+            //measureinfo.InitChart();
 
             measureinfo.InitDisplayChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
 
@@ -1212,7 +1218,7 @@ namespace DHS.EQUIPMENT
             //* mes에서 데이터 받아서 화면 refresh
             util.SaveLog(stageno, "IROCV Data Initialize ...");
             measureinfo.InitData(stageno);
-            measureinfo.InitChart();
+            //measureinfo.InitChart();
 
             measureinfo.InitDisplayChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
         }

@@ -17,6 +17,14 @@ namespace DHS.EQUIPMENT
         public int _iStage;
         public bool _bManualMode;
         private int _iOffsetChannel = 0;
+        private double _dIrMin;
+        private double _dIrMax;
+        private double _dIrRemeaMin;
+        private double _dIrRemeaMax;
+        private double _dOcvMin;
+        private double _dOcvMax;
+        private double _dOcvRemeaMin;
+        private double _dOcvRemeaMax;
 
         double[] _dStandard = new double[_Constant.ChannelCount];
         double[] _dMeasured = new double[_Constant.ChannelCount];
@@ -199,6 +207,16 @@ namespace DHS.EQUIPMENT
         #endregion
 
         private static IROCVMeasureInfoForm measureinfoForm = new IROCVMeasureInfoForm();
+
+        public double IRMIN { get => _dIrMin; set => _dIrMin = value; }
+        public double IRMAX { get => _dIrMax; set => _dIrMax = value; }
+        public double IRREMEAMIN { get => _dIrRemeaMin; set => _dIrRemeaMin = value; }
+        public double IRREMEAMAX { get => _dIrRemeaMax; set => _dIrRemeaMax = value; }
+        public double OCVMIN { get => _dOcvMin; set => _dOcvMin = value; }
+        public double OCVMAX { get => _dOcvMax; set => _dOcvMax = value; }
+        public double OCVREMEAMIN { get => _dOcvRemeaMin; set => _dOcvRemeaMin = value; }
+        public double OCVREMEAMAX { get => _dOcvRemeaMax; set => _dOcvRemeaMax = value; }
+
         public static IROCVMeasureInfoForm GetInstance()
         {
             if (measureinfoForm == null) measureinfoForm = new IROCVMeasureInfoForm();
@@ -593,6 +611,44 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region chart
+        public void SetIRMinMax(double min, double max, double remeamin, double remeamax)
+        {
+            IRMIN = min;
+            IRMAX = max;
+            IRREMEAMIN = remeamin;
+            IRREMEAMAX = remeamax;
+        }
+        public void SetOCVMinMax(double min, double max, double remeamin, double remeamax)
+        {
+            OCVMIN = min;
+            OCVMAX = max;
+            OCVREMEAMIN = remeamin;
+            OCVREMEAMAX = remeamax;
+        }
+        public void SetChartMinMax()
+        {
+            InitChart();
+
+            //* 초기화
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                IRCHART.Series[1].Points.AddXY(nIndex + 1, IRMIN);
+                IRCHART.Series[2].Points.AddXY(nIndex + 1, IRMAX);
+
+                IRCHART.Series[3].Points.AddXY(nIndex + 1, IRREMEAMIN);
+                IRCHART.Series[4].Points.AddXY(nIndex + 1, IRREMEAMAX);
+            }
+
+            //* 초기화
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                OCVCHART.Series[1].Points.AddXY(nIndex + 1, OCVMIN);
+                OCVCHART.Series[2].Points.AddXY(nIndex + 1, OCVMAX);
+
+                OCVCHART.Series[3].Points.AddXY(nIndex + 1, OCVREMEAMIN);
+                OCVCHART.Series[4].Points.AddXY(nIndex + 1, OCVREMEAMAX);
+            }
+        }
         private void InitIRChart()
         {
             IRCHART.Series[0].ChartType = SeriesChartType.Line;
@@ -637,11 +693,11 @@ namespace DHS.EQUIPMENT
             {
                 IRCHART.Series[0].Points.AddXY(nIndex + 1, -1);
 
-                IRCHART.Series[1].Points.AddXY(nIndex + 1, 0.3);
-                IRCHART.Series[2].Points.AddXY(nIndex + 1, 0.45);
+                //IRCHART.Series[1].Points.AddXY(nIndex + 1, IRMIN);
+                //IRCHART.Series[2].Points.AddXY(nIndex + 1, IRMAX);
 
-                IRCHART.Series[3].Points.AddXY(nIndex + 1, 0.25);
-                IRCHART.Series[4].Points.AddXY(nIndex + 1, 0.5);
+                //IRCHART.Series[3].Points.AddXY(nIndex + 1, IRREMEAMIN);
+                //IRCHART.Series[4].Points.AddXY(nIndex + 1, IRREMEAMAX);
             }
 
         }
@@ -689,11 +745,11 @@ namespace DHS.EQUIPMENT
             {
                 OCVCHART.Series[0].Points.AddXY(nIndex + 1, -1);
 
-                OCVCHART.Series[1].Points.AddXY(nIndex + 1, 2500);
-                OCVCHART.Series[2].Points.AddXY(nIndex + 1, 4000);
+                //OCVCHART.Series[1].Points.AddXY(nIndex + 1, OCVMIN);
+                //OCVCHART.Series[2].Points.AddXY(nIndex + 1, OCVMAX);
 
-                OCVCHART.Series[3].Points.AddXY(nIndex + 1, 2000);
-                OCVCHART.Series[4].Points.AddXY(nIndex + 1, 4200);
+                //OCVCHART.Series[3].Points.AddXY(nIndex + 1, OCVREMEAMIN);
+                //OCVCHART.Series[4].Points.AddXY(nIndex + 1, OCVREMEAMAX);
             }
 
         }
@@ -727,17 +783,29 @@ namespace DHS.EQUIPMENT
         }
         private void ClearChart(Chart chart)
         {
-            //for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
-            //{
-            //    chart.Series[0].Points.RemoveAt(0);
-            //}
-                
-            //chart.Series[0].Points.AddXY(0, -1);
-
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
-                chart.Series[0].Points[nIndex].YValues[0] = -1;
+                //chart.Series[0].Points[nIndex].YValues[0] = -1;
+                
+
+                //chart.Series[1].Points[nIndex].YValues[0] = -1;
+                //chart.Series[2].Points[nIndex].YValues[0] = -1;
+                //chart.Series[3].Points[nIndex].YValues[0] = -1;
+                //chart.Series[4].Points[nIndex].YValues[0] = -1;
+
+
             }
+
+            for(int nIndex = 1; nIndex < 5; nIndex++)
+            {
+                chart.Series[nIndex].Points.Clear();
+            }
+
+            //foreach (var series in chart.Series)
+            //{
+            //    series.Points.Clear();
+            //}
+
         }
         public void InitChart()
         {
@@ -873,6 +941,12 @@ namespace DHS.EQUIPMENT
         private void radBtnSaveData_Click(object sender, EventArgs e)
         {
             RaiseOnManualSave(_iStage);
+        }
+
+        private void lblMsaTitle_Click(object sender, EventArgs e)
+        {
+            ClearChart(IRCHART);
+            ClearChart(OCVCHART);
         }
     }
 }
