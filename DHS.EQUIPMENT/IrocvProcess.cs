@@ -101,7 +101,8 @@ namespace DHS.EQUIPMENT
             //* MES 시뮬레이션
             mesinterface.OnWriteForIR1 += _MesClient_WriteForIR1;
             mesinterface.OnWriteForIR2 += _MeSClient_WriteForIR2;
-            mesinterface.OnReadForIR += _MesClient_ReadForIR;
+            mesinterface.OnReadForIR1 += _MesClient_ReadForIR1;
+            mesinterface.OnReadForIR2 += _MesClient_ReadForIR2;
             mesinterface.OnWritePLCSysInfo += _MesClient_WritePLCSysInfo;
 
             //* MES Connection
@@ -294,12 +295,17 @@ namespace DHS.EQUIPMENT
             mesclient.WriteFOEQR2_2(0, irocvdata[0]);
         }
 
-        private void _MesClient_ReadForIR(int type)
+        private void _MesClient_ReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
         {
-            if (type == 1)
-                mesclient.ReadFOEQR2_1(0);
-            else if (type == 2)
-                mesclient.ReadFOEQR2_2(0);
+            mesclient.WriteFORIR1_ForMes(0, cellid, cellstatus, traystatuscode, errorcode, errormessage);
+            mesclient.ReadFOEQR2_1(0);
+
+            mesinterface.ShowReadMesValues(irocvdata[0].LOG);
+        }
+        private void _MesClient_ReadForIR2(string errorcode, string errormessage)
+        {
+            mesclient.WriteFORIR2_ForMes(0, errorcode, errormessage);
+            mesclient.ReadFOEQR2_1(0);
 
             mesinterface.ShowReadMesValues(irocvdata[0].LOG);
         }

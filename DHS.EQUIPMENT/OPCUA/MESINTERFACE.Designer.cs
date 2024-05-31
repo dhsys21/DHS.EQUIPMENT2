@@ -61,7 +61,7 @@ namespace DHS.EQUIPMENT
             this.label12 = new System.Windows.Forms.Label();
             this.radBtnWriteForir2_1 = new Telerik.WinControls.UI.RadButton();
             this.radBtnWriteForir2_2 = new Telerik.WinControls.UI.RadButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbCellStatusResult = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.radBtnReadFORIR2_2 = new Telerik.WinControls.UI.RadButton();
             this.radBtnReadFORIR2_1 = new Telerik.WinControls.UI.RadButton();
@@ -187,7 +187,7 @@ namespace DHS.EQUIPMENT
             "StringArr",
             "UInt32",
             "UInt32Arr"});
-            this.cbTagType.Location = new System.Drawing.Point(126, 62);
+            this.cbTagType.Location = new System.Drawing.Point(183, 58);
             this.cbTagType.Name = "cbTagType";
             this.cbTagType.Size = new System.Drawing.Size(153, 20);
             this.cbTagType.TabIndex = 63;
@@ -198,7 +198,7 @@ namespace DHS.EQUIPMENT
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(17, 66);
+            this.label2.Location = new System.Drawing.Point(75, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 62;
@@ -217,7 +217,7 @@ namespace DHS.EQUIPMENT
             "IR",
             "OCV",
             "CellStatus"});
-            this.cbTagList.Location = new System.Drawing.Point(126, 27);
+            this.cbTagList.Location = new System.Drawing.Point(183, 27);
             this.cbTagList.Name = "cbTagList";
             this.cbTagList.Size = new System.Drawing.Size(153, 20);
             this.cbTagList.TabIndex = 61;
@@ -229,7 +229,7 @@ namespace DHS.EQUIPMENT
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(17, 31);
+            this.label5.Location = new System.Drawing.Point(74, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 16);
             this.label5.TabIndex = 60;
@@ -240,7 +240,7 @@ namespace DHS.EQUIPMENT
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(17, 104);
+            this.label3.Location = new System.Drawing.Point(75, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 16);
             this.label3.TabIndex = 57;
@@ -248,10 +248,10 @@ namespace DHS.EQUIPMENT
             // 
             // tbTagValue
             // 
-            this.tbTagValue.Location = new System.Drawing.Point(126, 99);
+            this.tbTagValue.Location = new System.Drawing.Point(183, 89);
             this.tbTagValue.Multiline = true;
             this.tbTagValue.Name = "tbTagValue";
-            this.tbTagValue.Size = new System.Drawing.Size(225, 21);
+            this.tbTagValue.Size = new System.Drawing.Size(182, 21);
             this.tbTagValue.TabIndex = 56;
             this.tbTagValue.Text = "0";
             // 
@@ -293,7 +293,7 @@ namespace DHS.EQUIPMENT
             this.radPanel1.Controls.Add(this.tbTrayID);
             this.radPanel1.Controls.Add(this.radBtnReadFORIR2_2);
             this.radPanel1.Controls.Add(this.radBtnReadFORIR2_1);
-            this.radPanel1.Controls.Add(this.comboBox1);
+            this.radPanel1.Controls.Add(this.cbCellStatusResult);
             this.radPanel1.Controls.Add(this.label13);
             this.radPanel1.Controls.Add(this.radBtnWriteForir2_2);
             this.radPanel1.Controls.Add(this.radBtnWriteForir2_1);
@@ -643,10 +643,10 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
             // 
-            // comboBox1
+            // cbCellStatusResult
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbCellStatusResult.FormattingEnabled = true;
+            this.cbCellStatusResult.Items.AddRange(new object[] {
             "0",
             "0",
             "0",
@@ -679,11 +679,11 @@ namespace DHS.EQUIPMENT
             "0",
             "0",
             "0"});
-            this.comboBox1.Location = new System.Drawing.Point(126, 329);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 20);
-            this.comboBox1.TabIndex = 77;
-            this.comboBox1.Text = "0";
+            this.cbCellStatusResult.Location = new System.Drawing.Point(126, 329);
+            this.cbCellStatusResult.Name = "cbCellStatusResult";
+            this.cbCellStatusResult.Size = new System.Drawing.Size(153, 20);
+            this.cbCellStatusResult.TabIndex = 77;
+            this.cbCellStatusResult.Text = "0";
             // 
             // label13
             // 
@@ -807,7 +807,7 @@ namespace DHS.EQUIPMENT
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(976, 765);
+            this.ClientSize = new System.Drawing.Size(1365, 765);
             this.Controls.Add(this.tbMsg);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radpnl_MESTEST);
@@ -876,7 +876,7 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.Label label12;
         private Telerik.WinControls.UI.RadButton radBtnWriteForir2_1;
         private Telerik.WinControls.UI.RadButton radBtnWriteForir2_2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbCellStatusResult;
         private System.Windows.Forms.Label label13;
         private Telerik.WinControls.UI.RadButton radBtnReadFORIR2_2;
         private Telerik.WinControls.UI.RadButton radBtnReadFORIR2_1;

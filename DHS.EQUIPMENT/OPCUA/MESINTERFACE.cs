@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using S7.Net;
 using static DHS.EQUIPMENT.MesClient;
 
 namespace DHS.EQUIPMENT
@@ -55,13 +56,22 @@ namespace DHS.EQUIPMENT
                 OnWritePLCSysInfo();
             }
         }
-        public delegate void ReadForIR(int type);
-        public event ReadForIR OnReadForIR = null;
-        protected void RaiseOnReadForIR(int type)
+        public delegate void ReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage);
+        public event ReadForIR1 OnReadForIR1 = null;
+        protected void RaiseOnReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
         {
-            if (OnReadForIR != null)
+            if (OnReadForIR1 != null)
             {
-                OnReadForIR(type);
+                OnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
+            }
+        }
+        public delegate void ReadForIR2(string errorcode, string errormessage);
+        public event ReadForIR2 OnReadForIR2 = null;
+        protected void RaiseOnReadForIR2(string errorcode, string errormessage)
+        {
+            if (OnReadForIR2 != null)
+            {
+                OnReadForIR2(errorcode, errormessage);
             }
         }
         #endregion
@@ -302,7 +312,7 @@ namespace DHS.EQUIPMENT
             for(int i = 0; i < 32;i++)
             {
                 cellid[i] = cbCellID.Items[i].ToString();
-                cellstatus[i] = cbCellStatus.Items[i].ToString();
+                cellstatus[i] = cbCellStatusResult.Items[i].ToString();
                 ir[i] = (float)Convert.ToDouble(cbIR.Items[i].ToString());
                 ocv[i] = (float)Convert.ToDouble(cbOCV.Items[i].ToString());
             }
@@ -312,12 +322,26 @@ namespace DHS.EQUIPMENT
 
         private void radBtnReadFORIR2_1_Click(object sender, EventArgs e)
         {
-            RaiseOnReadForIR(1);
+            string[] cellid = new string[32];
+            string[] cellstatus = new string[32];
+            string traystatuscode = tbTrayStatusCode.Text;
+            string errorcode = tbErrorCode.Text;
+            string errormessage = tbErrorMessage.Text;
+
+            for(int i = 0; i < 32; i++)
+            {
+                cellid[i] = cbCellID.Items[i].ToString();
+                cellstatus[i] = cbCellStatus.Items[i].ToString();
+            }
+
+            RaiseOnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
         }
 
         private void radBtnReadFORIR2_2_Click(object sender, EventArgs e)
         {
-            RaiseOnReadForIR(2);
+            string errorcode = tbErrorCode.Text;
+            string errormessage = tbErrorMessage.Text;
+            RaiseOnReadForIR2(errorcode, errormessage);
         }
 
         private void radButton1_Click(object sender, EventArgs e)

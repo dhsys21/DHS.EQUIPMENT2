@@ -735,6 +735,47 @@ namespace DHS.EQUIPMENT
             //* Save Log
             SaveLog(stageno, "PLC SYS INFO. IROCV -> MES", _strLog);
         }
+
+        public void WriteFORIR1_ForMes(int stageno, string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
+        {
+            _strLog = string.Empty;
+
+            //* CELL ID
+            WriteValue("ns=2;s=Mes/CellID", cellid, (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellid.Length; nIndex++)
+                _strLog += ", CELLNO" + (nIndex + 1).ToString("D2") + ":" + cellid[nIndex];
+
+            //* CELL STATUS
+            WriteValue("ns=2;s=Mes/CellStatus", cellstatus, (int)EnumDataType.dtStringArr);
+            for (int nIndex = 0; nIndex < cellstatus.Length; nIndex++)
+                _strLog += ", CELLSTATUS" + (nIndex + 1).ToString("D2") + ":" + cellstatus[nIndex];
+
+            //* Tray Status Code
+            WriteValue("ns=2;s=Mes/TrayStatusCode", traystatuscode, (int)EnumDataType.dtString);
+            _strLog += ", TRAY STATUS CODE: " + traystatuscode;
+
+            //* ErrorCode
+            WriteValue("ns=2;s=Mes/ErrorCode", errorcode, (int)EnumDataType.dtUInt32);
+            _strLog += ", ERROR CODE: " + errorcode;
+
+            //* ErrorMessage
+            WriteValue("ns=2;s=Mes/ErrorMessage", errormessage, (int)EnumDataType.dtString);
+            _strLog += ", ERROR MESSAGE: " + errormessage;
+
+            SaveLog(stageno, "FOEQR2.1 For MES", _strLog);
+        }
+        public void WriteFORIR2_ForMes(int stageno, string errorcode, string errormessage)
+        {
+            //* ErrorCode
+            WriteValue("ns=2;s=Mes/ErrorCode", errorcode, (int)EnumDataType.dtUInt32);
+
+            //* ErrorMessage
+            WriteValue("ns=2;s=Mes/ErrorMessage", errormessage, (int)EnumDataType.dtString);
+
+            //* Save Log
+            _strLog = "ErrorCode: " + errorcode + ", ErrorMessage: " + errormessage;
+            SaveLog(stageno, "FOEQR2.2 For MES", _strLog);
+        }
         #endregion
 
         #region Version 1. - MES와 IROCV간 주고 받는 Sequence 별로 구현 - MES Sequence Read/Write
