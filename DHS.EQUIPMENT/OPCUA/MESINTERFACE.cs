@@ -27,6 +27,44 @@ namespace DHS.EQUIPMENT
                 OnWriteButtonClick(node, value, nDataType);
             }
         }
+        #region MES 시뮬레이션
+        public delegate void WriteForIR1(string equipmentid, string trayid);
+        public event WriteForIR1 OnWriteForIR1 = null;
+        protected void RaiseOnWriteForIR1(string equipmentid, string trayid)
+        {
+            if (OnWriteForIR1 != null)
+            {
+                OnWriteForIR1(equipmentid, trayid);
+            }
+        }
+        public delegate void WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, float[] ir, float[] ocv);
+        public event WriteForIR2 OnWriteForIR2 = null;
+        protected void RaiseOnWriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, float[] ir, float[] ocv)
+        {
+            if (OnWriteForIR2 != null)
+            {
+                OnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
+            }
+        }
+        public delegate void WritePLCSysInfo();
+        public event WritePLCSysInfo OnWritePLCSysInfo = null;
+        protected void RaiseOnWritePLCSysInfo()
+        {
+            if (OnWritePLCSysInfo != null)
+            {
+                OnWritePLCSysInfo();
+            }
+        }
+        public delegate void ReadForIR(int type);
+        public event ReadForIR OnReadForIR = null;
+        protected void RaiseOnReadForIR(int type)
+        {
+            if (OnReadForIR != null)
+            {
+                OnReadForIR(type);
+            }
+        }
+        #endregion
 
         public static MESINTERFACE GetInstance()
         {
@@ -238,5 +276,46 @@ namespace DHS.EQUIPMENT
                 tbTagValue.Text = tempvalue;
             }
         }
+
+        #region MES 시뮬레이션
+        public void ShowReadMesValues(string strMessage)
+        {
+            tbMsg.Text += strMessage + Environment.NewLine;
+        }
+        private void radBtnWriteForir2_1_Click(object sender, EventArgs e)
+        {
+            //* trayid, equipment idd
+            string trayid = tbTrayID.Text;
+            string equipmentid = tbEquipmentID.Text;
+            RaiseOnWriteForIR1(equipmentid, trayid);
+        }
+
+        private void radBtnWriteForir2_2_Click(object sender, EventArgs e)
+        {
+            string equipmentid = tbEquipmentID.Text;
+            string trayid = tbTrayID.Text;
+            string[] cellid = new string[32];
+            string[] cellstatus = new string[32];
+            float[] ir = new float[32];
+            float[] ocv = new float[32];
+
+            RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
+        }
+
+        private void radBtnReadFORIR2_1_Click(object sender, EventArgs e)
+        {
+            RaiseOnReadForIR(1);
+        }
+
+        private void radBtnReadFORIR2_2_Click(object sender, EventArgs e)
+        {
+            RaiseOnReadForIR(2);
+        }
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            RaiseOnWritePLCSysInfo();
+        }
+        #endregion
     }
 }

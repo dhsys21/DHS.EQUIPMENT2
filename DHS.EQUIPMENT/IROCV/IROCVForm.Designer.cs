@@ -73,10 +73,18 @@ namespace DHS.EQUIPMENT
             this.lblTrayIn = new System.Windows.Forms.Label();
             this.pnlBarcode = new System.Windows.Forms.Panel();
             this.lblBarcode = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblRequestTrayInfo = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblReplyTrayInfo = new System.Windows.Forms.Label();
             this.pnlProbeDown = new System.Windows.Forms.Panel();
             this.lblProbeDown = new System.Windows.Forms.Label();
             this.pnlMeasure = new System.Windows.Forms.Panel();
             this.lblMeasure = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblDataCollection = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblDataCollectionReply = new System.Windows.Forms.Label();
             this.pnlFinish = new System.Windows.Forms.Panel();
             this.lblFinish = new System.Windows.Forms.Label();
             this.pnlProbeOpen = new System.Windows.Forms.Panel();
@@ -122,14 +130,6 @@ namespace DHS.EQUIPMENT
             this.gridView = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblRequestTrayInfo = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblReplyTrayInfo = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.lblDataCollection = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblDataCollectionReply = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_Title)).BeginInit();
             this.radpanel_Title.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpanel_body)).BeginInit();
@@ -159,8 +159,12 @@ namespace DHS.EQUIPMENT
             this.pnlReady.SuspendLayout();
             this.pnlTrayIn.SuspendLayout();
             this.pnlBarcode.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.pnlProbeDown.SuspendLayout();
             this.pnlMeasure.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.pnlFinish.SuspendLayout();
             this.pnlProbeOpen.SuspendLayout();
             this.pnlTrayOut.SuspendLayout();
@@ -179,10 +183,6 @@ namespace DHS.EQUIPMENT
             this.panel1.SuspendLayout();
             this.pBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // radpanel_Title
@@ -705,10 +705,10 @@ namespace DHS.EQUIPMENT
             this.flowLayoutPanel6.Controls.Add(this.panel4);
             this.flowLayoutPanel6.Controls.Add(this.pnlProbeDown);
             this.flowLayoutPanel6.Controls.Add(this.pnlMeasure);
+            this.flowLayoutPanel6.Controls.Add(this.pnlProbeOpen);
             this.flowLayoutPanel6.Controls.Add(this.panel5);
             this.flowLayoutPanel6.Controls.Add(this.panel6);
             this.flowLayoutPanel6.Controls.Add(this.pnlFinish);
-            this.flowLayoutPanel6.Controls.Add(this.pnlProbeOpen);
             this.flowLayoutPanel6.Controls.Add(this.pnlTrayOut);
             this.flowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel6.Location = new System.Drawing.Point(5, 30);
@@ -793,6 +793,56 @@ namespace DHS.EQUIPMENT
             this.lblBarcode.Text = "BARCODE";
             this.lblBarcode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightGray;
+            this.panel3.Controls.Add(this.lblRequestTrayInfo);
+            this.panel3.Location = new System.Drawing.Point(300, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(4);
+            this.panel3.Size = new System.Drawing.Size(95, 44);
+            this.panel3.TabIndex = 58;
+            // 
+            // lblRequestTrayInfo
+            // 
+            this.lblRequestTrayInfo.BackColor = System.Drawing.Color.DarkGray;
+            this.lblRequestTrayInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRequestTrayInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequestTrayInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblRequestTrayInfo.Location = new System.Drawing.Point(4, 4);
+            this.lblRequestTrayInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblRequestTrayInfo.Name = "lblRequestTrayInfo";
+            this.lblRequestTrayInfo.Size = new System.Drawing.Size(87, 36);
+            this.lblRequestTrayInfo.TabIndex = 16;
+            this.lblRequestTrayInfo.Text = "TRAY ID → MES";
+            this.lblRequestTrayInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightGray;
+            this.panel4.Controls.Add(this.lblReplyTrayInfo);
+            this.panel4.Location = new System.Drawing.Point(399, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(4);
+            this.panel4.Size = new System.Drawing.Size(95, 44);
+            this.panel4.TabIndex = 57;
+            // 
+            // lblReplyTrayInfo
+            // 
+            this.lblReplyTrayInfo.BackColor = System.Drawing.Color.DarkGray;
+            this.lblReplyTrayInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblReplyTrayInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReplyTrayInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblReplyTrayInfo.Location = new System.Drawing.Point(4, 4);
+            this.lblReplyTrayInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblReplyTrayInfo.Name = "lblReplyTrayInfo";
+            this.lblReplyTrayInfo.Size = new System.Drawing.Size(87, 36);
+            this.lblReplyTrayInfo.TabIndex = 16;
+            this.lblReplyTrayInfo.Text = "TRAYINFO ← MES";
+            this.lblReplyTrayInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pnlProbeDown
             // 
             this.pnlProbeDown.BackColor = System.Drawing.Color.LightGray;
@@ -843,11 +893,61 @@ namespace DHS.EQUIPMENT
             this.lblMeasure.Text = "MEASURE";
             this.lblMeasure.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.LightGray;
+            this.panel5.Controls.Add(this.lblDataCollection);
+            this.panel5.Location = new System.Drawing.Point(201, 50);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(4);
+            this.panel5.Size = new System.Drawing.Size(95, 44);
+            this.panel5.TabIndex = 60;
+            // 
+            // lblDataCollection
+            // 
+            this.lblDataCollection.BackColor = System.Drawing.Color.DarkGray;
+            this.lblDataCollection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataCollection.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataCollection.ForeColor = System.Drawing.Color.Black;
+            this.lblDataCollection.Location = new System.Drawing.Point(4, 4);
+            this.lblDataCollection.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblDataCollection.Name = "lblDataCollection";
+            this.lblDataCollection.Size = new System.Drawing.Size(87, 36);
+            this.lblDataCollection.TabIndex = 16;
+            this.lblDataCollection.Text = "DATA → MES";
+            this.lblDataCollection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.LightGray;
+            this.panel6.Controls.Add(this.lblDataCollectionReply);
+            this.panel6.Location = new System.Drawing.Point(300, 50);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(4);
+            this.panel6.Size = new System.Drawing.Size(95, 44);
+            this.panel6.TabIndex = 59;
+            // 
+            // lblDataCollectionReply
+            // 
+            this.lblDataCollectionReply.BackColor = System.Drawing.Color.DarkGray;
+            this.lblDataCollectionReply.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDataCollectionReply.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataCollectionReply.ForeColor = System.Drawing.Color.Black;
+            this.lblDataCollectionReply.Location = new System.Drawing.Point(4, 4);
+            this.lblDataCollectionReply.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblDataCollectionReply.Name = "lblDataCollectionReply";
+            this.lblDataCollectionReply.Size = new System.Drawing.Size(87, 36);
+            this.lblDataCollectionReply.TabIndex = 16;
+            this.lblDataCollectionReply.Text = "REPLY ← MES";
+            this.lblDataCollectionReply.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pnlFinish
             // 
             this.pnlFinish.BackColor = System.Drawing.Color.LightGray;
             this.pnlFinish.Controls.Add(this.lblFinish);
-            this.pnlFinish.Location = new System.Drawing.Point(300, 50);
+            this.pnlFinish.Location = new System.Drawing.Point(399, 50);
             this.pnlFinish.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFinish.Name = "pnlFinish";
             this.pnlFinish.Padding = new System.Windows.Forms.Padding(4);
@@ -872,7 +972,7 @@ namespace DHS.EQUIPMENT
             // 
             this.pnlProbeOpen.BackColor = System.Drawing.Color.LightGray;
             this.pnlProbeOpen.Controls.Add(this.lblProbeOpen);
-            this.pnlProbeOpen.Location = new System.Drawing.Point(399, 50);
+            this.pnlProbeOpen.Location = new System.Drawing.Point(102, 50);
             this.pnlProbeOpen.Margin = new System.Windows.Forms.Padding(2);
             this.pnlProbeOpen.Name = "pnlProbeOpen";
             this.pnlProbeOpen.Padding = new System.Windows.Forms.Padding(4);
@@ -1461,106 +1561,6 @@ namespace DHS.EQUIPMENT
             this.radThemeManager1.LoadedThemes.AddRange(new Telerik.WinControls.ThemeSource[] {
             themeSource1});
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.LightGray;
-            this.panel3.Controls.Add(this.lblRequestTrayInfo);
-            this.panel3.Location = new System.Drawing.Point(300, 2);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(4);
-            this.panel3.Size = new System.Drawing.Size(95, 44);
-            this.panel3.TabIndex = 58;
-            // 
-            // lblRequestTrayInfo
-            // 
-            this.lblRequestTrayInfo.BackColor = System.Drawing.Color.DarkGray;
-            this.lblRequestTrayInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRequestTrayInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestTrayInfo.ForeColor = System.Drawing.Color.Black;
-            this.lblRequestTrayInfo.Location = new System.Drawing.Point(4, 4);
-            this.lblRequestTrayInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblRequestTrayInfo.Name = "lblRequestTrayInfo";
-            this.lblRequestTrayInfo.Size = new System.Drawing.Size(87, 36);
-            this.lblRequestTrayInfo.TabIndex = 16;
-            this.lblRequestTrayInfo.Text = "TRAY ID → MES";
-            this.lblRequestTrayInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.LightGray;
-            this.panel4.Controls.Add(this.lblReplyTrayInfo);
-            this.panel4.Location = new System.Drawing.Point(399, 2);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(4);
-            this.panel4.Size = new System.Drawing.Size(95, 44);
-            this.panel4.TabIndex = 57;
-            // 
-            // lblReplyTrayInfo
-            // 
-            this.lblReplyTrayInfo.BackColor = System.Drawing.Color.DarkGray;
-            this.lblReplyTrayInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblReplyTrayInfo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReplyTrayInfo.ForeColor = System.Drawing.Color.Black;
-            this.lblReplyTrayInfo.Location = new System.Drawing.Point(4, 4);
-            this.lblReplyTrayInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblReplyTrayInfo.Name = "lblReplyTrayInfo";
-            this.lblReplyTrayInfo.Size = new System.Drawing.Size(87, 36);
-            this.lblReplyTrayInfo.TabIndex = 16;
-            this.lblReplyTrayInfo.Text = "TRAYINFO ← MES";
-            this.lblReplyTrayInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.LightGray;
-            this.panel5.Controls.Add(this.lblDataCollection);
-            this.panel5.Location = new System.Drawing.Point(102, 50);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
-            this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(4);
-            this.panel5.Size = new System.Drawing.Size(95, 44);
-            this.panel5.TabIndex = 60;
-            // 
-            // lblDataCollection
-            // 
-            this.lblDataCollection.BackColor = System.Drawing.Color.DarkGray;
-            this.lblDataCollection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDataCollection.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataCollection.ForeColor = System.Drawing.Color.Black;
-            this.lblDataCollection.Location = new System.Drawing.Point(4, 4);
-            this.lblDataCollection.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblDataCollection.Name = "lblDataCollection";
-            this.lblDataCollection.Size = new System.Drawing.Size(87, 36);
-            this.lblDataCollection.TabIndex = 16;
-            this.lblDataCollection.Text = "DATA → MES";
-            this.lblDataCollection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.LightGray;
-            this.panel6.Controls.Add(this.lblDataCollectionReply);
-            this.panel6.Location = new System.Drawing.Point(201, 50);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(95, 44);
-            this.panel6.TabIndex = 59;
-            // 
-            // lblDataCollectionReply
-            // 
-            this.lblDataCollectionReply.BackColor = System.Drawing.Color.DarkGray;
-            this.lblDataCollectionReply.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDataCollectionReply.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataCollectionReply.ForeColor = System.Drawing.Color.Black;
-            this.lblDataCollectionReply.Location = new System.Drawing.Point(4, 4);
-            this.lblDataCollectionReply.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblDataCollectionReply.Name = "lblDataCollectionReply";
-            this.lblDataCollectionReply.Size = new System.Drawing.Size(87, 36);
-            this.lblDataCollectionReply.TabIndex = 16;
-            this.lblDataCollectionReply.Text = "REPLY ← MES";
-            this.lblDataCollectionReply.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // IROCVForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1608,8 +1608,12 @@ namespace DHS.EQUIPMENT
             this.pnlReady.ResumeLayout(false);
             this.pnlTrayIn.ResumeLayout(false);
             this.pnlBarcode.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.pnlProbeDown.ResumeLayout(false);
             this.pnlMeasure.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.pnlFinish.ResumeLayout(false);
             this.pnlProbeOpen.ResumeLayout(false);
             this.pnlTrayOut.ResumeLayout(false);
@@ -1631,10 +1635,6 @@ namespace DHS.EQUIPMENT
             this.panel1.ResumeLayout(false);
             this.pBase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -606,7 +606,8 @@ namespace DHS.EQUIPMENT
             _strLog += ", TRAY STATUS CODE: " + traystatuscode;
 
             //* ERROR CODE
-            int errorcode = (int)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
+            UInt32 ecode = (UInt32)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
+            int errorcode = (int)ecode;
             _strLog += ", ERROR CODE: " + errorcode.ToString();
 
             //* ERROR MESSAGE
@@ -638,6 +639,7 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].CELLID = cellids;
             irocvdata[stageno].CELLSTATUSMES = cellstatus;
             irocvdata[stageno].TAGPATHNO = "FOEQR2.1";
+            irocvdata[stageno].LOG = _strLog;
             for (int i = 0; i < cellids.Length; i++)
             {
                 if (string.IsNullOrEmpty(cellids[i]) == true) irocvdata[stageno].CELL[i] = 0;
@@ -690,13 +692,14 @@ namespace DHS.EQUIPMENT
             //* Write Log
             SaveLog(stageno, "FOEQR2.2 IROCV  -> MES", _strLog);
         }
-        public bool ReadFOEQR2_2(int stageno)
+        public IROCVData ReadFOEQR2_2(int stageno)
         {
             //* Acknowledgement No
             _strLog = string.Empty;
 
             //* ERROR CODE
-            int errorcode = (int)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
+            UInt32 ecode = (UInt32)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
+            int errorcode = (int)ecode;
             _strLog += ", ERROR CODE: " + errorcode.ToString();
             irocvdata[stageno].ERRORCODE = errorcode;
 
@@ -706,10 +709,25 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].ERRORMESSAGE = errormsg;
 
             //* Save Log
-            SaveLog(stageno, "FOEQR2.2 MES -> IROCV", _strLog);
+            SaveLog(stageno, "FOEIR2.2 MES -> IROCV", _strLog);
 
-            bool bAck = errorcode == 0 ? true : false;
-            return bAck;
+
+            irocvdata[stageno].ERRORCODE = errorcode;
+            irocvdata[stageno].ERRORMESSAGE = errormsg;
+            return irocvdata[stageno];
+        }
+        public void WritePLSInfo(int stageno)
+        {
+            _strLog = string.Empty;
+
+            string interfaceversionproject = "";
+
+            string equipmentname = "";
+
+
+
+            //* Save Log
+            SaveLog(stageno, "PLC SYS INFO. IROCV -> MES", _strLog);
         }
         #endregion
 

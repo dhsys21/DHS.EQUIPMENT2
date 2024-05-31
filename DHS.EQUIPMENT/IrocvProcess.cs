@@ -98,6 +98,11 @@ namespace DHS.EQUIPMENT
             _bMesConnected = false;
             mesinterface = MESINTERFACE.GetInstance();
             mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
+            //* MES 시뮬레이션
+            mesinterface.OnWriteForIR1 += _MesClient_WriteForIR1;
+            mesinterface.OnWriteForIR2 += _MeSClient_WriteForIR2;
+            mesinterface.OnReadForIR += _MesClient_ReadForIR;
+            mesinterface.OnWritePLCSysInfo += _MesClient_WritePLCSysInfo;
 
             //* MES Connection
             try
@@ -256,6 +261,8 @@ namespace DHS.EQUIPMENT
 
             _tmrGetMesData.Enabled = true;
         }
+
+        
         #region MES Method
         private void _MesClient_WriteMesValue(string node, string value, int nDataType)
         {
@@ -269,9 +276,30 @@ namespace DHS.EQUIPMENT
         {
             util.SaveMesLog(mesLog);
         }
-        private void SaveMesLog(string mesLog)
+        //* MES 시뮬레이션
+        private void _MesClient_WriteForIR1(string equipmentid, string trayid)
         {
+            mesclient.WriteFOEQR2_1(0, equipmentid, trayid);
+        }
 
+        private void _MeSClient_WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, float[] ir, float[] ocv)
+        {
+            mesclient.WriteFOEQR2_2(0, irocvdata[0]);
+        }
+
+        private void _MesClient_ReadForIR(int type)
+        {
+            if (type == 1)
+                mesclient.ReadFOEQR2_1(0);
+            else if (type == 2)
+                mesclient.ReadFOEQR2_2(0);
+
+            mesinterface.ShowReadMesValues(irocvdata[0].LOG);
+        }
+
+        private void _MesClient_WritePLCSysInfo()
+        {
+            mesclient.WritePLSInfo(0);
         }
         #endregion
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
@@ -1147,7 +1175,7 @@ namespace DHS.EQUIPMENT
                     //* 20240521 Process Result 삭제. IR/OCV에서 자체 판단하여 재측정 후 내보냄.
                     //* FORIR2.2 2024 05 28 수정
                     //irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
-                    bAck = mesclient.ReadFOEQR2_2(stageno);
+                    irocvdata[stageno] = mesclient.ReadFOEQR2_2(stageno);
                     nInspectionStep = 4;
                     break;
                 case 4:
@@ -1326,6 +1354,86 @@ namespace DHS.EQUIPMENT
         /// 4 -> IR REMEASURE NG, 5-> OCV REMEASURE NG
         /// </summary>
         private void SetRemeasureList(int stageno)
+        {
+            bool bRemeasure = false;
+            //int iRemeasureCount = 0;
+            double irvalue = 0.0, ocvvalue = 0.0;
+
+            if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
+            {
+                irocvdata[stageno].REMEASURECELLCOUNT = 0;
+
+                #region IR/ OCV Error 처리
+                for (int index = 0; index < _Constant.ChannelCount; ++index)
+                {
+                    irvalue = irocvdata[stageno].IR_AFTERVALUE[index];
+                    ocvvalue = irocvdata[stageno].OCV[index];
+
+                    if (irocvdata[stageno].CELL[index] == 1)
+                    {
+                        //* IR Remeasure Error
+                        if (irvalue < _system.IRREMEAMIN || irvalue > _system.IRREMEAMAX)
+                        {
+                            irocvdata[stageno].MEASURERESULT[index] = 4;
+                            irocvdata[stageno].REMEASURECELLCOUNT++;
+                            //iRemeasureCount += 1;
+                        }
+                        //* IR Spec Error
+                        else if (irvalue < _system.IRMIN || irvalue > _system.IRMAX)
+                        {
+                            irocvdata[stageno].MEASURERESULT[index] = 2;
+                        }
+
+                        //* OCV Remeasure Error
+                        else if (ocvvalue < _system.OCVREMEAMIN || ocvvalue > _system.OCVREMEAMAX)
+                        {
+                            if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
+                            {
+                                irocvdata[stageno].MEASURERESULT[index] = 5;
+                                irocvdata[stageno].REMEASURECELLCOUNT++;
+                            }
+                        }
+                        //* OCV Spec Error
+                        else if (ocvvalue < _system.OCVMIN || ocvvalue > _system.OCVMAX)
+                        {
+                            if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
+                            {
+                                irocvdata[stageno].MEASURERESULT[index] = 3;
+                                irocvdata[stageno].REMEASURECELLCOUNT++;
+                                //iRemeasureCount += 1;
+                            }
+                        }
+                        else
+                        {
+                            irocvdata[stageno].MEASURERESULT[index] = 0;
+                        }
+                    }
+                    else
+                        irocvdata[stageno].MEASURERESULT[index] = 0;
+                }
+                #endregion
+
+                AddRemeaseList(stageno);
+
+                //* AMF 이거나 재측정 수가 일정 갯수가 넘으면 트레이 다운 후 [트레이 배출 또는 전체 재측정]
+                //* AMF 상태가 아니거나 재측정 수가 일정 갯수(5개) 이하면 현재 컨택 상태에서 에러난 채널만 부분 재측정
+                //*irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT
+                if (irocv[stageno].AMF = true || irocvdata[stageno].REMEASURECELLCOUNT > 5)
+                {
+                    AutoTestStop(stageno);
+                }
+                else
+                {
+                    RemeasureExcute(stageno);
+                }
+            }
+
+            irocv[stageno].AMF = true;
+            CmdAmf(stageno);
+
+            //WriteCommLog("IR/OCV STOP", "SetRemeasureList()");
+        }
+        private void SetRemeasureList_Demo(int stageno)
         {
             bool bRemeasure = false;
             //int iRemeasureCount = 0;

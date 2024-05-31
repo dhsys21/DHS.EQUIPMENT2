@@ -766,7 +766,7 @@ namespace DHS.EQUIPMENT
             if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
             string filename = dir + "MES_" + DateTime.Now.ToString("yyMMdd") + ".log";
 
-            strMessage = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + strMessage;
+            strMessage = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + strMessage + Environment.NewLine;
             if (System.IO.File.Exists(filename) == false) FileWrite(filename, strMessage);
             else FileAppend(filename, strMessage);
 

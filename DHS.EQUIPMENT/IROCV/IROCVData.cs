@@ -41,6 +41,8 @@ namespace DHS.EQUIPMENT
         private DateTime _dtStartTime;
         private DateTime _dtFinishTime;
 
+        private string _sLog;
+
         //* CELL 정보 0 - no cell, 1 - cell exist
         private int[] _iCELL = new int[_Constant.ChannelCount];
         private string[] _sCELLID = new string[_Constant.ChannelCount];
@@ -119,7 +121,8 @@ namespace DHS.EQUIPMENT
         public string TRAYSTATUSCODE { get => _sTRAYSTATUSCODE; set => _sTRAYSTATUSCODE = value; }
         public int ERRORCODE { get => _iERRORCODE; set => _iERRORCODE = value; }
         public string ERRORMESSAGE { get => _sERRORMESSAGE; set => _sERRORMESSAGE = value; }
-        
+        public string LOG{ get => _sLog; set => _sLog = value; }
+
         #endregion
 
         public IROCVData()
