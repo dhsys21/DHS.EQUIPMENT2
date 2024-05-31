@@ -569,7 +569,7 @@ namespace DHS.EQUIPMENT
                     WriteValue("ns=2;s=Equipment/EquipmentID", value, (int)EnumDataType.dtString);
                     break;
                 case "TrayID":
-                    WriteValue("ns=2;s=TrayID/EquipmentID", value, (int)EnumDataType.dtString);
+                    WriteValue("ns=2;s=Equipment/TrayID", value, (int)EnumDataType.dtString);
                     break;
                 default : break;
             }
