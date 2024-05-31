@@ -1098,7 +1098,7 @@ namespace DHS.EQUIPMENT
         private void AutoInspection_StepEnd(int stageno)
         {
             bool bAck = false;
-            int remeasurecellcount = irocvdata[stageno].REMEASURECELLCOUNT / irocvdata[stageno].CELLCOUNT;
+            int remeasurecellpercent = irocvdata[stageno].CELLCOUNT == 0 ? 0 : irocvdata[stageno].REMEASURECELLCOUNT / irocvdata[stageno].CELLCOUNT;
             switch (nInspectionStep)
             {
                 case 0:
@@ -1107,7 +1107,7 @@ namespace DHS.EQUIPMENT
                     //* remeasure count확인
                     if (siemensplc.PLCTRAYDOWN == 1)
                     {
-                        if (remeasurecellcount > _system.REMEASUREPERCENT || irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
+                        if (remeasurecellpercent > _system.REMEASUREPERCENT || irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
                         {
                             PLC_TRAYUP(stageno);
                             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
