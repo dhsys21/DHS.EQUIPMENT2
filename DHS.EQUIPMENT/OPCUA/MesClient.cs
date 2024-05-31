@@ -545,6 +545,11 @@ namespace DHS.EQUIPMENT
                         iValArr = Array.ConvertAll(values, UInt32.Parse);
                         opcclient.Write<UInt32[]>(node, iValArr);
                         break;
+                    case (int)MesClient.EnumDataType.dtFloatArr:
+                        float[] fValArr;
+                        fValArr = Array.ConvertAll(values, float.Parse);
+                        opcclient.Write<float[]>(node, fValArr);
+                        break;
                     default:
                         break;
                 }
@@ -680,14 +685,14 @@ namespace DHS.EQUIPMENT
             string[] strIRs = Array.ConvertAll(irs, x => x.ToString());
             for (int nIndex = 0; nIndex < irs.Length; nIndex++)
                 _strLog += ", IR" + (nIndex + 1).ToString("D2") + ":" + irs[nIndex].ToString();
-            WriteValue("ns=2;s=Equipment/IR", strIRs, (int)EnumDataType.dtUInt32Arr);
+            WriteValue("ns=2;s=Equipment/IR", strIRs, (int)EnumDataType.dtFloatArr);
 
             //* OCV Values
             double[] ocvs = irocvdata.OCV;
             string[] strOCVs = Array.ConvertAll(ocvs, x => x.ToString());
             for (int nIndex = 0; nIndex < ocvs.Length; nIndex++)
                 _strLog += ", OCV" + (nIndex + 1).ToString("D2") + ":" + ocvs[nIndex].ToString();
-            WriteValue("ns=2;s=Equipment/OCV", strOCVs, (int)EnumDataType.dtUInt32Arr);
+            WriteValue("ns=2;s=Equipment/OCV", strOCVs, (int)EnumDataType.dtFloatArr);
 
             //* Write Log
             SaveLog(stageno, "FOEQR2.2 IROCV  -> MES", _strLog);
@@ -714,6 +719,7 @@ namespace DHS.EQUIPMENT
 
             irocvdata[stageno].ERRORCODE = errorcode;
             irocvdata[stageno].ERRORMESSAGE = errormsg;
+            irocvdata[stageno].LOG = _strLog;
             return irocvdata[stageno];
         }
         public void WritePLSInfo(int stageno)

@@ -299,6 +299,14 @@ namespace DHS.EQUIPMENT
             float[] ir = new float[32];
             float[] ocv = new float[32];
 
+            for(int i = 0; i < 32;i++)
+            {
+                cellid[i] = cbCellID.Items[i].ToString();
+                cellstatus[i] = cbCellStatus.Items[i].ToString();
+                ir[i] = (float)Convert.ToDouble(cbIR.Items[i].ToString());
+                ocv[i] = (float)Convert.ToDouble(cbOCV.Items[i].ToString());
+            }
+
             RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
         }
 

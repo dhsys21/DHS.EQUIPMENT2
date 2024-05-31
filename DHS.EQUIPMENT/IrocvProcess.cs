@@ -969,7 +969,7 @@ namespace DHS.EQUIPMENT
                 IROCV_Initialize(stageno);
 
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayIn;
-                nStep = 0;
+                nInspectionStep = 0;
 
                 irocvdata[stageno].SetArriveTime();
                 //irocvdata[stageno].ARRIVETIME = DateTime.Now;
@@ -1015,22 +1015,13 @@ namespace DHS.EQUIPMENT
                     mesclient.WriteFOEQR2_1(stageno, equipid, trayid);
                     nInspectionStep = 3;
                     break;
-                case 2:
-                    //* MES - Verify Acknowledge No.
-                    //* MES -> IROCV FOEQR1.12 : ack 확인
-                    bAck = mesclient.ReadFOEQR1_12(stageno);
-                    if(bAck == true)
-                    {
-                        //* mes에서 ack ok정보를 받으면 다음 단계로
-                        nInspectionStep = 3;
-                    }
-                    break;
                 case 3:
                     //* MES - Request Reservation (트레이 정보)
                     //* MES -> IROCV FOEQR1.7 (tray information)
                     //* FORIR 2.1 2024 05 28 수정
                     //irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
                     irocvdata[stageno] = mesclient.ReadFOEQR2_1(stageno);
+                    irocvdata[stageno].TRAYSTATUSCODE = "CN";
                     if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
                     {
                         //* MES - Display Tray Info.
@@ -1043,13 +1034,6 @@ namespace DHS.EQUIPMENT
                         //* PLC - Request Tray Out
                         PLC_TRAYOUT(stageno, 1);
                     }
-                    break;
-                case 4:
-                    //* MES - Response Ack 
-                    //* IROCV -> MES FOEQR1.7 (send ack to mes)
-                    mesclient.WriteFOEQR1_7(stageno, 1);
-                    if (mesclient.PCACKNOWLEDGENO == 1)
-                        nInspectionStep = 5;
                     break;
                 case 5:
                     //* PLC - Read Tray Ready Complete
@@ -1158,16 +1142,6 @@ namespace DHS.EQUIPMENT
                     //mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
                     mesclient.WriteFOEQR2_2(stageno, irocvdata[stageno]);
                     nInspectionStep = 3;
-                    break;
-                case 2:
-                    //* MES - Verify Acknowledge No.
-                    //* MES -> IROCV FOEQR1.1 : ack 확인
-                    bAck = mesclient.ReadFOEQR1_1(stageno);
-                    if (bAck == true)
-                    {
-                        //* mes에서 ack ok정보를 받으면 다음 단계로
-                        nInspectionStep = 3;
-                    }
                     break;
                 case 3:
                     //* MES - Request Process Result (트레이 배출 또는 재측정)
