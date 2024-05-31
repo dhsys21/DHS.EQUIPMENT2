@@ -93,7 +93,7 @@ namespace DHS.EQUIPMENT
             // 
             this.radpnl_OperationMode.Controls.Add(this.radpnl_MesInterfaceTitle);
             this.radpnl_OperationMode.Controls.Add(this.pnl_PlcInterface);
-            this.radpnl_OperationMode.Location = new System.Drawing.Point(25, 25);
+            this.radpnl_OperationMode.Location = new System.Drawing.Point(19, 25);
             this.radpnl_OperationMode.Name = "radpnl_OperationMode";
             this.radpnl_OperationMode.Padding = new System.Windows.Forms.Padding(5);
             this.radpnl_OperationMode.Size = new System.Drawing.Size(936, 734);
@@ -740,6 +740,7 @@ namespace DHS.EQUIPMENT
             this.tbMsg.Location = new System.Drawing.Point(976, 211);
             this.tbMsg.Multiline = true;
             this.tbMsg.Name = "tbMsg";
+            this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbMsg.Size = new System.Drawing.Size(373, 106);
             this.tbMsg.TabIndex = 15;
             // 
@@ -806,7 +807,7 @@ namespace DHS.EQUIPMENT
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1359, 765);
+            this.ClientSize = new System.Drawing.Size(976, 765);
             this.Controls.Add(this.tbMsg);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radpnl_MESTEST);

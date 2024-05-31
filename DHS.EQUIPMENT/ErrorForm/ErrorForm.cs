@@ -77,7 +77,8 @@ namespace DHS.EQUIPMENT
             else if (_StageError == enumStageError.IROCVDisconnected)
             {
                 errmsg = "IR/OCV Stage No." + stageno.ToString() + " is not connected."; 
-                ShowMessage("IR/OCV Connection Error", "IR/OCV is not connected.", "Please check the IR/OCV and restart IR/OCV Controller.");
+                //* for test 2024 05 31
+                //ShowMessage("IR/OCV Connection Error", "IR/OCV is not connected.", "Please check the IR/OCV and restart IR/OCV Controller.");
             }
             else if (_StageError == enumStageError.IROCVNoResponse)
             {

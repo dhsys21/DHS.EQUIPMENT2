@@ -282,8 +282,15 @@ namespace DHS.EQUIPMENT
             mesclient.WriteFOEQR2_1(0, equipmentid, trayid);
         }
 
-        private void _MeSClient_WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, float[] ir, float[] ocv)
+        private void _MeSClient_WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv)
         {
+            irocvdata[0].EQUIPMENTID = equipmentid;
+            irocvdata[0].TRAYID = trayid;
+            irocvdata[0].CELLID = cellid;
+            irocvdata[0].CELLSTATUSIROCV = cellstatus;
+            irocvdata[0].IR_AFTERVALUE = ir;
+            irocvdata[0].OCV = ocv;
+
             mesclient.WriteFOEQR2_2(0, irocvdata[0]);
         }
 

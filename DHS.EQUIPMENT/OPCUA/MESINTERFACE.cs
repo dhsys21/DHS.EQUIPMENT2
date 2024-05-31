@@ -37,9 +37,9 @@ namespace DHS.EQUIPMENT
                 OnWriteForIR1(equipmentid, trayid);
             }
         }
-        public delegate void WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, float[] ir, float[] ocv);
+        public delegate void WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv);
         public event WriteForIR2 OnWriteForIR2 = null;
-        protected void RaiseOnWriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, float[] ir, float[] ocv)
+        protected void RaiseOnWriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv)
         {
             if (OnWriteForIR2 != null)
             {
@@ -76,7 +76,7 @@ namespace DHS.EQUIPMENT
             InitializeComponent();
 
             mesform = this;
-            this.Width = 1000;
+            this.Width = 992;
             radpnl_MESTEST.Visible = false;
 
             dgvPCs[0] = dgvPC;
@@ -296,8 +296,8 @@ namespace DHS.EQUIPMENT
             string trayid = tbTrayID.Text;
             string[] cellid = new string[32];
             string[] cellstatus = new string[32];
-            float[] ir = new float[32];
-            float[] ocv = new float[32];
+            double[] ir = new double[32];
+            double[] ocv = new double[32];
 
             for(int i = 0; i < 32;i++)
             {
