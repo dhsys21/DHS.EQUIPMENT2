@@ -287,7 +287,7 @@ namespace DHS.EQUIPMENT
 
                 if (_dMeasured[nIndex] == 0) bCheck = false;
 
-                strOffset[nIndex] = _dStandard[nIndex] + "," + _dMeasured[nIndex] + "," + _dOffset[nIndex].ToString("F4");
+                strOffset[nIndex] = _dStandard[nIndex] + "," + _dMeasured[nIndex] + "," + _dOffset[nIndex].ToString("0.0000");
             }
 
             strOffsetValue = strOffset;
@@ -357,14 +357,14 @@ namespace DHS.EQUIPMENT
                     {
                         if(equipMode == enumEquipMode.OFFSET)
                         {
-                            SetValueToLabel(lblIRMeasure[nIndex], irocvdata.IR_ORIGINALVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
+                            SetValueToLabel(lblIRMeasure[nIndex], irocvdata.IR_ORIGINALVALUE[nIndex].ToString("0.0000"), irocvdata.IRCOLOR[nIndex]);
                             SetValueToChart(nIndex, irocvdata.IR_ORIGINALVALUE[nIndex], IRCHART);
                         }
                         else
                         {
                             if(irocvdata.CELL[nIndex] == 1)
                             {
-                                SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
+                                SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("0.0000"), irocvdata.IRCOLOR[nIndex]);
                                 SetValueToChart(nIndex, irocvdata.IR_AFTERVALUE[nIndex], IRCHART);
                             }
                         }
@@ -372,7 +372,7 @@ namespace DHS.EQUIPMENT
                     }
                     if (irocvdata.OCVRESULT[nIndex] == 1)
                     {
-                        SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("F2"), irocvdata.OCVCOLOR[nIndex]);
+                        SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("0.00"), irocvdata.OCVCOLOR[nIndex]);
                         SetValueToChart(nIndex, irocvdata.OCV[nIndex], OCVCHART);
                     }
 
@@ -390,19 +390,19 @@ namespace DHS.EQUIPMENT
                     {
                         if (equipMode == enumEquipMode.OFFSET)
                         {
-                            SetValueToLabel(lblIRMeasure[nIndex], irocvdata.IR_ORIGINALVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
+                            SetValueToLabel(lblIRMeasure[nIndex], irocvdata.IR_ORIGINALVALUE[nIndex].ToString("0.0000"), irocvdata.IRCOLOR[nIndex]);
                             SetValueToChart(nIndex, irocvdata.IR_ORIGINALVALUE[nIndex], IRCHART);
                         }
                         else if(equipMode == enumEquipMode.MANUAL)
                         {
-                            SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
+                            SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("0.0000"), irocvdata.IRCOLOR[nIndex]);
                             SetValueToChart(nIndex, irocvdata.IR_AFTERVALUE[nIndex], IRCHART);
                         }
                         else
                         {
                             if (irocvdata.CELL[nIndex] == 1)
                             {
-                                SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("F4"), irocvdata.IRCOLOR[nIndex]);
+                                SetValueToLabel(lblIR[nIndex], irocvdata.IR_AFTERVALUE[nIndex].ToString("0.0000"), irocvdata.IRCOLOR[nIndex]);
                                 SetValueToChart(nIndex, irocvdata.IR_AFTERVALUE[nIndex], IRCHART);
                             }
                         }
@@ -414,14 +414,14 @@ namespace DHS.EQUIPMENT
                     {
                         if(equipMode == enumEquipMode.MANUAL || equipMode == enumEquipMode.OFFSET)
                         {
-                            SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("F2"), irocvdata.OCVCOLOR[nIndex]);
+                            SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("0.00"), irocvdata.OCVCOLOR[nIndex]);
                             SetValueToChart(nIndex, irocvdata.OCV[nIndex], OCVCHART);
                         }
                         else if(equipMode == enumEquipMode.AUTO)
                         {
                             if (irocvdata.CELL[nIndex] == 1)
                             {
-                                SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("F2"), irocvdata.OCVCOLOR[nIndex]);
+                                SetValueToLabel(lblOCV[nIndex], irocvdata.OCV[nIndex].ToString("0.00"), irocvdata.OCVCOLOR[nIndex]);
                                 SetValueToChart(nIndex, irocvdata.OCV[nIndex], OCVCHART);
                             }
                         }
@@ -435,7 +435,7 @@ namespace DHS.EQUIPMENT
             {
                 for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
                 {
-                    SetValueToLabel(lblIRMeasure[nIndex], offsetvalue[nIndex].ToString("F4"));
+                    SetValueToLabel(lblIRMeasure[nIndex], offsetvalue[nIndex].ToString("0.0000"));
                     SetValueToChart(nIndex, offsetvalue[nIndex], IRCHART);
                 }
             }

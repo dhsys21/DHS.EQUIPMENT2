@@ -183,14 +183,14 @@ namespace DHS.EQUIPMENT
         {
             for (int cIndex = 0; cIndex < _Constant.ChannelCount; cIndex++)
             {
-                _sVolt[cIndex] = (voltages[cIndex] * 1000.0).ToString("F2");
+                _sVolt[cIndex] = (voltages[cIndex] * 1000.0).ToString("0.00");
             }
         }
         public void SetCurrents(double[] currents)
         {
             for (int cIndex = 0; cIndex < _Constant.ChannelCount; cIndex++)
             {
-                _sCurr[cIndex] = (currents[cIndex] * 1000.0).ToString("F1");
+                _sCurr[cIndex] = (currents[cIndex] * 1000.0).ToString("0.1");
             }
         }
 

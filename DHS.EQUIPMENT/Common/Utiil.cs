@@ -72,6 +72,7 @@ namespace DHS.EQUIPMENT
         }
         #endregion
 
+        #region TryParseInt, TryParseDouble
         public int TryParseInt(string text, int nDefaultValue)
         {
             int res;
@@ -101,6 +102,10 @@ namespace DHS.EQUIPMENT
             }
             return dDefaultValue;
         }
+        #endregion
+
+        #region string format
+        #endregion
 
         #region Config (ini/inf File)
         public void saveConfig(string filename, string main_title, string sub_title, string sValue)
@@ -369,9 +374,9 @@ namespace DHS.EQUIPMENT
 
             for (int i = 0; i < _Constant.ChannelCount; ++i)
             {
-                ir = irocvdata.IR_AFTERVALUE[i].ToString("F4");
-                ir_offset = irocvdata.IR_OFFSET[i].ToString("F4");
-                ocv = irocvdata.OCV[i].ToString("F2");
+                ir = irocvdata.IR_AFTERVALUE[i].ToString("0.0000");
+                ir_offset = irocvdata.IR_OFFSET[i].ToString("0.0000");
+                ocv = irocvdata.OCV[i].ToString("0.00");
 
                 if (irocvdata.CELL[i] == 1)
                 {
@@ -417,9 +422,9 @@ namespace DHS.EQUIPMENT
 
             for (int i = 0; i < _Constant.ChannelCount; ++i)
             {
-                ir = irocvdata.IR_AFTERVALUE[i].ToString("F4");
-                ir_offset = irocvdata.IR_OFFSET[i].ToString("F4");
-                ocv = irocvdata.OCV[i].ToString("F2");
+                ir = irocvdata.IR_AFTERVALUE[i].ToString("0.0000");
+                ir_offset = irocvdata.IR_OFFSET[i].ToString("0.0000");
+                ocv = irocvdata.OCV[i].ToString("0.00");
 
                 if (irocvdata.MEASURERESULT[i] == 0) ok_ng = "OK";
                 else ok_ng = "NG";
@@ -451,9 +456,9 @@ namespace DHS.EQUIPMENT
 
             for (int i = 0; i < _Constant.ChannelCount; ++i)
             {
-                irOrigin = irocvdata.IR_ORIGINALVALUE[i].ToString("F4");
-                irAfter = irocvdata.IR_AFTERVALUE[i].ToString("F4");
-                ocv = irocvdata.OCV[i].ToString("F2");
+                irOrigin = irocvdata.IR_ORIGINALVALUE[i].ToString("0.0000");
+                irAfter = irocvdata.IR_AFTERVALUE[i].ToString("0.0000");
+                ocv = irocvdata.OCV[i].ToString("0.00");
 
                 file = file + "Ch_" + (i + 1).ToString("D3") + "," + irOrigin + "," + irAfter + "," + ocv + Environment.NewLine;
             }
@@ -484,7 +489,7 @@ namespace DHS.EQUIPMENT
 
             for (int i = 0; i < _Constant.ChannelCount; ++i)
             {
-                irOrigin = irocvdata.IR_ORIGINALVALUE[i].ToString("F4");
+                irOrigin = irocvdata.IR_ORIGINALVALUE[i].ToString("0.0000");
 
                 file = file + "Ch_" + (i + 1).ToString("D3") + "," + irOrigin + Environment.NewLine;
             }
@@ -549,9 +554,9 @@ namespace DHS.EQUIPMENT
                             file = file + values[i] + ",";
 
                         if (type == "MSA")
-                            file = file + irocvdata.IR_AFTERVALUE[linenumber - 2].ToString("F4") + Environment.NewLine;
+                            file = file + irocvdata.IR_AFTERVALUE[linenumber - 2].ToString("0.0000") + Environment.NewLine;
                         else if (type == "OFFSET")
-                            file = file + irocvdata.IR_ORIGINALVALUE[linenumber - 2].ToString("F4") + Environment.NewLine;
+                            file = file + irocvdata.IR_ORIGINALVALUE[linenumber - 2].ToString("0.0000") + Environment.NewLine;
                     }
                 }
                 #endregion
@@ -564,10 +569,10 @@ namespace DHS.EQUIPMENT
                 {
                     if (type == "MSA")
                         file = file + "Ch_" + (nIndex + 1).ToString("D3") + ","
-                            + irocvdata.IR_AFTERVALUE[nIndex].ToString("F4") + Environment.NewLine;
+                            + irocvdata.IR_AFTERVALUE[nIndex].ToString("0.0000") + Environment.NewLine;
                     else if (type == "OFFSET")
                         file = file + "Ch_" + (nIndex + 1).ToString("D3") + ","
-                            + irocvdata.IR_ORIGINALVALUE[nIndex].ToString("F4") + Environment.NewLine;
+                            + irocvdata.IR_ORIGINALVALUE[nIndex].ToString("0.0000") + Environment.NewLine;
                 }
 
                 #endregion
@@ -623,7 +628,7 @@ namespace DHS.EQUIPMENT
                         for (int i = 0; i < values.Length; i++)
                             file = file + values[i] + ",";
 
-                        file = file + irocvdata.OCV[linenumber - 2].ToString("F2") + Environment.NewLine;
+                        file = file + irocvdata.OCV[linenumber - 2].ToString("0.00") + Environment.NewLine;
                     }
                 }
                 #endregion
@@ -635,7 +640,7 @@ namespace DHS.EQUIPMENT
                 for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
                 {
                     file = file + "Ch_" + (nIndex + 1).ToString("D3") + ","
-                                                + irocvdata.OCV[nIndex].ToString("F2") + Environment.NewLine;
+                                                + irocvdata.OCV[nIndex].ToString("0.00") + Environment.NewLine;
                 }
                 #endregion
             }
