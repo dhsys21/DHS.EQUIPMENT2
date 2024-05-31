@@ -1346,7 +1346,7 @@ namespace DHS.EQUIPMENT
             //int iRemeasureCount = 0;
             double irvalue = 0.0, ocvvalue = 0.0;
 
-            if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
+            if (irocv[stageno].EQUIPMODE == enumEquipMode.MANUAL)// enumEquipMode.AUTO)
             {
                 irocvdata[stageno].REMEASURECELLCOUNT = 0;
 
@@ -1405,7 +1405,7 @@ namespace DHS.EQUIPMENT
                 //* AMF 이거나 재측정 수가 일정 갯수가 넘으면 트레이 다운 후 [트레이 배출 또는 전체 재측정]
                 //* AMF 상태가 아니거나 재측정 수가 일정 갯수(5개) 이하면 현재 컨택 상태에서 에러난 채널만 부분 재측정
                 //*irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT
-                if (irocv[stageno].AMF = true || irocvdata[stageno].REMEASURECELLCOUNT > 5)
+                if (irocv[stageno].AMF == true || irocvdata[stageno].REMEASURECELLCOUNT > 5)
                 {
                     AutoTestStop(stageno);
                 }
@@ -1751,25 +1751,26 @@ namespace DHS.EQUIPMENT
         private void _IROCVFORM_REMEASUREInfo(int stageno)
         {
             //* test
-            irocvdata[stageno].REMEASURECELLCOUNT = 4;
-            irocvdata[stageno].MEASURERESULT[2] = 2;
-            irocvdata[stageno].IR_AFTERVALUE[2] = 0.322;
-            irocvdata[stageno].OCV[2] = 3672.21;
+            //irocvdata[stageno].REMEASURECELLCOUNT = 4;
+            //irocvdata[stageno].MEASURERESULT[2] = 2;
+            //irocvdata[stageno].IR_AFTERVALUE[2] = 0.322;
+            //irocvdata[stageno].OCV[2] = 3672.21;
 
-            irocvdata[stageno].MEASURERESULT[12] = 3;
-            irocvdata[stageno].IR_AFTERVALUE[12] = 0.302;
-            irocvdata[stageno].OCV[12] = 3676.11;
+            //irocvdata[stageno].MEASURERESULT[12] = 3;
+            //irocvdata[stageno].IR_AFTERVALUE[12] = 0.302;
+            //irocvdata[stageno].OCV[12] = 3676.11;
 
-            irocvdata[stageno].MEASURERESULT[23] = 4;
-            irocvdata[stageno].IR_AFTERVALUE[23] = 0.312;
-            irocvdata[stageno].OCV[23] = 3662.31;
+            //irocvdata[stageno].MEASURERESULT[23] = 4;
+            //irocvdata[stageno].IR_AFTERVALUE[23] = 0.312;
+            //irocvdata[stageno].OCV[23] = 3662.31;
 
-            irocvdata[stageno].MEASURERESULT[29] = 5;
-            irocvdata[stageno].IR_AFTERVALUE[29] = 0.352;
-            irocvdata[stageno].OCV[29] = 3652.31;
+            //irocvdata[stageno].MEASURERESULT[29] = 5;
+            //irocvdata[stageno].IR_AFTERVALUE[29] = 0.352;
+            //irocvdata[stageno].OCV[29] = 3652.31;
 
+            //AddRemeaseList(stageno);
 
-            AddRemeaseList(stageno);
+            SetRemeasureList(stageno);
 
             remeasureinfo.Show();
         }

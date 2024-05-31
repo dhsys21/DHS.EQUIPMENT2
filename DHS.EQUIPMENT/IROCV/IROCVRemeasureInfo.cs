@@ -62,7 +62,7 @@ namespace DHS.EQUIPMENT
             _iStage = stageno;
 
             dgvNGList.Rows.Clear();
-            dgvNGList.Rows.Add(remeasurelen);
+            dgvNGList.Rows.Add(remeasurelen + 2);
         }
 
         private void radbtn_TrayOut_Click(object sender, EventArgs e)
