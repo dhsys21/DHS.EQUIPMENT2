@@ -227,6 +227,42 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(ex.ToString());
             }
         }
+        public void SetValue(string param, string type, enumEquipMode equipMode, IROCVData irocvdatatest)
+        {
+            string msg_ir = string.Empty;
+            string msg_ocv = string.Empty;
+            int channel = 0;
+            double dValue = 0.0;
+            int channelLength = 3;
+            int checksumLength = 2;
+            try
+            {
+                if (type == "IR")
+                {
+                    string[] values = param.Split(',');
+                    channel = Convert.ToInt32(values[0].Substring(0, 3));
+                    dValue = Convert.ToDouble(values[0].Substring(3, values[0].Length - 3));
+
+                    SetIrValue(channel, dValue * 1000.0, equipMode);
+                    //* for test 2024 06 03 임시로 랜덤값 저장
+                    SetIrValue(channel, irocvdatatest.IR_AFTERVALUE[channel - 1], equipMode);
+                }
+                else if (type == "OCV")
+                {
+                    channel = Convert.ToInt32(param.Substring(0, 3));
+                    dValue = Convert.ToDouble(param.Substring(3, param.Length - channelLength - checksumLength));
+
+                    SetOcvValue(channel, dValue * 1000.0, equipMode);
+                    //* for test 2024 06 03 임시로 랜덤값 저장
+                    SetOcvValue(channel, irocvdatatest.OCV[channel - 1], equipMode);    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
         public void SetIrValue(int channel, double ir, enumEquipMode equipMode)
         {
             int channel_no = _system.CHANNELMAPPING[channel] - 1;

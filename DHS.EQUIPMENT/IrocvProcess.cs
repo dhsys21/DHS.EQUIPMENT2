@@ -1296,6 +1296,8 @@ namespace DHS.EQUIPMENT
             int channel_no = _system.CHANNELMAPPING[channel] - 1;
 
             irocvdata[stageno].SetValue(param, "IR", irocv[stageno].EQUIPMODE);
+            //* for test 2024 06 03 임시로 랜덤값 저장
+            irocvdata[stageno].SetValue(param, "IR", irocv[stageno].EQUIPMODE, irocvdataTest);
             measureinfo.DisplayChannelInfo(channel_no, stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
         }
         private void ProcessOcv(int stageno, string param)
@@ -1304,6 +1306,8 @@ namespace DHS.EQUIPMENT
             int channel_no = _system.CHANNELMAPPING[channel] - 1;
 
             irocvdata[stageno].SetValue(param, "OCV", irocv[stageno].EQUIPMODE);
+            //* for test 2024 06 03 임시로 랜덤값 저장
+            irocvdata[stageno].SetValue(param, "OCV", irocv[stageno].EQUIPMODE, irocvdataTest);
             measureinfo.DisplayChannelInfo(channel_no, stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
         }
         private void AutoTestStart(int stageno)
