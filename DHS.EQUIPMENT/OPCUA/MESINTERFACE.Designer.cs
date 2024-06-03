@@ -35,6 +35,7 @@ namespace DHS.EQUIPMENT
             this.dgvMES = new System.Windows.Forms.DataGridView();
             this.dgvPC = new System.Windows.Forms.DataGridView();
             this.radpnl_MESTEST = new Telerik.WinControls.UI.RadPanel();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.cbTagType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbTagList = new System.Windows.Forms.ComboBox();
@@ -44,33 +45,32 @@ namespace DHS.EQUIPMENT
             this.radBtnWriteValue = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbEquipmentID = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbTrayID = new System.Windows.Forms.TextBox();
+            this.radBtnReadFORIR2_2 = new Telerik.WinControls.UI.RadButton();
+            this.radBtnReadFORIR2_1 = new Telerik.WinControls.UI.RadButton();
+            this.cbCellStatusResult = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.radBtnWriteForir2_2 = new Telerik.WinControls.UI.RadButton();
+            this.radBtnWriteForir2_1 = new Telerik.WinControls.UI.RadButton();
+            this.cbOCV = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbIR = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbErrorMessage = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbErrorCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbTrayStatusCode = new System.Windows.Forms.TextBox();
             this.cbCellStatus = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbCellID = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbTrayStatusCode = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tbErrorCode = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbErrorMessage = new System.Windows.Forms.TextBox();
-            this.cbOCV = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cbIR = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.radBtnWriteForir2_1 = new Telerik.WinControls.UI.RadButton();
-            this.radBtnWriteForir2_2 = new Telerik.WinControls.UI.RadButton();
-            this.cbCellStatusResult = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.radBtnReadFORIR2_2 = new Telerik.WinControls.UI.RadButton();
-            this.radBtnReadFORIR2_1 = new Telerik.WinControls.UI.RadButton();
             this.tbMsg = new System.Windows.Forms.TextBox();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tbEquipmentID = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.tbTrayID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
@@ -79,14 +79,14 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.dgvPC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MESTEST)).BeginInit();
             this.radpnl_MESTEST.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).BeginInit();
             this.SuspendLayout();
             // 
             // radpnl_OperationMode
@@ -178,6 +178,25 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // radButton1
+            // 
+            this.radButton1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radButton1.ForeColor = System.Drawing.Color.White;
+            this.radButton1.Location = new System.Drawing.Point(20, 133);
+            this.radButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(130, 38);
+            this.radButton1.TabIndex = 64;
+            this.radButton1.Text = "Write PLC Info.";
+            this.radButton1.ThemeName = "ControlDefault";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton1.GetChildAt(0))).Text = "Write PLC Info.";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
             // 
             // cbTagType
             // 
@@ -322,6 +341,341 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label14.Location = new System.Drawing.Point(21, 108);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(96, 16);
+            this.label14.TabIndex = 83;
+            this.label14.Text = "EquipmentID";
+            // 
+            // tbEquipmentID
+            // 
+            this.tbEquipmentID.Location = new System.Drawing.Point(148, 103);
+            this.tbEquipmentID.Multiline = true;
+            this.tbEquipmentID.Name = "tbEquipmentID";
+            this.tbEquipmentID.Size = new System.Drawing.Size(204, 21);
+            this.tbEquipmentID.TabIndex = 82;
+            this.tbEquipmentID.Text = "IROCV01";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label15.Location = new System.Drawing.Point(19, 81);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 16);
+            this.label15.TabIndex = 81;
+            this.label15.Text = "Tray ID";
+            // 
+            // tbTrayID
+            // 
+            this.tbTrayID.Location = new System.Drawing.Point(147, 76);
+            this.tbTrayID.Multiline = true;
+            this.tbTrayID.Name = "tbTrayID";
+            this.tbTrayID.Size = new System.Drawing.Size(204, 21);
+            this.tbTrayID.TabIndex = 80;
+            this.tbTrayID.Text = "test1234";
+            // 
+            // radBtnReadFORIR2_2
+            // 
+            this.radBtnReadFORIR2_2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radBtnReadFORIR2_2.ForeColor = System.Drawing.Color.White;
+            this.radBtnReadFORIR2_2.Location = new System.Drawing.Point(180, 268);
+            this.radBtnReadFORIR2_2.Margin = new System.Windows.Forms.Padding(4);
+            this.radBtnReadFORIR2_2.Name = "radBtnReadFORIR2_2";
+            this.radBtnReadFORIR2_2.Size = new System.Drawing.Size(141, 41);
+            this.radBtnReadFORIR2_2.TabIndex = 79;
+            this.radBtnReadFORIR2_2.Text = "Read FORIR 2.2";
+            this.radBtnReadFORIR2_2.ThemeName = "ControlDefault";
+            this.radBtnReadFORIR2_2.Click += new System.EventHandler(this.radBtnReadFORIR2_2_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_2.GetChildAt(0))).Text = "Read FORIR 2.2";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_2.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            // 
+            // radBtnReadFORIR2_1
+            // 
+            this.radBtnReadFORIR2_1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radBtnReadFORIR2_1.ForeColor = System.Drawing.Color.White;
+            this.radBtnReadFORIR2_1.Location = new System.Drawing.Point(22, 268);
+            this.radBtnReadFORIR2_1.Margin = new System.Windows.Forms.Padding(4);
+            this.radBtnReadFORIR2_1.Name = "radBtnReadFORIR2_1";
+            this.radBtnReadFORIR2_1.Size = new System.Drawing.Size(141, 41);
+            this.radBtnReadFORIR2_1.TabIndex = 78;
+            this.radBtnReadFORIR2_1.Text = "Read FORIR 2.1";
+            this.radBtnReadFORIR2_1.ThemeName = "ControlDefault";
+            this.radBtnReadFORIR2_1.Click += new System.EventHandler(this.radBtnReadFORIR2_1_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_1.GetChildAt(0))).Text = "Read FORIR 2.1";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            // 
+            // cbCellStatusResult
+            // 
+            this.cbCellStatusResult.FormattingEnabled = true;
+            this.cbCellStatusResult.Items.AddRange(new object[] {
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"});
+            this.cbCellStatusResult.Location = new System.Drawing.Point(126, 329);
+            this.cbCellStatusResult.Name = "cbCellStatusResult";
+            this.cbCellStatusResult.Size = new System.Drawing.Size(153, 20);
+            this.cbCellStatusResult.TabIndex = 77;
+            this.cbCellStatusResult.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label13.Location = new System.Drawing.Point(17, 333);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(97, 16);
+            this.label13.TabIndex = 76;
+            this.label13.Text = "CELL STATUS";
+            // 
+            // radBtnWriteForir2_2
+            // 
+            this.radBtnWriteForir2_2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radBtnWriteForir2_2.ForeColor = System.Drawing.Color.White;
+            this.radBtnWriteForir2_2.Location = new System.Drawing.Point(180, 219);
+            this.radBtnWriteForir2_2.Margin = new System.Windows.Forms.Padding(4);
+            this.radBtnWriteForir2_2.Name = "radBtnWriteForir2_2";
+            this.radBtnWriteForir2_2.Size = new System.Drawing.Size(141, 41);
+            this.radBtnWriteForir2_2.TabIndex = 75;
+            this.radBtnWriteForir2_2.Text = "Write FORIR 2.2";
+            this.radBtnWriteForir2_2.ThemeName = "ControlDefault";
+            this.radBtnWriteForir2_2.Click += new System.EventHandler(this.radBtnWriteForir2_2_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_2.GetChildAt(0))).Text = "Write FORIR 2.2";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_2.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            // 
+            // radBtnWriteForir2_1
+            // 
+            this.radBtnWriteForir2_1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radBtnWriteForir2_1.ForeColor = System.Drawing.Color.White;
+            this.radBtnWriteForir2_1.Location = new System.Drawing.Point(22, 219);
+            this.radBtnWriteForir2_1.Margin = new System.Windows.Forms.Padding(4);
+            this.radBtnWriteForir2_1.Name = "radBtnWriteForir2_1";
+            this.radBtnWriteForir2_1.Size = new System.Drawing.Size(141, 41);
+            this.radBtnWriteForir2_1.TabIndex = 74;
+            this.radBtnWriteForir2_1.Text = "Write FORIR 2.1";
+            this.radBtnWriteForir2_1.ThemeName = "ControlDefault";
+            this.radBtnWriteForir2_1.Click += new System.EventHandler(this.radBtnWriteForir2_1_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_1.GetChildAt(0))).Text = "Write FORIR 2.1";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            // 
+            // cbOCV
+            // 
+            this.cbOCV.FormattingEnabled = true;
+            this.cbOCV.Items.AddRange(new object[] {
+            "3644.03",
+            "3643.02",
+            "3644.06",
+            "3644.59",
+            "3643.44",
+            "3644.85",
+            "3645.24",
+            "3644.91",
+            "3643.03",
+            "3644.3",
+            "3643.36",
+            "3644.87",
+            "3644.26",
+            "3642.7",
+            "3643.93",
+            "3641.91",
+            "3643.28",
+            "3644.22",
+            "3644.78",
+            "3644.3",
+            "3643.66",
+            "3643.72",
+            "3643.99",
+            "3643.48",
+            "3628.37",
+            "3644.32",
+            "3644.11",
+            "3644.96",
+            "3644.43",
+            "3645.56",
+            "3644.48",
+            "3578.71"});
+            this.cbOCV.Location = new System.Drawing.Point(126, 397);
+            this.cbOCV.Name = "cbOCV";
+            this.cbOCV.Size = new System.Drawing.Size(153, 20);
+            this.cbOCV.TabIndex = 73;
+            this.cbOCV.Text = "3644.03";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label11.Location = new System.Drawing.Point(17, 401);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(37, 16);
+            this.label11.TabIndex = 72;
+            this.label11.Text = "OCV";
+            // 
+            // cbIR
+            // 
+            this.cbIR.FormattingEnabled = true;
+            this.cbIR.Items.AddRange(new object[] {
+            "0.3886",
+            "0.3813",
+            "0.3808",
+            "0.3931",
+            "0.4027",
+            "0.3808",
+            "0.3837",
+            "0.3872",
+            "0.3787",
+            "0.389",
+            "0.3878",
+            "0.3913",
+            "0.3851",
+            "0.3824",
+            "0.3728",
+            "0.3675",
+            "0.3792",
+            "0.3828",
+            "0.3878",
+            "0.3963",
+            "0.3771",
+            "0.381",
+            "0.3979",
+            "0.4084",
+            "0.3859",
+            "0.3921",
+            "0.3811",
+            "0.3779",
+            "0.3915",
+            "0.3782",
+            "0.3795",
+            "0.3738"});
+            this.cbIR.Location = new System.Drawing.Point(126, 362);
+            this.cbIR.Name = "cbIR";
+            this.cbIR.Size = new System.Drawing.Size(153, 20);
+            this.cbIR.TabIndex = 71;
+            this.cbIR.Text = "0.3886";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label12.Location = new System.Drawing.Point(17, 366);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(21, 16);
+            this.label12.TabIndex = 70;
+            this.label12.Text = "IR";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label10.Location = new System.Drawing.Point(19, 186);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(111, 16);
+            this.label10.TabIndex = 69;
+            this.label10.Text = "Error Message";
+            // 
+            // tbErrorMessage
+            // 
+            this.tbErrorMessage.Location = new System.Drawing.Point(149, 181);
+            this.tbErrorMessage.Multiline = true;
+            this.tbErrorMessage.Name = "tbErrorMessage";
+            this.tbErrorMessage.Size = new System.Drawing.Size(204, 21);
+            this.tbErrorMessage.TabIndex = 68;
+            this.tbErrorMessage.Text = "valid";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label9.Location = new System.Drawing.Point(17, 161);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(84, 16);
+            this.label9.TabIndex = 67;
+            this.label9.Text = "Error Code";
+            // 
+            // tbErrorCode
+            // 
+            this.tbErrorCode.Location = new System.Drawing.Point(147, 156);
+            this.tbErrorCode.Multiline = true;
+            this.tbErrorCode.Name = "tbErrorCode";
+            this.tbErrorCode.Size = new System.Drawing.Size(204, 21);
+            this.tbErrorCode.TabIndex = 66;
+            this.tbErrorCode.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label7.Location = new System.Drawing.Point(17, 134);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(124, 16);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "Tray Status Code";
+            // 
+            // tbTrayStatusCode
+            // 
+            this.tbTrayStatusCode.Location = new System.Drawing.Point(147, 129);
+            this.tbTrayStatusCode.Multiline = true;
+            this.tbTrayStatusCode.Name = "tbTrayStatusCode";
+            this.tbTrayStatusCode.Size = new System.Drawing.Size(204, 21);
+            this.tbTrayStatusCode.TabIndex = 64;
+            this.tbTrayStatusCode.Text = "CN";
+            // 
             // cbCellStatus
             // 
             this.cbCellStatus.FormattingEnabled = true;
@@ -439,301 +793,6 @@ namespace DHS.EQUIPMENT
             this.label8.TabIndex = 50;
             this.label8.Text = "MES 시뮬레이션";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label7.Location = new System.Drawing.Point(17, 134);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(124, 16);
-            this.label7.TabIndex = 65;
-            this.label7.Text = "Tray Status Code";
-            // 
-            // tbTrayStatusCode
-            // 
-            this.tbTrayStatusCode.Location = new System.Drawing.Point(147, 129);
-            this.tbTrayStatusCode.Multiline = true;
-            this.tbTrayStatusCode.Name = "tbTrayStatusCode";
-            this.tbTrayStatusCode.Size = new System.Drawing.Size(204, 21);
-            this.tbTrayStatusCode.TabIndex = 64;
-            this.tbTrayStatusCode.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label9.Location = new System.Drawing.Point(17, 161);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 16);
-            this.label9.TabIndex = 67;
-            this.label9.Text = "Error Code";
-            // 
-            // tbErrorCode
-            // 
-            this.tbErrorCode.Location = new System.Drawing.Point(147, 156);
-            this.tbErrorCode.Multiline = true;
-            this.tbErrorCode.Name = "tbErrorCode";
-            this.tbErrorCode.Size = new System.Drawing.Size(204, 21);
-            this.tbErrorCode.TabIndex = 66;
-            this.tbErrorCode.Text = "0";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label10.Location = new System.Drawing.Point(19, 186);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(111, 16);
-            this.label10.TabIndex = 69;
-            this.label10.Text = "Error Message";
-            // 
-            // tbErrorMessage
-            // 
-            this.tbErrorMessage.Location = new System.Drawing.Point(149, 181);
-            this.tbErrorMessage.Multiline = true;
-            this.tbErrorMessage.Name = "tbErrorMessage";
-            this.tbErrorMessage.Size = new System.Drawing.Size(204, 21);
-            this.tbErrorMessage.TabIndex = 68;
-            this.tbErrorMessage.Text = "valid";
-            // 
-            // cbOCV
-            // 
-            this.cbOCV.FormattingEnabled = true;
-            this.cbOCV.Items.AddRange(new object[] {
-            "3644.03",
-            "3643.02",
-            "3644.06",
-            "3644.59",
-            "3643.44",
-            "3644.85",
-            "3645.24",
-            "3644.91",
-            "3643.03",
-            "3644.3",
-            "3643.36",
-            "3644.87",
-            "3644.26",
-            "3642.7",
-            "3643.93",
-            "3641.91",
-            "3643.28",
-            "3644.22",
-            "3644.78",
-            "3644.3",
-            "3643.66",
-            "3643.72",
-            "3643.99",
-            "3643.48",
-            "3628.37",
-            "3644.32",
-            "3644.11",
-            "3644.96",
-            "3644.43",
-            "3645.56",
-            "3644.48",
-            "3578.71"});
-            this.cbOCV.Location = new System.Drawing.Point(126, 397);
-            this.cbOCV.Name = "cbOCV";
-            this.cbOCV.Size = new System.Drawing.Size(153, 20);
-            this.cbOCV.TabIndex = 73;
-            this.cbOCV.Text = "3644.03";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label11.Location = new System.Drawing.Point(17, 401);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 16);
-            this.label11.TabIndex = 72;
-            this.label11.Text = "OCV";
-            // 
-            // cbIR
-            // 
-            this.cbIR.FormattingEnabled = true;
-            this.cbIR.Items.AddRange(new object[] {
-            "0.3886",
-            "0.3813",
-            "0.3808",
-            "0.3931",
-            "0.4027",
-            "0.3808",
-            "0.3837",
-            "0.3872",
-            "0.3787",
-            "0.389",
-            "0.3878",
-            "0.3913",
-            "0.3851",
-            "0.3824",
-            "0.3728",
-            "0.3675",
-            "0.3792",
-            "0.3828",
-            "0.3878",
-            "0.3963",
-            "0.3771",
-            "0.381",
-            "0.3979",
-            "0.4084",
-            "0.3859",
-            "0.3921",
-            "0.3811",
-            "0.3779",
-            "0.3915",
-            "0.3782",
-            "0.3795",
-            "0.3738"});
-            this.cbIR.Location = new System.Drawing.Point(126, 362);
-            this.cbIR.Name = "cbIR";
-            this.cbIR.Size = new System.Drawing.Size(153, 20);
-            this.cbIR.TabIndex = 71;
-            this.cbIR.Text = "0.3886";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label12.Location = new System.Drawing.Point(17, 366);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(21, 16);
-            this.label12.TabIndex = 70;
-            this.label12.Text = "IR";
-            // 
-            // radBtnWriteForir2_1
-            // 
-            this.radBtnWriteForir2_1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radBtnWriteForir2_1.ForeColor = System.Drawing.Color.White;
-            this.radBtnWriteForir2_1.Location = new System.Drawing.Point(22, 219);
-            this.radBtnWriteForir2_1.Margin = new System.Windows.Forms.Padding(4);
-            this.radBtnWriteForir2_1.Name = "radBtnWriteForir2_1";
-            this.radBtnWriteForir2_1.Size = new System.Drawing.Size(141, 41);
-            this.radBtnWriteForir2_1.TabIndex = 74;
-            this.radBtnWriteForir2_1.Text = "Write FORIR 2.1";
-            this.radBtnWriteForir2_1.ThemeName = "ControlDefault";
-            this.radBtnWriteForir2_1.Click += new System.EventHandler(this.radBtnWriteForir2_1_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_1.GetChildAt(0))).Text = "Write FORIR 2.1";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            // 
-            // radBtnWriteForir2_2
-            // 
-            this.radBtnWriteForir2_2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radBtnWriteForir2_2.ForeColor = System.Drawing.Color.White;
-            this.radBtnWriteForir2_2.Location = new System.Drawing.Point(180, 219);
-            this.radBtnWriteForir2_2.Margin = new System.Windows.Forms.Padding(4);
-            this.radBtnWriteForir2_2.Name = "radBtnWriteForir2_2";
-            this.radBtnWriteForir2_2.Size = new System.Drawing.Size(141, 41);
-            this.radBtnWriteForir2_2.TabIndex = 75;
-            this.radBtnWriteForir2_2.Text = "Write FORIR 2.2";
-            this.radBtnWriteForir2_2.ThemeName = "ControlDefault";
-            this.radBtnWriteForir2_2.Click += new System.EventHandler(this.radBtnWriteForir2_2_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_2.GetChildAt(0))).Text = "Write FORIR 2.2";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWriteForir2_2.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWriteForir2_2.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            // 
-            // cbCellStatusResult
-            // 
-            this.cbCellStatusResult.FormattingEnabled = true;
-            this.cbCellStatusResult.Items.AddRange(new object[] {
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"});
-            this.cbCellStatusResult.Location = new System.Drawing.Point(126, 329);
-            this.cbCellStatusResult.Name = "cbCellStatusResult";
-            this.cbCellStatusResult.Size = new System.Drawing.Size(153, 20);
-            this.cbCellStatusResult.TabIndex = 77;
-            this.cbCellStatusResult.Text = "0";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label13.Location = new System.Drawing.Point(17, 333);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(97, 16);
-            this.label13.TabIndex = 76;
-            this.label13.Text = "CELL STATUS";
-            // 
-            // radBtnReadFORIR2_2
-            // 
-            this.radBtnReadFORIR2_2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radBtnReadFORIR2_2.ForeColor = System.Drawing.Color.White;
-            this.radBtnReadFORIR2_2.Location = new System.Drawing.Point(180, 268);
-            this.radBtnReadFORIR2_2.Margin = new System.Windows.Forms.Padding(4);
-            this.radBtnReadFORIR2_2.Name = "radBtnReadFORIR2_2";
-            this.radBtnReadFORIR2_2.Size = new System.Drawing.Size(141, 41);
-            this.radBtnReadFORIR2_2.TabIndex = 79;
-            this.radBtnReadFORIR2_2.Text = "Read FORIR 2.2";
-            this.radBtnReadFORIR2_2.ThemeName = "ControlDefault";
-            this.radBtnReadFORIR2_2.Click += new System.EventHandler(this.radBtnReadFORIR2_2_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_2.GetChildAt(0))).Text = "Read FORIR 2.2";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_2.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_2.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            // 
-            // radBtnReadFORIR2_1
-            // 
-            this.radBtnReadFORIR2_1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radBtnReadFORIR2_1.ForeColor = System.Drawing.Color.White;
-            this.radBtnReadFORIR2_1.Location = new System.Drawing.Point(22, 268);
-            this.radBtnReadFORIR2_1.Margin = new System.Windows.Forms.Padding(4);
-            this.radBtnReadFORIR2_1.Name = "radBtnReadFORIR2_1";
-            this.radBtnReadFORIR2_1.Size = new System.Drawing.Size(141, 41);
-            this.radBtnReadFORIR2_1.TabIndex = 78;
-            this.radBtnReadFORIR2_1.Text = "Read FORIR 2.1";
-            this.radBtnReadFORIR2_1.ThemeName = "ControlDefault";
-            this.radBtnReadFORIR2_1.Click += new System.EventHandler(this.radBtnReadFORIR2_1_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_1.GetChildAt(0))).Text = "Read FORIR 2.1";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnReadFORIR2_1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnReadFORIR2_1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            // 
             // tbMsg
             // 
             this.tbMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -743,65 +802,6 @@ namespace DHS.EQUIPMENT
             this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbMsg.Size = new System.Drawing.Size(373, 106);
             this.tbMsg.TabIndex = 15;
-            // 
-            // radButton1
-            // 
-            this.radButton1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radButton1.ForeColor = System.Drawing.Color.White;
-            this.radButton1.Location = new System.Drawing.Point(20, 133);
-            this.radButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(130, 38);
-            this.radButton1.TabIndex = 64;
-            this.radButton1.Text = "Write PLC Info.";
-            this.radButton1.ThemeName = "ControlDefault";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton1.GetChildAt(0))).Text = "Write PLC Info.";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label14.Location = new System.Drawing.Point(21, 108);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 16);
-            this.label14.TabIndex = 83;
-            this.label14.Text = "EquipmentID";
-            // 
-            // tbEquipmentID
-            // 
-            this.tbEquipmentID.Location = new System.Drawing.Point(148, 103);
-            this.tbEquipmentID.Multiline = true;
-            this.tbEquipmentID.Name = "tbEquipmentID";
-            this.tbEquipmentID.Size = new System.Drawing.Size(204, 21);
-            this.tbEquipmentID.TabIndex = 82;
-            this.tbEquipmentID.Text = "IROCV01";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label15.Location = new System.Drawing.Point(19, 81);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(53, 16);
-            this.label15.TabIndex = 81;
-            this.label15.Text = "Tray ID";
-            // 
-            // tbTrayID
-            // 
-            this.tbTrayID.Location = new System.Drawing.Point(147, 76);
-            this.tbTrayID.Multiline = true;
-            this.tbTrayID.Name = "tbTrayID";
-            this.tbTrayID.Size = new System.Drawing.Size(204, 21);
-            this.tbTrayID.TabIndex = 80;
-            this.tbTrayID.Text = "test1234";
             // 
             // MESINTERFACE
             // 
@@ -828,15 +828,15 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MESTEST)).EndInit();
             this.radpnl_MESTEST.ResumeLayout(false);
             this.radpnl_MESTEST.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

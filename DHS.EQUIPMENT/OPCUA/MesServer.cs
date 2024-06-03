@@ -4,6 +4,7 @@ using OPCUASERVER;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,10 @@ namespace DHS.EQUIPMENT
     class MesServer
     {
         public static bool connection = false;
+        private static string _sIpaddress;
         public bool isRead = false;
+
+        public static string IPADDRESS { get => _sIpaddress; set => _sIpaddress = value; }
 
         public MesServer()
         {
@@ -40,6 +44,7 @@ namespace DHS.EQUIPMENT
                 application.ConfigSectionName = configSectionName;
 
                 ApplicationConfiguration config = application.LoadApplicationConfiguration(false).Result;
+                _sIpaddress = config.ServerConfiguration.BaseAddresses[1];
 
                 bool certOk = application.CheckApplicationInstanceCertificate(false, 0).Result;
                 if (!certOk)
