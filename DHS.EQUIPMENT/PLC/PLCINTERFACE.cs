@@ -221,6 +221,7 @@ namespace DHS.EQUIPMENT
             AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_JOB_CHANGE, plcData, nRowIndex++);
             AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_READY_COMPLETE, plcData, nRowIndex++);
             AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_UNLOADING_COMPLETE, plcData, nRowIndex++);
+            nRowIndex++;
             AddDataGridView(dgvPLCs[nIndex], _Constant.PLC_TRAY_ID, plcData, nRowIndex++);
             #endregion
 

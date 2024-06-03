@@ -115,8 +115,8 @@ namespace DHS.EQUIPMENT
         #region IROCV ACTION
         public void SetTrayId(string trayid)
         {
-            SetValueToLabel(lblTrayId, trayid);
             SetValueToTextBox(tbTrayId, trayid);
+            SetValueToLabel(lblTrayId, trayid);
         }
         public void SetControlMessage(string controlmessage)
         {

@@ -334,6 +334,7 @@ namespace DHS.EQUIPMENT
                     remainData = strbuffers[strbuffers.Length - 1];
                     util.SaveLog(_iStage, strData, "RX");
                     _strBuffData = string.Empty;
+
                     OnReceiveStage(strData);
                 }
                 return 0;
@@ -351,6 +352,8 @@ namespace DHS.EQUIPMENT
             string cmd = msg.Substring(0, 3);
             string param = msg.Substring(3, datalength - 3);
             checksum = msg.Substring(datalength - 2, 2);
+
+            if (cmd != "SEN") RaiseOnShowControlMessage(this._iStage, msg);
 
             switch(cmd)
             {
