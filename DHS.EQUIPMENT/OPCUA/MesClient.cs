@@ -569,6 +569,7 @@ namespace DHS.EQUIPMENT
         #region MES Write/Read
         public void WriteValue(string node, string value)
         {
+            if (connection == false) return;
             switch (node)
             {
                 case "EquipmentID":
