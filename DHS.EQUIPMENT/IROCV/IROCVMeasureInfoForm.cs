@@ -301,10 +301,10 @@ namespace DHS.EQUIPMENT
             _iStage = stageno;
             for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
             {
-                SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);
+                SetValueToLabel(lblIR[nIndex], "", _Constant.ColorIR);
                 SetValueToChart(nIndex, -1, IRCHART);
 
-                SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorOCV);
+                SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorOCV);
                 SetValueToChart(nIndex, -1, OCVCHART);
             }
         }
@@ -324,25 +324,46 @@ namespace DHS.EQUIPMENT
                 {
                     if (equipMode == enumEquipMode.OFFSET)
                     {
-                        SetValueToLabel(lblIRMeasure[nIndex], "0.0000", _Constant.ColorMeasure);
+                        SetValueToLabel(lblIRMeasure[nIndex], "", _Constant.ColorMeasure);
                     }
                     else if(equipMode == enumEquipMode.MANUAL)
                     {
-                        SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);
-                        SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorOCV);
+                        SetValueToLabel(lblIR[nIndex], "", _Constant.ColorIR);
+                        SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorOCV);
                     }
                     else
                     {
+                        SetValueToLabel(lblIR[nIndex], "", _Constant.ColorIR);
+                        SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorOCV);
                         //if (irocvdata.CELL[nIndex] == 1)
                         //{
-                        SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorIR);
-                        SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorOCV);
+                        //    SetValueToLabel(lblIR[nIndex], "", _Constant.ColorIR);
+                        //    SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorOCV);
                         //}
-                        //else
+                        //else if(equipMode == enumEquipMode.AUTO && irocvdata.CELL[nIndex] == 0)
                         //{
-                        //    SetValueToLabel(lblIR[nIndex], "0.0000", _Constant.ColorNoCell);
-                        //    SetValueToLabel(lblOCV[nIndex], "0.00", _Constant.ColorNoCell);
+                        //    SetValueToLabel(lblIR[nIndex], "", _Constant.ColorNoCell);
+                        //    SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorNoCell);
                         //}
+                    }
+                }
+            }
+        }
+        public void InitDisplayMesChannelInfo(int stageno, IROCVData irocvdata, enumEquipMode equipMode)
+        {
+            if (stageno == _iStage)
+            {
+                for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+                {
+                    if (irocvdata.CELL[nIndex] == 1)
+                    {
+                        SetValueToLabel(lblIR[nIndex], "", _Constant.ColorIR);
+                        SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorOCV);
+                    }
+                    else if (equipMode == enumEquipMode.AUTO && irocvdata.CELL[nIndex] == 0)
+                    {
+                        SetValueToLabel(lblIR[nIndex], "", _Constant.ColorNoCell);
+                        SetValueToLabel(lblOCV[nIndex], "", _Constant.ColorNoCell);
                     }
                 }
             }

@@ -800,8 +800,10 @@ namespace DHS.EQUIPMENT
             //if (irocv[stageno].AUTOMODE == false) return;
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO) return;
 
+            if (_bMesConnected == false) return;
+
             //* 2023 07 25 PLC 에러 발생시 StepVacancy 상태가 아니면 IR/OCV 초기화 한다.
-            if(siemensplc.PLCERROR == 1 && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepVacancy)
+            if (siemensplc.PLCERROR == 1 && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepVacancy)
                 IROCV_Initialize(stageno);
 
             switch (irocv[stageno].EQUIPSTATUS)
@@ -1240,7 +1242,7 @@ namespace DHS.EQUIPMENT
             measureinfo.InitData(stageno);
             //measureinfo.InitChart();
 
-            measureinfo.InitDisplayChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
+            measureinfo.InitDisplayMesChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
         }
         private void InitEquipStatus(int stageno)
         {
@@ -1415,8 +1417,12 @@ namespace DHS.EQUIPMENT
                 }
             }
 
-            irocv[stageno].AMF = true;
-            CmdAmf(stageno);
+            if (irocv[stageno].AMF == false)
+            {
+                irocv[stageno].AMF = true;
+                SetRemeasureList(stageno);
+                //CmdAmf(stageno);
+            }
 
             //WriteCommLog("IR/OCV STOP", "SetRemeasureList()");
         }
