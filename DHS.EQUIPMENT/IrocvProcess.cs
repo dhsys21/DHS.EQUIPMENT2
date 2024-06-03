@@ -1136,6 +1136,7 @@ namespace DHS.EQUIPMENT
                     {
                         if (remeasurecellpercent > _system.REMEASUREPERCENT || irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
                         {
+                            measureinfo.InitDisplayMesChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
                             PLC_TRAYUP(stageno);
                             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
                             irocvdata[stageno].REMEASURECOUNT += 1;
