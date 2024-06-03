@@ -282,17 +282,18 @@ namespace DHS.EQUIPMENT
         {
             mesclient.WriteFOEQR2_1(0, equipmentid, trayid);
         }
-
+        IROCVData irocvdataTest = new IROCVData();
         private void _MeSClient_WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv)
         {
-            irocvdata[0].EQUIPMENTID = equipmentid;
-            irocvdata[0].TRAYID = trayid;
-            irocvdata[0].CELLID = cellid;
-            irocvdata[0].CELLSTATUSIROCV = cellstatus;
-            irocvdata[0].IR_AFTERVALUE = ir;
-            irocvdata[0].OCV = ocv;
 
-            mesclient.WriteFOEQR2_2(0, irocvdata[0]);
+            irocvdataTest.EQUIPMENTID = equipmentid;
+            irocvdataTest.TRAYID = trayid;
+            irocvdataTest.CELLID = cellid;
+            irocvdataTest.CELLSTATUSIROCV = cellstatus;
+            irocvdataTest.IR_AFTERVALUE = ir;
+            irocvdataTest.OCV = ocv;
+
+            mesclient.WriteFOEQR2_2(0, irocvdataTest);
         }
 
         private void _MesClient_ReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
@@ -1334,6 +1335,7 @@ namespace DHS.EQUIPMENT
 
             //* 
             irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepEnd;
+            nInspectionStep = 0;
 
             //* Tray Down to PLC
             PLC_TRAYDOWN(stageno);
@@ -1349,7 +1351,7 @@ namespace DHS.EQUIPMENT
             //int iRemeasureCount = 0;
             double irvalue = 0.0, ocvvalue = 0.0;
 
-            if (irocv[stageno].EQUIPMODE == enumEquipMode.MANUAL)// enumEquipMode.AUTO)
+            if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
             {
                 irocvdata[stageno].REMEASURECELLCOUNT = 0;
 
@@ -1366,7 +1368,6 @@ namespace DHS.EQUIPMENT
                         {
                             irocvdata[stageno].MEASURERESULT[index] = 4;
                             irocvdata[stageno].REMEASURECELLCOUNT++;
-                            //iRemeasureCount += 1;
                         }
                         //* IR Spec Error
                         else if (irvalue < _system.IRMIN || irvalue > _system.IRMAX)
@@ -1389,8 +1390,6 @@ namespace DHS.EQUIPMENT
                             if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
                             {
                                 irocvdata[stageno].MEASURERESULT[index] = 3;
-                                irocvdata[stageno].REMEASURECELLCOUNT++;
-                                //iRemeasureCount += 1;
                             }
                         }
                         else
@@ -1436,6 +1435,7 @@ namespace DHS.EQUIPMENT
             if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
             {
                 irocvdata[stageno].REMEASURECELLCOUNT = 0;
+                irocvdata[stageno] = irocvdataTest;
 
                 #region IR/ OCV Error 처리
                 for (int index = 0; index < _Constant.ChannelCount; ++index)
@@ -1450,7 +1450,6 @@ namespace DHS.EQUIPMENT
                         {
                             irocvdata[stageno].MEASURERESULT[index] = 4;
                             irocvdata[stageno].REMEASURECELLCOUNT++;
-                            //iRemeasureCount += 1;
                         }
                         //* IR Spec Error
                         else if (irvalue < _system.IRMIN || irvalue > _system.IRMAX)
@@ -1473,8 +1472,6 @@ namespace DHS.EQUIPMENT
                             if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
                             {
                                 irocvdata[stageno].MEASURERESULT[index] = 3;
-                                irocvdata[stageno].REMEASURECELLCOUNT++;
-                                //iRemeasureCount += 1;
                             }
                         }
                         else
@@ -1502,8 +1499,12 @@ namespace DHS.EQUIPMENT
                 }
             }
 
-            irocv[stageno].AMF = true;
-            CmdAmf(stageno);
+            if (irocv[stageno].AMF == false)
+            {
+                irocv[stageno].AMF = true;
+                SetRemeasureList_Demo(stageno);
+                //CmdAmf(stageno);
+            }
 
             //WriteCommLog("IR/OCV STOP", "SetRemeasureList()");
         }

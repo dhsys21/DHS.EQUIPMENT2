@@ -116,7 +116,7 @@ namespace DHS.EQUIPMENT
             {
                 //await Task.Run(() => opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
                 //connection = true;
-                string serverurl = "opc.tcp://" + MesServer.IPADDRESS + ":4800/IROCV";
+                string serverurl = MesServer.IPADDRESS;
                 //connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://10.2.2.154:48000/IROCV"));
                 connection = await Task.FromResult<bool>(opcclient.Connect(serverurl));
                 return connection;
