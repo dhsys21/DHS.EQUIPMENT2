@@ -275,8 +275,6 @@ namespace DHS.EQUIPMENT
 
             util.saveConfig(filename, "EQUIPMENT", "ID", _system.EQUIPMENTID);
 
-            util.saveConfig(filename, "MES", "IPADDRESS", _system.MESIPADDRESS);
-            util.saveConfig(filename, "MES", "PORT", _system.MESPORT.ToString());
             util.saveConfig(filename, "PLC", "IPADDRESS", _system.PLCIPADDRESS);
             util.saveConfig(filename, "PLC", "DB NUMBER", _system.PLCDBNUMBER.ToString());
             util.saveConfig(filename, "PLC", "DB(SYS) NUMBER", _system.PLCDBNUMBERSYS.ToString());
@@ -290,8 +288,6 @@ namespace DHS.EQUIPMENT
                 {
                     _system.EQUIPMENTID = util.readConfig(filename, "EQUIPMENT", "ID");
 
-                    _system.MESIPADDRESS = util.readConfig(filename, "MES", "IPADDRESS");
-                    _system.MESPORT = Convert.ToInt32(util.readConfig(filename, "MES", "PORT"));
                     _system.PLCIPADDRESS = util.readConfig(filename, "PLC", "IPADDRESS");
                     _system.PLCDBNUMBER = Convert.ToInt32(util.readConfig(filename, "PLC", "DB NUMBER"));
                     _system.PLCDBNUMBERSYS = Convert.ToInt32(util.readConfig(filename, "PLC", "DB(SYS) NUMBER"));

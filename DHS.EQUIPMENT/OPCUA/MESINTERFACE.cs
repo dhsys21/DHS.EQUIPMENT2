@@ -92,7 +92,55 @@ namespace DHS.EQUIPMENT
             dgvPCs[0] = dgvPC;
             dgvMESs[0] = dgvMES;
             MakeGridView();
+
+            MakeGridView_MESTEST();
         }
+
+        private void MakeGridView_MESTEST()
+        {
+
+            dgvCellID.Columns.Add("001", "CH");
+            dgvCellID.Columns.Add("002", "CELL ID");
+            dgvCellID.Rows.Add(32);
+
+            dgvCellStatus.Columns.Add("001", "CH");
+            dgvCellStatus.Columns.Add("002", "CELL STATUS");
+            dgvCellStatus.Rows.Add(32);
+
+            dgvCellStatusResult.Columns.Add("001", "CH");
+            dgvCellStatusResult.Columns.Add("002", "Result");
+            dgvCellStatusResult.Rows.Add(32);
+
+            dgvIR.Columns.Add("001", "CH");
+            dgvIR.Columns.Add("002", "IR");
+            dgvIR.Rows.Add(32);
+
+            dgvOCV.Columns.Add("001", "CH");
+            dgvOCV.Columns.Add("002", "OCV");
+            dgvOCV.Rows.Add(32);
+
+            double ir = 0.3886;
+            double ocv = 3644.03;
+
+            for (int i = 0; i < 32; i++)
+            {
+                dgvCellID.Rows[i].Cells[0].Value = (i + 1).ToString();
+                dgvCellID.Rows[i].Cells[1].Value = "C000" + (i + 1).ToString("D2");
+
+                dgvCellStatus.Rows[i].Cells[0].Value = (i + 1).ToString();
+                dgvCellStatus.Rows[i].Cells[1].Value = "1";
+
+                dgvCellStatusResult.Rows[i].Cells[0].Value = (i + 1).ToString();
+                dgvCellStatusResult.Rows[i].Cells[1].Value = "0";
+
+                dgvIR.Rows[i].Cells[0].Value = (i + 1).ToString();
+                dgvIR.Rows[i].Cells[1].Value = ir + ((i * 10) / (i % 8 + 4) / 10000.0);
+
+                dgvOCV.Rows[i].Cells[0].Value = (i + 1).ToString();
+                dgvOCV.Rows[i].Cells[1].Value = ocv + (i * 5) / (i % 4 + 1);
+            }
+        }
+
         private void MakeGridView()
         {
             //* 열 추가
@@ -311,10 +359,10 @@ namespace DHS.EQUIPMENT
 
             for(int i = 0; i < 32;i++)
             {
-                cellid[i] = cbCellID.Items[i].ToString();
-                cellstatus[i] = cbCellStatusResult.Items[i].ToString();
-                ir[i] = (float)Convert.ToDouble(cbIR.Items[i].ToString());
-                ocv[i] = (float)Convert.ToDouble(cbOCV.Items[i].ToString());
+                cellid[i] = dgvCellID.Rows[i].Cells[0].ToString();
+                cellstatus[i] = dgvCellStatusResult.Rows[i].Cells[0].ToString();
+                ir[i] = (float)Convert.ToDouble(dgvIR.Rows[i].Cells[0].ToString());
+                ocv[i] = (float)Convert.ToDouble(dgvOCV.Rows[i].Cells[0].ToString());
             }
 
             RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
@@ -330,8 +378,8 @@ namespace DHS.EQUIPMENT
 
             for(int i = 0; i < 32; i++)
             {
-                cellid[i] = cbCellID.Items[i].ToString();
-                cellstatus[i] = cbCellStatus.Items[i].ToString();
+                cellid[i] = dgvCellID.Rows[i].Cells[0].ToString();
+                cellstatus[i] = dgvCellStatus.Rows[i].Cells[0].ToString();
             }
 
             RaiseOnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
@@ -349,5 +397,6 @@ namespace DHS.EQUIPMENT
             RaiseOnWritePLCSysInfo();
         }
         #endregion
+
     }
 }

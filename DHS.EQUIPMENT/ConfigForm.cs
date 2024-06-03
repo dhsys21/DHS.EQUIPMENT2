@@ -33,9 +33,6 @@ namespace DHS.EQUIPMENT
 
         public void SetSystemValue()
         {
-            tbMesIpaddress.Text = _system.MESIPADDRESS;
-            tbMesPort.Text = _system.MESPORT.ToString();
-
             tbPlcIpaddress.Text = _system.PLCIPADDRESS;
             tbPlcDbNumber.Text = _system.PLCDBNUMBER.ToString();
             tbPlcDbNumberSys.Text = _system.PLCDBNUMBERSYS.ToString();
@@ -48,9 +45,6 @@ namespace DHS.EQUIPMENT
 
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            _system.MESIPADDRESS = tbMesIpaddress.Text;
-            _system.MESPORT = Convert.ToInt32(tbMesPort.Text);
-
             _system.PLCIPADDRESS = tbPlcIpaddress.Text;
             _system.PLCDBNUMBER = Convert.ToInt32(tbPlcDbNumber.Text);
             _system.PLCDBNUMBERSYS = Convert.ToInt32(tbPlcDbNumberSys.Text);
