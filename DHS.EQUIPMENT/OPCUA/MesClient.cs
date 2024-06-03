@@ -650,10 +650,15 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].CELLSTATUSMES = cellstatus;
             irocvdata[stageno].TAGPATHNO = "FOEQR2.1";
             irocvdata[stageno].LOG = _strLog;
+            irocvdata[stageno].CELLCOUNT = 0;
             for (int i = 0; i < cellids.Length; i++)
             {
                 if (string.IsNullOrEmpty(cellids[i]) == true) irocvdata[stageno].CELL[i] = 0;
-                else irocvdata[stageno].CELL[i] = 1;
+                else
+                {
+                    irocvdata[stageno].CELL[i] = 1;
+                    irocvdata[stageno].CELLCOUNT++;
+                }
             }
 
             return irocvdata[stageno];

@@ -1037,7 +1037,7 @@ namespace DHS.EQUIPMENT
                     //* FORIR 2.1 2024 05 28 수정
                     //irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
                     irocvdata[stageno] = mesclient.ReadFOEQR2_1(stageno);
-                    irocvdata[stageno].TRAYSTATUSCODE = "CN";
+                    //irocvdata[stageno].TRAYSTATUSCODE = "CN";
                     if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
                     {
                         //* MES - Display Tray Info.
@@ -1411,7 +1411,7 @@ namespace DHS.EQUIPMENT
                 //* AMF 이거나 재측정 수가 일정 갯수가 넘으면 트레이 다운 후 [트레이 배출 또는 전체 재측정]
                 //* AMF 상태가 아니거나 재측정 수가 일정 갯수(5개) 이하면 현재 컨택 상태에서 에러난 채널만 부분 재측정
                 //*irocvdata[stageno].REMEASURECELLCOUNT > _system.REMEASUREMAXCOUNT
-                if (irocv[stageno].AMF == true || irocvdata[stageno].REMEASURECELLCOUNT > 5)
+                if (irocv[stageno].AMF == true || (irocvdata[stageno].REMEASURECELLCOUNT == 0 || irocvdata[stageno].REMEASURECELLCOUNT > 5))
                 {
                     AutoTestStop(stageno);
                 }
