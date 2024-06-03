@@ -585,6 +585,7 @@ namespace DHS.EQUIPMENT
         #region Version 2. - MES와 IROCV간 주고 받는 Sequence 별로 구현
         public void WriteFOEQR2_1(int stageno, string equipmentid, string trayid)
         {
+            if(connection == false) return;
             //* EQUIPMENT ID
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
 
@@ -598,6 +599,8 @@ namespace DHS.EQUIPMENT
         public IROCVData ReadFOEQR2_1(int stageno)
         {
             _strLog = string.Empty;
+
+            if (connection == false) return null;
 
             //* EQUIPMENT ID
             string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
@@ -658,6 +661,8 @@ namespace DHS.EQUIPMENT
         {
             _strLog = string.Empty;
 
+            if (connection == false) return;
+
             //* EQUIPMENT ID
             string equipmentid = irocvdata.EQUIPMENTID;
             WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
@@ -703,6 +708,8 @@ namespace DHS.EQUIPMENT
             //* Acknowledgement No
             _strLog = string.Empty;
 
+            if (connection == false) return null;
+
             //* ERROR CODE
             UInt32 ecode = (UInt32)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
             int errorcode = (int)ecode;
@@ -741,6 +748,8 @@ namespace DHS.EQUIPMENT
         {
             _strLog = string.Empty;
 
+            if (connection == false) return;
+
             //* CELL ID
             WriteValue("ns=2;s=Mes/CellID", cellid, (int)EnumDataType.dtStringArr);
             for (int nIndex = 0; nIndex < cellid.Length; nIndex++)
@@ -767,6 +776,7 @@ namespace DHS.EQUIPMENT
         }
         public void WriteFORIR2_ForMes(int stageno, string errorcode, string errormessage)
         {
+            if (connection == false) return;
             //* ErrorCode
             WriteValue("ns=2;s=Mes/ErrorCode", errorcode, (int)EnumDataType.dtUInt32);
 

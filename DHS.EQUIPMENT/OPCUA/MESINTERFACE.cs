@@ -359,10 +359,10 @@ namespace DHS.EQUIPMENT
 
             for(int i = 0; i < 32;i++)
             {
-                cellid[i] = dgvCellID.Rows[i].Cells[0].ToString();
-                cellstatus[i] = dgvCellStatusResult.Rows[i].Cells[0].ToString();
-                ir[i] = (float)Convert.ToDouble(dgvIR.Rows[i].Cells[0].ToString());
-                ocv[i] = (float)Convert.ToDouble(dgvOCV.Rows[i].Cells[0].ToString());
+                cellid[i] = dgvCellID.Rows[i].Cells[1].Value.ToString();
+                cellstatus[i] = dgvCellStatusResult.Rows[i].Cells[1].Value.ToString();
+                ir[i] = Convert.ToDouble(dgvIR.Rows[i].Cells[1].Value.ToString());
+                ocv[i] = Convert.ToDouble(dgvOCV.Rows[i].Cells[1].Value.ToString());
             }
 
             RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
@@ -378,8 +378,8 @@ namespace DHS.EQUIPMENT
 
             for(int i = 0; i < 32; i++)
             {
-                cellid[i] = dgvCellID.Rows[i].Cells[0].ToString();
-                cellstatus[i] = dgvCellStatus.Rows[i].Cells[0].ToString();
+                cellid[i] = dgvCellID.Rows[i].Cells[1].Value.ToString();
+                cellstatus[i] = dgvCellStatus.Rows[i].Cells[1].Value.ToString();
             }
 
             RaiseOnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
