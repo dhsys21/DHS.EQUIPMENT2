@@ -957,6 +957,8 @@ namespace DHS.EQUIPMENT
             radBtnSaveData.Text = StrLang.BTNSAVEDATA;
             radbtn_MsaStart.Text = StrLang.BTNMSASTART;
             radbtn_MsaStop.Text = StrLang.BTNMSASTOP;
+
+            radpnl_Title.Text = StrLang.PNLMEASURINGTITLE;
         }
 
         private void radBtnSaveData_Click(object sender, EventArgs e)

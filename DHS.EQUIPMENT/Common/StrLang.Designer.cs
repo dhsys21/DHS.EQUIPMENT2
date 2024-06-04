@@ -376,6 +376,15 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   IR/OCV Measuring Values과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PNLMEASURINGTITLE {
+            get {
+                return ResourceManager.GetString("PNLMEASURINGTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   READY과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string PNLREADY {
