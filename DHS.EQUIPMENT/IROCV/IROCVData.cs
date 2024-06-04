@@ -245,7 +245,7 @@ namespace DHS.EQUIPMENT
 
                     SetIrValue(channel, dValue * 1000.0, equipMode);
                     //* for test 2024 06 03 임시로 랜덤값 저장
-                    SetIrValue(channel, irocvdatatest.IR_AFTERVALUE[channel - 1], equipMode);
+                    //SetIrValue(channel, irocvdatatest.IR_AFTERVALUE[channel - 1], equipMode);
                 }
                 else if (type == "OCV")
                 {
@@ -254,7 +254,7 @@ namespace DHS.EQUIPMENT
 
                     SetOcvValue(channel, dValue * 1000.0, equipMode);
                     //* for test 2024 06 03 임시로 랜덤값 저장
-                    SetOcvValue(channel, irocvdatatest.OCV[channel - 1], equipMode);    
+                    //SetOcvValue(channel, irocvdatatest.OCV[channel - 1], equipMode);    
                 }
 
             }
