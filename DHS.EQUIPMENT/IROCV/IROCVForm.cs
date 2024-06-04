@@ -175,6 +175,10 @@ namespace DHS.EQUIPMENT
             lblProcessTitle.Text = StrLang.LBLPROCESS;
             lblIrRangeTitle.Text = StrLang.LBLIRRANGE;
             lblOcvRangeTitle.Text = StrLang.LBLOCVRANGE;
+            lblIrRemeaTitle.Text = StrLang.LBLIRREMEASURE;
+            lblOcvRemeaTitle.Text = StrLang.LBLOCVREMEASURE;
+            lblErrorCodeTitle.Text = StrLang.LBLERRORCODE;
+            lblErrorMessageTitle.Text = StrLang.LBLERRORMESSAGE;
 
             SetValueToLabel(lblStatus, StrLang.PLCCONNECTION, Color.Red);
             SetValueToLabel(lblStatus, StrLang.STEPVACANCY);

@@ -150,8 +150,23 @@
   <data name="Initialize" xml:space="preserve">
     <value>Initialize</value>
   </data>
+  <data name="LBLDATAREPLY" xml:space="preserve">
+    <value>REPLY ← MES</value>
+  </data>
+  <data name="LBLDATAUPLOAD" xml:space="preserve">
+    <value>DATA → MES</value>
+  </data>
+  <data name="LBLERRORCODE" xml:space="preserve">
+    <value>ERROR CODE</value>
+  </data>
+  <data name="LBLERRORMESSAGE" xml:space="preserve">
+    <value>ERROR MESSAGE</value>
+  </data>
   <data name="LBLIRRANGE" xml:space="preserve">
     <value>IR RANGE</value>
+  </data>
+  <data name="LBLIRREMEASURE" xml:space="preserve">
+    <value>IR SPEC</value>
   </data>
   <data name="LBLMANUALTITLE" xml:space="preserve">
     <value>MANUAL</value>
@@ -159,11 +174,20 @@
   <data name="LBLOCVRANGE" xml:space="preserve">
     <value>OCV RANGE</value>
   </data>
+  <data name="LBLOCVREMEASURE" xml:space="preserve">
+    <value>OCV SPEC</value>
+  </data>
   <data name="LBLPROCESS" xml:space="preserve">
     <value>STATUS CODE</value>
   </data>
   <data name="LBLRECIPE" xml:space="preserve">
     <value>RECIPE</value>
+  </data>
+  <data name="LBLREPLYTRAYINFO" xml:space="preserve">
+    <value>TRAY INFO ← MES</value>
+  </data>
+  <data name="LBLREQUESTTRAYINFO" xml:space="preserve">
+    <value>TRAY ID → MES</value>
   </data>
   <data name="LBLSTATUS" xml:space="preserve">
     <value>STATUS</value>

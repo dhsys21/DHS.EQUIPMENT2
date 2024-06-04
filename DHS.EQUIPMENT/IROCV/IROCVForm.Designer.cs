@@ -44,13 +44,13 @@ namespace DHS.EQUIPMENT
             this.lblIrRangeTitle = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.lblIrRemeasureSpec = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.lblIrRemeaTitle = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.lblOcvSpec = new System.Windows.Forms.Label();
             this.lblOcvRangeTitle = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.lblOcvRemeasureSpec = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
+            this.lblOcvRemeaTitle = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.roundRectShape1 = new Telerik.WinControls.RoundRectShape(this.components);
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
@@ -81,14 +81,14 @@ namespace DHS.EQUIPMENT
             this.lblProbeDown = new System.Windows.Forms.Label();
             this.pnlMeasure = new System.Windows.Forms.Panel();
             this.lblMeasure = new System.Windows.Forms.Label();
+            this.pnlProbeOpen = new System.Windows.Forms.Panel();
+            this.lblProbeOpen = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblDataCollection = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblDataCollectionReply = new System.Windows.Forms.Label();
             this.pnlFinish = new System.Windows.Forms.Panel();
             this.lblFinish = new System.Windows.Forms.Label();
-            this.pnlProbeOpen = new System.Windows.Forms.Panel();
-            this.lblProbeOpen = new System.Windows.Forms.Label();
             this.pnlTrayOut = new System.Windows.Forms.Panel();
             this.lblTrayOut = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -106,10 +106,10 @@ namespace DHS.EQUIPMENT
             this.lblProcessTitle = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lblErrorCode = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblErrorCodeTitle = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.lblErrorMessage = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblErrorMessageTitle = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.radpanel_connectionstatus = new Telerik.WinControls.UI.RadPanel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -163,10 +163,10 @@ namespace DHS.EQUIPMENT
             this.panel4.SuspendLayout();
             this.pnlProbeDown.SuspendLayout();
             this.pnlMeasure.SuspendLayout();
+            this.pnlProbeOpen.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnlFinish.SuspendLayout();
-            this.pnlProbeOpen.SuspendLayout();
             this.pnlTrayOut.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_trayinfo)).BeginInit();
             this.radpnl_trayinfo.SuspendLayout();
@@ -298,7 +298,7 @@ namespace DHS.EQUIPMENT
             // panel13
             // 
             this.panel13.Controls.Add(this.lblIrRemeasureSpec);
-            this.panel13.Controls.Add(this.label26);
+            this.panel13.Controls.Add(this.lblIrRemeaTitle);
             this.panel13.Location = new System.Drawing.Point(298, 5);
             this.panel13.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel13.Name = "panel13";
@@ -320,19 +320,19 @@ namespace DHS.EQUIPMENT
             this.lblIrRemeasureSpec.TabIndex = 18;
             this.lblIrRemeasureSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label26
+            // lblIrRemeaTitle
             // 
-            this.label26.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label26.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label26.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label26.Location = new System.Drawing.Point(2, 2);
-            this.label26.Margin = new System.Windows.Forms.Padding(1);
-            this.label26.Name = "label26";
-            this.label26.Padding = new System.Windows.Forms.Padding(1);
-            this.label26.Size = new System.Drawing.Size(96, 36);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "REMEA. SPEC";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIrRemeaTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblIrRemeaTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblIrRemeaTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblIrRemeaTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblIrRemeaTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblIrRemeaTitle.Name = "lblIrRemeaTitle";
+            this.lblIrRemeaTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblIrRemeaTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblIrRemeaTitle.TabIndex = 0;
+            this.lblIrRemeaTitle.Text = "REMEA. SPEC";
+            this.lblIrRemeaTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel14
             // 
@@ -376,7 +376,7 @@ namespace DHS.EQUIPMENT
             // panel15
             // 
             this.panel15.Controls.Add(this.lblOcvRemeasureSpec);
-            this.panel15.Controls.Add(this.label30);
+            this.panel15.Controls.Add(this.lblOcvRemeaTitle);
             this.panel15.Location = new System.Drawing.Point(298, 49);
             this.panel15.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel15.Name = "panel15";
@@ -398,19 +398,19 @@ namespace DHS.EQUIPMENT
             this.lblOcvRemeasureSpec.TabIndex = 18;
             this.lblOcvRemeasureSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label30
+            // lblOcvRemeaTitle
             // 
-            this.label30.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label30.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label30.Location = new System.Drawing.Point(2, 2);
-            this.label30.Margin = new System.Windows.Forms.Padding(1);
-            this.label30.Name = "label30";
-            this.label30.Padding = new System.Windows.Forms.Padding(1);
-            this.label30.Size = new System.Drawing.Size(96, 36);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "REMEA. SPEC";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOcvRemeaTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblOcvRemeaTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblOcvRemeaTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblOcvRemeaTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblOcvRemeaTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblOcvRemeaTitle.Name = "lblOcvRemeaTitle";
+            this.lblOcvRemeaTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblOcvRemeaTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblOcvRemeaTitle.TabIndex = 0;
+            this.lblOcvRemeaTitle.Text = "REMEA. SPEC";
+            this.lblOcvRemeaTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label36
             // 
@@ -893,6 +893,31 @@ namespace DHS.EQUIPMENT
             this.lblMeasure.Text = "MEASURE";
             this.lblMeasure.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pnlProbeOpen
+            // 
+            this.pnlProbeOpen.BackColor = System.Drawing.Color.LightGray;
+            this.pnlProbeOpen.Controls.Add(this.lblProbeOpen);
+            this.pnlProbeOpen.Location = new System.Drawing.Point(102, 50);
+            this.pnlProbeOpen.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlProbeOpen.Name = "pnlProbeOpen";
+            this.pnlProbeOpen.Padding = new System.Windows.Forms.Padding(4);
+            this.pnlProbeOpen.Size = new System.Drawing.Size(95, 44);
+            this.pnlProbeOpen.TabIndex = 55;
+            // 
+            // lblProbeOpen
+            // 
+            this.lblProbeOpen.BackColor = System.Drawing.Color.DarkGray;
+            this.lblProbeOpen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProbeOpen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProbeOpen.ForeColor = System.Drawing.Color.Black;
+            this.lblProbeOpen.Location = new System.Drawing.Point(4, 4);
+            this.lblProbeOpen.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lblProbeOpen.Name = "lblProbeOpen";
+            this.lblProbeOpen.Size = new System.Drawing.Size(87, 36);
+            this.lblProbeOpen.TabIndex = 16;
+            this.lblProbeOpen.Text = "TRAY DOWN";
+            this.lblProbeOpen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.LightGray;
@@ -967,31 +992,6 @@ namespace DHS.EQUIPMENT
             this.lblFinish.TabIndex = 16;
             this.lblFinish.Text = "FINISH";
             this.lblFinish.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnlProbeOpen
-            // 
-            this.pnlProbeOpen.BackColor = System.Drawing.Color.LightGray;
-            this.pnlProbeOpen.Controls.Add(this.lblProbeOpen);
-            this.pnlProbeOpen.Location = new System.Drawing.Point(102, 50);
-            this.pnlProbeOpen.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlProbeOpen.Name = "pnlProbeOpen";
-            this.pnlProbeOpen.Padding = new System.Windows.Forms.Padding(4);
-            this.pnlProbeOpen.Size = new System.Drawing.Size(95, 44);
-            this.pnlProbeOpen.TabIndex = 55;
-            // 
-            // lblProbeOpen
-            // 
-            this.lblProbeOpen.BackColor = System.Drawing.Color.DarkGray;
-            this.lblProbeOpen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblProbeOpen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProbeOpen.ForeColor = System.Drawing.Color.Black;
-            this.lblProbeOpen.Location = new System.Drawing.Point(4, 4);
-            this.lblProbeOpen.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.lblProbeOpen.Name = "lblProbeOpen";
-            this.lblProbeOpen.Size = new System.Drawing.Size(87, 36);
-            this.lblProbeOpen.TabIndex = 16;
-            this.lblProbeOpen.Text = "TRAY DOWN";
-            this.lblProbeOpen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlTrayOut
             // 
@@ -1165,7 +1165,7 @@ namespace DHS.EQUIPMENT
             this.panel2.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.panel2.Size = new System.Drawing.Size(292, 40);
+            this.panel2.Size = new System.Drawing.Size(292, 46);
             this.panel2.TabIndex = 8;
             // 
             // lblTrayStatusCode
@@ -1178,7 +1178,7 @@ namespace DHS.EQUIPMENT
             this.lblTrayStatusCode.Location = new System.Drawing.Point(98, 2);
             this.lblTrayStatusCode.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.lblTrayStatusCode.Name = "lblTrayStatusCode";
-            this.lblTrayStatusCode.Size = new System.Drawing.Size(192, 36);
+            this.lblTrayStatusCode.Size = new System.Drawing.Size(192, 42);
             this.lblTrayStatusCode.TabIndex = 18;
             this.lblTrayStatusCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1191,7 +1191,7 @@ namespace DHS.EQUIPMENT
             this.lblProcessTitle.Margin = new System.Windows.Forms.Padding(1);
             this.lblProcessTitle.Name = "lblProcessTitle";
             this.lblProcessTitle.Padding = new System.Windows.Forms.Padding(1);
-            this.lblProcessTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblProcessTitle.Size = new System.Drawing.Size(96, 42);
             this.lblProcessTitle.TabIndex = 0;
             this.lblProcessTitle.Text = "TRAY STATUS CODE";
             this.lblProcessTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1199,7 +1199,7 @@ namespace DHS.EQUIPMENT
             // panel7
             // 
             this.panel7.Controls.Add(this.lblErrorCode);
-            this.panel7.Controls.Add(this.label10);
+            this.panel7.Controls.Add(this.lblErrorCodeTitle);
             this.panel7.Location = new System.Drawing.Point(4, 105);
             this.panel7.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel7.Name = "panel7";
@@ -1221,24 +1221,24 @@ namespace DHS.EQUIPMENT
             this.lblErrorCode.TabIndex = 18;
             this.lblErrorCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // lblErrorCodeTitle
             // 
-            this.label10.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(2, 2);
-            this.label10.Margin = new System.Windows.Forms.Padding(1);
-            this.label10.Name = "label10";
-            this.label10.Padding = new System.Windows.Forms.Padding(1);
-            this.label10.Size = new System.Drawing.Size(96, 36);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "ERROR CODE";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblErrorCodeTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblErrorCodeTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblErrorCodeTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblErrorCodeTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblErrorCodeTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblErrorCodeTitle.Name = "lblErrorCodeTitle";
+            this.lblErrorCodeTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblErrorCodeTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblErrorCodeTitle.TabIndex = 0;
+            this.lblErrorCodeTitle.Text = "ERROR CODE";
+            this.lblErrorCodeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel8
             // 
             this.panel8.Controls.Add(this.lblErrorMessage);
-            this.panel8.Controls.Add(this.label16);
+            this.panel8.Controls.Add(this.lblErrorMessageTitle);
             this.panel8.Location = new System.Drawing.Point(298, 105);
             this.panel8.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.panel8.Name = "panel8";
@@ -1260,19 +1260,19 @@ namespace DHS.EQUIPMENT
             this.lblErrorMessage.TabIndex = 18;
             this.lblErrorMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label16
+            // lblErrorMessageTitle
             // 
-            this.label16.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(2, 2);
-            this.label16.Margin = new System.Windows.Forms.Padding(1);
-            this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(1);
-            this.label16.Size = new System.Drawing.Size(96, 36);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "ERROR MESSAGE";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblErrorMessageTitle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lblErrorMessageTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblErrorMessageTitle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.lblErrorMessageTitle.Location = new System.Drawing.Point(2, 2);
+            this.lblErrorMessageTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblErrorMessageTitle.Name = "lblErrorMessageTitle";
+            this.lblErrorMessageTitle.Padding = new System.Windows.Forms.Padding(1);
+            this.lblErrorMessageTitle.Size = new System.Drawing.Size(96, 36);
+            this.lblErrorMessageTitle.TabIndex = 0;
+            this.lblErrorMessageTitle.Text = "ERROR MESSAGE";
+            this.lblErrorMessageTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -1612,10 +1612,10 @@ namespace DHS.EQUIPMENT
             this.panel4.ResumeLayout(false);
             this.pnlProbeDown.ResumeLayout(false);
             this.pnlMeasure.ResumeLayout(false);
+            this.pnlProbeOpen.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.pnlFinish.ResumeLayout(false);
-            this.pnlProbeOpen.ResumeLayout(false);
             this.pnlTrayOut.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_trayinfo)).EndInit();
             this.radpnl_trayinfo.ResumeLayout(false);
@@ -1708,10 +1708,10 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.Label lblProcessTitle;
         public System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label lblErrorCode;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblErrorCodeTitle;
         public System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label lblErrorMessage;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblErrorMessageTitle;
         private Telerik.WinControls.UI.RadPanel radPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         public System.Windows.Forms.Panel panel12;
@@ -1719,13 +1719,13 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.Label lblIrRangeTitle;
         public System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label lblIrRemeasureSpec;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblIrRemeaTitle;
         public System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label lblOcvSpec;
         private System.Windows.Forms.Label lblOcvRangeTitle;
         public System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label lblOcvRemeasureSpec;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lblOcvRemeaTitle;
         private System.Windows.Forms.Label label36;
         private Telerik.WinControls.UI.RadLabel radlblControlMessage;
         private System.Windows.Forms.Panel panel3;

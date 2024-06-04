@@ -150,7 +150,22 @@
   <data name="Initialize" xml:space="preserve">
     <value>초기화</value>
   </data>
+  <data name="LBLDATAREPLY" xml:space="preserve">
+    <value>응답 ← MES</value>
+  </data>
+  <data name="LBLDATAUPLOAD" xml:space="preserve">
+    <value>데이타 → MES</value>
+  </data>
+  <data name="LBLERRORCODE" xml:space="preserve">
+    <value>에러 코드</value>
+  </data>
+  <data name="LBLERRORMESSAGE" xml:space="preserve">
+    <value>에러 메세지</value>
+  </data>
   <data name="LBLIRRANGE" xml:space="preserve">
+    <value>IR 범위</value>
+  </data>
+  <data name="LBLIRREMEASURE" xml:space="preserve">
     <value>IR 범위</value>
   </data>
   <data name="LBLMANUALTITLE" xml:space="preserve">
@@ -159,11 +174,20 @@
   <data name="LBLOCVRANGE" xml:space="preserve">
     <value>OCV 범위</value>
   </data>
+  <data name="LBLOCVREMEASURE" xml:space="preserve">
+    <value>OCV 범위</value>
+  </data>
   <data name="LBLPROCESS" xml:space="preserve">
-    <value>프로세스</value>
+    <value>상태 코드</value>
   </data>
   <data name="LBLRECIPE" xml:space="preserve">
     <value>레시피</value>
+  </data>
+  <data name="LBLREPLYTRAYINFO" xml:space="preserve">
+    <value>트레이정보 ← MES</value>
+  </data>
+  <data name="LBLREQUESTTRAYINFO" xml:space="preserve">
+    <value>트레이아이디 → MES</value>
   </data>
   <data name="LBLSTATUS" xml:space="preserve">
     <value>상태정보</value>

@@ -160,11 +160,56 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   REPLY ← MES과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLDATAREPLY {
+            get {
+                return ResourceManager.GetString("LBLDATAREPLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   DATA → MES과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLDATAUPLOAD {
+            get {
+                return ResourceManager.GetString("LBLDATAUPLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ERROR CODE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLERRORCODE {
+            get {
+                return ResourceManager.GetString("LBLERRORCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ERROR MESSAGE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLERRORMESSAGE {
+            get {
+                return ResourceManager.GetString("LBLERRORMESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   IR RANGE과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string LBLIRRANGE {
             get {
                 return ResourceManager.GetString("LBLIRRANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR SPEC과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLIRREMEASURE {
+            get {
+                return ResourceManager.GetString("LBLIRREMEASURE", resourceCulture);
             }
         }
         
@@ -187,6 +232,15 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   OCV SPEC과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLOCVREMEASURE {
+            get {
+                return ResourceManager.GetString("LBLOCVREMEASURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   STATUS CODE과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string LBLPROCESS {
@@ -201,6 +255,24 @@ namespace DHS.EQUIPMENT.Common {
         internal static string LBLRECIPE {
             get {
                 return ResourceManager.GetString("LBLRECIPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TRAY INFO ← MES과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLREPLYTRAYINFO {
+            get {
+                return ResourceManager.GetString("LBLREPLYTRAYINFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   TRAY ID → MES과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLREQUESTTRAYINFO {
+            get {
+                return ResourceManager.GetString("LBLREQUESTTRAYINFO", resourceCulture);
             }
         }
         

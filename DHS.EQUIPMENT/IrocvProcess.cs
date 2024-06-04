@@ -1126,7 +1126,7 @@ namespace DHS.EQUIPMENT
         private void AutoInspection_StepEnd(int stageno)
         {
             bool bAck = false;
-            int remeasurecellpercent = irocvdata[stageno].CELLCOUNT == 0 ? 0 : irocvdata[stageno].REMEASURECELLCOUNT / irocvdata[stageno].CELLCOUNT;
+            int remeasurecellpercent = irocvdata[stageno].CELLCOUNT == 0 ? 0 : (irocvdata[stageno].REMEASURECELLCOUNT / irocvdata[stageno].CELLCOUNT) * 100;
             switch (nInspectionStep)
             {
                 case 0:

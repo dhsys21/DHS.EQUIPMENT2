@@ -150,8 +150,23 @@
   <data name="Initialize" xml:space="preserve">
     <value>Initialiserer</value>
   </data>
+  <data name="LBLDATAREPLY" xml:space="preserve">
+    <value>SVARE ← MES</value>
+  </data>
+  <data name="LBLDATAUPLOAD" xml:space="preserve">
+    <value>DATA → MES</value>
+  </data>
+  <data name="LBLERRORCODE" xml:space="preserve">
+    <value>FEIL KODE</value>
+  </data>
+  <data name="LBLERRORMESSAGE" xml:space="preserve">
+    <value>FEIL BESKJED</value>
+  </data>
   <data name="LBLIRRANGE" xml:space="preserve">
     <value>IR OMRÅDE</value>
+  </data>
+  <data name="LBLIRREMEASURE" xml:space="preserve">
+    <value>IR SPES</value>
   </data>
   <data name="LBLMANUALTITLE" xml:space="preserve">
     <value>HÅNDBOK</value>
@@ -159,11 +174,20 @@
   <data name="LBLOCVRANGE" xml:space="preserve">
     <value>OCV OMRÅDE</value>
   </data>
+  <data name="LBLOCVREMEASURE" xml:space="preserve">
+    <value>OCV SPES</value>
+  </data>
   <data name="LBLPROCESS" xml:space="preserve">
-    <value>STATUS CODE</value>
+    <value>STATUS KODE</value>
   </data>
   <data name="LBLRECIPE" xml:space="preserve">
     <value>LBLRECIPE</value>
+  </data>
+  <data name="LBLREPLYTRAYINFO" xml:space="preserve">
+    <value>BRETT INFO ← MES</value>
+  </data>
+  <data name="LBLREQUESTTRAYINFO" xml:space="preserve">
+    <value>BRETT ID → MES</value>
   </data>
   <data name="LBLSTATUS" xml:space="preserve">
     <value>STATUS</value>

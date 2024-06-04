@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocvprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocvprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\common\\strlang.no.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\common\\strlang.no.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\opcua\\mesclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\opcua\\mesclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\common\\strlang.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\common\\strlang.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocv\\irocv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocv\\irocv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\common\\strlang.ko.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\common\\strlang.ko.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocv\\irocvform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,12 +23,12 @@
       "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocv\\irocvform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocv\\irocvmeasureinfoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocv\\irocvmeasureinfoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocvprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocvprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocv\\irocvmeasureinfoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocv\\irocvmeasureinfoform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\irocv\\irocv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocv\\irocv.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\opcua\\mesinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,8 +46,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StrLang.No.resx",
+              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\Common\\StrLang.No.resx",
+              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\Common\\StrLang.No.resx",
+              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\Common\\StrLang.No.resx",
+              "RelativeToolTip": "DHS.EQUIPMENT\\Common\\StrLang.No.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-06-04T10:20:49.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StrLang.resx",
+              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\Common\\StrLang.resx",
+              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\Common\\StrLang.resx",
+              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\Common\\StrLang.resx",
+              "RelativeToolTip": "DHS.EQUIPMENT\\Common\\StrLang.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-06-04T10:20:43.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StrLang.Ko.resx",
+              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\Common\\StrLang.Ko.resx",
+              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\Common\\StrLang.Ko.resx",
+              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\Common\\StrLang.Ko.resx",
+              "RelativeToolTip": "DHS.EQUIPMENT\\Common\\StrLang.Ko.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-06-04T10:20:30.211Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -56,7 +92,7 @@
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IROCV\\IROCVForm.cs",
               "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCVForm.cs",
               "RelativeToolTip": "DHS.EQUIPMENT\\IROCV\\IROCVForm.cs",
-              "ViewState": "AQIAAGUAAAAAAAAAAADwv3wAAAA6AAAA",
+              "ViewState": "AQIAAJ4AAAAAAAAAAAAnwKoAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-04T07:29:56.802Z",
               "EditorCaption": ""
@@ -75,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "IROCV.cs",
               "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCV.cs",
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IROCV\\IROCV.cs",
@@ -89,50 +125,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "IROCVMeasureInfoForm.cs",
-              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs",
-              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs",
-              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs",
-              "RelativeToolTip": "DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs",
-              "ViewState": "AQIAAF4DAAAAAAAAAAAIwG4DAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T06:16:58.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IROCVMeasureInfoForm.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs",
-              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs",
-              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "DHS.EQUIPMENT\\IROCV\\IROCVMeasureInfoForm.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T06:16:56.088Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MesClient.cs",
-              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "RelativeToolTip": "DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "ViewState": "AQIAAEoCAAAAAAAAAAA0wF0CAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T06:06:09.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "IrocvProcess.cs",
               "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IrocvProcess.cs",
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IrocvProcess.cs",
               "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IrocvProcess.cs",
               "RelativeToolTip": "DHS.EQUIPMENT\\IrocvProcess.cs",
-              "ViewState": "AQIAAIsFAAAAAAAAAAAwwPIFAAA1AAAA",
+              "ViewState": "AQIAAIYFAAAAAAAAAAAAAGwEAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-04T06:05:39.577Z",
               "EditorCaption": ""
