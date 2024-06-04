@@ -423,7 +423,7 @@ namespace DHS.EQUIPMENT
             for (int i = 0; i < 12; i++)
                 SetColorToLabel(lblProcess[i], Color.DarkGray);
 
-            for (int i = 0; i < (int)enumprocess; i++)
+            for (int i = 0; i <= (int)enumprocess; i++)
                 SetColorToLabel(lblProcess[i], Color.LightGreen);
         }
         public void SetStageStatus(enumEquipStatus equipstatus, bool _bPlcConnected, int _iPLCAUTOMANUAL, bool _bMesConnected)
