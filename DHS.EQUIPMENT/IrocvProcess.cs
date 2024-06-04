@@ -1518,9 +1518,9 @@ namespace DHS.EQUIPMENT
             {
                 if (irocvdata[stageno].MEASURERESULT[nChannel] != 0)
                 {
-                    CmdFetchIr(stageno, nChannel);
+                    CmdFetchIr(stageno, nChannel + 1);
                     await Task.Delay(1000);
-                    CmdFetchOcv(stageno, nChannel);
+                    CmdFetchOcv(stageno, nChannel + 1);
                     await Task.Delay(1000);
                 }
             }
