@@ -1349,7 +1349,7 @@ namespace DHS.EQUIPMENT
         /// 2 -> IR NG, 3 -> OCV NG, 
         /// 4 -> IR REMEASURE NG, 5-> OCV REMEASURE NG
         /// </summary>
-        private void SetRemeasureList(int stageno)
+        private async Task SetRemeasureList(int stageno)
         {
             bool bRemeasure = false;
             //int iRemeasureCount = 0;
@@ -1417,7 +1417,7 @@ namespace DHS.EQUIPMENT
                 }
                 else
                 {
-                    RemeasureExcute(stageno);
+                    await RemeasureExcute(stageno);
                 }
             }
 
@@ -1512,14 +1512,16 @@ namespace DHS.EQUIPMENT
 
             //WriteCommLog("IR/OCV STOP", "SetRemeasureList()");
         }
-        private void RemeasureExcute(int stageno)
+        private async Task RemeasureExcute(int stageno)
         {
             for (int nChannel = 0; nChannel < _Constant.ChannelCount; ++nChannel)
             {
                 if (irocvdata[stageno].MEASURERESULT[nChannel] != 0)
                 {
                     CmdFetchIr(stageno, nChannel);
+                    await Task.Delay(1000);
                     CmdFetchOcv(stageno, nChannel);
+                    await Task.Delay(1000);
                 }
             }
         }
@@ -1683,6 +1685,7 @@ namespace DHS.EQUIPMENT
         private void DisplayTrayInfo(int stageno, IROCVData irocvData)
         {
             irocvform[stageno].SetTrayId(irocvData.TRAYID);
+            irocvform[stageno].SetMesInfo(irocvData.TRAYSTATUSCODE, irocvData.ERRORCODE, irocvData.ERRORMESSAGE);
             //irocvform[stageno].SetRecipeId(irocvData.RECIPEID);
 
             IROCV_Refresh(stageno);

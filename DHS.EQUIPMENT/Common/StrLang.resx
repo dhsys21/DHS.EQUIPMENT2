@@ -160,7 +160,7 @@
     <value>OCV RANGE</value>
   </data>
   <data name="LBLPROCESS" xml:space="preserve">
-    <value>PROCESS</value>
+    <value>STATUS CODE</value>
   </data>
   <data name="LBLRECIPE" xml:space="preserve">
     <value>RECIPE</value>

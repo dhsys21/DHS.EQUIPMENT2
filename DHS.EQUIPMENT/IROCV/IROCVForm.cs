@@ -118,9 +118,15 @@ namespace DHS.EQUIPMENT
             SetValueToTextBox(tbTrayId, trayid);
             SetValueToLabel(lblTrayId, trayid);
         }
+        public void SetMesInfo(string traystatuscode, int errorcode, string errmessage)
+        {
+            SetValueToLabel2(lblTrayStatusCode, traystatuscode);
+            SetValueToLabel2(lblErrorCode, errorcode.ToString());
+            SetValueToLabel2(lblErrorMessage, errmessage);
+        }
         public void SetControlMessage(string controlmessage)
         {
-            radlblControlMessage.Text = controlmessage;
+            SetValueToLabel2(radlblControlMessage, controlmessage);
         }
         public void SetIrSpec(double irmin, double irmax, double irremeamin, double irremeamax)
         {
@@ -229,6 +235,19 @@ namespace DHS.EQUIPMENT
             {
                 // 작업쓰레드인 경우
                 lbl.BeginInvoke(new Action(() => lbl.Text = value)); 
+            }
+            else
+            {
+                // UI 쓰레드인 경우
+                lbl.Text = value;
+            }
+        }
+        private void SetValueToLabel2(RadLabel lbl, string value)
+        {
+            if (lbl.InvokeRequired)
+            {
+                // 작업쓰레드인 경우
+                lbl.BeginInvoke(new Action(() => lbl.Text = value));
             }
             else
             {
