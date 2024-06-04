@@ -158,6 +158,21 @@ namespace DHS.EQUIPMENT.Common
         StepNoAnswer = 7,
         StepEmergency = 8
     }
+    public enum enumProcess
+    {
+        pReady = 0,
+        pTrayIn = 1,
+        pBarcode = 2,
+        pRequestTrayInfo = 3,
+        pReplyTrayInfo = 4,
+        pTrayUp = 5,
+        pMeasure = 6,
+        pTrayDown = 7,
+        pDataUpload = 8,
+        pDataReply = 9,
+        pFinish = 10,
+        pTrayOut = 11
+    }
     public enum enumSocketConnectionMode
     {
         // Server Style

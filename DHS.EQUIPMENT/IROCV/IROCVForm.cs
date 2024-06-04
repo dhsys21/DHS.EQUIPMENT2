@@ -23,6 +23,7 @@ namespace DHS.EQUIPMENT
             if (irocvForm[nIndex] == null) irocvForm[nIndex] = new IROCVForm();
             return irocvForm[nIndex];
         }
+        private Label[] lblProcess = new Label[12];
 
         #region Delegate
         //* IrocvProcess
@@ -110,6 +111,20 @@ namespace DHS.EQUIPMENT
             lblOutflowColor.BackColor = _Constant.ColorOutFlow;
             lblReadyColor.BackColor = _Constant.ColorReady;
             lblNoCellColor.BackColor = _Constant.ColorNoCell;
+
+            //* Process 초기화
+            lblProcess[0] = lblReady;
+            lblProcess[1] = lblTrayIn;
+            lblProcess[2] = lblBarcode;
+            lblProcess[3] = lblRequestTrayInfo;
+            lblProcess[4] = lblReplyTrayInfo;
+            lblProcess[5] = lblProbeDown;
+            lblProcess[6] = lblMeasure;
+            lblProcess[7] = lblProbeOpen;
+            lblProcess[8] = lblDataCollection;
+            lblProcess[9] = lblDataCollectionReply;
+            lblProcess[10] = lblFinish;
+            lblProcess[11] = lblTrayOut;
         }
 
         #region IROCV ACTION
@@ -403,6 +418,14 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Stage Status Picture
+        public void SetProcessStatus(enumProcess enumprocess)
+        {
+            for (int i = 0; i < 12; i++)
+                SetColorToLabel(lblProcess[i], Color.DarkGray);
+
+            for (int i = 0; i < (int)enumprocess; i++)
+                SetColorToLabel(lblProcess[i], Color.LightGreen);
+        }
         public void SetStageStatus(enumEquipStatus equipstatus, bool _bPlcConnected, int _iPLCAUTOMANUAL, bool _bMesConnected)
         {
             switch (equipstatus)

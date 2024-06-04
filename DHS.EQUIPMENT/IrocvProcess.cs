@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -810,6 +811,7 @@ namespace DHS.EQUIPMENT
             switch (irocv[stageno].EQUIPSTATUS)
             {
                 case enumEquipStatus.StepVacancy:
+                    SetProcessStatus(stageno, enumProcess.pReady);
                     AutoInspection_StepTrayInCheck(stageno);
                     //* Measurement Status
                     PLC_MEASUREMENT_WAIT(stageno, 1);
@@ -818,9 +820,11 @@ namespace DHS.EQUIPMENT
                     AutoInspection_StepTrayIdCheck(stageno);
                     break;
                 case enumEquipStatus.StepReady:
+                    SetProcessStatus(stageno, enumProcess.pMeasure);
                     AutoInspection_StepAutoStart(stageno);
                     break;
                 case enumEquipStatus.StepRun:
+                    SetProcessStatus(stageno, enumProcess.pMeasure);
                     //* 측정이 끝나면 case "AMF": 에서 AutoTestFinish() 실행
                     PLC_MEASUREMENT_RUNNING(stageno, 1);
                     break;
@@ -977,12 +981,17 @@ namespace DHS.EQUIPMENT
         #endregion MSA / OFFSET Inspection Timer
 
         #region Auto Inspection Timer
+        private void SetProcessStatus(int stageno, enumProcess enumprocess)
+        {
+            irocvform[stageno].SetProcessStatus(enumprocess);
+        }
         private void AutoInspection_StepTrayInCheck(int stageno)
         {
             if (siemensplc.PLCTRAYIN == 1)
             {
                 PLC_Initialize(stageno);
                 IROCV_Initialize(stageno);
+                SetProcessStatus(stageno, enumProcess.pTrayIn);
 
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayIn;
                 nInspectionStep = 0;
@@ -1013,6 +1022,7 @@ namespace DHS.EQUIPMENT
                         irocvform[stageno].SetTrayId(trayid);
                         irocvdata[stageno].TRAYID = trayid;
                         irocvdata[stageno].EQUIPMENTID = equipid;
+                        SetProcessStatus(stageno, enumProcess.pBarcode);
 
                         SaveLog(stageno, "TRAY ID : " + trayid);
 
@@ -1029,6 +1039,7 @@ namespace DHS.EQUIPMENT
                     //* FORIR 2.1 2024 05 28 수정
                     //mesclient.WriteFOEQR1_12(stageno, equipid, trayid);
                     mesclient.WriteFOEQR2_1(stageno, equipid, trayid);
+                    SetProcessStatus(stageno, enumProcess.pRequestTrayInfo);
                     nInspectionStep = 3;
                     break;
                 case 3:
@@ -1037,6 +1048,7 @@ namespace DHS.EQUIPMENT
                     //* FORIR 2.1 2024 05 28 수정
                     //irocvdata[stageno] = mesclient.ReadFOEQR1_7(stageno);
                     irocvdata[stageno] = mesclient.ReadFOEQR2_1(stageno);
+                    SetProcessStatus(stageno, enumProcess.pReplyTrayInfo);
                     //irocvdata[stageno].TRAYSTATUSCODE = "CN";
                     if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
                     {
@@ -1049,6 +1061,7 @@ namespace DHS.EQUIPMENT
                     {
                         //* PLC - Request Tray Out
                         PLC_TRAYOUT(stageno, 1);
+                        SetProcessStatus(stageno, enumProcess.pTrayOut);
                     }
                     break;
                 case 5:
@@ -1103,6 +1116,7 @@ namespace DHS.EQUIPMENT
                     //* PLC Tray Up 확인
                     if (siemensplc.PLCTRAYUP == 1)
                     {
+                        SetProcessStatus(stageno, enumProcess.pTrayUp);
                         CmdAutoStart(stageno);
                         irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepRun;
                     }
@@ -1135,6 +1149,7 @@ namespace DHS.EQUIPMENT
                     //* remeasure count확인
                     if (siemensplc.PLCTRAYDOWN == 1)
                     {
+                        SetProcessStatus(stageno, enumProcess.pTrayDown);
                         if (remeasurecellpercent > _system.REMEASUREPERCENT && irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
                         {
                             measureinfo.InitDisplayMesChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
@@ -1158,6 +1173,7 @@ namespace DHS.EQUIPMENT
                     //* FORIR2.2 2024 05 28 수정
                     //mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
                     mesclient.WriteFOEQR2_2(stageno, irocvdata[stageno]);
+                    SetProcessStatus(stageno, enumProcess.pDataUpload);
                     nInspectionStep = 3;
                     break;
                 case 3:
@@ -1167,6 +1183,7 @@ namespace DHS.EQUIPMENT
                     //* FORIR2.2 2024 05 28 수정
                     //irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
                     irocvdata[stageno] = mesclient.ReadFOEQR2_2(stageno);
+                    SetProcessStatus(stageno, enumProcess.pDataReply);
                     nInspectionStep = 4;
                     break;
                 case 4:
@@ -1195,6 +1212,7 @@ namespace DHS.EQUIPMENT
         {
             if (siemensplc.PLCTRAYIN == 0)
             {
+                SetProcessStatus(stageno, enumProcess.pTrayOut);
                 PLC_TRAYOUT(stageno, 0);
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepVacancy;
             }
