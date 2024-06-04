@@ -1135,7 +1135,7 @@ namespace DHS.EQUIPMENT
                     //* remeasure count확인
                     if (siemensplc.PLCTRAYDOWN == 1)
                     {
-                        if (remeasurecellpercent > _system.REMEASUREPERCENT || irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
+                        if (remeasurecellpercent > _system.REMEASUREPERCENT && irocvdata[stageno].REMEASURECOUNT < _system.REMEASURECOUNT)
                         {
                             measureinfo.InitDisplayMesChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
                             PLC_TRAYUP(stageno);

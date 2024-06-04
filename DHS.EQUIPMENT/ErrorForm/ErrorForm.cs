@@ -27,6 +27,7 @@ namespace DHS.EQUIPMENT
         }
         public void HideMessage2(bool show)
         {
+            if (this.Visible == false) return;
             if (this.InvokeRequired)
             {
                 this.Invoke(new Action<Form, bool>((formInstance, isShow) =>

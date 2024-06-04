@@ -603,13 +603,14 @@ namespace DHS.EQUIPMENT
 
             if (connection == false) return null;
 
+            //* MES에서 trayid와 equipment id를 다시 주지 않음.
             //* EQUIPMENT ID
-            string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
-            _strLog += "Equipment ID: " + equipid;
+            //string equipid = (string)ReadValue("ns=2;s=Mes/EquipmentID", (int)EnumDataType.dtString);
+           // _strLog += "Equipment ID: " + equipid;
 
             //* TRAY ID
-            string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
-            _strLog += ", TRAY ID: " + trayid;
+            //string trayid = (string)ReadValue("ns=2;s=Mes/TrayID", (int)EnumDataType.dtString);
+            //_strLog += ", TRAY ID: " + trayid;
 
             //* TRAY STATUS CODE
             string traystatuscode = (string)ReadValue("ns=2;s=Mes/TrayStatusCode", (int)EnumDataType.dtString);
@@ -641,8 +642,8 @@ namespace DHS.EQUIPMENT
 
             //* irocvdata에 mes data 저장.
             //irocvdata[stageno].InitData();
-            irocvdata[stageno].EQUIPMENTID = equipid; ;
-            irocvdata[stageno].TRAYID = trayid;
+            //irocvdata[stageno].EQUIPMENTID = equipid; ;
+            //irocvdata[stageno].TRAYID = trayid;
             irocvdata[stageno].TRAYSTATUSCODE = traystatuscode;
             irocvdata[stageno].ERRORCODE = errorcode;
             irocvdata[stageno].ERRORMESSAGE = errormsg;

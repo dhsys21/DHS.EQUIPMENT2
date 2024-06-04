@@ -370,6 +370,8 @@ namespace DHS.EQUIPMENT
 
         private void radBtnReadFORIR2_1_Click(object sender, EventArgs e)
         {
+            string trayid = tbTrayID.Text;
+            string equipmentid = tbEquipmentID.Text;
             string[] cellid = new string[32];
             string[] cellstatus = new string[32];
             string traystatuscode = tbTrayStatusCode.Text;
