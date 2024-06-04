@@ -1524,6 +1524,7 @@ namespace DHS.EQUIPMENT
                     await Task.Delay(1000);
                 }
             }
+
         }
         private void AddRemeaseList(int stageno)
         {
