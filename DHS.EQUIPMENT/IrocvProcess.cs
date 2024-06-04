@@ -820,7 +820,6 @@ namespace DHS.EQUIPMENT
                     AutoInspection_StepTrayIdCheck(stageno);
                     break;
                 case enumEquipStatus.StepReady:
-                    SetProcessStatus(stageno, enumProcess.pMeasure);
                     AutoInspection_StepAutoStart(stageno);
                     break;
                 case enumEquipStatus.StepRun:
@@ -1187,6 +1186,7 @@ namespace DHS.EQUIPMENT
                     nInspectionStep = 4;
                     break;
                 case 4:
+                    SetProcessStatus(stageno, enumProcess.pFinish);
                     PLC_TRAYOUT(stageno, 1);
                     irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepTrayOut;
                     SaveResultFile(stageno);
