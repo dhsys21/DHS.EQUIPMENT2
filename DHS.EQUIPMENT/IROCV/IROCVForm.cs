@@ -426,7 +426,7 @@ namespace DHS.EQUIPMENT
             for (int i = 0; i <= (int)enumprocess; i++)
                 SetColorToLabel(lblProcess[i], Color.LightGreen);
         }
-        public void SetStageStatus(enumEquipStatus equipstatus, bool _bPlcConnected, int _iPLCAUTOMANUAL, bool _bMesConnected)
+        public void SetStageStatus(enumEquipStatus equipstatus, bool _bPlcConnected, int _iPLCAUTOMANUAL, int _iPLCERROR, bool _bMesConnected)
         {
             switch (equipstatus)
             {
@@ -458,36 +458,40 @@ namespace DHS.EQUIPMENT
                 case enumEquipStatus.StepTrayOut:
                     pictureStatus.Image = Properties.Resources.TrayOut;
                     //SetValueToLabel(lblStatus, "IR/OCV Tray Out.");
-                    SetValueToLabel(lblStatus, "IR/OCV Tray Out.");
+                    SetValueToLabel(lblStatus, StrLang.STEPTRAYOUT);
                     break;
                 case enumEquipStatus.StepManual:
                     pictureStatus.Image = Properties.Resources.Local;
-                    SetValueToLabel(lblStatus, "IR/OCV is Manual Mode.");
+                    SetValueToLabel(lblStatus, StrLang.IROCVMANUALMODE);
                     //SetValueToLabel(lblStatus, "IR/OCV is Manual Mode");
                     break;
                 case enumEquipStatus.StepNoAnswer:
                     pictureStatus.Image = Properties.Resources.NOANSWER;
                     //SetValueToLabel(lblStatus, "IR/OCV is not connected", Color.Red);
-                    SetValueToLabel(lblStatus, "IR/OCV is not connected.", Color.Red);
+                    SetValueToLabel(lblStatus, StrLang.IROCVCONNECTION, Color.Red);
                     break;
                 default:
                     break;
             }
 
-            //* 2023 07 25 순서 PLC 연결 -> MES 연결 -> PLC 매뉴얼
+            //* 2023 07 25 순서 PLC 연결 -> MES 연결 -> PLC 매뉴얼 -> PLC Error
             if (_bPlcConnected == false)
             {
                 //SetValueToLabel(lblStatus, "PLC is not connected", Color.Red);
                 SetValueToLabel(lblStatus, StrLang.PLCCONNECTION, Color.Red);
             }
             //* 2023 07 25 아직 MES 연결안되어서 주석처리함
-            //else if(_bMesConnected == false)
-            //{
-            //    SetValueToLabel(lblStatus, "MES is not connected", Color.Red);
-            //}
+            else if (_bMesConnected == false)
+            {
+                SetValueToLabel(lblStatus, StrLang.MESCONNECTION, Color.Red);
+            }
             else if(_iPLCAUTOMANUAL == 0)
             {
-                SetValueToLabel(lblStatus, "PLC is Manual Mode", Color.Red);
+                SetValueToLabel(lblStatus, StrLang.PLCMANUALMODE, Color.Red);
+            }
+            else if(_iPLCERROR == 1)
+            {
+                SetValueToLabel(lblStatus, StrLang.PLCERROR, Color.Red);
             }
 
             
@@ -513,7 +517,7 @@ namespace DHS.EQUIPMENT
 
         private void radbtn_RESET_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you want to reset IR/OCV ?", "RESET IR/OCV", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show(StrLang.IROCVRESETMSG, StrLang.IROCVRESETTITLE, MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 RaiseOnIROCVReset(this.stageno);

@@ -160,6 +160,42 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   IR/OCV is not connected.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IROCVCONNECTION {
+            get {
+                return ResourceManager.GetString("IROCVCONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV is Manual Mode.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IROCVMANUALMODE {
+            get {
+                return ResourceManager.GetString("IROCVMANUALMODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Do you want to reset IR/OCV?과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IROCVRESETMSG {
+            get {
+                return ResourceManager.GetString("IROCVRESETMSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   RESET IR/OCV과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string IROCVRESETTITLE {
+            get {
+                return ResourceManager.GetString("IROCVRESETTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   REPLY ← MES과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string LBLDATAREPLY {
@@ -331,6 +367,15 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   MES is not connected과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MESCONNECTION {
+            get {
+                return ResourceManager.GetString("MESCONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   NG Info.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string NGINFO {
@@ -345,6 +390,24 @@ namespace DHS.EQUIPMENT.Common {
         internal static string PLCCONNECTION {
             get {
                 return ResourceManager.GetString("PLCCONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PLC is error과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PLCERROR {
+            get {
+                return ResourceManager.GetString("PLCERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PLC is Manual Mode과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PLCMANUALMODE {
+            get {
+                return ResourceManager.GetString("PLCMANUALMODE", resourceCulture);
             }
         }
         
@@ -462,6 +525,15 @@ namespace DHS.EQUIPMENT.Common {
         internal static string STEPTRAYIN {
             get {
                 return ResourceManager.GetString("STEPTRAYIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   IR/OCV Tray Out.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STEPTRAYOUT {
+            get {
+                return ResourceManager.GetString("STEPTRAYOUT", resourceCulture);
             }
         }
         

@@ -150,6 +150,18 @@
   <data name="Initialize" xml:space="preserve">
     <value>초기화</value>
   </data>
+  <data name="IROCVCONNECTION" xml:space="preserve">
+    <value>IR/OCV is not connected.</value>
+  </data>
+  <data name="IROCVMANUALMODE" xml:space="preserve">
+    <value>IR/OCV is Manual Mode.</value>
+  </data>
+  <data name="IROCVRESETMSG" xml:space="preserve">
+    <value>Do you want to reset IR/OCV?</value>
+  </data>
+  <data name="IROCVRESETTITLE" xml:space="preserve">
+    <value>RESET IR/OCV</value>
+  </data>
   <data name="LBLDATAREPLY" xml:space="preserve">
     <value>응답 ← MES</value>
   </data>
@@ -207,11 +219,20 @@
   <data name="MANUALMODE" xml:space="preserve">
     <value>수동검사모드</value>
   </data>
+  <data name="MESCONNECTION" xml:space="preserve">
+    <value>MES is not connected</value>
+  </data>
   <data name="NGINFO" xml:space="preserve">
     <value>NG 정보</value>
   </data>
   <data name="PLCCONNECTION" xml:space="preserve">
     <value>PLC가 연결되지 않았습니다.</value>
+  </data>
+  <data name="PLCERROR" xml:space="preserve">
+    <value>PLC is error</value>
+  </data>
+  <data name="PLCMANUALMODE" xml:space="preserve">
+    <value>PLC is Manual Mode</value>
   </data>
   <data name="PNLBARCODE" xml:space="preserve">
     <value>바코드</value>
@@ -251,6 +272,9 @@
   </data>
   <data name="STEPTRAYIN" xml:space="preserve">
     <value>IR/OCV 트레이 도착.</value>
+  </data>
+  <data name="STEPTRAYOUT" xml:space="preserve">
+    <value>IR/OCV Tray Out.</value>
   </data>
   <data name="STEPTRAYUP" xml:space="preserve">
     <value>IR/OCV 트레이 상승.</value>

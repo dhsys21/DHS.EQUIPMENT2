@@ -773,7 +773,7 @@ namespace DHS.EQUIPMENT
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepNoAnswer)
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepManual;
 
-            irocvform[stageno].SetStageStatus(irocv[stageno].EQUIPSTATUS, _bPlcConnected, siemensplc.PLCAUTOMANUAL, _bMesConnected);
+            irocvform[stageno].SetStageStatus(irocv[stageno].EQUIPSTATUS, _bPlcConnected, siemensplc.PLCAUTOMANUAL, siemensplc.PLCERROR, _bMesConnected);
         }
         private void ConnectionChangeTimer_Tick(object sender, EventArgs e)
         {
@@ -801,6 +801,9 @@ namespace DHS.EQUIPMENT
             //if (irocv[stageno].AUTOMODE == false || siemensplc.PLCAUTOMANUAL == 0) return;
             //if (irocv[stageno].AUTOMODE == false) return;
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO) return;
+
+            //* 2024 06 05 추가 - plc manual mode에서는 실행하지 않음.
+            if (siemensplc.PLCAUTOMANUAL == 0) return;
 
             if (_bMesConnected == false) return;
 
@@ -1165,6 +1168,10 @@ namespace DHS.EQUIPMENT
                                 nInspectionStep = 1;
                         }
                     }
+                    else
+                    {
+                        PLC_TRAYDOWN(stageno);
+                    }
                     break;
                 case 1:
                     //* MES - Data Collection
@@ -1254,6 +1261,7 @@ namespace DHS.EQUIPMENT
             measureinfo.InitDisplayChannelInfo(stageno, irocvdata[stageno], irocv[stageno].EQUIPMODE);
 
             InitEquipStatus(stageno);
+            SetProcessStatus(stageno, enumProcess.pReady);
         }
         public void IROCV_Refresh(int stageno)
         {
@@ -1661,10 +1669,18 @@ namespace DHS.EQUIPMENT
         }
         private void PLC_TRAYUP(int stageno)
         {
-            siemensplc.SetTrayDown(stageno, 0);
-            siemensplc.SetTrayUp(stageno, 1);
+            //* 2024 06 05 조건을 추가 함.
+            if(siemensplc.PLCREADYCOMPLETE == 1 && siemensplc.PLCTRAYIN == 1)
+            {
+                siemensplc.SetTrayDown(stageno, 0);
+                siemensplc.SetTrayUp(stageno, 1);
 
-            SaveLog(stageno, "TRAY UP ON");
+                SaveLog(stageno, "TRAY UP ON");
+            }
+            else
+            {
+                SaveLog(stageno, "waiting for [TRAY READY COMPLETE] signal");
+            }
         }
         private void PLC_TRAYOUT(int stageno, int nValue)
         {
