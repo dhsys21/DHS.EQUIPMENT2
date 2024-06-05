@@ -802,11 +802,6 @@ namespace DHS.EQUIPMENT
             //if (irocv[stageno].AUTOMODE == false) return;
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO) return;
 
-            //* 2024 06 05 추가 - plc manual mode에서는 실행하지 않음.
-            if (siemensplc.PLCAUTOMANUAL == 0) return;
-
-            if (_bMesConnected == false) return;
-
             //* 2023 07 25 PLC 에러 발생시 StepVacancy 상태가 아니면 IR/OCV 초기화 한다.
             if (siemensplc.PLCERROR == 1 && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepVacancy)
             {
@@ -814,6 +809,12 @@ namespace DHS.EQUIPMENT
                 CmdAutoStop(stageno);
                 InitEquipStatus(stageno);
             }
+
+            //* 2024 06 05 추가 - plc manual mode/ plc error 에서는 실행하지 않음.
+            if (siemensplc.PLCAUTOMANUAL == 0 || siemensplc.PLCERROR == 1) return;
+
+            //* 2024 06 05 추가 - mes, plc disconnected 상태에서는 실행하지 않음
+            if (_bMesConnected == false || _bPlcConnected == false) return;
 
             switch (irocv[stageno].EQUIPSTATUS)
             {
@@ -1674,16 +1675,26 @@ namespace DHS.EQUIPMENT
         private void PLC_TRAYUP(int stageno)
         {
             //* 2024 06 05 조건을 추가 함.
-            if(siemensplc.PLCREADYCOMPLETE == 1 && siemensplc.PLCTRAYIN == 1)
+            if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
+            {
+                if (siemensplc.PLCREADYCOMPLETE == 1 && siemensplc.PLCTRAYIN == 1)
+                {
+                    siemensplc.SetTrayDown(stageno, 0);
+                    siemensplc.SetTrayUp(stageno, 1);
+
+                    SaveLog(stageno, "TRAY UP ON");
+                }
+                else
+                {
+                    SaveLog(stageno, "waiting for [TRAY READY COMPLETE] signal");
+                }
+            }
+            else if (irocv[stageno].EQUIPMODE == enumEquipMode.MANUAL)
             {
                 siemensplc.SetTrayDown(stageno, 0);
                 siemensplc.SetTrayUp(stageno, 1);
 
                 SaveLog(stageno, "TRAY UP ON");
-            }
-            else
-            {
-                SaveLog(stageno, "waiting for [TRAY READY COMPLETE] signal");
             }
         }
         private void PLC_TRAYOUT(int stageno, int nValue)
