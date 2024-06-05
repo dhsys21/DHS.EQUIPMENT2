@@ -809,7 +809,11 @@ namespace DHS.EQUIPMENT
 
             //* 2023 07 25 PLC 에러 발생시 StepVacancy 상태가 아니면 IR/OCV 초기화 한다.
             if (siemensplc.PLCERROR == 1 && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepVacancy)
-                IROCV_Initialize(stageno);
+            {
+                //IROCV_Initialize(stageno);
+                CmdAutoStop(stageno);
+                InitEquipStatus(stageno);
+            }
 
             switch (irocv[stageno].EQUIPSTATUS)
             {
