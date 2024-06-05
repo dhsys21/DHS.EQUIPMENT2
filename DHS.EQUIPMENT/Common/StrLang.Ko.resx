@@ -225,6 +225,12 @@
   <data name="NGINFO" xml:space="preserve">
     <value>NG 정보</value>
   </data>
+  <data name="OFFSETAPPLYMSG" xml:space="preserve">
+    <value>There are more than 1 zero value in measure field.</value>
+  </data>
+  <data name="OFFSETAPPLYTITLE" xml:space="preserve">
+    <value>Apply offset Error.</value>
+  </data>
   <data name="PLCCONNECTION" xml:space="preserve">
     <value>PLC가 연결되지 않았습니다.</value>
   </data>

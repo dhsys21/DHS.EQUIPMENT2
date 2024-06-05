@@ -913,7 +913,7 @@ namespace DHS.EQUIPMENT
             if (SetOffsetValue(out strOffset, out offset) == true)
                 RaiseOnOffsetApply(this._iStage, strOffset, offset);
             else
-                MessageBox.Show("There are more than 1 zero value in measure field.", "Apply offset Error.");
+                MessageBox.Show(StrLang.OFFSETAPPLYMSG, StrLang.OFFSETAPPLYTITLE);
         }
         private void radBtnOffsetIR_Click(object sender, EventArgs e)
         {

@@ -385,6 +385,24 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   There are more than 1 zero value in measure field.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string OFFSETAPPLYMSG {
+            get {
+                return ResourceManager.GetString("OFFSETAPPLYMSG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Apply offset Error.과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string OFFSETAPPLYTITLE {
+            get {
+                return ResourceManager.GetString("OFFSETAPPLYTITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   PLC is not connected과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string PLCCONNECTION {
