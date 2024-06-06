@@ -192,6 +192,7 @@
     <Compile Include="PasswordForm.Designer.cs">
       <DependentUpon>PasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PLC\PLCSysInfo.cs" />
     <Compile Include="PRECHARGER\PrechargerData.cs" />
     <Compile Include="IrocvProcess.cs" />
     <Compile Include="MainForm.cs">

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using DHS.EQUIPMENT.PLC;
 using Telerik.Collections.Generic;
 
 
@@ -23,6 +24,8 @@ namespace DHS.EQUIPMENT
         MesClient mesclient;
         CEquipmentData _system;
         PLCINTERFACE plcinterface = null;
+        PLCSysInfo plcsysinfo = null;
+        PLCSysInfo plcsysinfoOld = null;
         MESINTERFACE mesinterface = null;
         IROCV[] irocv = new IROCV[_Constant.frmCount];
         IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
@@ -42,6 +45,7 @@ namespace DHS.EQUIPMENT
         public Timer[] _tmrMsaInspection = new Timer[_Constant.frmCount];
         public Timer _tmrGetPlcData = new Timer();
         public Timer _tmrGetMesData = new Timer();
+        public Timer _tmrWritePLCSysInfoToMes = new Timer();
         public Timer DeleteFileTimer = null;
 
         private int msacount = 0;
@@ -73,6 +77,9 @@ namespace DHS.EQUIPMENT
             MakeFolder();
 
             #region PLC
+            plcsysinfo = PLCSysInfo.GetInstance();
+            plcsysinfoOld = new PLCSysInfo();
+
             _bPlcConnected = false;
             plcinterface = PLCINTERFACE.GetInstance();
             plcinterface.OnWritePLCClick += _PLCINTERFACE_WritePLC;
@@ -126,6 +133,11 @@ namespace DHS.EQUIPMENT
             //* MES Timer
             _tmrGetMesData.Interval = 1000;
             _tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_TickAsync);
+            //_tmrGetMesData.Enabled = true;
+
+            //* Write PLC SYS INFO to MES Timer
+            _tmrWritePLCSysInfoToMes.Interval = 1000;
+            _tmrWritePLCSysInfoToMes.Tick += new EventHandler(WritePLCSysInfoToMesTimer_Tick);
             //_tmrGetMesData.Enabled = true;
             #endregion
 
@@ -314,7 +326,7 @@ namespace DHS.EQUIPMENT
 
         private void _MesClient_WritePLCSysInfo()
         {
-            mesclient.WritePLSInfo(0);
+            mesclient.WritePLSInfo(0, plcsysinfo);
         }
         #endregion
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
@@ -706,6 +718,17 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Timer
+        private void WritePLCSysInfoToMesTimer_Tick(object sender, EventArgs e)
+        {
+            if(_bMesConnected == true)
+            {
+                if(plcsysinfo != plcsysinfoOld)
+                {
+                    mesclient.WritePLSInfo(0, plcsysinfo);
+                    plcsysinfoOld = plcsysinfo;
+                }
+            }
+        }
         private async void GetMesDataTimer_TickAsync(object sender, EventArgs e)
         {
             if (MesServer.connection == true && _bMesConnected == false)

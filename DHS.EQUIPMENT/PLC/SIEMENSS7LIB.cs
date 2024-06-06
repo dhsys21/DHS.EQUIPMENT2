@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using DHS.EQUIPMENT.PLC;
 using S7.Net;
 using S7.Net.Internal;
 using S7.Net.Protocol;
@@ -16,6 +17,7 @@ namespace DHS.EQUIPMENT
 {
     class SIEMENSS7LIB
     {
+        PLCSysInfo plcsysinfo;
         public static bool connection = false;
         private bool _bconnected = false;
         public static string _strHost;
@@ -165,15 +167,20 @@ namespace DHS.EQUIPMENT
 
         public SIEMENSS7LIB(string HOST, int DB_NUMBER, int DB_NUMBER_SYS)
         {
+            plcsysinfo = PLCSysInfo.GetInstance();
+
+            //* plc communication info
             _strHost = HOST;
             _iDB_Number = DB_NUMBER;
             _iDB_Number_Sys = DB_NUMBER_SYS;
 
+            //* plc read/write timer
             _tmrPLCRead.Interval = 1000;
             _tmrPLCRead.Tick += new EventHandler(PLCReadTimer_Tick);
             _tmrPLCWrite.Interval = 1000;
             _tmrPLCWrite.Tick += new EventHandler(PLCWriteTimer_Tick);
 
+            //* plc heart beat
             _tmrCheckHeartBeat.Interval = 1000;
             _tmrCheckHeartBeat.Tick += new EventHandler(CheckHeartBeatTimer_Tick);
             _tmrCheckHeartBeat.Enabled = true;
@@ -472,84 +479,111 @@ namespace DHS.EQUIPMENT
             int nIndex = 0;
             _sPlcInterfaceVersionProject = byteToString(values, nStrLength, _Constant.PLC_INTERFACE_VERSION_PROJECT + 2);
             _objPlcValuesSys[nIndex++] = _sPlcInterfaceVersionProject;
+            plcsysinfo.INTERFACEVERSIONPROJECT = _sPlcInterfaceVersionProject;
 
             _sPlcEquipmentName = byteToString(values, nStrLength, _Constant.PLC_EQUIPMENT_NAME + 2);
             _objPlcValuesSys[nIndex++] = _sPlcEquipmentName;
+            plcsysinfo.EQUIPMENTNAME = _sPlcEquipmentName;
             
             _iEquipmentTypeId = getValue(plc_result, valLength, _Constant.PLC_EQUIPMENT_TYPE_ID);
             _objPlcValuesSys[nIndex++] = _iEquipmentTypeId;
+            plcsysinfo.EQUIPMENTTYPEID = _iEquipmentTypeId;
             
             _iLineId = getValue(plc_result, valLength, _Constant.PLC_LINE_ID); 
             _objPlcValuesSys[nIndex++] = _iLineId;
+            plcsysinfo.LINEID = _iLineId;
             
             _iAreaId = getValue(plc_result, valLength, _Constant.PLC_AREA_ID);
             _objPlcValuesSys[nIndex++] = _iAreaId;
+            plcsysinfo.AREAID = _iAreaId;
 
             _iVendorId = getValue(plc_result, valLength, _Constant.PLC_VENDOR_ID);
             _objPlcValuesSys[nIndex++] = _iVendorId;
+            plcsysinfo.VENDORID = _iVendorId;
 
             _iEquipmentId = getValue(plc_result, valLength, _Constant.PLC_EQUIPMENT_ID);
             _objPlcValuesSys[nIndex++] = _iEquipmentId;
+            plcsysinfo.EQUIPMENTID = _iEquipmentId;
 
             _iState = getValue(plc_result, valLength, _Constant.PLC_STATE);
             _objPlcValuesSys[nIndex++] = _iState;
+            plcsysinfo.STATE = _iState;
 
             _iMode = getValue(plc_result, valLength, _Constant.PLC_MODE);
             _objPlcValuesSys[nIndex++] = _iMode;
+            plcsysinfo.MODE = _iMode;
 
             _bBlocked = Convert.ToBoolean(getValue(plc_result, 1, _Constant.PLC_BLOCKED));
             _objPlcValuesSys[nIndex++] = _bBlocked;
+            plcsysinfo.BLOCKED = _bBlocked;
 
             _bStarved = Convert.ToBoolean(getValue(plc_result, 1, _Constant.PLC_STARVED));
             _objPlcValuesSys[nIndex++] = _bStarved;
+            plcsysinfo.STARVED = _bStarved;
 
             _dCurrentSpeed = Convert.ToDouble(getValue(plc_result, valLength, _Constant.PLC_CURRNET_SPEED));
             _objPlcValuesSys[nIndex++] = _dCurrentSpeed;
+            plcsysinfo.CURRENTSPEED = _dCurrentSpeed;
 
             _dDesignSpeed = Convert.ToDouble(getValue(plc_result, valLength, _Constant.PLC_DESIGNED_SPEED));
             _objPlcValuesSys[nIndex++] = _dDesignSpeed;
+            plcsysinfo.DESIGNSPEED = _dDesignSpeed;
 
             _iTotalCounter = getValue(plc_result, valLength, _Constant.PLC_TOTAL_COUNTER);
             _objPlcValuesSys[nIndex++] = _iTotalCounter;
+            plcsysinfo.TOTALCOUNTER = _iTotalCounter;
 
             _iStandstillReason = getValue(plc_result, valLength, _Constant.PLC_STAND_STILL_REASON);
             _objPlcValuesSys[nIndex++] = _iStandstillReason;
+            plcsysinfo.STANDSTILLREASON = _iStandstillReason;
 
             _iStackLight0_Color = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT0_COLOR);
             _objPlcValuesSys[nIndex++] = _iStackLight0_Color;
+            plcsysinfo.STACKLIGHT0COLOR = _iStackLight0_Color;
 
             _iStackLight0_Behavior = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT0_BEHAVIOR);
             _objPlcValuesSys[nIndex++] = _iStackLight0_Behavior;
+            plcsysinfo.STACKLIGHT0BEHAVIOR = _iStackLight0_Behavior;
 
             _iStackLight1_Color = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT1_COLOR);
             _objPlcValuesSys[nIndex++] = _iStackLight1_Color;
+            plcsysinfo.STACKLIGHT1COLOR = _iStackLight1_Color;
 
             _iStackLight1_Behavior = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT1_BEHAVIOR);
             _objPlcValuesSys[nIndex++] = _iStackLight1_Behavior;
+            plcsysinfo.STACKLIGHT1BEHAVIOR = _iStackLight1_Behavior;
 
             _iStackLight2_Color = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT2_COLOR);
             _objPlcValuesSys[nIndex++] = _iStackLight2_Color;
+            plcsysinfo.STACKLIGHT2COLOR = _iStackLight2_Color;
 
             _iStackLight2_Behavior = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT2_BEHAVIOR);
             _objPlcValuesSys[nIndex++] = _iStackLight2_Behavior;
+            plcsysinfo.STACKLIGHT2BEHAVIOR = _iStackLight2_Behavior;
 
             _iStackLight3_Color = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT3_COLOR);
             _objPlcValuesSys[nIndex++] = _iStackLight3_Color;
+            plcsysinfo.STACKLIGHT3COLOR = _iStackLight3_Color;
 
             _iStackLight3_Behavior = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT3_BEHAVIOR);
             _objPlcValuesSys[nIndex++] = _iStackLight3_Behavior;
+            plcsysinfo.STACKLIGHT3BEHAVIOR = _iStackLight3_Behavior;
 
             _iStackLight4_Color = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT4_COLOR);
             _objPlcValuesSys[nIndex++] = _iStackLight4_Color;
+            plcsysinfo.STACKLIGHT4COLOR = _iStackLight4_Color;
 
             _iStackLight4_Behavior = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT4_BEHAVIOR);
             _objPlcValuesSys[nIndex++] = _iStackLight4_Behavior;
+            plcsysinfo.STACKLIGHT4BEHAVIOR = _iStackLight4_Behavior;
 
             _iStackLight5_Color = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT5_COLOR);
             _objPlcValuesSys[nIndex++] = _iStackLight5_Color;
+            plcsysinfo.STACKLIGHT5COLOR = _iStackLight5_Color;
 
             _iStackLight5_Behavior = getValue(plc_result, valLength, _Constant.PLC_STACK_LIGHT5_BEHAVIOR);
             _objPlcValuesSys[nIndex++] = _iStackLight5_Behavior;
+            plcsysinfo.STACKLIGHT5BEHAVIOR = _iStackLight5_Behavior;
         }
         private void SetPLCData(byte[] values)
         {

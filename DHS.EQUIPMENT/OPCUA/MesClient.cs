@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
+using DHS.EQUIPMENT.PLC;
 using Opc.Ua;
 using OPCUACLIENT;
 using static DHS.EQUIPMENT.MesClient;
@@ -272,6 +273,7 @@ namespace DHS.EQUIPMENT
                 uint uiValue = 0;
                 int iValue = 0;
                 bool bValue = false;
+                float fValue = 0.0f;
                 foreach (var tag in PLCTagList)
                 {
                     switch (tag.tagName)
@@ -323,14 +325,14 @@ namespace DHS.EQUIPMENT
                             SetValue(149, bValue, "PC");
                             break;
                         case "ns=2;s=PLC/CurrentSpeed":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(150, iValue, "PC");
+                            fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //iValue = (int)uiValue;
+                            SetValue(150, fValue.ToString(), "PC");
                             break;
                         case "ns=2;s=PLC/DesignSpeed":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(151, iValue, "PC");
+                            fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //iValue = (int)uiValue;
+                            SetValue(151, fValue.ToString(), "PC");
                             break;
                         case "ns=2;s=PLC/TotalCounter":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
@@ -495,6 +497,11 @@ namespace DHS.EQUIPMENT
                         UInt32 iVal = 0;
                         UInt32.TryParse(value, out iVal);
                         opcclient.Write<UInt32>(node, iVal);
+                        break;
+                    case (int)MesClient.EnumDataType.dtFloat:
+                        float fVal = 0.0f;
+                        float.TryParse(value, out fVal);
+                        opcclient.Write<float>(node, fVal);
                         break;
                     case (int)MesClient.EnumDataType.dtString:
                         string strVal = string.Empty;
@@ -737,15 +744,144 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].LOG = _strLog;
             return irocvdata[stageno];
         }
-        public void WritePLSInfo(int stageno)
+        public void WritePLSInfo(int stageno, PLCSysInfo plcsysinfo)
         {
             _strLog = string.Empty;
 
-            string interfaceversionproject = "";
+            //* Interface Version Project
+            string interfaceversionproject = plcsysinfo.INTERFACEVERSIONPROJECT;
+            WriteValue("ns=2;s=PLC/InterfaceVersionProject", interfaceversionproject, (int)EnumDataType.dtString);
+            _strLog += "Interface Version Project: " + interfaceversionproject;
 
-            string equipmentname = "";
+            //* Equipment Name
+            string equipmentname = plcsysinfo.EQUIPMENTNAME;
+            WriteValue("ns=2;ns=2;s=PLC/EquipmentName", equipmentname, (int)EnumDataType.dtString);
+            _strLog += ", Equipment Name: " + equipmentname;
 
+            //* Equipment Type Id
+            int equipmenttypeid = plcsysinfo.EQUIPMENTTYPEID;
+            WriteValue("ns=2;s=PLC/EquipmentTypeID", equipmenttypeid.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Equipment Type ID: " + equipmenttypeid;
 
+            //* Line ID
+            int lineid = plcsysinfo.LINEID;
+            WriteValue("ns=2;s=PLC/LineID", lineid.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Line ID: " + lineid;
+
+            //* Area ID
+            int areaid = plcsysinfo.AREAID;
+            WriteValue("ns=2;s=PLC/AreaID", areaid.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Area ID: " + areaid;
+
+            //* Vendor ID
+            int vendorid = plcsysinfo.VENDORID;
+            WriteValue("ns=2;s=PLC/VendorID", vendorid.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Vendor ID: " + vendorid;
+
+            //* Equipment ID
+            int equipmentid = plcsysinfo.EQUIPMENTID;
+            WriteValue("ns=2;s=PLC/EquipmentID", equipmentid.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Equipment ID: " + equipmentid;
+
+            //* STATE
+            int state = plcsysinfo.STATE;
+            WriteValue("ns=2;s=PLC/Stage", state.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", State: " + state;
+
+            //* MODE
+            int mode = plcsysinfo.MODE;
+            WriteValue("ns=2;s=PLC/Mode", mode.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Mode:" + mode;
+
+            //* Blocked
+            bool blocked = plcsysinfo.BLOCKED;
+            WriteValue("ns=2;s=PLC/Blocked", blocked.ToString(), (int)EnumDataType.dtBoolean);
+            _strLog += ", Blocked:" + blocked;
+
+            //* Starved
+            bool starved = plcsysinfo.STARVED;
+            WriteValue("ns=2;s=PLC/Starved", starved.ToString(), (int)EnumDataType.dtBoolean);
+            _strLog += ", Starved:" + starved;
+
+            //* Current Speed
+            double currentspeed = plcsysinfo.CURRENTSPEED;
+            WriteValue("ns=2:s=PLC/CurrentSpeed", currentspeed.ToString(), (int)EnumDataType.dtFloat);
+            _strLog += ", Current Speed:" + currentspeed;
+
+            //* Designed Speed
+            double designspeed = plcsysinfo.DESIGNSPEED;
+            WriteValue("ns=2:s=PLC/DesignSpeed", designspeed.ToString(), (int)EnumDataType.dtFloat);
+            _strLog += ", Designed Spee:" + designspeed;
+
+            //* Total Counter
+            int totalcounter = plcsysinfo.TOTALCOUNTER;
+            WriteValue("ns=2:s=PLC/TotalCounter", totalcounter.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Total Counter:" + totalcounter;
+
+            //* STANDSTILLREASON
+            int standstillreason = plcsysinfo.STANDSTILLREASON;
+            WriteValue("ns=2:s=PLC/StandstillReason", standstillreason.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stand Still Reason:" + standstillreason;
+
+            //* STACKLIGHT0COLOR
+            int stacklight0color = plcsysinfo.STACKLIGHT0COLOR;
+            WriteValue("ns=2:s=PLC/Stacklight0Color", stacklight0color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 0:" + stacklight0color;
+
+            //* STACKLIGHT0BEHAVIOR
+            int stacklight0behavior = plcsysinfo.STACKLIGHT0BEHAVIOR;
+            WriteValue("ns=2:s=PLC/Stacklight0Behavior", stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 0:" + stacklight0behavior;
+
+            //* STACKLIGHT1COLOR
+            int stacklight1color = plcsysinfo.STACKLIGHT1COLOR;
+            WriteValue("ns=2:s=PLC/Stacklight1Color", stacklight1color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 1:" + stacklight1color;
+
+            //* STACKLIGHT1BEHAVIOR
+            int stacklight1behavior = plcsysinfo.STACKLIGHT1BEHAVIOR;
+            WriteValue("ns=2:s=PLC/Stacklight1Behavior", stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 1:" + stacklight1behavior;
+
+            //* STACKLIGHT2COLOR
+            int stacklight2color = plcsysinfo.STACKLIGHT2COLOR;
+            WriteValue("ns=2:s=PLC/Stacklight2Color", stacklight2color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 2:" + stacklight2color;
+
+            //* STACKLIGHT2BEHAVIOR
+            int stacklight2behavior = plcsysinfo.STACKLIGHT2BEHAVIOR;
+            WriteValue("ns=2:s=PLC/Stacklight2Behavior", stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 2:" + stacklight2behavior;
+
+            //* STACKLIGHT3COLOR
+            int stacklight3color = plcsysinfo.STACKLIGHT3COLOR;
+            WriteValue("ns=2:s=PLC/Stacklight3Color", stacklight3color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 3:" + stacklight3color;
+
+            //* STACKLIGHT3BEHAVIOR
+            int stacklight3behavior = plcsysinfo.STACKLIGHT3BEHAVIOR;
+            WriteValue("ns=2:s=PLC/Stacklight3Behavior", stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 3:" + stacklight3behavior;
+
+            //* STACKLIGHT4COLOR
+            int stacklight4color = plcsysinfo.STACKLIGHT4COLOR;
+            WriteValue("ns=2:s=PLC/Stacklight4Color", stacklight4color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 4:" + stacklight4color;
+
+            //* STACKLIGHT4BEHAVIOR
+            int stacklight4behavior = plcsysinfo.STACKLIGHT4BEHAVIOR;
+            WriteValue("ns=2:s=PLC/Stacklight4Behavior", stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 4:" + stacklight4behavior;
+
+            //* STACKLIGHT5COLOR
+            int stacklight5color = plcsysinfo.STACKLIGHT5COLOR;
+            WriteValue("ns=2:s=PLC/Stacklight5Color", stacklight5color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 0:" + stacklight5color;
+
+            //* STACKLIGHT5BEHAVIOR
+            int stacklight5behavior = plcsysinfo.STACKLIGHT5BEHAVIOR;
+            WriteValue("ns=2:s=PLC/Stacklight5Behavior", stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 5:" + stacklight5behavior;
 
             //* Save Log
             SaveLog(stageno, "PLC SYS INFO. IROCV -> MES", _strLog);
@@ -1012,6 +1148,7 @@ namespace DHS.EQUIPMENT
             dtStringArr,
             dtUInt32,
             dtUInt32Arr,
+            dtFloat,
             dtFloatArr,
             dtBoolean
         }
