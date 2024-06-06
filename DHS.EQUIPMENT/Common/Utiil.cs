@@ -434,6 +434,47 @@ namespace DHS.EQUIPMENT
 
             FileWrite(filename, file);
         }
+        public void SaveManualResultFile_IROCV(int stageno, IROCVData irocvdata, CEquipmentData systemconfig, string filename)
+        {
+            string dir, id, ir, ir_offset, ocv, ok_ng = string.Empty;
+
+            string StageTitle = "STAGE " + (stageno + 1).ToString();
+            dir = _Constant.DATA_PATH;
+            dir += System.DateTime.Now.ToString("yyyyMMdd") + "\\" + StageTitle + "\\";
+            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
+
+            FileInfo fi = new FileInfo(filename);
+            filename = fi.DirectoryName + "\\" + fi.Name + "_" + System.DateTime.Now.ToString("yyMMddHHmmss") + ".csv";
+
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+
+            string file;
+            file = "TRAY ID," + irocvdata.TRAYID.Replace("?", "TEST").Replace("\0", string.Empty) + Environment.NewLine;
+            file += "EQUIPMENT ID," + irocvdata.EQUIPMENTID + Environment.NewLine;
+            file = file + "IR RANGE," + systemconfig.IRMIN + "~" + systemconfig.IRMAX + Environment.NewLine;
+            file = file + "IR REMEASURE RANGE," + systemconfig.IRREMEAMIN + "~" + systemconfig.IRREMEAMAX + Environment.NewLine;
+            file = file + "OCV RANGE," + systemconfig.OCVMIN + "~" + systemconfig.OCVMAX + Environment.NewLine;
+            file = file + "OCV REMEASURE RANGE," + systemconfig.OCVREMEAMIN + "~" + systemconfig.OCVREMEAMAX + Environment.NewLine;
+
+            file += "CH,IR,IR OFFSET,OCV,RESULT" + Environment.NewLine;
+
+            for (int i = 0; i < _Constant.ChannelCount; ++i)
+            {
+                ir = irocvdata.IR_AFTERVALUE[i].ToString("0.0000");
+                ir_offset = irocvdata.IR_OFFSET[i].ToString("0.0000");
+                ocv = irocvdata.OCV[i].ToString("0.00");
+
+                if (irocvdata.MEASURERESULT[i] == 0) ok_ng = "OK";
+                else ok_ng = "NG";
+
+                file = file + (i + 1).ToString() + "," + ir + "," + ir_offset + "," + ocv + "," + ok_ng + Environment.NewLine;
+            }
+
+            FileWrite(filename, file);
+        }
         public string SaveMsaResultFile_IROCV(int stageno, int nCount, IROCVData irocvdata)
         {
             string filename = string.Empty; 

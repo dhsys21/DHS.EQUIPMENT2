@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 using DHS.EQUIPMENT.PLC;
 using Telerik.Collections.Generic;
+using Telerik.WinControls.Svg.FilterEffects;
 
 
 namespace DHS.EQUIPMENT
@@ -629,9 +630,33 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].SetFinishTime();
             util.SaveResultFile_IROCV(stageno, irocvdata[stageno], _system);
         }
-        private void SaveManualResultFile(int stageno)
+        private bool SaveManualResultFile(int stageno)
         {
-            util.SaveManualResultFile_IROCV(stageno, irocvdata[stageno], _system);
+            string filename = string.Empty;
+            try
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.InitialDirectory = _Constant.DATA_PATH;
+                    saveFileDialog.Filter = "csv files (*.csv)|";
+                    saveFileDialog.FilterIndex = 2;
+                    saveFileDialog.RestoreDirectory = true;
+
+                    if(saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        filename = saveFileDialog.FileName;
+                        util.SaveManualResultFile_IROCV(stageno, irocvdata[stageno], _system, filename);
+                    }
+                }
+                //util.SaveManualResultFile_IROCV(stageno, irocvdata[stageno], _system);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+ 
+            return true;
         }
         private void SaveMsaResultFile(int stageno, int nCount)
         {
@@ -1924,7 +1949,10 @@ namespace DHS.EQUIPMENT
         }
         private void _MEASUREINFOFORM_ManualSave(int stageno)
         {
-            SaveManualResultFile(stageno);
+            if (SaveManualResultFile(stageno) == true)
+                MessageBox.Show("Save manual result file at IROCV Data folder.");
+            else
+                MessageBox.Show("Save manual result file Error!");
         }
         //* OFFSET
         private void _MEASUREINFOFORM_OffsetSave(int stageno, string[] strOffset)
