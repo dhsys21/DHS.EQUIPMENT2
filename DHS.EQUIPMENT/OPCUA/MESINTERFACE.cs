@@ -246,6 +246,12 @@ namespace DHS.EQUIPMENT
                 AddDataGridView(dgvPCs[0], pcData[i + 4 + 96], i + 4 + 96); //CellStatus
             }
             #endregion
+
+            #region PLC SYS INFO
+            nIndex = 140;
+            for (int i = 0; i < 23; i++)
+                AddDataGridView(dgvPCs[0], pcData[nIndex + i], nIndex + i);
+            #endregion
         }
         private void AddDataGridView(DataGridView dgv, string value, int nRow)
         {

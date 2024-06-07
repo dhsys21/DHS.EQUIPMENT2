@@ -1458,19 +1458,24 @@ namespace DHS.EQUIPMENT
 
                     if (irocvdata[stageno].CELL[index] == 1)
                     {
-                        _system.REMEASUREUSE[index]++;
+                        if (irocv[stageno].AMF == false)
+                            _system.REMEASUREUSE[index]++;
                         //* IR Remeasure Error
                         if (irvalue < _system.IRREMEAMIN || irvalue > _system.IRREMEAMAX)
                         {
                             irocvdata[stageno].MEASURERESULT[index] = 4;
                             irocvdata[stageno].REMEASURECELLCOUNT++;
-                            _system.REMEASURENG[index]++;
+
+                            if (irocv[stageno].AMF == false)
+                                _system.REMEASURENG[index]++;
                         }
                         //* IR Spec Error
                         else if (irvalue < _system.IRMIN || irvalue > _system.IRMAX)
                         {
                             irocvdata[stageno].MEASURERESULT[index] = 2;
-                            _system.REMEASURENG[index]++;
+
+                            if (irocv[stageno].AMF == false)
+                                _system.REMEASURENG[index]++;
                         }
 
                         //* OCV Remeasure Error
@@ -1480,7 +1485,9 @@ namespace DHS.EQUIPMENT
                             {
                                 irocvdata[stageno].MEASURERESULT[index] = 5;
                                 irocvdata[stageno].REMEASURECELLCOUNT++;
-                                _system.REMEASURENG[index]++;
+
+                                if (irocv[stageno].AMF == false)
+                                    _system.REMEASURENG[index]++;
                             }
                         }
                         //* OCV Spec Error
@@ -1489,15 +1496,15 @@ namespace DHS.EQUIPMENT
                             if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
                             {
                                 irocvdata[stageno].MEASURERESULT[index] = 3;
-                                _system.REMEASURENG[index]++;
+
+                                if (irocv[stageno].AMF == false)
+                                    _system.REMEASURENG[index]++;
                             }
                         }
                         else
                         {
                             irocvdata[stageno].MEASURERESULT[index] = 0;
                         }
-
-                        _system.REMEASUREUSE[index] += 1;
                     }
                     else
                         irocvdata[stageno].MEASURERESULT[index] = 0;

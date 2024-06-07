@@ -102,6 +102,7 @@ namespace DHS.EQUIPMENT
 
             SetEquipmentTagList();
             SetMesTagList();
+            SetPLCTagList();
 
             connection = false;
             //MesClientStartAsync();
