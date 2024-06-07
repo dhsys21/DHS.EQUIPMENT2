@@ -325,8 +325,22 @@ namespace DHS.EQUIPMENT
             mesinterface.ShowReadMesValues(irocvdata[0].LOG);
         }
 
-        private void _MesClient_WritePLCSysInfo()
+        private void _MesClient_WritePLCSysInfo(string tagname, string tagvalue)
         {
+            if (tagname == "InterfaceVersionProject") plcsysinfo.INTERFACEVERSIONPROJECT = tagvalue;
+            else if (tagname == "EquipmentName") plcsysinfo.EQUIPMENTNAME = tagvalue;
+            else if (tagname == "EquipmentTypeID") plcsysinfo.EQUIPMENTID = Convert.ToInt16(tagvalue);
+            else if (tagname == "LineID") plcsysinfo.LINEID = Convert.ToInt16(tagvalue);
+            else if (tagname == "EquipmentID") plcsysinfo.EQUIPMENTID = Convert.ToInt16(tagvalue);
+            else if(tagname == "State") plcsysinfo.STATE = Convert.ToInt16(tagvalue);
+            else if(tagname == "Blocked") plcsysinfo.BLOCKED = Convert.ToBoolean(tagvalue);
+            else if(tagname == "CurrentSpeed") plcsysinfo.CURRENTSPEED = Convert.ToDouble(tagvalue);
+            else if(tagname == "StandstillReason") plcsysinfo.STANDSTILLREASON = Convert.ToInt16(tagvalue);
+            else if(tagname == "Stacklight0Color") plcsysinfo.STACKLIGHT0COLOR = Convert.ToInt32(tagvalue);
+            else if(tagname == "Stacklight0Behavior") plcsysinfo.STACKLIGHT0BEHAVIOR = Convert.ToInt32(tagvalue);
+            else if (tagname == "Stacklight1Color") plcsysinfo.STACKLIGHT1COLOR = Convert.ToInt32(tagvalue);
+            else if (tagname == "Stacklight1Behavior") plcsysinfo.STACKLIGHT1BEHAVIOR = Convert.ToInt32(tagvalue);
+
             mesclient.WritePLSInfo(0, plcsysinfo);
         }
         #endregion
@@ -746,6 +760,7 @@ namespace DHS.EQUIPMENT
         {
             if(_bMesConnected == true)
             {
+
                 if(plcsysinfo != plcsysinfoOld)
                 {
                     mesclient.WritePLSInfo(0, plcsysinfo);

@@ -45,6 +45,11 @@ namespace DHS.EQUIPMENT
             this.radBtnWriteValue = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.dgvOCV = new System.Windows.Forms.DataGridView();
+            this.dgvIR = new System.Windows.Forms.DataGridView();
+            this.dgvCellStatusResult = new System.Windows.Forms.DataGridView();
+            this.dgvCellStatus = new System.Windows.Forms.DataGridView();
+            this.dgvCellID = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.tbEquipmentID = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -66,11 +71,6 @@ namespace DHS.EQUIPMENT
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tbMsg = new System.Windows.Forms.TextBox();
-            this.dgvCellID = new System.Windows.Forms.DataGridView();
-            this.dgvCellStatus = new System.Windows.Forms.DataGridView();
-            this.dgvCellStatusResult = new System.Windows.Forms.DataGridView();
-            this.dgvIR = new System.Windows.Forms.DataGridView();
-            this.dgvOCV = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
@@ -83,15 +83,15 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOCV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatusResult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCellID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCellID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatusResult)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOCV)).BeginInit();
             this.SuspendLayout();
             // 
             // radpnl_OperationMode
@@ -240,7 +240,21 @@ namespace DHS.EQUIPMENT
             "CellID",
             "IR",
             "OCV",
-            "CellStatus"});
+            "CellStatus",
+            "",
+            "InterfaceVersionProject",
+            "EquipmentName",
+            "EquipmentTypeID",
+            "LineID",
+            "EquipmentID",
+            "State",
+            "Blocked",
+            "CurrentSpeed",
+            "StandstillReason",
+            "Stacklight0Color",
+            "Stacklight0Behavior",
+            "Stacklight1Color",
+            "Stacklight1Behavior"});
             this.cbTagList.Location = new System.Drawing.Point(183, 27);
             this.cbTagList.Name = "cbTagList";
             this.cbTagList.Size = new System.Drawing.Size(153, 20);
@@ -345,6 +359,71 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
+            // 
+            // dgvOCV
+            // 
+            this.dgvOCV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvOCV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOCV.Location = new System.Drawing.Point(252, 294);
+            this.dgvOCV.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvOCV.Name = "dgvOCV";
+            this.dgvOCV.RowHeadersVisible = false;
+            this.dgvOCV.RowHeadersWidth = 51;
+            this.dgvOCV.RowTemplate.Height = 23;
+            this.dgvOCV.Size = new System.Drawing.Size(114, 167);
+            this.dgvOCV.TabIndex = 102;
+            // 
+            // dgvIR
+            // 
+            this.dgvIR.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvIR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIR.Location = new System.Drawing.Point(129, 294);
+            this.dgvIR.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvIR.Name = "dgvIR";
+            this.dgvIR.RowHeadersVisible = false;
+            this.dgvIR.RowHeadersWidth = 51;
+            this.dgvIR.RowTemplate.Height = 23;
+            this.dgvIR.Size = new System.Drawing.Size(114, 167);
+            this.dgvIR.TabIndex = 101;
+            // 
+            // dgvCellStatusResult
+            // 
+            this.dgvCellStatusResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCellStatusResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCellStatusResult.Location = new System.Drawing.Point(7, 294);
+            this.dgvCellStatusResult.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvCellStatusResult.Name = "dgvCellStatusResult";
+            this.dgvCellStatusResult.RowHeadersVisible = false;
+            this.dgvCellStatusResult.RowHeadersWidth = 51;
+            this.dgvCellStatusResult.RowTemplate.Height = 23;
+            this.dgvCellStatusResult.Size = new System.Drawing.Size(114, 167);
+            this.dgvCellStatusResult.TabIndex = 100;
+            // 
+            // dgvCellStatus
+            // 
+            this.dgvCellStatus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCellStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCellStatus.Location = new System.Drawing.Point(195, 51);
+            this.dgvCellStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvCellStatus.Name = "dgvCellStatus";
+            this.dgvCellStatus.RowHeadersVisible = false;
+            this.dgvCellStatus.RowHeadersWidth = 51;
+            this.dgvCellStatus.RowTemplate.Height = 23;
+            this.dgvCellStatus.Size = new System.Drawing.Size(160, 108);
+            this.dgvCellStatus.TabIndex = 99;
+            // 
+            // dgvCellID
+            // 
+            this.dgvCellID.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCellID.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCellID.Location = new System.Drawing.Point(7, 51);
+            this.dgvCellID.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvCellID.Name = "dgvCellID";
+            this.dgvCellID.RowHeadersVisible = false;
+            this.dgvCellID.RowHeadersWidth = 51;
+            this.dgvCellID.RowTemplate.Height = 23;
+            this.dgvCellID.Size = new System.Drawing.Size(170, 108);
+            this.dgvCellID.TabIndex = 98;
             // 
             // label14
             // 
@@ -603,71 +682,6 @@ namespace DHS.EQUIPMENT
             this.tbMsg.Size = new System.Drawing.Size(373, 106);
             this.tbMsg.TabIndex = 15;
             // 
-            // dgvCellID
-            // 
-            this.dgvCellID.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCellID.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCellID.Location = new System.Drawing.Point(7, 51);
-            this.dgvCellID.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvCellID.Name = "dgvCellID";
-            this.dgvCellID.RowHeadersVisible = false;
-            this.dgvCellID.RowHeadersWidth = 51;
-            this.dgvCellID.RowTemplate.Height = 23;
-            this.dgvCellID.Size = new System.Drawing.Size(170, 108);
-            this.dgvCellID.TabIndex = 98;
-            // 
-            // dgvCellStatus
-            // 
-            this.dgvCellStatus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCellStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCellStatus.Location = new System.Drawing.Point(195, 51);
-            this.dgvCellStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvCellStatus.Name = "dgvCellStatus";
-            this.dgvCellStatus.RowHeadersVisible = false;
-            this.dgvCellStatus.RowHeadersWidth = 51;
-            this.dgvCellStatus.RowTemplate.Height = 23;
-            this.dgvCellStatus.Size = new System.Drawing.Size(160, 108);
-            this.dgvCellStatus.TabIndex = 99;
-            // 
-            // dgvCellStatusResult
-            // 
-            this.dgvCellStatusResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCellStatusResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCellStatusResult.Location = new System.Drawing.Point(7, 294);
-            this.dgvCellStatusResult.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvCellStatusResult.Name = "dgvCellStatusResult";
-            this.dgvCellStatusResult.RowHeadersVisible = false;
-            this.dgvCellStatusResult.RowHeadersWidth = 51;
-            this.dgvCellStatusResult.RowTemplate.Height = 23;
-            this.dgvCellStatusResult.Size = new System.Drawing.Size(114, 167);
-            this.dgvCellStatusResult.TabIndex = 100;
-            // 
-            // dgvIR
-            // 
-            this.dgvIR.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvIR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIR.Location = new System.Drawing.Point(129, 294);
-            this.dgvIR.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvIR.Name = "dgvIR";
-            this.dgvIR.RowHeadersVisible = false;
-            this.dgvIR.RowHeadersWidth = 51;
-            this.dgvIR.RowTemplate.Height = 23;
-            this.dgvIR.Size = new System.Drawing.Size(114, 167);
-            this.dgvIR.TabIndex = 101;
-            // 
-            // dgvOCV
-            // 
-            this.dgvOCV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvOCV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOCV.Location = new System.Drawing.Point(252, 294);
-            this.dgvOCV.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvOCV.Name = "dgvOCV";
-            this.dgvOCV.RowHeadersVisible = false;
-            this.dgvOCV.RowHeadersWidth = 51;
-            this.dgvOCV.RowTemplate.Height = 23;
-            this.dgvOCV.Size = new System.Drawing.Size(114, 167);
-            this.dgvOCV.TabIndex = 102;
-            // 
             // MESINTERFACE
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -698,15 +712,15 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOCV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatusResult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCellID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnReadFORIR2_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCellID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCellStatusResult)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOCV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

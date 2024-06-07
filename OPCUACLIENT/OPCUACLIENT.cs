@@ -36,6 +36,13 @@ namespace OPCUACLIENT
         {
             client.Disconnect();
         }
+        public object[] CallMethod()
+        {
+            string node_parent = string.Empty, nodename = string.Empty;
+            object[] args = null;
+            client.CallMethodByNodeId(node_parent, nodename, args);
+            return args;
+        }
         public string ReadString(string nodename)
         {
             string val = string.Empty;

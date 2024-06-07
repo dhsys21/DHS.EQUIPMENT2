@@ -47,13 +47,13 @@ namespace DHS.EQUIPMENT
                 OnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
             }
         }
-        public delegate void WritePLCSysInfo();
+        public delegate void WritePLCSysInfo(string tagname, string tagvalue);
         public event WritePLCSysInfo OnWritePLCSysInfo = null;
-        protected void RaiseOnWritePLCSysInfo()
+        protected void RaiseOnWritePLCSysInfo(string tagname, string tagvalue)
         {
             if (OnWritePLCSysInfo != null)
             {
-                OnWritePLCSysInfo();
+                OnWritePLCSysInfo(tagname, tagvalue);
             }
         }
         public delegate void ReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage);
@@ -396,7 +396,9 @@ namespace DHS.EQUIPMENT
 
         private void radButton1_Click(object sender, EventArgs e)
         {
-            RaiseOnWritePLCSysInfo();
+            string tagname = cbTagList.Text;
+            string tagvalue = tbTagValue.Text;
+            RaiseOnWritePLCSysInfo(tagname, tagvalue);
         }
         #endregion
 

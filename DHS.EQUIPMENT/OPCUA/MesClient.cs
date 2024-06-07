@@ -591,6 +591,10 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region Version 2. - MES와 IROCV간 주고 받는 Sequence 별로 구현
+        public void test()
+        {
+            opcclient.CallMethod();
+        }
         public void WriteFOEQR2_1(int stageno, string equipmentid, string trayid)
         {
             if(connection == false) return;
@@ -785,7 +789,7 @@ namespace DHS.EQUIPMENT
 
             //* STATE
             int state = plcsysinfo.STATE;
-            WriteValue("ns=2;s=PLC/Stage", state.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/State", state.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", State: " + state;
 
             //* MODE
