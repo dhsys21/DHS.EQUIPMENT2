@@ -27,6 +27,10 @@ namespace DHS.EQUIPMENT
         public async Task MesServerStartAsync()
         {
             connection = await Task.FromResult<bool>(ConnectMESAsync().Result);
+            if(connection == true)
+            {
+
+            }
         }
 
         public static async Task<bool> ConnectMESAsync()

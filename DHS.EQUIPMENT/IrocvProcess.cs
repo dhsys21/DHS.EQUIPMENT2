@@ -1101,6 +1101,10 @@ namespace DHS.EQUIPMENT
                     }
                     break;
                 case 1:
+                    mesclient.WriteSequence(stageno, 101);
+                    nInspectionStep = 2;
+                    break;
+                case 2:
                     //* MES - Request Tray Information
                     //* IROCV -> MES FOEQR1.12 : equipment id, tray id 쓰기
                     //* FORIR 2.1 2024 05 28 수정
@@ -1239,6 +1243,10 @@ namespace DHS.EQUIPMENT
                     }
                     break;
                 case 1:
+                    mesclient.WriteSequence(stageno, 104);
+                    nInspectionStep = 2;
+                    break;
+                case 2:
                     //* MES - Data Collection
                     //* IROCV -> MES FOEQR1.1 (send ir, ocv data to mes)
                     //* FORIR2.2 2024 05 28 수정

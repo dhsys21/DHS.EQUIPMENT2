@@ -41,6 +41,8 @@ namespace OPCUACLIENT
             string node_parent = string.Empty, nodename = string.Empty;
             object[] args = null;
             client.CallMethodByNodeId(node_parent, nodename, args);
+            //client.Session.Call()
+            
             return args;
         }
         public string ReadString(string nodename)

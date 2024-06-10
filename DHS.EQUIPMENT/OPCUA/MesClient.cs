@@ -274,6 +274,7 @@ namespace DHS.EQUIPMENT
                 uint uiValue = 0;
                 int iValue = 0;
                 bool bValue = false;
+                object oValue = null;
                 float fValue = 0.0f;
                 foreach (var tag in PLCTagList)
                 {
@@ -318,22 +319,24 @@ namespace DHS.EQUIPMENT
                             SetValue(147, iValue, "PC");
                             break;
                         case "ns=2;s=PLC/Blocked":
-                            bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(148, bValue, "PC");
+                            //bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(148, bValue.ToString(), "PC");
                             break;
                         case "ns=2;s=PLC/Starved":
-                            bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
                             SetValue(149, bValue, "PC");
                             break;
                         case "ns=2;s=PLC/CurrentSpeed":
-                            fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            //iValue = (int)uiValue;
-                            SetValue(150, fValue.ToString(), "PC");
+                            //fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(150, oValue.ToString(), "PC");
                             break;
                         case "ns=2;s=PLC/DesignSpeed":
-                            fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            //iValue = (int)uiValue;
-                            SetValue(151, fValue.ToString(), "PC");
+                            //fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            SetValue(151, oValue.ToString(), "PC");
                             break;
                         case "ns=2;s=PLC/TotalCounter":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
@@ -468,8 +471,8 @@ namespace DHS.EQUIPMENT
                         if (objValue == null) return 0;
                         break;
                     case (int)MesClient.EnumDataType.dtBoolean:
-                        var bVal = (Boolean)opcclient.Read<bool>(node);
-                        objValue = bVal.ToString();
+                        //var bVal = (Boolean)opcclient.Read<bool>(node);
+                        //objValue = bVal.ToString();
                         break;
                     default:
                         break;
@@ -595,6 +598,12 @@ namespace DHS.EQUIPMENT
         public void test()
         {
             opcclient.CallMethod();
+        }
+        public void WriteSequence(int stageno, int sequenceno)
+        {
+            if (connection == false) return;
+            //* SEQUENCE NO
+            WriteValue("ns=2;s=Equipment/SequenceNo", sequenceno.ToString(), (int)EnumDataType.dtUInt32);
         }
         public void WriteFOEQR2_1(int stageno, string equipmentid, string trayid)
         {
