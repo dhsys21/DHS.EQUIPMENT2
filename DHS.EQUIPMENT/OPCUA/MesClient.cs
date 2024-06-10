@@ -320,12 +320,14 @@ namespace DHS.EQUIPMENT
                             break;
                         case "ns=2;s=PLC/Blocked":
                             //bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            Boolean.TryParse(ReadValue(tag.tagName, (int)tag.tagDataType).ToString(), out bValue);
                             SetValue(148, bValue.ToString(), "PC");
                             break;
                         case "ns=2;s=PLC/Starved":
-                            //bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //bValue = (bool)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
+                            Boolean.TryParse(ReadValue(tag.tagName, (int)tag.tagDataType).ToString(), out bValue);
                             SetValue(149, bValue, "PC");
                             break;
                         case "ns=2;s=PLC/CurrentSpeed":
@@ -343,47 +345,48 @@ namespace DHS.EQUIPMENT
                             iValue = (int)uiValue;
                             SetValue(152, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/StandstillReason":
+                        case "ns=2;s=PLC/StandStillReason":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(153, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight0Color":
+                        case "ns=2;s=PLC/StackLight0Color":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
+                            //oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(154, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight0Behavior":
+                        case "ns=2;s=PLC/StackLight0Behavior":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(155, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight1Color":
+                        case "ns=2;s=PLC/StackLight1Color":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(156, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight1Behavior":
+                        case "ns=2;s=PLC/StackLight1Behavior":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(157, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight2Color":
+                        case "ns=2;s=PLC/StackLight2Color":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(158, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight2Behavior":
+                        case "ns=2;s=PLC/StackLight2Behavior":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(159, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight3Color":
+                        case "ns=2;s=PLC/StackLight3Color":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(160, iValue, "PC");
                             break;
-                        case "ns=2;s=PLC/Stacklight3Behavior":
+                        case "ns=2;s=PLC/StackLight3Behavior":
                             uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
                             iValue = (int)uiValue;
                             SetValue(161, iValue, "PC");
@@ -471,8 +474,8 @@ namespace DHS.EQUIPMENT
                         if (objValue == null) return 0;
                         break;
                     case (int)MesClient.EnumDataType.dtBoolean:
-                        //var bVal = (Boolean)opcclient.Read<bool>(node);
-                        //objValue = bVal.ToString();
+                        var bVal = (Boolean)opcclient.Read<bool>(node);
+                        objValue = bVal.ToString();
                         break;
                     default:
                         break;
@@ -525,6 +528,7 @@ namespace DHS.EQUIPMENT
                         break;
                     case (int)MesClient.EnumDataType.dtBoolean:
                         bool bVal = false;
+                        //* boolean 형은 "True"은 true, 그 외에 다른 값은 false
                         Boolean.TryParse(value, out bVal);
                         opcclient.Write<Boolean>(node, bVal);
                         break;
@@ -588,6 +592,9 @@ namespace DHS.EQUIPMENT
                     break;
                 case "TrayID":
                     WriteValue("ns=2;s=Equipment/TrayID", value, (int)EnumDataType.dtString);
+                    break;
+                case "Blocked":
+                    WriteValue("ns=2;s=PLC/Blocked", value, (int)EnumDataType.dtBoolean);
                     break;
                 default : break;
             }
@@ -1322,39 +1329,39 @@ namespace DHS.EQUIPMENT
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/StanddstillReason";
+            tag.tagName = "ns=2;s=PLC/StandStillReason";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight0Color";
+            tag.tagName = "ns=2;s=PLC/StackLight0Color";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight0Behavior";
+            tag.tagName = "ns=2;s=PLC/StackLight0Behavior";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight1Color";
+            tag.tagName = "ns=2;s=PLC/StackLight1Color";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight1Behavior";
+            tag.tagName = "ns=2;s=PLC/StackLight1Behavior";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight2Color";
+            tag.tagName = "ns=2;s=PLC/StackLight2Color";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight2Behavior";
+            tag.tagName = "ns=2;s=PLC/StackLight2Behavior";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight3Color";
+            tag.tagName = "ns=2;s=PLC/StackLight3Color";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 
-            tag.tagName = "ns=2;s=PLC/Stacklight3Behavior";
+            tag.tagName = "ns=2;s=PLC/StackLight3Behavior";
             tag.tagDataType = EnumDataType.dtUInt32;
             PLCTagList.Add(tag);
 

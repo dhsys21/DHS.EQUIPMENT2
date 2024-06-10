@@ -288,6 +288,7 @@ namespace OPCUASERVER
                 AddRootNotifier(rootMy3);
 
                 //* PLC System 정보
+                bool bValue = false;
                 CreateVariable(rootMy3, "InterfaceVersionProject", DataTypeIds.String, ValueRanks.Scalar, "");
                 CreateVariable(rootMy3, "EquipmentName", DataTypeIds.String, ValueRanks.Scalar, "");
                 CreateVariable(rootMy3, "EquipmentTypeID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
@@ -297,14 +298,16 @@ namespace OPCUASERVER
                 CreateVariable(rootMy3, "EquipmentID", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "State", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "Mode", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy3, "Blocked", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy3, "Starved", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy3, "Blocked", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                //CreateVariable(rootMy3, "Starved", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "Blocked", DataTypeIds.Boolean, ValueRanks.Scalar, bValue);
+                CreateVariable(rootMy3, "Starved", DataTypeIds.Boolean, ValueRanks.Scalar, bValue);
                 CreateVariable(rootMy3, "CurrentSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "DesignSpeed", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "DefectCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "GoodCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "TotalCounter", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
-                CreateVariable(rootMy3, "StandstillReason", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
+                CreateVariable(rootMy3, "StandStillReason", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
 
                 CreateVariable(rootMy3, "StackLight0Color", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
                 CreateVariable(rootMy3, "StackLight0Behavior", DataTypeIds.UInt32, ValueRanks.Scalar, (UInt32)0);
