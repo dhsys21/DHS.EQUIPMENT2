@@ -1243,6 +1243,7 @@ namespace DHS.EQUIPMENT
                     }
                     break;
                 case 1:
+                    //* sequence no 쓰는 시점을 WriteFOEQR2_2이후로 변경해야 하는지 검토
                     mesclient.WriteSequence(stageno, 104);
                     nInspectionStep = 2;
                     break;
@@ -1471,6 +1472,7 @@ namespace DHS.EQUIPMENT
                         //* IR Remeasure Error
                         if (irvalue < _system.IRREMEAMIN || irvalue > _system.IRREMEAMAX)
                         {
+                            irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
                             irocvdata[stageno].MEASURERESULT[index] = 4;
                             irocvdata[stageno].REMEASURECELLCOUNT++;
 
@@ -1480,6 +1482,7 @@ namespace DHS.EQUIPMENT
                         //* IR Spec Error
                         else if (irvalue < _system.IRMIN || irvalue > _system.IRMAX)
                         {
+                            irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
                             irocvdata[stageno].MEASURERESULT[index] = 2;
 
                             if (irocv[stageno].AMF == false)
@@ -1491,6 +1494,7 @@ namespace DHS.EQUIPMENT
                         {
                             if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
                             {
+                                irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
                                 irocvdata[stageno].MEASURERESULT[index] = 5;
                                 irocvdata[stageno].REMEASURECELLCOUNT++;
 
@@ -1503,6 +1507,7 @@ namespace DHS.EQUIPMENT
                         {
                             if (irocvdata[stageno].MEASURERESULT[index] != 2 && irocvdata[stageno].MEASURERESULT[index] != 4)
                             {
+                                irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
                                 irocvdata[stageno].MEASURERESULT[index] = 3;
 
                                 if (irocv[stageno].AMF == false)
@@ -1511,11 +1516,15 @@ namespace DHS.EQUIPMENT
                         }
                         else
                         {
+                            irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
                             irocvdata[stageno].MEASURERESULT[index] = 0;
                         }
                     }
                     else
+                    {
+                        irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
                         irocvdata[stageno].MEASURERESULT[index] = 0;
+                    }
                 }
                 #endregion
 

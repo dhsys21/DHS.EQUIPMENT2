@@ -1300,6 +1300,7 @@ namespace DHS.EQUIPMENT
 
             tag.tagName = "ns=2;s=PLC/EquipmentID";
             tag.tagDataType = EnumDataType.dtUInt32;
+            PLCTagList.Add(tag);
 
             tag.tagName = "ns=2;s=PLC/State";
             tag.tagDataType = EnumDataType.dtUInt32;
