@@ -776,7 +776,7 @@ namespace DHS.EQUIPMENT
 
             //* Equipment Name
             string equipmentname = plcsysinfo.EQUIPMENTNAME;
-            WriteValue("ns=2;ns=2;s=PLC/EquipmentName", equipmentname, (int)EnumDataType.dtString);
+            WriteValue("ns=2;s=PLC/EquipmentName", equipmentname, (int)EnumDataType.dtString);
             _strLog += ", Equipment Name: " + equipmentname;
 
             //* Equipment Type Id
@@ -826,83 +826,83 @@ namespace DHS.EQUIPMENT
 
             //* Current Speed
             double currentspeed = plcsysinfo.CURRENTSPEED;
-            WriteValue("ns=2:s=PLC/CurrentSpeed", currentspeed.ToString(), (int)EnumDataType.dtFloat);
+            WriteValue("ns=2;s=PLC/CurrentSpeed", currentspeed.ToString(), (int)EnumDataType.dtFloat);
             _strLog += ", Current Speed:" + currentspeed;
 
             //* Designed Speed
             double designspeed = plcsysinfo.DESIGNSPEED;
-            WriteValue("ns=2:s=PLC/DesignSpeed", designspeed.ToString(), (int)EnumDataType.dtFloat);
+            WriteValue("ns=2;s=PLC/DesignSpeed", designspeed.ToString(), (int)EnumDataType.dtFloat);
             _strLog += ", Designed Spee:" + designspeed;
 
             //* Total Counter
             int totalcounter = plcsysinfo.TOTALCOUNTER;
-            WriteValue("ns=2:s=PLC/TotalCounter", totalcounter.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/TotalCounter", totalcounter.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Total Counter:" + totalcounter;
 
             //* STANDSTILLREASON
             int standstillreason = plcsysinfo.STANDSTILLREASON;
-            WriteValue("ns=2:s=PLC/StandstillReason", standstillreason.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StandStillReason", standstillreason.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stand Still Reason:" + standstillreason;
 
             //* STACKLIGHT0COLOR
             int stacklight0color = plcsysinfo.STACKLIGHT0COLOR;
-            WriteValue("ns=2:s=PLC/Stacklight0Color", stacklight0color.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight0Color", stacklight0color.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Color 0:" + stacklight0color;
 
             //* STACKLIGHT0BEHAVIOR
             int stacklight0behavior = plcsysinfo.STACKLIGHT0BEHAVIOR;
-            WriteValue("ns=2:s=PLC/Stacklight0Behavior", stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight0Behavior", stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 0:" + stacklight0behavior;
 
             //* STACKLIGHT1COLOR
             int stacklight1color = plcsysinfo.STACKLIGHT1COLOR;
-            WriteValue("ns=2:s=PLC/Stacklight1Color", stacklight1color.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight1Color", stacklight1color.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Color 1:" + stacklight1color;
 
             //* STACKLIGHT1BEHAVIOR
             int stacklight1behavior = plcsysinfo.STACKLIGHT1BEHAVIOR;
-            WriteValue("ns=2:s=PLC/Stacklight1Behavior", stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight1Behavior", stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 1:" + stacklight1behavior;
 
             //* STACKLIGHT2COLOR
             int stacklight2color = plcsysinfo.STACKLIGHT2COLOR;
-            WriteValue("ns=2:s=PLC/Stacklight2Color", stacklight2color.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight2Color", stacklight2color.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Color 2:" + stacklight2color;
 
             //* STACKLIGHT2BEHAVIOR
             int stacklight2behavior = plcsysinfo.STACKLIGHT2BEHAVIOR;
-            WriteValue("ns=2:s=PLC/Stacklight2Behavior", stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight2Behavior", stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 2:" + stacklight2behavior;
 
             //* STACKLIGHT3COLOR
             int stacklight3color = plcsysinfo.STACKLIGHT3COLOR;
-            WriteValue("ns=2:s=PLC/Stacklight3Color", stacklight3color.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight3Color", stacklight3color.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Color 3:" + stacklight3color;
 
             //* STACKLIGHT3BEHAVIOR
             int stacklight3behavior = plcsysinfo.STACKLIGHT3BEHAVIOR;
-            WriteValue("ns=2:s=PLC/Stacklight3Behavior", stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue("ns=2;s=PLC/StackLight3Behavior", stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 3:" + stacklight3behavior;
 
             //* STACKLIGHT4COLOR
-            int stacklight4color = plcsysinfo.STACKLIGHT4COLOR;
-            WriteValue("ns=2:s=PLC/Stacklight4Color", stacklight4color.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Color 4:" + stacklight4color;
+            //int stacklight4color = plcsysinfo.STACKLIGHT4COLOR;
+            //WriteValue("ns=2;s=PLC/StackLight4Color", stacklight4color.ToString(), (int)EnumDataType.dtUInt32);
+            //_strLog += ", Stack Light Color 4:" + stacklight4color;
 
             //* STACKLIGHT4BEHAVIOR
-            int stacklight4behavior = plcsysinfo.STACKLIGHT4BEHAVIOR;
-            WriteValue("ns=2:s=PLC/Stacklight4Behavior", stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Behavior 4:" + stacklight4behavior;
+            //int stacklight4behavior = plcsysinfo.STACKLIGHT4BEHAVIOR;
+            //WriteValue("ns=2;s=PLC/StackLight4Behavior", stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
+            //_strLog += ", Stack Light Behavior 4:" + stacklight4behavior;
 
             //* STACKLIGHT5COLOR
-            int stacklight5color = plcsysinfo.STACKLIGHT5COLOR;
-            WriteValue("ns=2:s=PLC/Stacklight5Color", stacklight5color.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Color 0:" + stacklight5color;
+            //int stacklight5color = plcsysinfo.STACKLIGHT5COLOR;
+            //WriteValue("ns=2;s=PLC/StackLight5Color", stacklight5color.ToString(), (int)EnumDataType.dtUInt32);
+            //_strLog += ", Stack Light Color 0:" + stacklight5color;
 
             //* STACKLIGHT5BEHAVIOR
-            int stacklight5behavior = plcsysinfo.STACKLIGHT5BEHAVIOR;
-            WriteValue("ns=2:s=PLC/Stacklight5Behavior", stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Behavior 5:" + stacklight5behavior;
+            //int stacklight5behavior = plcsysinfo.STACKLIGHT5BEHAVIOR;
+            //WriteValue("ns=2;s=PLC/StackLight5Behavior", stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
+            //_strLog += ", Stack Light Behavior 5:" + stacklight5behavior;
 
             //* Save Log
             SaveLog(stageno, "PLC SYS INFO. IROCV -> MES", _strLog);

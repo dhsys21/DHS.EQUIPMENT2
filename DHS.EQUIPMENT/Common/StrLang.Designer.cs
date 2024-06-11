@@ -403,7 +403,7 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
-        ///   IR/OCV INSPECTION 2024 06 10과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   IR/OCV INSPECTION 2024 06 11과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MAINTITLE {
             get {

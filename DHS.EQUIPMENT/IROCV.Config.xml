@@ -62,7 +62,7 @@
   <ServerConfiguration>
     <BaseAddresses>
       <ua:String>https://10.2.2.154/StandardBatteryInterface</ua:String>
-      <ua:String>opc.tcp://10.2.2.154/StandardBatteryInterface</ua:String>
+      <ua:String>opc.tcp://10.2.2.154/IROCV</ua:String>
     </BaseAddresses>
     <SecurityPolicies>
       <ServerSecurityPolicy>
