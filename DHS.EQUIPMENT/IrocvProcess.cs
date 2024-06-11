@@ -139,7 +139,7 @@ namespace DHS.EQUIPMENT
             //* Write PLC SYS INFO to MES Timer
             _tmrWritePLCSysInfoToMes.Interval = 1000;
             _tmrWritePLCSysInfoToMes.Tick += new EventHandler(WritePLCSysInfoToMesTimer_Tick);
-            //_tmrGetMesData.Enabled = true;
+            _tmrWritePLCSysInfoToMes.Enabled = true;
             #endregion
 
             ReadChannelMapping();
@@ -1054,7 +1054,8 @@ namespace DHS.EQUIPMENT
         }
         private void AutoInspection_StepTrayInCheck(int stageno)
         {
-            if (siemensplc.PLCTRAYIN == 1)
+            //if (siemensplc.PLCTRAYIN == 1)
+            if (siemensplc.PLCTRAYIN == 0) //* for test
             {
                 PLC_Initialize(stageno);
                 IROCV_Initialize(stageno);
@@ -1137,7 +1138,8 @@ namespace DHS.EQUIPMENT
                     break;
                 case 5:
                     //* PLC - Read Tray Ready Complete
-                    if (siemensplc.PLCREADYCOMPLETE == 1)
+                    //if (siemensplc.PLCREADYCOMPLETE == 1)
+                    if (siemensplc.PLCREADYCOMPLETE == 0) //* for test
                     {
                         //* PLC - Request Tray Up
                         //PLC_TRAYUP(stageno); ==> 2024 05 21 StepReady 상태에서 수행하도록 변경
