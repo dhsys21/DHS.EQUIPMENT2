@@ -959,6 +959,13 @@ namespace DHS.EQUIPMENT
             radbtn_MsaStop.Text = StrLang.BTNMSASTOP;
 
             radpnl_Title.Text = StrLang.PNLMEASURINGTITLE;
+
+            radBtnAllOffset.Text = StrLang.BTNOFFSETSTART;
+            radBtnStopAllOffset.Text = StrLang.BTNOFFSETSTOP;
+            radBtnApplyOffset.Text = StrLang.BTNOFFSETAPPLY;
+            radBtnOpenOffset.Text = StrLang.BTNOFFSETOPEN;
+            radBtnSaveOffset.Text = StrLang.BTNOFFSETSAVE;
+            radlblOffsetChannel.Text = StrLang.LBLOFFSETCHANNEL;
         }
 
         private void radBtnSaveData_Click(object sender, EventArgs e)

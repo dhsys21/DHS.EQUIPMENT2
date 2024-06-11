@@ -106,6 +106,51 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   APPLY과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNOFFSETAPPLY {
+            get {
+                return ResourceManager.GetString("BTNOFFSETAPPLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   OPEN과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNOFFSETOPEN {
+            get {
+                return ResourceManager.GetString("BTNOFFSETOPEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   SAVE과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNOFFSETSAVE {
+            get {
+                return ResourceManager.GetString("BTNOFFSETSAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ALL OFFSET과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNOFFSETSTART {
+            get {
+                return ResourceManager.GetString("BTNOFFSETSTART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   STOP과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string BTNOFFSETSTOP {
+            get {
+                return ResourceManager.GetString("BTNOFFSETSTOP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   SAVE과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string BTNSAVEDATA {
@@ -277,6 +322,24 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
+        ///   CHANNEL과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLOFFSETCHANNEL {
+            get {
+                return ResourceManager.GetString("LBLOFFSETCHANNEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Repeat Count과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string LBLOFFSETREPEATCOUNT {
+            get {
+                return ResourceManager.GetString("LBLOFFSETREPEATCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   STATUS CODE과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string LBLPROCESS {
@@ -340,7 +403,7 @@ namespace DHS.EQUIPMENT.Common {
         }
         
         /// <summary>
-        ///   IR/OCV INSPECTION 2024 05 24과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   IR/OCV INSPECTION 2024 06 10과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string MAINTITLE {
             get {

@@ -130,7 +130,22 @@
     <value>START</value>
   </data>
   <data name="BTNMSASTOP" xml:space="preserve">
-    <value>STOP</value>
+    <value>STOPPE</value>
+  </data>
+  <data name="BTNOFFSETAPPLY" xml:space="preserve">
+    <value>SØKE OM</value>
+  </data>
+  <data name="BTNOFFSETOPEN" xml:space="preserve">
+    <value>OPEN</value>
+  </data>
+  <data name="BTNOFFSETSAVE" xml:space="preserve">
+    <value>LAGRE</value>
+  </data>
+  <data name="BTNOFFSETSTART" xml:space="preserve">
+    <value>ALLE OFFSET</value>
+  </data>
+  <data name="BTNOFFSETSTOP" xml:space="preserve">
+    <value>STOPPE</value>
   </data>
   <data name="BTNSAVEDATA" xml:space="preserve">
     <value>LAGRE</value>
@@ -189,6 +204,12 @@
   <data name="LBLOCVREMEASURE" xml:space="preserve">
     <value>OCV SPES</value>
   </data>
+  <data name="LBLOFFSETCHANNEL" xml:space="preserve">
+    <value>KANAL</value>
+  </data>
+  <data name="LBLOFFSETREPEATCOUNT" xml:space="preserve">
+    <value>Gjenta Telle</value>
+  </data>
   <data name="LBLPROCESS" xml:space="preserve">
     <value>STATUS KODE</value>
   </data>
@@ -211,13 +232,13 @@
     <value>LBLTRAYSETTING</value>
   </data>
   <data name="MAINTITLE" xml:space="preserve">
-    <value>IR/OCV UNDERSØKELSE 2024 05 24</value>
+    <value>IR/OCV UNDERSØKELSE 2024 06 10</value>
   </data>
   <data name="MANUAL" xml:space="preserve">
     <value>HÅNDBOK</value>
   </data>
   <data name="MANUALMODE" xml:space="preserve">
-    <value>MANUALMODE</value>
+    <value>MANUALMODUS</value>
   </data>
   <data name="MESCONNECTION" xml:space="preserve">
     <value>MES is not connected</value>
@@ -268,7 +289,7 @@
     <value>BRETT OPP</value>
   </data>
   <data name="RESET" xml:space="preserve">
-    <value>RESET</value>
+    <value>NULLSTILLE</value>
   </data>
   <data name="STEPEND" xml:space="preserve">
     <value>IR/OCV MÅLING ER FERDIG.</value>

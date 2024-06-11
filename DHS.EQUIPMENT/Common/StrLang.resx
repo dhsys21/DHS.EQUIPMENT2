@@ -132,6 +132,21 @@
   <data name="BTNMSASTOP" xml:space="preserve">
     <value>STOP</value>
   </data>
+  <data name="BTNOFFSETAPPLY" xml:space="preserve">
+    <value>APPLY</value>
+  </data>
+  <data name="BTNOFFSETOPEN" xml:space="preserve">
+    <value>OPEN</value>
+  </data>
+  <data name="BTNOFFSETSAVE" xml:space="preserve">
+    <value>SAVE</value>
+  </data>
+  <data name="BTNOFFSETSTART" xml:space="preserve">
+    <value>ALL OFFSET</value>
+  </data>
+  <data name="BTNOFFSETSTOP" xml:space="preserve">
+    <value>STOP</value>
+  </data>
   <data name="BTNSAVEDATA" xml:space="preserve">
     <value>SAVE</value>
   </data>
@@ -189,6 +204,12 @@
   <data name="LBLOCVREMEASURE" xml:space="preserve">
     <value>OCV SPEC</value>
   </data>
+  <data name="LBLOFFSETCHANNEL" xml:space="preserve">
+    <value>CHANNEL</value>
+  </data>
+  <data name="LBLOFFSETREPEATCOUNT" xml:space="preserve">
+    <value>Repeat Count</value>
+  </data>
   <data name="LBLPROCESS" xml:space="preserve">
     <value>STATUS CODE</value>
   </data>
@@ -211,7 +232,7 @@
     <value>TRAY SETTING</value>
   </data>
   <data name="MAINTITLE" xml:space="preserve">
-    <value>IR/OCV INSPECTION 2024 05 24</value>
+    <value>IR/OCV INSPECTION 2024 06 10</value>
   </data>
   <data name="MANUAL" xml:space="preserve">
     <value>MANUAL</value>
