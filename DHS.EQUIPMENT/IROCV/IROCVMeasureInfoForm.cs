@@ -966,6 +966,7 @@ namespace DHS.EQUIPMENT
             radBtnOpenOffset.Text = StrLang.BTNOFFSETOPEN;
             radBtnSaveOffset.Text = StrLang.BTNOFFSETSAVE;
             radlblOffsetChannel.Text = StrLang.LBLOFFSETCHANNEL;
+            radlblOffsetRepeatCount.Text = StrLang.LBLOFFSETREPEATCOUNT;
         }
 
         private void radBtnSaveData_Click(object sender, EventArgs e)

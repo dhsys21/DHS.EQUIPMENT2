@@ -136,7 +136,7 @@
     <value>SØKE OM</value>
   </data>
   <data name="BTNOFFSETOPEN" xml:space="preserve">
-    <value>OPEN</value>
+    <value>ÅPEN</value>
   </data>
   <data name="BTNOFFSETSAVE" xml:space="preserve">
     <value>LAGRE</value>
@@ -289,7 +289,7 @@
     <value>BRETT OPP</value>
   </data>
   <data name="RESET" xml:space="preserve">
-    <value>NULLSTILLE</value>
+    <value>INIT</value>
   </data>
   <data name="STEPEND" xml:space="preserve">
     <value>IR/OCV MÅLING ER FERDIG.</value>

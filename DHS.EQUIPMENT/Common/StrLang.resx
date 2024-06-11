@@ -289,7 +289,7 @@
     <value>TRAY UP</value>
   </data>
   <data name="RESET" xml:space="preserve">
-    <value>RESET</value>
+    <value>INIT</value>
   </data>
   <data name="STEPEND" xml:space="preserve">
     <value>IR/OCV Measurement is finish.</value>

@@ -30,10 +30,10 @@ namespace DHS.EQUIPMENT
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            Telerik.WinControls.ThemeSource themeSource2 = new Telerik.WinControls.ThemeSource();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            Telerik.WinControls.ThemeSource themeSource3 = new Telerik.WinControls.ThemeSource();
             this.radpanel_Title = new Telerik.WinControls.UI.RadPanel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.radpanel_body = new Telerik.WinControls.UI.RadPanel();
@@ -642,19 +642,19 @@ namespace DHS.EQUIPMENT
             // 
             // radbtn_RESET
             // 
-            this.radbtn_RESET.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.radbtn_RESET.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radbtn_RESET.ForeColor = System.Drawing.Color.Black;
             this.radbtn_RESET.Location = new System.Drawing.Point(234, 26);
             this.radbtn_RESET.Margin = new System.Windows.Forms.Padding(4);
             this.radbtn_RESET.Name = "radbtn_RESET";
             this.radbtn_RESET.Size = new System.Drawing.Size(100, 60);
             this.radbtn_RESET.TabIndex = 51;
-            this.radbtn_RESET.Text = "RESET";
+            this.radbtn_RESET.Text = "INIT";
             this.radbtn_RESET.TextWrap = true;
             this.radbtn_RESET.ThemeName = "ControlDefault";
             this.radbtn_RESET.Click += new System.EventHandler(this.radbtn_RESET_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_RESET.GetChildAt(0))).Text = "RESET";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_RESET.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_RESET.GetChildAt(0))).Text = "INIT";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radbtn_RESET.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(57)))), ((int)(((byte)(53)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(57)))), ((int)(((byte)(53)))));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(154)))), ((int)(((byte)(154)))));
@@ -662,7 +662,7 @@ namespace DHS.EQUIPMENT
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(0))).CanFocus = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(1).GetChildAt(1))).TextWrap = true;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(1).GetChildAt(1))).LineLimit = true;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(4);
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radbtn_RESET.GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1514,19 +1514,19 @@ namespace DHS.EQUIPMENT
             this.gridView.AllowUserToAddRows = false;
             this.gridView.AllowUserToResizeColumns = false;
             this.gridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.gridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.gridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gridView.BackgroundColor = System.Drawing.Color.White;
             this.gridView.ColumnHeadersHeight = 29;
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridView.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.GridColor = System.Drawing.Color.Black;
             this.gridView.Location = new System.Drawing.Point(2, 2);
@@ -1534,10 +1534,10 @@ namespace DHS.EQUIPMENT
             this.gridView.Name = "gridView";
             this.gridView.ReadOnly = true;
             this.gridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.gridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.gridView.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gridView.RowTemplate.Height = 23;
             this.gridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.gridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -1559,7 +1559,7 @@ namespace DHS.EQUIPMENT
             // radThemeManager1
             // 
             this.radThemeManager1.LoadedThemes.AddRange(new Telerik.WinControls.ThemeSource[] {
-            themeSource2});
+            themeSource3});
             // 
             // IROCVForm
             // 
