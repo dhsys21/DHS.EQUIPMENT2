@@ -34,6 +34,7 @@ using System.Threading;
 using Opc.Ua;
 using Opc.Ua.Server;
 using System.Xml.Linq;
+using System.IO;
 
 namespace OPCUASERVER
 {
@@ -189,6 +190,30 @@ namespace OPCUASERVER
 
         #endregion
 
+        #region Import XML
+        private void ImportXml(IDictionary<NodeId, IList<IReference>> externalReferences, string resourcepath)
+        {
+            NodeStateCollection predefinedNodes = new NodeStateCollection();
+
+            Stream stream = new FileStream(resourcepath, FileMode.Open);
+            Opc.Ua.Export.UANodeSet nodeSet = Opc.Ua.Export.UANodeSet.Read(stream);
+
+            foreach (string namespaceUri in nodeSet.NamespaceUris)
+            {
+                SystemContext.NamespaceUris.GetIndexOrAppend(namespaceUri);
+            }
+
+            nodeSet.Import(SystemContext, predefinedNodes);
+
+            for (int ii = 0; ii < predefinedNodes.Count; ii++)
+            {
+                AddPredefinedNode(SystemContext, predefinedNodes[ii]);
+            }
+            // ensure the reverse refernces exist.
+            AddReverseReferences(externalReferences);
+        }
+        #endregion
+
         #region INodeManager Members
         /// <summary>
         /// Does any initialization required before the address space can be used.
@@ -203,15 +228,21 @@ namespace OPCUASERVER
             int channelcount = 32;
             lock (Lock)
             {
-                LoadPredefinedNodes( SystemContext, externalReferences );
+                LoadPredefinedNodes(SystemContext, externalReferences);
 
                 IList<IReference> references = null;
 
-                if (!externalReferences.TryGetValue( ObjectIds.ObjectsFolder, out references ))
+                if (!externalReferences.TryGetValue(ObjectIds.ObjectsFolder, out references))
                 {
-                    externalReferences[ObjectIds.ObjectsFolder] = references = new List<IReference>( );
+                    externalReferences[ObjectIds.ObjectsFolder] = references = new List<IReference>();
                 }
 
+                string resourcepath = "IROCV2.Config.xml";
+                ImportXml(externalReferences, resourcepath);
+
+                /* for test 2024 07 09 
+                 * 
+                 * 
                 #region MES TAG LIST
                 FolderState rootMy = CreateFolder(null, "Mes");
                 rootMy.AddReference(ReferenceTypes.Organizes, true, ObjectIds.ObjectsFolder);
@@ -321,6 +352,8 @@ namespace OPCUASERVER
 
                 AddPredefinedNode(SystemContext, rootMy3);
                 #endregion
+
+                */
             }
         }
 
@@ -355,7 +388,7 @@ namespace OPCUASERVER
             }
         }
 
-
+        #region Create Folder
         private List<BaseDataVariableState<int>> list = null;
 
         /// <summary>
@@ -583,7 +616,7 @@ namespace OPCUASERVER
 
             return ServiceResult.Good;
         }
-
+        #endregion
 
         /// <summary>
         /// Creates a new method.

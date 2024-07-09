@@ -59,7 +59,8 @@ namespace DHS.EQUIPMENT
             lblCheckMsg.Text = checkmsg;
             try
             {
-                this.Show();
+                //* for test 2024 07 09 
+                //this.Show();
             }
             catch (Exception ex) { }
 

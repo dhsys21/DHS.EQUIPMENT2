@@ -28,9 +28,11 @@
  * ======================================================================*/
 
 using Opc.Ua;
+using Opc.Ua.Export;
 using Opc.Ua.Server;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
 namespace OPCUASERVER
@@ -69,14 +71,13 @@ namespace OPCUASERVER
             // create master node manager.
             return new MasterNodeManager(server, configuration, null, nodeManagers.ToArray());
         }
-
-        /// <summary>
-        /// Loads the non-configurable properties for the application.
-        /// </summary>
-        /// <remarks>
-        /// These properties are exposed by the server but cannot be changed by administrators.
-        /// </remarks>
-        protected override ServerProperties LoadServerProperties()
+    /// <summary>
+    /// Loads the non-configurable properties for the application.
+    /// </summary>
+    /// <remarks>
+    /// These properties are exposed by the server but cannot be changed by administrators.
+    /// </remarks>
+    protected override ServerProperties LoadServerProperties()
         {
             ServerProperties properties = new ServerProperties();
 
@@ -197,7 +198,7 @@ namespace OPCUASERVER
                     StatusCodes.BadUserAccessDenied,
                     "InvalidPassword",
                     LoadServerProperties().ProductUri,
-                    new LocalizedText(info)));
+                    new Opc.Ua.LocalizedText(info)));
             }
 
             return new UserIdentity(userNameToken);
@@ -251,7 +252,7 @@ namespace OPCUASERVER
                     result,
                     info.Key,
                     LoadServerProperties().ProductUri,
-                    new LocalizedText(info)));
+                    new Opc.Ua.LocalizedText(info)));
             }
         }
 

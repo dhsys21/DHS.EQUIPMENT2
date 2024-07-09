@@ -763,7 +763,8 @@ namespace DHS.EQUIPMENT
 
                 if(plcsysinfo != plcsysinfoOld)
                 {
-                    mesclient.WritePLSInfo(0, plcsysinfo);
+                    //* for test 2024 07 09
+                    //mesclient.WritePLSInfo(0, plcsysinfo);
                     plcsysinfoOld = plcsysinfo;
                 }
             }

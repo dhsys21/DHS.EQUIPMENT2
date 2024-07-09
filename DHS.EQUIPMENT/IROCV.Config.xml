@@ -6,7 +6,7 @@
 >
   <ApplicationName>SharpNodeSettings.OpcUaServer</ApplicationName>
   <ApplicationUri>https://github.com/dathlin/SharpNodeSettings</ApplicationUri>
-  <ProductUri>uhttps://github.com/dathlin/SharpNodeSettings</ProductUri>
+  <ProductUri>https://github.com/dathlin/SharpNodeSettings</ProductUri>
   <ApplicationType>Server_0</ApplicationType>
   
   <SecurityConfiguration>
@@ -61,8 +61,8 @@
   </TransportQuotas>
   <ServerConfiguration>
     <BaseAddresses>
-      <ua:String>https://10.2.2.154/StandardBatteryInterface</ua:String>
-      <ua:String>opc.tcp://10.2.2.154/IROCV</ua:String>
+      <ua:String>https://192.168.0.13</ua:String>
+      <ua:String>opc.tcp://192.168.0.13</ua:String>
     </BaseAddresses>
     <SecurityPolicies>
       <ServerSecurityPolicy>

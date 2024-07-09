@@ -119,8 +119,8 @@ namespace DHS.EQUIPMENT
                 //await Task.Run(() => opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
                 //connection = true;
                 string serverurl = MesServer.IPADDRESS;
-                //connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://10.2.2.154:48000/IROCV"));
-                connection = await Task.FromResult<bool>(opcclient.Connect(serverurl));
+                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://192.168.0.13:4841/IROCV"));
+                //connection = await Task.FromResult<bool>(opcclient.Connect(serverurl));
                 return connection;
                 
             } catch(Exception ex)
@@ -141,7 +141,8 @@ namespace DHS.EQUIPMENT
                     Stopwatch sw = new Stopwatch();
                     sw.Start();
 
-                    MesReadTimer();
+                    //* for test 2024 07 09
+                    //MesReadTimer();
 
                     RaiseOnSetDataToDgv(pcData, mesData);
 
