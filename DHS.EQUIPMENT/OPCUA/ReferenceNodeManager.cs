@@ -33,7 +33,6 @@ using System.Xml;
 using System.Threading;
 using Opc.Ua;
 using Opc.Ua.Server;
-using System.Xml.Linq;
 using System.IO;
 
 namespace OPCUASERVER
@@ -63,9 +62,9 @@ namespace OPCUASERVER
             }
             
 
-            timer1 = new System.Timers.Timer( 500 );
-            timer1.Elapsed += Timer1_Elapsed;
-            timer1.Start( );
+            //timer1 = new System.Timers.Timer( 500 );
+            //timer1.Elapsed += Timer1_Elapsed;
+            //timer1.Start( );
         }
         #endregion
 
@@ -86,7 +85,14 @@ namespace OPCUASERVER
         /// <summary>
         /// Creates the NodeId for the specified node.
         /// </summary>
+        private long m_lastUsedId;
+        private ushort m_namespaceIndex;
         public override NodeId New(ISystemContext context, NodeState node)
+        {
+            uint id = Utils.IncrementIdentifier(ref m_lastUsedId);
+            return new NodeId(id, m_namespaceIndex);
+        }
+        public NodeId New2(ISystemContext context, NodeState node)
         {
             BaseInstanceState instance = node as BaseInstanceState;
 
@@ -198,10 +204,7 @@ namespace OPCUASERVER
             Stream stream = new FileStream(resourcepath, FileMode.Open);
             Opc.Ua.Export.UANodeSet nodeSet = Opc.Ua.Export.UANodeSet.Read(stream);
 
-            foreach (string namespaceUri in nodeSet.NamespaceUris)
-            {
-                SystemContext.NamespaceUris.GetIndexOrAppend(namespaceUri);
-            }
+            SystemContext.NamespaceUris.GetIndexOrAppend(nodeSet.NamespaceUris.ToString());
 
             nodeSet.Import(SystemContext, predefinedNodes);
 
@@ -223,7 +226,22 @@ namespace OPCUASERVER
         /// in other node managers. For example, the 'Objects' node is managed by the CoreNodeManager and
         /// should have a reference to the root folder node(s) exposed by this node manager.  
         /// </remarks>
-        public override void CreateAddressSpace( IDictionary<NodeId, IList<IReference>> externalReferences )
+        public override void CreateAddressSpace(IDictionary<NodeId, IList<IReference>> externalReferences)
+        {
+            lock (Lock)
+            {
+                IList<IReference> references = null;
+
+                if (!externalReferences.TryGetValue(ObjectIds.ObjectsFolder, out references))
+                {
+                    externalReferences[ObjectIds.ObjectsFolder] = references = new List<IReference>();
+                }
+
+                string resourcepath = "IROCV2.Config.xml";
+                ImportXml(externalReferences, resourcepath);
+            }
+        }
+        public void CreateAddressSpace2( IDictionary<NodeId, IList<IReference>> externalReferences )
         {
             int channelcount = 32;
             lock (Lock)
@@ -240,9 +258,11 @@ namespace OPCUASERVER
                 string resourcepath = "IROCV2.Config.xml";
                 ImportXml(externalReferences, resourcepath);
 
+               // NodeState deviceSetNode = PredefinedNodes.Values.First(x => x.BrowseName.Name == "Battery Standard Interface");
+                //base.CreateAddressSpace(externalReferences);
+
                 /* for test 2024 07 09 
-                 * 
-                 * 
+
                 #region MES TAG LIST
                 FolderState rootMy = CreateFolder(null, "Mes");
                 rootMy.AddReference(ReferenceTypes.Organizes, true, ObjectIds.ObjectsFolder);

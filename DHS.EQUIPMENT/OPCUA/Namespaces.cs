@@ -41,6 +41,6 @@ namespace OPCUASERVER
         /// <summary>
         /// The namespace for the nodes provided by the server.
         /// </summary>
-        public const string ReferenceApplications = "http://opcfoundation.org/Quickstarts/ReferenceApplications";
+        public const string ReferenceApplications = "http://StandardBatteryInterface";
     }
 }
