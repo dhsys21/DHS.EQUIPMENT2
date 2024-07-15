@@ -87,12 +87,12 @@ namespace OPCUASERVER
         /// </summary>
         private long m_lastUsedId;
         private ushort m_namespaceIndex;
-        public override NodeId New(ISystemContext context, NodeState node)
+        public NodeId New2(ISystemContext context, NodeState node)
         {
             uint id = Utils.IncrementIdentifier(ref m_lastUsedId);
             return new NodeId(id, m_namespaceIndex);
         }
-        public NodeId New2(ISystemContext context, NodeState node)
+        public override NodeId New(ISystemContext context, NodeState node)
         {
             BaseInstanceState instance = node as BaseInstanceState;
 
@@ -176,8 +176,6 @@ namespace OPCUASERVER
 
         private System.Timers.Timer timer1 = null;
 
-
-
         private void Timer1_Elapsed( object sender, System.Timers.ElapsedEventArgs e )
         {
             if (list != null)
@@ -226,7 +224,7 @@ namespace OPCUASERVER
         /// in other node managers. For example, the 'Objects' node is managed by the CoreNodeManager and
         /// should have a reference to the root folder node(s) exposed by this node manager.  
         /// </remarks>
-        public override void CreateAddressSpace(IDictionary<NodeId, IList<IReference>> externalReferences)
+        public void CreateAddressSpace2(IDictionary<NodeId, IList<IReference>> externalReferences)
         {
             lock (Lock)
             {
@@ -241,7 +239,7 @@ namespace OPCUASERVER
                 ImportXml(externalReferences, resourcepath);
             }
         }
-        public void CreateAddressSpace2( IDictionary<NodeId, IList<IReference>> externalReferences )
+        public override void CreateAddressSpace( IDictionary<NodeId, IList<IReference>> externalReferences )
         {
             int channelcount = 32;
             lock (Lock)
@@ -1184,8 +1182,6 @@ namespace OPCUASERVER
             return variable;
         }
 
-       
-
         private object GetNewValue(BaseVariableState variable)
         {
             if (m_generator == null)
@@ -1203,7 +1199,6 @@ namespace OPCUASERVER
 
             return value;
         }
-        
 
         /// <summary>
         /// Frees any resources allocated for the address space.
@@ -1271,7 +1266,6 @@ namespace OPCUASERVER
             return null;
         }
         #endregion
-        
 
         #region Overrides
         #endregion
