@@ -60,11 +60,11 @@ namespace OPCUASERVER
             {
                 m_configuration = new ReferenceServerConfiguration();
             }
-            
 
-            //timer1 = new System.Timers.Timer( 500 );
-            //timer1.Elapsed += Timer1_Elapsed;
-            //timer1.Start( );
+
+            timer1 = new System.Timers.Timer(500);
+            timer1.Elapsed += Timer1_Elapsed;
+            timer1.Start();
         }
         #endregion
 
@@ -241,7 +241,6 @@ namespace OPCUASERVER
         }
         public override void CreateAddressSpace( IDictionary<NodeId, IList<IReference>> externalReferences )
         {
-            int channelcount = 32;
             lock (Lock)
             {
                 LoadPredefinedNodes(SystemContext, externalReferences);
@@ -253,7 +252,7 @@ namespace OPCUASERVER
                     externalReferences[ObjectIds.ObjectsFolder] = references = new List<IReference>();
                 }
 
-                string resourcepath = "IROCV2.Config.xml";
+                string resourcepath = "IROCV2_v2.0.xml";
                 ImportXml(externalReferences, resourcepath);
 
                // NodeState deviceSetNode = PredefinedNodes.Values.First(x => x.BrowseName.Name == "Battery Standard Interface");
@@ -376,7 +375,17 @@ namespace OPCUASERVER
         }
 
         private BaseDataVariableState<bool> SystemState = null;
-
+        private void methodcall(ISystemContext context,
+            CallMethodRequest methodToCall,
+            MethodState method,
+            CallMethodResult result)
+        {
+            //return StatusCodes.Bad;
+        }
+        protected override ServiceResult Call(ISystemContext context, CallMethodRequest methodToCall, MethodState method, CallMethodResult result)
+        {
+            return base.Call(context, methodToCall, method, result);
+        }
         private ServiceResult OnAddCall(
             ISystemContext context,
             MethodState method,

@@ -494,6 +494,9 @@
     <EmbeddedResource Include="IROCV2.Config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="IROCV2_v2.0.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="IROCV_Icon.ico" />
     <None Include="Resources\Stage_End.png" />
   </ItemGroup>
