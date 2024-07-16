@@ -34,6 +34,11 @@ using System.Threading;
 using Opc.Ua;
 using Opc.Ua.Server;
 using System.IO;
+using Telerik.WinControls.UI.TaskBoard;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.ServiceModel.Channels;
 
 namespace OPCUASERVER
 {
@@ -375,16 +380,153 @@ namespace OPCUASERVER
         }
 
         private BaseDataVariableState<bool> SystemState = null;
-        private void methodcall(ISystemContext context,
-            CallMethodRequest methodToCall,
-            MethodState method,
+        protected override ServiceResult Call(ISystemContext context, 
+            CallMethodRequest methodToCall, 
+            MethodState method, 
             CallMethodResult result)
         {
-            //return StatusCodes.Bad;
+            //return base.Call(context, methodToCall, method, result);
+            
+            //ServerSystemContext systemContext = context as ServerSystemContext;
+            //List<ServiceResult> argumentErrors = new List<ServiceResult>();
+            //VariantCollection inputArguments = new VariantCollection();
+            //inputArguments = methodToCall.InputArguments;
+
+            
+            return DispatchControllerMethod(context, methodToCall, 
+                methodToCall.InputArguments, result.InputArgumentResults, result.OutputArguments);
         }
-        protected override ServiceResult Call(ISystemContext context, CallMethodRequest methodToCall, MethodState method, CallMethodResult result)
+        private ServiceResult DispatchControllerMethod(
+            ISystemContext context,
+            CallMethodRequest methodToCall,
+            IList<Variant> inputArguments,
+            List<StatusCode> inputArgumentResults,
+            List<Variant> outputArguments)
         {
-            return base.Call(context, methodToCall, method, result);
+            HeaderDataType header = new HeaderDataType
+            {
+                Id = 129,
+                Type = "1"
+            };
+            TrayInfo contentTrayInfo = new TrayInfo
+            {
+                EquipmentID = "IRCOV0002",
+                TrayID = "Test1234"
+            };
+
+            NodeId nodeid = methodToCall.MethodId;
+            string strNodeId = nodeid.Identifier.ToString();
+            if(strNodeId == "7004")
+            {
+                ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
+                ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5032"), contentTrayInfo);
+
+                outputArguments.Add(new Variant(extensionObject1));
+                outputArguments.Add(new Variant(extensionObject2));
+                //outputArguments[0] = new Variant(extensionObject1);
+                //outputArguments[1] = new Variant(extensionObject2);
+                return ServiceResult.Good;
+            }
+            else if (strNodeId == "7012")
+            {
+                //* inputArguments 처리
+                if (inputArguments != null)
+                {
+                    foreach (Variant value1 in inputArguments)
+                    {
+                        ExtensionObject extObj = value1.Value as ExtensionObject;
+                        
+                        if (extObj != null)
+                            Console.WriteLine(extObj.ToString());
+                    }
+                }
+
+                return StatusCodes.Good;
+            }
+            else if (strNodeId == "7013")
+            {
+                outputArguments = new List<Variant>();
+                return StatusCodes.Good;
+            }
+            return ServiceResult.Good;
+        }
+        #region ExtensionObject
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, HeaderDataType header)
+        {
+            List<byte> headerBytes = new List<byte>();
+
+            headerBytes.AddRange(IntToBytes(header.Id));
+            headerBytes.AddRange(IntToBytes(header.Type.Length));
+            headerBytes.AddRange(StringToBytes(header.Type));
+            //headerBytes.AddRange(DateTimeToByteArray(DateTime.Now));
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "urn:KitInformationmodel.Siemens.com");
+            return new ExtensionObject(typeid, headerBytes.ToArray());
+            //return new ExtensionObject(nodeid, headerBytes.ToArray());
+        }
+
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, TrayInfo content)
+        {
+            List<byte> contentBytes = new List<byte>();
+
+            contentBytes.AddRange(IntToBytes(content.EquipmentID.Length));
+            contentBytes.AddRange(StringToBytes(content.EquipmentID));
+
+            contentBytes.AddRange(IntToBytes(content.TrayID.Length));
+            contentBytes.AddRange(StringToBytes(content.TrayID));
+
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
+            return new ExtensionObject(typeid, contentBytes.ToArray());
+            //return new ExtensionObject(nodeid, contentBytes.ToArray());
+        }
+        public static byte[] IntToBytes(int value)
+        {
+            byte[] byteArray = BitConverter.GetBytes(value);
+            return byteArray;
+        }
+        public static byte[] StringToBytes(string value)
+        {
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(value);
+            return asciiBytes;
+        }
+        public static byte[] StringToBytes(string[] values)
+        {
+            List<byte> byteList = new List<byte>();
+
+            foreach (var str in values)
+            {
+                byte[] stringBytes = Encoding.UTF8.GetBytes(str);
+                byte[] lengthBytes = BitConverter.GetBytes(stringBytes.Length);
+
+                byteList.AddRange(lengthBytes);
+                byteList.AddRange(stringBytes);
+            }
+
+            return byteList.ToArray();
+        }
+        public static byte[] DateTimeToByteArray2(DateTime dateTime)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(ms, dateTime);
+                return ms.ToArray();
+            }
+        }
+        public static byte[] DateTimeToByteArray(DateTime dateTime)
+        {
+            long ticks = dateTime.Ticks;
+            return BitConverter.GetBytes(ticks);
+        }
+        #endregion
+        protected ServiceResult Call2(ISystemContext context,
+            NodeId objectId,
+            IList<Variant> inputArguments,
+            IList<ServiceResult> argumentErrors,
+            IList<Variant> outputArguments)
+        {
+            return ServiceResult.Good;
         }
         private ServiceResult OnAddCall(
             ISystemContext context,
@@ -1286,5 +1428,19 @@ namespace OPCUASERVER
         private UInt16 m_simulationInterval = 1000;
         private bool m_simulationEnabled = true;
         #endregion
+    }
+
+    [DataContract(Namespace = "http://yourcompany.com/HeaderDataType")]
+    public class HeaderDataType
+    {
+        public int Id { get; set; }
+        public string Type { get; set; }
+        public DateTime Timestamp { get; set; }
+    }
+    [DataContract(Namespace = "http://yourcompany.com/ContentDataType")]
+    public class TrayInfo
+    {
+        public string TrayID { get; set; }
+        public string EquipmentID { get; set; }
     }
 }
