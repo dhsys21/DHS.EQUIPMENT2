@@ -453,9 +453,9 @@ namespace OPCUASERVER
 
             if(strNodeId == "7004")
             {
-                //* GetEnvelope (FORIR_2_1_RequestTrayInformation)
-                //* inputArguments : null
-                //* outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
+                /// [GetEnvelope (FORIR_2_1_RequestTrayInformation)]
+                /// inputArguments : null
+                /// outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
                 TrayInfo trayInfo = new TrayInfo
                 {
                     EquipmentID = "IRCOV0002",
@@ -467,15 +467,16 @@ namespace OPCUASERVER
 
                 outputArguments.Add(new Variant(extensionObject1));
                 outputArguments.Add(new Variant(extensionObject2));
-                //outputArguments[0] = new Variant(extensionObject1);
-                //outputArguments[1] = new Variant(extensionObject2);
+                /// ProSys Library에서는 아래 코드를 사용
+                /// outputArguments[0] = new Variant(extensionObject1);
+                /// outputArguments[1] = new Variant(extensionObject2);
                 return StatusCodes.Good;
             }
             else if (strNodeId == "7012")
             {
-                //* SetEnvelope (FORIR_2_1_RequestTrayInformation)
-                //* inputArguments : TrayRequestInfo (CellID, CellStatus, TrayStatusCode, ErrorCode, ErrorMessage)
-                //* outputArguments : null
+                /// SetEnvelope (FORIR_2_1_RequestTrayInformation)
+                /// inputArguments : TrayRequestInfo (CellID, CellStatus, TrayStatusCode, ErrorCode, ErrorMessage)
+                /// outputArguments : null
                 if (inputArguments != null)
                 {
                     foreach (Variant value1 in inputArguments)
@@ -491,9 +492,9 @@ namespace OPCUASERVER
             }
             else if (strNodeId == "7013")
             {
-                //* GetEnvelope (FORIR_2_2_DataCollection)
-                //* inputArguments : null
-                //* outputArguments(return value) : Data Collection(EquipmentID, TayID, CellID, CellStatus, IR, OCV)
+                /// GetEnvelope (FORIR_2_2_DataCollection)
+                /// inputArguments : null
+                /// outputArguments(return value) : Data Collection(EquipmentID, TayID, CellID, CellStatus, IR, OCV)
                 IrocvDataCollection irocvData = new IrocvDataCollection();
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
                 ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
@@ -504,9 +505,9 @@ namespace OPCUASERVER
             }
             else if(strNodeId == "7016")
             {
-                //* SetEnvelope (FORIR_2_2_DataCollection)
-                //* inputArguments : Data Collection Reply (ErrorCode, ErrorMessage)
-                //* outputArguments : null
+                /// SetEnvelope (FORIR_2_2_DataCollection)
+                /// inputArguments : Data Collection Reply (ErrorCode, ErrorMessage)
+                /// outputArguments : null
                 if (inputArguments != null)
                 {
                     foreach (Variant value1 in inputArguments)
@@ -536,7 +537,6 @@ namespace OPCUASERVER
             uint identifier = Convert.ToUInt32(nodeid.Identifier);
             var typeid = new ExpandedNodeId(identifier, "urn:KitInformationmodel.Siemens.com");
             return new ExtensionObject(typeid, headerBytes.ToArray());
-            //return new ExtensionObject(nodeid, headerBytes.ToArray());
         }
 
         public static ExtensionObject CreateExtensionObject(NodeId nodeid, TrayInfo content)
@@ -552,7 +552,6 @@ namespace OPCUASERVER
             uint identifier = Convert.ToUInt32(nodeid.Identifier);
             var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
             return new ExtensionObject(typeid, contentBytes.ToArray());
-            //return new ExtensionObject(nodeid, contentBytes.ToArray());
         }
         public static ExtensionObject CreateExtensionObject(NodeId nodeid, IrocvDataCollection content)
         {
@@ -567,7 +566,6 @@ namespace OPCUASERVER
             uint identifier = Convert.ToUInt32(nodeid.Identifier);
             var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
             return new ExtensionObject(typeid, contentBytes.ToArray());
-            //return new ExtensionObject(nodeid, contentBytes.ToArray());
         }
         public static byte[] IntToBytes(int value)
         {
