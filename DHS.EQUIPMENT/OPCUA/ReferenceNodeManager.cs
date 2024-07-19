@@ -43,6 +43,7 @@ using Microsoft.Extensions.Primitives;
 using System.Linq;
 using DHS.EQUIPMENT;
 using DHS.EQUIPMENT.Common;
+using S7.Net;
 
 namespace OPCUASERVER
 {
@@ -526,10 +527,39 @@ namespace OPCUASERVER
                 /// GetEnvelope (FORIR_2_2_DataCollection)
                 /// inputArguments : null
                 /// outputArguments(return value) : Data Collection(EquipmentID, TayID, CellID, CellStatus, IR, OCV)
-                
+
+                #region for test
+                string equipmentid = "IROCV0002";
+                string trayid = "Test0001";
+                string[] cellid = new string[32];
+                string[] cellstatus = new string[32];
+                double[] ir = new double[32];
+                double[] ocv = new double[32];
+
+                for(int i = 0; i < 32;i++)
+                {
+                    cellid[i] = "test" + (i + 1).ToString("D3");
+                    cellstatus[i] = "0";
+                    Random ran = new Random();
+                    int ranInt = ran.Next(0, 100);
+                    ir[i] = 0.3832 + ranInt / 10000.0;
+                    ocv[i] = 3721.21 + ranInt / 100.0;
+                }
+                irocvdata[0] = IROCVData.GetInstance(0);
+                irocvdata[0].InitData();
+                irocvdata[0].EQUIPMENTID = equipmentid;
+                irocvdata[0].TRAYID = trayid;
+                irocvdata[0].CELLID = cellid;
+                irocvdata[0].CELLSTATUSIROCV = cellstatus;
+                irocvdata[0].IR_AFTERVALUE = ir;
+                irocvdata[0].OCV = ocv;
+                #endregion for test
+
                 IrocvDataCollection irocvData = new IrocvDataCollection();
+                irocvData = irocvprocess.GetIrocvDataCollection(NodeId.Parse("ns=0;i=5041"), irocvdata[0]);
+                var extensionObject2 = ConvertDataCollectionExtensionObject(irocvData);
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
-                ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
+                //ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
 
                 outputArguments.Add(new Variant(extensionObject1));
                 outputArguments.Add(new Variant(extensionObject2));
@@ -601,6 +631,24 @@ namespace OPCUASERVER
             }
 
             throw new InvalidCastException("ExtensionObject cannot be cast to TrayRequestInfo");
+        }
+        public static ExtensionObject ConvertDataCollectionExtensionObject(IrocvDataCollection irocvDC)
+        {
+            // Create a binary encoder
+            byte[] buffer;
+            using (var stream = new System.IO.MemoryStream())
+            {
+                using (var encoder = new BinaryEncoder(stream, new ServiceMessageContext(), false))
+                {
+                    irocvDC.Encode(encoder);
+                    //encoder.Flush();
+                    buffer = stream.ToArray();
+                }
+            }
+
+            // Create an ExtensionObject with the encoded data
+            var extensionObject = new ExtensionObject(irocvDC.TypeId, buffer);
+            return extensionObject;
         }
         public static ExtensionObject CreateExtensionObject(NodeId nodeid, HeaderDataType header)
         {
@@ -1673,7 +1721,7 @@ namespace OPCUASERVER
                 && ErrorCode == other.ErrorCode && ErrorMessage == other.ErrorMessage;
         }
     }
-    public class IrocvDataCollection
+    public class IrocvDataCollection : IEncodeable
     {
         public string EquipmentID { get; set; }
         public string TrayID { get; set; }
@@ -1681,18 +1729,89 @@ namespace OPCUASERVER
         public string[] CellStatus { get; set;}
         public double[] IR {  get; set; }
         public double[] OCV { get; set; }
+
+        ExpandedNodeId IEncodeable.TypeId => throw new NotImplementedException();
+
+        ExpandedNodeId IEncodeable.BinaryEncodingId => throw new NotImplementedException();
+
+        ExpandedNodeId IEncodeable.XmlEncodingId => throw new NotImplementedException();
+
+        public ExpandedNodeId TypeId;
+
+        public ExpandedNodeId BinaryEncodingId;
+
+        public ExpandedNodeId XmlEncodingId;
+        public void SetTypeId(NodeId nodeid)
+        {
+            TypeId = nodeid;
+        }
+        public object Clone()
+        {
+            return new IrocvDataCollection
+            {
+                EquipmentID = EquipmentID,
+                TrayID = TrayID,
+                CellID = CellID,
+                CellStatus = CellStatus,
+                IR = IR,
+                OCV = OCV
+            };
+        }
+
+        public void Decode(IDecoder decoder)
+        {
+            EquipmentID = decoder.ReadString("EquipmentID");
+            TrayID = decoder.ReadString("TrayID");
+            CellID = decoder.ReadStringArray("CellID").Cast<string>().ToArray();
+            CellStatus = decoder.ReadStringArray("CellStatus").Cast<string>().ToArray();
+            IR = decoder.ReadDoubleArray("IR").Cast<double>().ToArray();
+            OCV = decoder.ReadDoubleArray("OCV").Cast<double>().ToArray();
+        }
+
+        public void Encode(IEncoder encoder)
+        {
+            encoder.WriteString("EquipmentID", EquipmentID);
+            encoder.WriteString("TrayID", TrayID);
+            encoder.WriteStringArray("CellID", CellID);
+            encoder.WriteStringArray("CellStatus", CellStatus);
+            encoder.WriteDoubleArray("IR", IR);
+            encoder.WriteDoubleArray("OCV", OCV);
+        }
+
+        public bool IsEqual(IEncodeable encodeable)
+        {
+            if (encodeable == null || !(encodeable is IrocvDataCollection))
+            {
+                return false;
+            }
+
+            var other = (IrocvDataCollection)encodeable;
+            return EquipmentID == other.EquipmentID && TrayID == other.TrayID
+                && CellID == other.CellID && CellStatus == other.CellStatus
+                && IR == other.IR && OCV == other.OCV;
+        }
     }
     public class ReplyDataCollection : IEncodeable
     {
         public string ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
 
-        public ExpandedNodeId TypeId => throw new NotImplementedException();
+        ExpandedNodeId IEncodeable.TypeId => throw new NotImplementedException();
 
-        public ExpandedNodeId BinaryEncodingId => throw new NotImplementedException();
+        ExpandedNodeId IEncodeable.BinaryEncodingId => throw new NotImplementedException();
 
-        public ExpandedNodeId XmlEncodingId => throw new NotImplementedException();
+        ExpandedNodeId IEncodeable.XmlEncodingId => throw new NotImplementedException();
 
+        public ExpandedNodeId TypeId;
+
+        public ExpandedNodeId BinaryEncodingId;
+
+        public ExpandedNodeId XmlEncodingId;
+
+        public void SetTypeId(NodeId nodeid)
+        {
+            TypeId = nodeid;
+        }
         public object Clone()
         {
             return new ReplyDataCollection

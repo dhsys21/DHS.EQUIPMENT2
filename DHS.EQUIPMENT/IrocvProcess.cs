@@ -1614,7 +1614,7 @@ namespace DHS.EQUIPMENT
                         }
                         else
                         {
-                            irocvdata[stageno].CELLSTATUSIROCV[index] = "1";
+                            irocvdata[stageno].CELLSTATUSIROCV[index] = "0";
                             irocvdata[stageno].MEASURERESULT[index] = 0;
                         }
                     }
@@ -1947,6 +1947,20 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].MESRESULT = int.Parse(replyDataCollection.ErrorCode);
             irocvdata[stageno].MESERRORCODE = replyDataCollection.ErrorCode;
             irocvdata[stageno].MESERRORMESSAGE = replyDataCollection.ErrorMessage;
+        }
+        public IrocvDataCollection GetIrocvDataCollection(Opc.Ua.NodeId nodeId, IROCVData irocvdata)
+        {
+            IrocvDataCollection irocvDC = new IrocvDataCollection();
+            irocvDC.TypeId = nodeId;
+            irocvDC.EquipmentID = irocvdata.EQUIPMENTID;
+            irocvDC.TrayID = irocvdata.TRAYID;
+            irocvDC.CellID = irocvdata.CELLID;
+            /// 0 => OK, others => NG
+            irocvDC.CellStatus = irocvdata.CELLSTATUSIROCV;
+            irocvDC.IR = irocvdata.IR_AFTERVALUE;
+            irocvDC.OCV = irocvdata.OCV;
+
+            return irocvDC;
         }
         #endregion
 
