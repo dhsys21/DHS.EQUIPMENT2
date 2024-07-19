@@ -442,10 +442,14 @@ namespace OPCUASERVER
             List<StatusCode> inputArgumentResults,
             List<Variant> outputArguments)
         {
+            /// outputArguments의 header
+            /// 공통으로 사용
+            
             HeaderDataType header = new HeaderDataType
             {
                 Id = 1,
-                Type = "1"
+                Type = "1",
+                Timestamp = DateTime.Now
             };
 
             NodeId nodeid = methodToCall.MethodId;
@@ -456,6 +460,7 @@ namespace OPCUASERVER
                 /// [GetEnvelope (FORIR_2_1_RequestTrayInformation)]
                 /// inputArguments : null
                 /// outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
+                
                 TrayInfo trayInfo = new TrayInfo
                 {
                     EquipmentID = "IRCOV0002",
@@ -470,6 +475,7 @@ namespace OPCUASERVER
                 /// ProSys Library에서는 아래 코드를 사용
                 /// outputArguments[0] = new Variant(extensionObject1);
                 /// outputArguments[1] = new Variant(extensionObject2);
+                
                 return StatusCodes.Good;
             }
             else if (strNodeId == "7012")
@@ -477,6 +483,7 @@ namespace OPCUASERVER
                 /// SetEnvelope (FORIR_2_1_RequestTrayInformation)
                 /// inputArguments : TrayRequestInfo (CellID, CellStatus, TrayStatusCode, ErrorCode, ErrorMessage)
                 /// outputArguments : null
+                
                 if (inputArguments != null)
                 {
                     foreach (Variant value1 in inputArguments)
@@ -495,6 +502,7 @@ namespace OPCUASERVER
                 /// GetEnvelope (FORIR_2_2_DataCollection)
                 /// inputArguments : null
                 /// outputArguments(return value) : Data Collection(EquipmentID, TayID, CellID, CellStatus, IR, OCV)
+                
                 IrocvDataCollection irocvData = new IrocvDataCollection();
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
                 ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
@@ -533,7 +541,9 @@ namespace OPCUASERVER
             headerBytes.AddRange(IntToBytes(header.Id));
             headerBytes.AddRange(IntToBytes(header.Type.Length));
             headerBytes.AddRange(StringToBytes(header.Type));
-            //headerBytes.AddRange(DateTimeToByteArray(DateTime.Now));
+
+            /// DataTime 형식이 오류가 남. 수정 필요
+            /// headerBytes.AddRange(DateTimeToByteArray(DateTime.Now));
             uint identifier = Convert.ToUInt32(nodeid.Identifier);
             var typeid = new ExpandedNodeId(identifier, "urn:KitInformationmodel.Siemens.com");
             return new ExtensionObject(typeid, headerBytes.ToArray());
