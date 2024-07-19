@@ -506,7 +506,9 @@ namespace OPCUASERVER
                         TrayRequestInfo trayinfo;
                         if(extObj.TypeId.Identifier.ToString() == "5034")
                         {
-                            trayinfo = ConvertExtensionObject(extObj);
+                            trayinfo = ConvertExtensionObjectTrayInfo(extObj);
+
+                            //* Read Tray Info
                             irocvprocess.MESREADTRAYINFO = true;
                             irocvprocess.SetTrayInfo(0, trayinfo);
 
@@ -531,6 +533,10 @@ namespace OPCUASERVER
 
                 outputArguments.Add(new Variant(extensionObject1));
                 outputArguments.Add(new Variant(extensionObject2));
+
+                //* Write Data Collection
+                irocvprocess.MESWRITEDATACOLLECTION = true;
+
                 return StatusCodes.Good;
             }
             else if(strNodeId == "7016")
@@ -546,6 +552,16 @@ namespace OPCUASERVER
 
                         if (extObj != null)
                             Console.WriteLine(extObj.ToString());
+
+                        ReplyDataCollection replyDataCollection;
+                        if (extObj.TypeId.Identifier.ToString() == "5045")
+                        {
+                            replyDataCollection = ConvertExtensionObjectDataCollection(extObj);
+
+                            //* Read Tray Info
+                            irocvprocess.MESREADDATACOLLECTION = true;
+                            irocvprocess.SetReplyDataCollection(0, replyDataCollection);
+                        }
                     }
                 }
 
@@ -556,7 +572,7 @@ namespace OPCUASERVER
         }
 
         #region ExtensionObject
-        public static TrayRequestInfo ConvertExtensionObject(ExtensionObject extObj)
+        public static TrayRequestInfo ConvertExtensionObjectTrayInfo(ExtensionObject extObj)
         {
             if(extObj.Body is TrayRequestInfo)
                 return (TrayRequestInfo)extObj.Body;
@@ -565,6 +581,21 @@ namespace OPCUASERVER
             {
                 var decoder = new BinaryDecoder((byte[])extObj.Body, new ServiceMessageContext());
                 var data = new TrayRequestInfo();
+                data.Decode(decoder);
+                return data;
+            }
+
+            throw new InvalidCastException("ExtensionObject cannot be cast to TrayRequestInfo");
+        }
+        public static ReplyDataCollection ConvertExtensionObjectDataCollection(ExtensionObject extObj)
+        {
+            if (extObj.Body is ReplyDataCollection)
+                return (ReplyDataCollection)extObj.Body;
+
+            if (extObj.Body is byte[])
+            {
+                var decoder = new BinaryDecoder((byte[])extObj.Body, new ServiceMessageContext());
+                var data = new ReplyDataCollection();
                 data.Decode(decoder);
                 return data;
             }
@@ -1584,6 +1615,7 @@ namespace OPCUASERVER
         public string TrayID { get; set; }
         public string EquipmentID { get; set; }
     }
+    [DataContract(Namespace = "http://yourcompany.com/ContentDataType")]
     public class TrayRequestInfo : IEncodeable
     {
         public string[] CellID { get; set; }
@@ -1649,5 +1681,48 @@ namespace OPCUASERVER
         public string[] CellStatus { get; set;}
         public double[] IR {  get; set; }
         public double[] OCV { get; set; }
+    }
+    public class ReplyDataCollection : IEncodeable
+    {
+        public string ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public ExpandedNodeId TypeId => throw new NotImplementedException();
+
+        public ExpandedNodeId BinaryEncodingId => throw new NotImplementedException();
+
+        public ExpandedNodeId XmlEncodingId => throw new NotImplementedException();
+
+        public object Clone()
+        {
+            return new ReplyDataCollection
+            {
+                ErrorCode = ErrorCode,
+                ErrorMessage = ErrorMessage
+            };
+        }
+
+        public void Decode(IDecoder decoder)
+        {
+            ErrorCode = decoder.ReadString("ErrorCode");
+            ErrorMessage = decoder.ReadString("ErrorMessage");
+        }
+
+        public void Encode(IEncoder encoder)
+        {
+            encoder.WriteString("ErrorCode", ErrorCode);
+            encoder.WriteString("ErrorMessage", ErrorMessage);
+        }
+
+        public bool IsEqual(IEncodeable encodeable)
+        {
+            if (encodeable == null || !(encodeable is TrayRequestInfo))
+            {
+                return false;
+            }
+
+            var other = (TrayRequestInfo)encodeable;
+            return ErrorCode == other.ErrorCode && ErrorMessage == other.ErrorMessage;
+        }
     }
 }

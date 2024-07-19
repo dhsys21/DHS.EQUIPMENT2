@@ -1118,7 +1118,7 @@ namespace DHS.EQUIPMENT
                     break;
                 case 1:
                     //* Write Sequence : 상태가 변했을 때 sequence를 변경하여 알림.
-                    mesclient.WriteSequence(stageno, (int)enumProcess.pTrayIn);
+                    mesclient.WriteSequence(stageno, (int)enumProcess.pBarcode);
                     nInspectionStep = 2;
                     break;
                 case 2:
@@ -1127,23 +1127,29 @@ namespace DHS.EQUIPMENT
                     {
                         SetProcessStatus(stageno, enumProcess.pRequestTrayInfo);
                         nInspectionStep = 3;
+                        MESWRITETRAYINFO = false;
                     }
                     break;
                 case 3:
                     //* MES - Call Method (SetEnvelope)
-                    SetProcessStatus(stageno, enumProcess.pReplyTrayInfo);
-                    if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
+                    if(MESREADTRAYINFO == true)
                     {
-                        //* MES - Display Tray Info.
-                        DisplayTrayInfo(stageno, irocvdata[stageno]);
+                        SetProcessStatus(stageno, enumProcess.pReplyTrayInfo);
+                        if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
+                        {
+                            //* MES - Display Tray Info.
+                            DisplayTrayInfo(stageno, irocvdata[stageno]);
 
-                        nInspectionStep = 5;
-                    }
-                    else if (irocvdata[stageno].TRAYSTATUSCODE == "DT" || irocvdata[stageno].TRAYSTATUSCODE == "NT")
-                    {
-                        //* PLC - Request Tray Out
-                        PLC_TRAYOUT(stageno, 1);
-                        SetProcessStatus(stageno, enumProcess.pTrayOut);
+                            nInspectionStep = 5;
+                        }
+                        else if (irocvdata[stageno].TRAYSTATUSCODE == "DT" || irocvdata[stageno].TRAYSTATUSCODE == "NT")
+                        {
+                            //* PLC - Request Tray Out
+                            PLC_TRAYOUT(stageno, 1);
+                            SetProcessStatus(stageno, enumProcess.pTrayOut);
+                        }
+
+                        MESREADTRAYINFO = false;
                     }
                     break;
                 case 5:
@@ -1307,9 +1313,9 @@ namespace DHS.EQUIPMENT
             switch (nInspectionStep)
             {
                 case 0:
-                    //* Remeasure check
-                    //* irocvdata[stageno].REMEASURECELLCOUNT > 0 config에서 설정한 %를 넘어가는 지 확인
-                    //* remeasure count확인
+                    /// Remeasure check
+                    /// irocvdata[stageno].REMEASURECELLCOUNT > 0 config에서 설정한 %를 넘어가는 지 확인
+                    /// remeasure count확인
                     if (siemensplc.PLCTRAYDOWN == 1)
                     {
                         SetProcessStatus(stageno, enumProcess.pTrayDown);
@@ -1335,28 +1341,28 @@ namespace DHS.EQUIPMENT
                     }
                     break;
                 case 1:
-                    //* sequence no 쓰는 시점을 WriteFOEQR2_2이후로 변경해야 하는지 검토
-                    mesclient.WriteSequence(stageno, 104);
+                    //* Write Sequence : 상태가 변했을 때 sequence를 변경하여 알림.
+                    mesclient.WriteSequence(stageno, (int)enumProcess.pDataUpload);
                     nInspectionStep = 2;
                     break;
                 case 2:
-                    //* MES - Data Collection
-                    //* IROCV -> MES FOEQR1.1 (send ir, ocv data to mes)
-                    //* FORIR2.2 2024 05 28 수정
-                    //mesclient.WriteFOEQR1_1(stageno, irocvdata[stageno]);
-                    mesclient.WriteFOEQR2_2(stageno, irocvdata[stageno]);
-                    SetProcessStatus(stageno, enumProcess.pDataUpload);
-                    nInspectionStep = 3;
+                    //* MES - Call Method (GetEnvelope)
+                    if (MESWRITEDATACOLLECTION == true)
+                    {
+                        SetProcessStatus(stageno, enumProcess.pDataUpload);
+                        nInspectionStep = 3;
+                        MESWRITEDATACOLLECTION = false;
+                    }
                     break;
                 case 3:
-                    //* MES - Request Process Result (트레이 배출 또는 재측정)
-                    //* MES -> IROCV FOEQR1.13 (Process Result) 1 : Tray Emission  2: Tray Retry
-                    //* 20240521 Process Result 삭제. IR/OCV에서 자체 판단하여 재측정 후 내보냄.
-                    //* FORIR2.2 2024 05 28 수정
-                    //irocvdata[stageno] = mesclient.ReadFOEQR1_13(stageno);
-                    irocvdata[stageno] = mesclient.ReadFOEQR2_2(stageno);
-                    SetProcessStatus(stageno, enumProcess.pDataReply);
-                    nInspectionStep = 4;
+                    //* MES - Call Method (SetEnvelope)
+                    //* ErrorCode, ErrorMessage 에러가 발생하면 어떻게 처리?
+                    if(MESREADDATACOLLECTION == true)
+                    {
+                        SetProcessStatus(stageno, enumProcess.pDataReply);
+                        nInspectionStep = 4;
+                        MESREADDATACOLLECTION = false;
+                    }
                     break;
                 case 4:
                     SetProcessStatus(stageno, enumProcess.pFinish);
@@ -1935,6 +1941,12 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].TRAYSTATUSCODE = trayinfo.TrayStatusCode;
             irocvdata[stageno].ERRORCODE = trayinfo.ErrorCode;
             irocvdata[stageno].ERRORMESSAGE = trayinfo.ErrorMessage;
+        }
+        public void SetReplyDataCollection(int stageno, ReplyDataCollection replyDataCollection)
+        {
+            irocvdata[stageno].MESRESULT = int.Parse(replyDataCollection.ErrorCode);
+            irocvdata[stageno].MESERRORCODE = replyDataCollection.ErrorCode;
+            irocvdata[stageno].MESERRORMESSAGE = replyDataCollection.ErrorMessage;
         }
         #endregion
 

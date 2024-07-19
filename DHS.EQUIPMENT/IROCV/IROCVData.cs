@@ -35,6 +35,8 @@ namespace DHS.EQUIPMENT
         private string _sCELLSERIAL;
         private int _iCELLCOUNT;
         private int _iMESRESULT;
+        private string _sMESERRORCODE;
+        private string _sMESERRORMESSAGE;
 
         private bool _bFIRST;
         private DateTime _dtArriveTime;
@@ -123,11 +125,13 @@ namespace DHS.EQUIPMENT
         /// </summary>
         public string[] CELLSTATUSIROCV { get => _sCELLSTATUSIROCV; set => _sCELLSTATUSIROCV = value; }
         public string TAGPATHNO { get => _sTAGPATHNO; set => _sTAGPATHNO = value; }
-        public int MESRESULT { get => _iMESRESULT; set => _iMESRESULT = value; }
         public string TRAYSTATUSCODE { get => _sTRAYSTATUSCODE; set => _sTRAYSTATUSCODE = value; }
         public string ERRORCODE { get => _sERRORCODE; set => _sERRORCODE = value; }
         public string ERRORMESSAGE { get => _sERRORMESSAGE; set => _sERRORMESSAGE = value; }
         public string LOG{ get => _sLog; set => _sLog = value; }
+        public int MESRESULT { get => _iMESRESULT; set => _iMESRESULT = value; }
+        public string MESERRORCODE { get => _sMESERRORCODE; set => _sMESERRORCODE = value; }
+        public string MESERRORMESSAGE { get => _sMESERRORMESSAGE; set => _sMESERRORMESSAGE = value; }
 
         #endregion
 
