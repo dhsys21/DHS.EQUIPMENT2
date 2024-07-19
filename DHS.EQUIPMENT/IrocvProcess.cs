@@ -1917,18 +1917,20 @@ namespace DHS.EQUIPMENT
         #endregion PLC Action
 
         #region MES Action
-        private void DisplayTrayInfo(int stageno, IROCVData irocvData)
+        public void DisplayTrayInfo(int stageno, IROCVData irocvData)
         {
             irocvform[stageno].SetTrayId(irocvData.TRAYID);
             irocvform[stageno].SetMesInfo(irocvData.TRAYSTATUSCODE, irocvData.ERRORCODE, irocvData.ERRORMESSAGE);
-            //irocvform[stageno].SetRecipeId(irocvData.RECIPEID);
+            measureinfo.DisplayMesChannelInfo(stageno, irocvData);
 
-            IROCV_Refresh(stageno);
+            //* for test 이 코드는 왜?
+            //IROCV_Refresh(stageno);
             irocvdata[stageno].SetStartTime();
         }
         public void SetTrayInfo(int stageno, TrayRequestInfo trayinfo)
         {
             irocvdata[stageno].CELLID = trayinfo.CellID;
+            irocvdata[stageno].CELL = Array.ConvertAll(trayinfo.CellStatus, s => int.Parse(s));
             irocvdata[stageno].CELLSTATUSMES = trayinfo.CellStatus;
             irocvdata[stageno].TRAYSTATUSCODE = trayinfo.TrayStatusCode;
             irocvdata[stageno].ERRORCODE = trayinfo.ErrorCode;

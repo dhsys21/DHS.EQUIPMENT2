@@ -368,6 +368,10 @@ namespace DHS.EQUIPMENT
                 }
             }
         }
+        public void DisplayMesChannelInfo(int stageno, IROCVData irocvdata)
+        {
+            InitDisplayMesChannelInfo(stageno, irocvdata, enumEquipMode.AUTO);
+        }
         public void DisplayChannelInfo(int stageno, IROCVData irocvdata, enumEquipMode equipMode)
         {
             if(stageno == _iStage)

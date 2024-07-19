@@ -647,7 +647,7 @@ namespace DHS.EQUIPMENT
 
             //* ERROR CODE
             UInt32 ecode = (UInt32)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
-            int errorcode = (int)ecode;
+            string errorcode = ecode.ToString();
             _strLog += ", ERROR CODE: " + errorcode.ToString();
 
             //* ERROR MESSAGE
@@ -750,7 +750,7 @@ namespace DHS.EQUIPMENT
             UInt32 ecode = (UInt32)ReadValue("ns=2;s=Mes/ErrorCode", (int)EnumDataType.dtUInt32);
             int errorcode = (int)ecode;
             _strLog += ", ERROR CODE: " + errorcode.ToString();
-            irocvdata[stageno].ERRORCODE = errorcode;
+            irocvdata[stageno].ERRORCODE = errorcode.ToString();
 
             //* ERROR MESSAGE
             string errormsg = (string)ReadValue("ns=2;s=Mes/ErrorMessage", (int)EnumDataType.dtString);
@@ -761,7 +761,7 @@ namespace DHS.EQUIPMENT
             SaveLog(stageno, "FOEIR2.2 MES -> IROCV", _strLog);
 
 
-            irocvdata[stageno].ERRORCODE = errorcode;
+            irocvdata[stageno].ERRORCODE = errorcode.ToString();
             irocvdata[stageno].ERRORMESSAGE = errormsg;
             irocvdata[stageno].LOG = _strLog;
             return irocvdata[stageno];

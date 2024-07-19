@@ -42,6 +42,7 @@ using System.ServiceModel.Channels;
 using Microsoft.Extensions.Primitives;
 using System.Linq;
 using DHS.EQUIPMENT;
+using DHS.EQUIPMENT.Common;
 
 namespace OPCUASERVER
 {
@@ -51,6 +52,7 @@ namespace OPCUASERVER
     public class EmptyNodeManager : CustomNodeManager2
     {
         IrocvProcess irocvprocess = IrocvProcess.GetInstance();
+        IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
         #region Constructors
         /// <summary>
         /// Initializes the node manager.
@@ -506,7 +508,11 @@ namespace OPCUASERVER
                         {
                             trayinfo = ConvertExtensionObject(extObj);
                             irocvprocess.MESREADTRAYINFO = true;
-                            irocvprocess.di
+                            irocvprocess.SetTrayInfo(0, trayinfo);
+
+                            //* for test
+                            irocvdata[0] = IROCVData.GetInstance(0);
+                            irocvprocess.DisplayTrayInfo(0, irocvdata[0]);
                         }
                     }
                 }
