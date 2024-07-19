@@ -24,7 +24,7 @@ namespace DHS.EQUIPMENT
         private string _sEQUIPMENTID;
         private string _sTRAYID;
         private string _sTRAYSTATUSCODE;
-        private int _iERRORCODE;
+        private string _sERRORCODE;
         private string _sERRORMESSAGE;
         private string _sTAGPATHNO;
         private string _sCELLTYPE;
@@ -114,12 +114,18 @@ namespace DHS.EQUIPMENT
         public double OCV_OFFSET { get => _dOCV_OFFSET; set => _dOCV_OFFSET = value; }
         public double[] IR_CHANNELOFFSET { get => _dIR_CHANNELOFFSET; set => _dIR_CHANNELOFFSET = value; }
         public string[] CELLID { get => _sCELLID; set => _sCELLID = value; }
+        /// <summary>
+        /// MES Cell Status in Tray Info
+        /// </summary>
         public string[] CELLSTATUSMES { get => _sCELLSTATUSMES; set => _sCELLSTATUSMES = value; }
+        /// <summary>
+        ///  IROCV Measuring Result
+        /// </summary>
         public string[] CELLSTATUSIROCV { get => _sCELLSTATUSIROCV; set => _sCELLSTATUSIROCV = value; }
         public string TAGPATHNO { get => _sTAGPATHNO; set => _sTAGPATHNO = value; }
         public int MESRESULT { get => _iMESRESULT; set => _iMESRESULT = value; }
         public string TRAYSTATUSCODE { get => _sTRAYSTATUSCODE; set => _sTRAYSTATUSCODE = value; }
-        public int ERRORCODE { get => _iERRORCODE; set => _iERRORCODE = value; }
+        public string ERRORCODE { get => _sERRORCODE; set => _sERRORCODE = value; }
         public string ERRORMESSAGE { get => _sERRORMESSAGE; set => _sERRORMESSAGE = value; }
         public string LOG{ get => _sLog; set => _sLog = value; }
 
@@ -141,7 +147,7 @@ namespace DHS.EQUIPMENT
         {
             _sTRAYID = string.Empty;
             _sTRAYSTATUSCODE = string.Empty;
-            _iERRORCODE = 0;
+            _sERRORCODE = string.Empty;
             _sERRORMESSAGE = string.Empty;
             _sCELLTYPE = string.Empty;
             _sBATCHID = string.Empty;

@@ -133,10 +133,10 @@ namespace DHS.EQUIPMENT
             SetValueToTextBox(tbTrayId, trayid);
             SetValueToLabel(lblTrayId, trayid);
         }
-        public void SetMesInfo(string traystatuscode, int errorcode, string errmessage)
+        public void SetMesInfo(string traystatuscode, string errorcode, string errmessage)
         {
             SetValueToLabel2(lblTrayStatusCode, traystatuscode);
-            SetValueToLabel2(lblErrorCode, errorcode.ToString());
+            SetValueToLabel2(lblErrorCode, errorcode);
             SetValueToLabel2(lblErrorMessage, errmessage);
         }
         public void SetControlMessage(string controlmessage)

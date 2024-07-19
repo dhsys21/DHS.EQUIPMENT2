@@ -101,6 +101,7 @@ namespace DHS.EQUIPMENT
                 application.Start(new SharpNodeSettingsServer()).Wait();
 
                 Console.WriteLine("Start the server...");
+                
 
                 connection = true;
                 return true;

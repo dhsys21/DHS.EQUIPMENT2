@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 using DHS.EQUIPMENT.PLC;
+using OPCUASERVER;
 using Telerik.Collections.Generic;
 using Telerik.WinControls.Svg.FilterEffects;
 
@@ -61,6 +62,17 @@ namespace DHS.EQUIPMENT
         public bool[] IROCVCONNECTED { get => _bIrocvConnected; set => _bIrocvConnected = value; }
         public bool PLCCONNECTED { get => _bPlcConnected; set => _bPlcConnected = value; }
         public bool MESCONNECTED { get => _bMesConnected; set => _bMesConnected = value; }
+        #endregion
+
+        #region MES 상태 정보
+        private bool _bMesReadTrayInfo = false;
+        private bool _bMesWriteTrayInfo = false;
+        private bool _bMesReadDataCollection = false;
+        private bool _bMesWriteDataCollection = false;
+        public bool MESREADTRAYINFO { get => _bMesReadTrayInfo; set => _bMesReadTrayInfo = value; }
+        public bool MESWRITETRAYINFO { get => _bMesWriteTrayInfo; set => _bMesWriteTrayInfo = value; }
+        public bool MESREADDATACOLLECTION { get => _bMesReadDataCollection; set => _bMesReadDataCollection = value; }
+        public bool MESWRITEDATACOLLECTION { get => _bMesWriteDataCollection; set => _bMesWriteDataCollection = value; }
         #endregion
 
         public static IrocvProcess GetInstance()
@@ -344,6 +356,7 @@ namespace DHS.EQUIPMENT
             mesclient.WritePLSInfo(0, plcsysinfo);
         }
         #endregion
+
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
         {
             if (tagname == "PC Heart Beat") siemensplc.SetHeartBeat(stageno, nValue);
@@ -1075,7 +1088,81 @@ namespace DHS.EQUIPMENT
                 //irocvform[stageno].SetStageStatus(enumEquipStatus.StepVacancy);
             }
         }
+        //* MES Call Method 버전
         private void AutoInspection_StepTrayIdCheck(int stageno)
+        {
+            string trayid = siemensplc.PLCTRAYID;
+            string equipid = _system.EQUIPMENTID;
+            bool bAck = false;
+            //trayid = SIEMENSS7LIB.ReadString("MB10020", 20);
+
+            switch (nInspectionStep)
+            {
+                case 0:
+                    //* PLC - Check Tray ID
+                    if (string.IsNullOrEmpty(trayid) == false)
+                    {
+                        irocvform[stageno].SetTrayId(trayid);
+                        irocvdata[stageno].TRAYID = trayid;
+                        irocvdata[stageno].EQUIPMENTID = equipid;
+                        SetProcessStatus(stageno, enumProcess.pBarcode);
+
+                        SaveLog(stageno, "TRAY ID : " + trayid);
+
+                        //* MES사용확인 - 사용하지 않으면 5로 넘어감.
+                        if (_system.UNUSEMES == true)
+                            nInspectionStep = 5;
+                        else
+                            nInspectionStep = 1;
+                    }
+                    break;
+                case 1:
+                    //* Write Sequence : 상태가 변했을 때 sequence를 변경하여 알림.
+                    mesclient.WriteSequence(stageno, (int)enumProcess.pTrayIn);
+                    nInspectionStep = 2;
+                    break;
+                case 2:
+                    //* MES - Call Method (GetEnvelope)
+                    if(MESWRITETRAYINFO == true)
+                    {
+                        SetProcessStatus(stageno, enumProcess.pRequestTrayInfo);
+                        nInspectionStep = 3;
+                    }
+                    break;
+                case 3:
+                    //* MES - Call Method (SetEnvelope)
+                    SetProcessStatus(stageno, enumProcess.pReplyTrayInfo);
+                    if (irocvdata[stageno].TRAYSTATUSCODE == "CN")
+                    {
+                        //* MES - Display Tray Info.
+                        DisplayTrayInfo(stageno, irocvdata[stageno]);
+
+                        nInspectionStep = 5;
+                    }
+                    else if (irocvdata[stageno].TRAYSTATUSCODE == "DT" || irocvdata[stageno].TRAYSTATUSCODE == "NT")
+                    {
+                        //* PLC - Request Tray Out
+                        PLC_TRAYOUT(stageno, 1);
+                        SetProcessStatus(stageno, enumProcess.pTrayOut);
+                    }
+                    break;
+                case 5:
+                    //* PLC - Read Tray Ready Complete
+                    if (siemensplc.PLCREADYCOMPLETE == 1)
+                    //if (siemensplc.PLCREADYCOMPLETE == 0) //* for test
+                    {
+                        //* PLC - Request Tray Up
+                        //PLC_TRAYUP(stageno); ==> 2024 05 21 StepReady 상태에서 수행하도록 변경
+                        irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepReady;
+                        nInspectionStep = 0;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        //* MES Read/Write Nodes 버전
+        private void AutoInspection_StepTrayIdCheck1(int stageno)
         {
             string trayid = siemensplc.PLCTRAYID;
             string equipid = _system.EQUIPMENTID;
@@ -1211,6 +1298,8 @@ namespace DHS.EQUIPMENT
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepRun;
             }
         }
+        //* MES Call Method 버전
+        //* MES Read/Write Nodes 버전
         private void AutoInspection_StepEnd(int stageno)
         {
             bool bAck = false;
@@ -1836,6 +1925,14 @@ namespace DHS.EQUIPMENT
 
             IROCV_Refresh(stageno);
             irocvdata[stageno].SetStartTime();
+        }
+        public void SetTrayInfo(int stageno, TrayRequestInfo trayinfo)
+        {
+            irocvdata[stageno].CELLID = trayinfo.CellID;
+            irocvdata[stageno].CELLSTATUSMES = trayinfo.CellStatus;
+            irocvdata[stageno].TRAYSTATUSCODE = trayinfo.TrayStatusCode;
+            irocvdata[stageno].ERRORCODE = trayinfo.ErrorCode;
+            irocvdata[stageno].ERRORMESSAGE = trayinfo.ErrorMessage;
         }
         #endregion
 

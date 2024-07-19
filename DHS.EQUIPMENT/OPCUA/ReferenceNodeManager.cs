@@ -41,6 +41,7 @@ using System.Text;
 using System.ServiceModel.Channels;
 using Microsoft.Extensions.Primitives;
 using System.Linq;
+using DHS.EQUIPMENT;
 
 namespace OPCUASERVER
 {
@@ -49,6 +50,7 @@ namespace OPCUASERVER
     /// </summary>
     public class EmptyNodeManager : CustomNodeManager2
     {
+        IrocvProcess irocvprocess = IrocvProcess.GetInstance();
         #region Constructors
         /// <summary>
         /// Initializes the node manager.
@@ -478,6 +480,9 @@ namespace OPCUASERVER
                 /// ProSys Library에서는 아래 코드를 사용
                 /// outputArguments[0] = new Variant(extensionObject1);
                 /// outputArguments[1] = new Variant(extensionObject2);
+
+                //* Write Tray Info
+                irocvprocess.MESWRITETRAYINFO = true;
                 
                 return StatusCodes.Good;
             }
@@ -498,7 +503,11 @@ namespace OPCUASERVER
 
                         TrayRequestInfo trayinfo;
                         if(extObj.TypeId.Identifier.ToString() == "5034")
+                        {
                             trayinfo = ConvertExtensionObject(extObj);
+                            irocvprocess.MESREADTRAYINFO = true;
+                            irocvprocess.di
+                        }
                     }
                 }
 
