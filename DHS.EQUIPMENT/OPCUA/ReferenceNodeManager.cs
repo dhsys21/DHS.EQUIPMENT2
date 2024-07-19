@@ -39,6 +39,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.ServiceModel.Channels;
+using Microsoft.Extensions.Primitives;
+using System.Linq;
 
 namespace OPCUASERVER
 {
@@ -472,6 +474,7 @@ namespace OPCUASERVER
 
                 outputArguments.Add(new Variant(extensionObject1));
                 outputArguments.Add(new Variant(extensionObject2));
+
                 /// ProSys Library에서는 아래 코드를 사용
                 /// outputArguments[0] = new Variant(extensionObject1);
                 /// outputArguments[1] = new Variant(extensionObject2);
@@ -492,6 +495,10 @@ namespace OPCUASERVER
                         
                         if (extObj != null)
                             Console.WriteLine(extObj.ToString());
+
+                        TrayRequestInfo trayinfo;
+                        if(extObj.TypeId.Identifier.ToString() == "5034")
+                            trayinfo = ConvertExtensionObject(extObj);
                     }
                 }
 
@@ -534,6 +541,21 @@ namespace OPCUASERVER
         }
 
         #region ExtensionObject
+        public static TrayRequestInfo ConvertExtensionObject(ExtensionObject extObj)
+        {
+            if(extObj.Body is TrayRequestInfo)
+                return (TrayRequestInfo)extObj.Body;
+
+            if(extObj.Body is byte[])
+            {
+                var decoder = new BinaryDecoder((byte[])extObj.Body, new ServiceMessageContext());
+                var data = new TrayRequestInfo();
+                data.Decode(decoder);
+                return data;
+            }
+
+            throw new InvalidCastException("ExtensionObject cannot be cast to TrayRequestInfo");
+        }
         public static ExtensionObject CreateExtensionObject(NodeId nodeid, HeaderDataType header)
         {
             List<byte> headerBytes = new List<byte>();
@@ -1547,13 +1569,62 @@ namespace OPCUASERVER
         public string TrayID { get; set; }
         public string EquipmentID { get; set; }
     }
-    public class TrayRequestInfo
+    public class TrayRequestInfo : IEncodeable
     {
         public string[] CellID { get; set; }
         public string[] CellStatus { get; set; }
         public string TrayStatusCode { get; set; }
         public string ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
+
+        public ExpandedNodeId TypeId => throw new NotImplementedException();
+
+        public ExpandedNodeId BinaryEncodingId => throw new NotImplementedException();
+
+        public ExpandedNodeId XmlEncodingId => throw new NotImplementedException();
+
+        public object Clone()
+        {
+            return new TrayRequestInfo
+            {
+                CellID = CellID,
+                CellStatus = CellStatus,
+                TrayStatusCode = TrayStatusCode,
+                ErrorCode = ErrorCode,
+                ErrorMessage = ErrorMessage
+            };
+        }
+
+        public void Decode(IDecoder decoder)
+        {
+            CellID = decoder.ReadStringArray("CellID").Cast<string>().ToArray();
+            CellStatus = decoder.ReadStringArray("CellStatus").Cast<string>().ToArray();
+            TrayStatusCode = decoder.ReadString("TrayStatusCode");
+            ErrorCode = decoder.ReadString("ErrorCode");
+            ErrorMessage = decoder.ReadString("ErrorMessage");
+        }
+
+        public void Encode(IEncoder encoder)
+        {
+            encoder.WriteStringArray("CellID", CellID);
+            encoder.WriteStringArray("CellStatus", CellStatus);
+            encoder.WriteString("TrayStatusCode", TrayStatusCode);
+            encoder.WriteString("ErrorCode", ErrorCode);
+            encoder.WriteString("ErrorMessage", ErrorMessage);
+        }
+
+        public bool IsEqual(IEncodeable encodeable)
+        {
+            if(encodeable == null || !(encodeable is  TrayRequestInfo))
+            {
+                return false;
+            }
+
+            var other = (TrayRequestInfo)encodeable;
+            return CellID == other.CellID 
+                && CellStatus == other.CellStatus && TrayStatusCode == other.TrayStatusCode 
+                && ErrorCode == other.ErrorCode && ErrorMessage == other.ErrorMessage;
+        }
     }
     public class IrocvDataCollection
     {
