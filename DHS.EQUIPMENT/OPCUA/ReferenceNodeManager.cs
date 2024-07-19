@@ -199,27 +199,6 @@ namespace OPCUASERVER
 
         #endregion
 
-        #region Import XML
-        private void ImportXml(IDictionary<NodeId, IList<IReference>> externalReferences, string resourcepath)
-        {
-            NodeStateCollection predefinedNodes = new NodeStateCollection();
-
-            Stream stream = new FileStream(resourcepath, FileMode.Open);
-            Opc.Ua.Export.UANodeSet nodeSet = Opc.Ua.Export.UANodeSet.Read(stream);
-
-            SystemContext.NamespaceUris.GetIndexOrAppend(nodeSet.NamespaceUris.ToString());
-
-            nodeSet.Import(SystemContext, predefinedNodes);
-
-            for (int ii = 0; ii < predefinedNodes.Count; ii++)
-            {
-                AddPredefinedNode(SystemContext, predefinedNodes[ii]);
-            }
-            // ensure the reverse refernces exist.
-            AddReverseReferences(externalReferences);
-        }
-        #endregion
-
         #region INodeManager Members
         /// <summary>
         /// Does any initialization required before the address space can be used.
@@ -229,21 +208,6 @@ namespace OPCUASERVER
         /// in other node managers. For example, the 'Objects' node is managed by the CoreNodeManager and
         /// should have a reference to the root folder node(s) exposed by this node manager.  
         /// </remarks>
-        public void CreateAddressSpace2(IDictionary<NodeId, IList<IReference>> externalReferences)
-        {
-            lock (Lock)
-            {
-                IList<IReference> references = null;
-
-                if (!externalReferences.TryGetValue(ObjectIds.ObjectsFolder, out references))
-                {
-                    externalReferences[ObjectIds.ObjectsFolder] = references = new List<IReference>();
-                }
-
-                string resourcepath = "IROCV2.Config.xml";
-                ImportXml(externalReferences, resourcepath);
-            }
-        }
         public override void CreateAddressSpace( IDictionary<NodeId, IList<IReference>> externalReferences )
         {
             lock (Lock)
@@ -257,10 +221,12 @@ namespace OPCUASERVER
                     externalReferences[ObjectIds.ObjectsFolder] = references = new List<IReference>();
                 }
 
-                string resourcepath = "IROCV2_v2.0.xml";
+                string resourcepath = "IROCV2.Config.xml";
                 ImportXml(externalReferences, resourcepath);
 
-               // NodeState deviceSetNode = PredefinedNodes.Values.First(x => x.BrowseName.Name == "Battery Standard Interface");
+                ushort namespaceIndex2 = SystemContext.NamespaceUris.GetIndexOrAppend("urn:KitInformationmodel.Siemens.com");
+                CreateObjectInNamespace("urn:KitInformationmodel.Siemens.com", namespaceIndex2);
+                // NodeState deviceSetNode = PredefinedNodes.Values.First(x => x.BrowseName.Name == "Battery Standard Interface");
                 //base.CreateAddressSpace(externalReferences);
 
                 /* for test 2024 07 09 
@@ -378,21 +344,94 @@ namespace OPCUASERVER
                 */
             }
         }
+        private void CreateObjectInNamespace(string objectName, ushort namespaceIndex)
+        {
+            // Create a new object
+            NodeId objectId = new NodeId(objectName, namespaceIndex);
+            BaseObjectState newObject = new BaseObjectState(null)
+            {
+                NodeId = objectId,
+                BrowseName = new QualifiedName(objectName, namespaceIndex),
+                DisplayName = objectName,
+            };
 
+            // Add the object to the address space
+            AddPredefinedNode(SystemContext, newObject);
+        }
+
+        #region Import XML
+        private void ImportXml(IDictionary<NodeId, IList<IReference>> externalReferences, string resourcepath)
+        {
+            NodeStateCollection predefinedNodes = new NodeStateCollection();
+
+            Stream stream = new FileStream(resourcepath, FileMode.Open);
+            Opc.Ua.Export.UANodeSet nodeSet = Opc.Ua.Export.UANodeSet.Read(stream);
+
+            //* System.String[]이 NameSpaceUris에 들어감.
+            //SystemContext.NamespaceUris.GetIndexOrAppend(nodeSet.NamespaceUris.ToString());
+
+            for (int i = 0; i < nodeSet.NamespaceUris.Length; i++)
+                SystemContext.NamespaceUris.GetIndexOrAppend(nodeSet.NamespaceUris[i].ToString());
+
+            nodeSet.Import(SystemContext, predefinedNodes);
+
+            for (int ii = 0; ii < predefinedNodes.Count; ii++)
+            {
+                AddPredefinedNode(SystemContext, predefinedNodes[ii]);
+            }
+            // ensure the reverse refernces exist.
+            AddReverseReferences(externalReferences);
+        }
+        protected override NodeState AddBehaviourToPredefinedNode(ISystemContext context, NodeState predefinedNode)
+        {
+            if (predefinedNode is BaseInstanceState passiveNode)
+            {
+                NodeId typeId = passiveNode.TypeDefinitionId;
+
+                if (!IsNodeIdInNamespace(typeId) || typeId.IdType != IdType.Numeric)
+                {
+                    return predefinedNode;
+                }
+
+                //switch ((uint)typeId.Identifier)
+                //{
+                //    case ObjectTypes.head:
+                //        return ReplaceNodeWithType(passiveNode, context, (p) => new Custom2State(p));
+                //        //case ObjectTypes.CustomType1:
+                //        //    return ReplaceNodeWithType(passiveNode, context, (p) => new Custom1State(p));
+                //}
+            }
+
+            return predefinedNode;
+        }
+
+        protected BaseInstanceState ReplaceNodeWithType<T>(BaseInstanceState passiveNode, ISystemContext context, Func<NodeState, T> create)
+            where T : BaseInstanceState
+        {
+            if (passiveNode is T)
+            {
+                return passiveNode;
+            }
+
+            T activeNode = create(passiveNode.Parent);
+            activeNode.Create(context, passiveNode);
+
+            if (passiveNode.Parent != null)
+            {
+                passiveNode.Parent.ReplaceChild(context, activeNode);
+            }
+
+            return activeNode;
+        }
+        #endregion
+
+        #region Call Event Handler
         private BaseDataVariableState<bool> SystemState = null;
         protected override ServiceResult Call(ISystemContext context, 
             CallMethodRequest methodToCall, 
             MethodState method, 
             CallMethodResult result)
         {
-            //return base.Call(context, methodToCall, method, result);
-            
-            //ServerSystemContext systemContext = context as ServerSystemContext;
-            //List<ServiceResult> argumentErrors = new List<ServiceResult>();
-            //VariantCollection inputArguments = new VariantCollection();
-            //inputArguments = methodToCall.InputArguments;
-
-            
             return DispatchControllerMethod(context, methodToCall, 
                 methodToCall.InputArguments, result.InputArgumentResults, result.OutputArguments);
         }
@@ -405,31 +444,38 @@ namespace OPCUASERVER
         {
             HeaderDataType header = new HeaderDataType
             {
-                Id = 129,
+                Id = 1,
                 Type = "1"
-            };
-            TrayInfo contentTrayInfo = new TrayInfo
-            {
-                EquipmentID = "IRCOV0002",
-                TrayID = "Test1234"
             };
 
             NodeId nodeid = methodToCall.MethodId;
             string strNodeId = nodeid.Identifier.ToString();
+
             if(strNodeId == "7004")
             {
+                //* GetEnvelope (FORIR_2_1_RequestTrayInformation)
+                //* inputArguments : null
+                //* outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
+                TrayInfo trayInfo = new TrayInfo
+                {
+                    EquipmentID = "IRCOV0002",
+                    TrayID = "Test1234"
+                };
+
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
-                ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5032"), contentTrayInfo);
+                ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5032"), trayInfo);
 
                 outputArguments.Add(new Variant(extensionObject1));
                 outputArguments.Add(new Variant(extensionObject2));
                 //outputArguments[0] = new Variant(extensionObject1);
                 //outputArguments[1] = new Variant(extensionObject2);
-                return ServiceResult.Good;
+                return StatusCodes.Good;
             }
             else if (strNodeId == "7012")
             {
-                //* inputArguments 처리
+                //* SetEnvelope (FORIR_2_1_RequestTrayInformation)
+                //* inputArguments : TrayRequestInfo (CellID, CellStatus, TrayStatusCode, ErrorCode, ErrorMessage)
+                //* outputArguments : null
                 if (inputArguments != null)
                 {
                     foreach (Variant value1 in inputArguments)
@@ -445,11 +491,39 @@ namespace OPCUASERVER
             }
             else if (strNodeId == "7013")
             {
-                outputArguments = new List<Variant>();
+                //* GetEnvelope (FORIR_2_2_DataCollection)
+                //* inputArguments : null
+                //* outputArguments(return value) : Data Collection(EquipmentID, TayID, CellID, CellStatus, IR, OCV)
+                IrocvDataCollection irocvData = new IrocvDataCollection();
+                ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
+                ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
+
+                outputArguments.Add(new Variant(extensionObject1));
+                outputArguments.Add(new Variant(extensionObject2));
                 return StatusCodes.Good;
             }
-            return ServiceResult.Good;
+            else if(strNodeId == "7016")
+            {
+                //* SetEnvelope (FORIR_2_2_DataCollection)
+                //* inputArguments : Data Collection Reply (ErrorCode, ErrorMessage)
+                //* outputArguments : null
+                if (inputArguments != null)
+                {
+                    foreach (Variant value1 in inputArguments)
+                    {
+                        ExtensionObject extObj = value1.Value as ExtensionObject;
+
+                        if (extObj != null)
+                            Console.WriteLine(extObj.ToString());
+                    }
+                }
+
+                return StatusCodes.Good;
+            }
+
+            return StatusCodes.Bad;
         }
+
         #region ExtensionObject
         public static ExtensionObject CreateExtensionObject(NodeId nodeid, HeaderDataType header)
         {
@@ -466,6 +540,21 @@ namespace OPCUASERVER
         }
 
         public static ExtensionObject CreateExtensionObject(NodeId nodeid, TrayInfo content)
+        {
+            List<byte> contentBytes = new List<byte>();
+
+            contentBytes.AddRange(IntToBytes(content.EquipmentID.Length));
+            contentBytes.AddRange(StringToBytes(content.EquipmentID));
+
+            contentBytes.AddRange(IntToBytes(content.TrayID.Length));
+            contentBytes.AddRange(StringToBytes(content.TrayID));
+
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
+            return new ExtensionObject(typeid, contentBytes.ToArray());
+            //return new ExtensionObject(nodeid, contentBytes.ToArray());
+        }
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, IrocvDataCollection content)
         {
             List<byte> contentBytes = new List<byte>();
 
@@ -520,6 +609,7 @@ namespace OPCUASERVER
             return BitConverter.GetBytes(ticks);
         }
         #endregion
+        
         protected ServiceResult Call2(ISystemContext context,
             NodeId objectId,
             IList<Variant> inputArguments,
@@ -556,6 +646,10 @@ namespace OPCUASERVER
                 return new ServiceResult( StatusCodes.BadInvalidArgument );
             }
         }
+
+        #endregion
+
+        #region Create Variable and Method
 
         #region Create Folder
         private List<BaseDataVariableState<int>> list = null;
@@ -1416,7 +1510,9 @@ namespace OPCUASERVER
 
             return null;
         }
-        #endregion
+        #endregion Create Variable and Method
+
+        #endregion INodeManager Members
 
         #region Overrides
         #endregion
@@ -1442,5 +1538,22 @@ namespace OPCUASERVER
     {
         public string TrayID { get; set; }
         public string EquipmentID { get; set; }
+    }
+    public class TrayRequestInfo
+    {
+        public string[] CellID { get; set; }
+        public string[] CellStatus { get; set; }
+        public string TrayStatusCode { get; set; }
+        public string ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
+    }
+    public class IrocvDataCollection
+    {
+        public string EquipmentID { get; set; }
+        public string TrayID { get; set; }
+        public string[] CellID { get; set; }
+        public string[] CellStatus { get; set;}
+        public double[] IR {  get; set; }
+        public double[] OCV { get; set; }
     }
 }
