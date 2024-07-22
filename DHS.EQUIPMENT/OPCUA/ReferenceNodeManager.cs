@@ -542,8 +542,8 @@ namespace OPCUASERVER
                     cellstatus[i] = "0";
                     Random ran = new Random();
                     int ranInt = ran.Next(0, 100);
-                    ir[i] = 0.3832 + ranInt / 10000.0;
-                    ocv[i] = 3721.21 + ranInt / 100.0;
+                    ir[i] = 0.3832 + (double)ranInt / 10000.0;
+                    ocv[i] = 3721.21 + (double)ranInt / 100.0;
                 }
                 irocvdata[0] = IROCVData.GetInstance(0);
                 irocvdata[0].InitData();
@@ -557,7 +557,7 @@ namespace OPCUASERVER
 
                 IrocvDataCollection irocvData = new IrocvDataCollection();
                 irocvData = irocvprocess.GetIrocvDataCollection(NodeId.Parse("ns=0;i=5041"), irocvdata[0]);
-                var extensionObject2 = ConvertDataCollectionExtensionObject(irocvData);
+                ExtensionObject extensionObject2 = ConvertDataCollectionExtensionObject(irocvData);
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
                 //ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
 
@@ -689,6 +689,18 @@ namespace OPCUASERVER
             contentBytes.AddRange(IntToBytes(content.TrayID.Length));
             contentBytes.AddRange(StringToBytes(content.TrayID));
 
+            contentBytes.AddRange(IntToBytes(content.CellID.Length));
+            contentBytes.AddRange(StringToBytes(content.CellID));
+
+            contentBytes.AddRange(IntToBytes(content.CellStatus.Length));
+            contentBytes.AddRange(StringToBytes(content.CellStatus));
+
+            contentBytes.AddRange(IntToBytes(content.IR.Length));
+            contentBytes.AddRange(DoubleToBytes(content.IR));
+
+            contentBytes.AddRange(IntToBytes(content.OCV.Length));
+            contentBytes.AddRange(DoubleToBytes(content.OCV));
+
             uint identifier = Convert.ToUInt32(nodeid.Identifier);
             var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
             return new ExtensionObject(typeid, contentBytes.ToArray());
@@ -714,6 +726,25 @@ namespace OPCUASERVER
 
                 byteList.AddRange(lengthBytes);
                 byteList.AddRange(stringBytes);
+            }
+
+            return byteList.ToArray();
+        }
+        public static byte[] DoubleToBytes(double value)
+        {
+            byte[] doublegBytes = BitConverter.GetBytes(value);
+            return doublegBytes;
+        }
+        public static byte[] DoubleToBytes(double[] values)
+        {
+            List<byte> byteList = new List<byte>();
+            foreach(var dValue in values)
+            {
+                byte[] doublegBytes = BitConverter.GetBytes(dValue);
+                byte[] lengthBytes = BitConverter.GetBytes(doublegBytes.Length);
+
+                byteList.AddRange(lengthBytes);
+                byteList.AddRange(doublegBytes);
             }
 
             return byteList.ToArray();

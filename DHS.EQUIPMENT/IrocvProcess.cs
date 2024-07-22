@@ -1359,6 +1359,8 @@ namespace DHS.EQUIPMENT
                     //* ErrorCode, ErrorMessage 에러가 발생하면 어떻게 처리?
                     if(MESREADDATACOLLECTION == true)
                     {
+                        Console.WriteLine(irocvdata[0].ERRORCODE);
+                        Console.WriteLine(irocvdata[0].ERRORMESSAGE);
                         SetProcessStatus(stageno, enumProcess.pDataReply);
                         nInspectionStep = 4;
                         MESREADDATACOLLECTION = false;
