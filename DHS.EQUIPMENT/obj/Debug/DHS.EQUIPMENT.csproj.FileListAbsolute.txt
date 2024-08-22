@@ -211,7 +211,6 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Te
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.dll
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\Telerik.WinControls.UI.dll
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\TelerikCommon.dll
-D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\OpcUaHelper.dll
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\OPCUACLIENT.pdb
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\OPCUACLIENT.dll.config
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\DHS.EQUIPMENT\bin\Debug\BouncyCastle.Crypto.xml

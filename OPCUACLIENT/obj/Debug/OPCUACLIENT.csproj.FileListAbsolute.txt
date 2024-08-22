@@ -356,3 +356,8 @@ D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\obj\Debug\OPCU
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\obj\Debug\OPCUACLI.5968A832.Up2Date
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\obj\Debug\OPCUACLIENT.dll
 D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\obj\Debug\OPCUACLIENT.pdb
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\bin\Debug\BouncyCastle.Cryptography.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\bin\Debug\Microsoft.Bcl.HashCode.dll
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\bin\Debug\BouncyCastle.Cryptography.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\bin\Debug\Microsoft.Bcl.HashCode.xml
+D:\Project\2023\5. Kapjin\program\DHS.EQUIPMENT.IROCV\OPCUACLIENT\bin\Debug\System.Security.Cryptography.Cng.xml

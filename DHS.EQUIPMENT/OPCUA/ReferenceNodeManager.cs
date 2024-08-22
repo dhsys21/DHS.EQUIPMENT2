@@ -540,10 +540,9 @@ namespace OPCUASERVER
                 {
                     cellid[i] = "test" + (i + 1).ToString("D3");
                     cellstatus[i] = "0";
-                    Random ran = new Random();
-                    int ranInt = ran.Next(0, 100);
-                    ir[i] = 0.3832 + (double)ranInt / 10000.0;
-                    ocv[i] = 3721.21 + (double)ranInt / 100.0;
+                    
+                    ir[i] = 0.3832 + (double)(i % 8 + i) / 10000.0;
+                    ocv[i] = 3721.21 + (double)(i % 8 + i) / 100.0;
                 }
                 irocvdata[0] = IROCVData.GetInstance(0);
                 irocvdata[0].InitData();
