@@ -4,6 +4,11 @@
         <name>Opc.Ua.Security.Certificates</name>
     </assembly>
     <members>
+        <member name="T:Opc.Ua.Security.Certificates.AsnUtils">
+            <summary>
+            Utils for ASN.1 encoding and decoding.
+            </summary>
+        </member>
         <member name="M:Opc.Ua.Security.Certificates.AsnUtils.ToHexString(System.Byte[],System.Boolean)">
             <summary>
             Converts a buffer to a hexadecimal string.
@@ -24,6 +29,13 @@
             </remarks>
             <param name="writer">The writer</param>
             <param name="integer">The key parameter</param>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.AsnUtils.ParseX509Blob(System.Byte[])">
+            <summary>
+            Parse a X509 Tbs and signature from a byte blob with validation,
+            return the byte array which contains the X509 blob.
+            </summary>
+            <param name="blob">The encoded CRL or certificate sequence.</param>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.Oids">
             <summary>
@@ -68,6 +80,11 @@
         <member name="F:Opc.Ua.Security.Certificates.Oids.RsaPkcs1Sha512">
             <summary>
             The Oid string for RSA signature, PKCS#1 padding with SHA512 hash.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Security.Certificates.Oids.ECPublicKey">
+            <summary>
+            The Oid string for a EC public key.
             </summary>
         </member>
         <member name="F:Opc.Ua.Security.Certificates.Oids.ECDsaWithSha1">
@@ -149,33 +166,6 @@
             Get the hash algorithm used to sign a certificate.
             </summary>
             <param name="oid">The signature algorithm oid.</param>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.RsaUtils">
-            <summary>
-            Defines internal helper functions to implement RSA cryptography.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.RsaUtils.RSADispose(System.Security.Cryptography.RSA)">
-            <summary>
-            Dispose RSA object only if not running on Mono runtime.
-            Workaround due to a Mono bug in the X509Certificate2 implementation of RSA.
-            see also: https://github.com/mono/mono/issues/6306
-            On Mono GetRSAPrivateKey/GetRSAPublickey returns a reference instead of a disposable object.
-            Calling Dispose on RSA makes the X509Certificate2 keys unusable on Mono.
-            Only call dispose when using .Net and .Net Core runtimes.
-            </summary>
-            <param name="rsa">RSA object returned by GetRSAPublicKey/GetRSAPrivateKey</param>
-        </member>
-        <member name="F:Opc.Ua.Security.Certificates.RsaUtils.IsRunningOnMonoValue">
-            <summary>
-            Lazy helper to allow runtime check for Mono.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.RsaUtils.IsRunningOnMono">
-            <summary>
-            Determine if assembly uses mono runtime.
-            </summary>
-            <returns>true if running on Mono runtime</returns>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.X509Defaults">
             <summary>
@@ -271,6 +261,10 @@
             <summary>
             Build the X509 Authority Key extension.
             </summary>
+            <remarks>
+            A null value for one of the parameters indicates that the optional
+            identifier can be ignored. Only keyId should be used for PKI use.
+            </remarks>
             <param name="subjectKeyIdentifier">The subject key identifier as a byte array.</param>
             <param name="authorityName">The distinguished name of the issuer.</param>
             <param name="serialNumber">The serial number of the issuer certificate as little endian byte array.</param>
@@ -434,6 +428,12 @@
             </summary>
             <param name="distributionPoint">The CRL distribution point</param>
         </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509Extensions.BuildX509CRLDistributionPoints(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Build the CRL Distribution Point extension with multiple distribution points.
+            </summary>
+            <param name="distributionPoints">The CRL distribution points</param>
+        </member>
         <member name="M:Opc.Ua.Security.Certificates.X509Extensions.ReadExtension(System.Formats.Asn1.AsnReader)">
             <summary>
             Read an ASN.1 extension sequence as X509Extension object.
@@ -584,6 +584,13 @@
             Encode the Subject Alternative name extension.
             </summary>
         </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509SubjectAltNameExtension.EncodeGeneralNames(System.Security.Cryptography.X509Certificates.SubjectAlternativeNameBuilder,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Encode a list of general Names in a SAN builder.
+            </summary>
+            <param name="sanBuilder">The subject alternative name builder</param>
+            <param name="generalNames">The general Names to add</param>
+        </member>
         <member name="M:Opc.Ua.Security.Certificates.X509SubjectAltNameExtension.EnsureDecoded">
             <summary>
             Decode if RawData is yet undecoded.
@@ -610,219 +617,48 @@
             definitions see RFC 5280 4.2.1.7
             </summary>
         </member>
-        <member name="T:Opc.Ua.Security.Certificates.CertificateBuilder">
+        <member name="T:Opc.Ua.Security.Certificates.PEMReader">
             <summary>
-            Builds a Certificate.
+            Methods or read PEM data.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.Create(System.Security.Cryptography.X509Certificates.X500DistinguishedName)">
+        <member name="M:Opc.Ua.Security.Certificates.PEMReader.ImportPrivateKeyFromPEM(System.Byte[],System.String)">
             <summary>
-            Create a Certificate builder.
+            Import a private key from PEM.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.Create(System.String)">
+        <member name="T:Opc.Ua.Security.Certificates.PEMReader.Password">
             <summary>
-            Create a Certificate builder.
+            Wrapper for a password string.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.#ctor(System.Security.Cryptography.X509Certificates.X500DistinguishedName)">
+        <member name="T:Opc.Ua.Security.Certificates.PEMWriter">
             <summary>
-            Initialize a Certificate builder.
+            Write certificate data in PEM format.
+            </summary>
+            <summary>
+            Write certificate/crl data in PEM format.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.#ctor(System.String)">
+        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportPrivateKeyAsPEM(System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
             <summary>
-            Initialize a Certificate builder.
+            Returns a byte array containing the private key in PEM format.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForRSA">
-            <inheritdoc/>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForRSA(Opc.Ua.Security.Certificates.X509SignatureGenerator)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.SetRSAPublicKey(System.Byte[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreatePfxWithRSAPrivateKey(System.Security.Cryptography.X509Certificates.X509Certificate2,System.String,System.Security.Cryptography.RSA,System.String)">
+        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportCRLAsPEM(System.Byte[])">
             <summary>
-            Create a Pfx with a private key by combining 
-            an existing X509Certificate2 and a RSA private key.
+            Returns a byte array containing the CRL in PEM format.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateSigningRequest(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Collections.Generic.IList{System.String})">
+        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportCSRAsPEM(System.Byte[])">
             <summary>
-            Creates a certificate signing request from an
-            existing certificate with a private key.
+            Returns a byte array containing the CSR in PEM format.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateDefaults(Org.BouncyCastle.Crypto.Prng.IRandomGenerator)">
+        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportCertificateAsPEM(System.Security.Cryptography.X509Certificates.X509Certificate2)">
             <summary>
-            Create a new serial number and validate lifetime.
+            Returns a byte array containing the cert in PEM format.
             </summary>
-            <param name="random"></param>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateMandatoryFields(Org.BouncyCastle.X509.X509V3CertificateGenerator)">
-            <summary>
-            Set all mandatory fields.
-            </summary>
-            <param name="cg">The cert generator</param>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateExtensions(Org.BouncyCastle.X509.X509V3CertificateGenerator,Org.BouncyCastle.Crypto.AsymmetricKeyParameter)">
-            <summary>
-            Create the extensions.
-            </summary>
-            <param name="cg">The cert generator.</param>
-            <param name="subjectPublicKey">The public key to use for the extensions.</param>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForRSAWithPublicKey(Org.BouncyCastle.Crypto.ISignatureFactory)">
-            <summary>
-            Create the RSA certificate with a given public key.
-            </summary>
-            <returns>The signed certificate.</returns>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreatePfxForRSA(System.String,Org.BouncyCastle.Crypto.ISignatureFactory)">
-            <summary>
-            Create the RSA certificate as Pfx byte array with a private key.
-            </summary>
-            <returns>
-            Returns the Pfx with certificate and private key.
-            </returns>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.NewSerialNumber(Org.BouncyCastle.Crypto.Prng.IRandomGenerator)">
-            <summary>
-            Create a new random serial number.
-            </summary>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator">
-            <summary>
-            Secure .Net Core Random Number generator wrapper for Bounce Castle.
-            Creates an instance of RNGCryptoServiceProvider or an OpenSSL based version on other OS.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator.#ctor">
-            <summary>
-            Creates an instance of a crypthographic secure random number generator.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator.Dispose">
-            <summary>
-            Dispose the random number generator.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator.AddSeedMaterial(System.Byte[])">
-            <summary>Add more seed material to the generator. Not needed here.</summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator.AddSeedMaterial(System.Int64)">
-            <summary>Add more seed material to the generator. Not needed here.</summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator.NextBytes(System.Byte[])">
-            <summary>
-            Fills an array of bytes with a cryptographically strong
-            random sequence of values.
-            </summary>
-            <param name="bytes">Array to be filled.</param>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryRandomGenerator.NextBytes(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Fills an array of bytes with a cryptographically strong
-            random sequence of values.
-            </summary>
-            <param name="bytes">Array to receive bytes.</param>
-            <param name="start">Index to start filling at.</param>
-            <param name="len">Length of segment to fill.</param>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryX509Name">
-            <summary>
-            A converter class to create a X509Name object 
-            from a X509Certificate subject.
-            </summary>
-            <remarks>
-            Handles subtle differences in the string representation
-            of the .NET and the Bouncy Castle implementation.
-            </remarks>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryX509Name.#ctor(System.String)">
-            <summary>
-            Create the X509Name from a distinguished name.
-            </summary>
-            <param name="distinguishedName">The distinguished name.</param>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.CertificateFactoryX509Name.#ctor(System.Boolean,System.String)">
-            <summary>
-            Create the X509Name from a distinguished name.
-            </summary>
-            <param name="reverse">Reverse the order of the names.</param>
-            <param name="distinguishedName">The distinguished name.</param>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.X509Extensions">
-            <summary>
-            Helper functions for X509 extensions using Org.BouncyCastle.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509Extensions.BuildSubjectAltNameExtension(System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
-            <summary>
-            Build the Subject Alternate Name.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509Extensions.CreateSubjectAlternateNameDomains(System.Collections.Generic.IList{System.String})">
-            <summary>
-            helper to build alternate name domains list for certs.
-            </summary>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory">
-            <summary>
-            The signature factory for Bouncy Castle to sign a digest with a KeyVault key.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.#ctor(System.Security.Cryptography.HashAlgorithmName,Opc.Ua.Security.Certificates.X509SignatureGenerator)">
-            <summary>
-            Constructor which also specifies a source of randomness to be used if one is required.
-            </summary>
-            <param name="hashAlgorithm">The name of the signature algorithm to use.</param>
-            <param name="generator">The signature generator.</param>
-        </member>
-        <member name="P:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.AlgorithmDetails">
-            <inheritdoc/>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.CreateCalculator">
-            <inheritdoc/>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.X509StreamCalculator">
-            <summary>
-            Signs a Bouncy Castle digest stream with the .Net X509SignatureGenerator.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.X509StreamCalculator.#ctor(Opc.Ua.Security.Certificates.X509SignatureGenerator,System.Security.Cryptography.HashAlgorithmName)">
-            <summary>
-            Ctor for the stream calculator. 
-            </summary>
-            <param name="generator">The X509SignatureGenerator to sign the digest.</param>
-            <param name="hashAlgorithm">The hash algorithm to use for the signature.</param>
-        </member>
-        <member name="P:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.X509StreamCalculator.Stream">
-            <summary>
-            The digest stream (MemoryStream).
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.X509StreamCalculator.GetResult">
-            <summary>
-            Callback signs the digest with X509SignatureGenerator.
-            </summary>
-        </member>
-        <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.MemoryBlockResult">
-            <summary>
-            Helper for Bouncy Castle signing operation to store the result in a memory block.
-            </summary>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.MemoryBlockResult.#ctor(System.Byte[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.MemoryBlockResult.Collect">
-            <inheritdoc/>
-        </member>
-        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509SignatureFactory.MemoryBlockResult.Collect(System.Byte[],System.Int32)">
-            <inheritdoc/>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.BouncyCastle.X509Utils">
             <summary>
@@ -872,39 +708,74 @@
             Read the Common Name from a certificate.
             </summary>
         </member>
-        <member name="T:Opc.Ua.Security.Certificates.PEMReader">
+        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509Utils.GeneratePasscode">
             <summary>
-            Methods or read PEM data.
+            Create secure temporary passcode.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.PEMReader.ImportPrivateKeyFromPEM(System.Byte[],System.String)">
+        <member name="M:Opc.Ua.Security.Certificates.BouncyCastle.X509Utils.SetRSAPublicKey(System.Byte[])">
             <summary>
-            Import a private key from PEM.
+            Returns a RSA object with an imported public key.
             </summary>
         </member>
-        <member name="T:Opc.Ua.Security.Certificates.PEMReader.Password">
+        <member name="T:Opc.Ua.Security.Certificates.CertificateBuilder">
             <summary>
-            Wrapper for a password string.
+            Builds a Certificate.
             </summary>
         </member>
-        <member name="T:Opc.Ua.Security.Certificates.PEMWriter">
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.Create(System.Security.Cryptography.X509Certificates.X500DistinguishedName)">
             <summary>
-            Write certificate data in PEM format.
+            Create a Certificate builder.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportCSRAsPEM(System.Byte[])">
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.Create(System.String)">
             <summary>
-            Returns a byte array containing the CSR in PEM format.
+            Create a Certificate builder.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportCertificateAsPEM(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.#ctor(System.Security.Cryptography.X509Certificates.X500DistinguishedName)">
             <summary>
-            Returns a byte array containing the cert in PEM format.
+            Constructor of a Certificate builder.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.PEMWriter.ExportPrivateKeyAsPEM(System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.#ctor(System.String)">
             <summary>
-            Returns a byte array containing the private key in PEM format.
+            Constructor of a Certificate builder.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForRSA">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForRSA(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForECDsa">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateForECDsa(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.SetECDsaPublicKey(System.Byte[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.SetRSAPublicKey(System.Byte[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateDefaults">
+            <summary>
+            Create some defaults needed to build the certificate.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.CreateX509Extensions(System.Security.Cryptography.X509Certificates.CertificateRequest,System.Boolean)">
+            <summary>
+            Create the X509 extensions to build the certificate.
+            </summary>
+            <param name="request">A certificate request.</param>
+            <param name="forECDsa">If the certificate is for ECDsa, not RSA.</param>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilder.GetBasicContraints">
+            <summary>
+            Set the basic constraints for various cases.
             </summary>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.CertificateBuilderBase">
@@ -954,7 +825,13 @@
         <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.CreateForRSA">
             <inheritdoc/>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.CreateForRSA(Opc.Ua.Security.Certificates.X509SignatureGenerator)">
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.CreateForRSA(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.CreateForECDsa">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.CreateForECDsa(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
             <inheritdoc/>
         </member>
         <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetSerialNumberLength(System.Int32)">
@@ -984,10 +861,19 @@
         <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetCAConstraint(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetRSAKeySize(System.Int32)">
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetRSAKeySize(System.UInt16)">
             <inheritdoc/>
         </member>
         <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.AddExtension(System.Security.Cryptography.X509Certificates.X509Extension)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetECCurve(System.Security.Cryptography.ECCurve)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetECDsaPublicKey(System.Byte[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetECDsaPublicKey(System.Security.Cryptography.ECDsa)">
             <inheritdoc/>
         </member>
         <member name="M:Opc.Ua.Security.Certificates.CertificateBuilderBase.SetRSAPublicKey(System.Byte[])">
@@ -1054,6 +940,16 @@
             The size of a RSA key pair to create.
             </summary>
         </member>
+        <member name="F:Opc.Ua.Security.Certificates.CertificateBuilderBase.m_ecdsaPublicKey">
+            <summary>
+            The ECDsa public to use when if a certificate is signed.
+            </summary>
+        </member>
+        <member name="F:Opc.Ua.Security.Certificates.CertificateBuilderBase.m_curve">
+            <summary>
+            The ECCurve to use.
+            </summary>
+        </member>
         <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilder">
             <summary>
             The certificate builder interface.
@@ -1086,7 +982,12 @@
         </member>
         <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForRSAAny">
             <summary>
-            The interface to create a RSA based certifcate.
+            The interface to create a RSA based certificate.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForECDsaAny">
+            <summary>
+            The interface to create a ECDSA based certificate.
             </summary>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderConfig">
@@ -1200,7 +1101,7 @@
             <remarks>
             The issuer certificate must contain a private key which matches
             the selected sign algorithm if no generator is avilable.
-            If a <see cref="T:Opc.Ua.Security.Certificates.X509SignatureGenerator"/> is used for signing the
+            If a <see cref="T:System.Security.Cryptography.X509Certificates.X509SignatureGenerator"/> is used for signing the
             the issuer certificate can be set with a public key to create
             the X509 extensions.
             </remarks>
@@ -1211,11 +1112,22 @@
             The interface to select the RSA key size parameter.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderRSAParameter.SetRSAKeySize(System.Int32)">
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderRSAParameter.SetRSAKeySize(System.UInt16)">
             <summary>
             Set the RSA key size in bits.
             </summary>
             <param name="keySize">The size of the RSA key.</param>
+        </member>
+        <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderECCParameter">
+            <summary>
+            The interface to select the ECCurve.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderECCParameter.SetECCurve(System.Security.Cryptography.ECCurve)">
+            <summary>
+            Set the ECC Curve parameter.
+            </summary>
+            <param name="curve">The ECCurve.</param>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderRSAPublicKey">
             <summary>
@@ -1234,6 +1146,23 @@
             </summary>
             <param name="publicKey">The RSA public key.</param>
         </member>
+        <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderECDsaPublicKey">
+            <summary>
+            The interface to set a ECDSA public key for a certificate.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderECDsaPublicKey.SetECDsaPublicKey(System.Byte[])">
+            <summary>
+            Set the public key using a ASN.1 encoded byte array.
+            </summary>
+            <param name="publicKey">The public key as encoded byte array.</param>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderECDsaPublicKey.SetECDsaPublicKey(System.Security.Cryptography.ECDsa)">
+            <summary>
+            Set the public key using a ECDSA public key.
+            </summary>
+            <param name="publicKey">The ECDsa public key.</param>
+        </member>
         <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForRSA">
             <summary>
             The interface to create a certificate using the RSA algorithm.
@@ -1250,9 +1179,31 @@
             The interface to create a certificate using a signature generator.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForRSAGenerator.CreateForRSA(Opc.Ua.Security.Certificates.X509SignatureGenerator)">
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForRSAGenerator.CreateForRSA(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
             <summary>
             Create the RSA certificate with signature using an external generator.
+            </summary>
+            <returns>The signed certificate.</returns>
+        </member>
+        <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForECDsa">
+            <summary>
+            The interface to create a certificate using the ECDSA algorithm.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForECDsa.CreateForECDsa">
+            <summary>
+            Create the ECC certificate with signature.
+            </summary>
+            <returns>The signed certificate.</returns>
+        </member>
+        <member name="T:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForECDsaGenerator">
+            <summary>
+            The interface to create a certificate using a signature generator for ECDSA.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.ICertificateBuilderCreateForECDsaGenerator.CreateForECDsa(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
+            <summary>
+            Create the ECDSA certificate with signature using an external generator.
             </summary>
             <returns>The signed certificate.</returns>
         </member>
@@ -1308,6 +1259,11 @@
             Utilities to create a Pfx.
             </summary>
         </member>
+        <member name="F:Opc.Ua.Security.Certificates.X509PfxUtils.s_rnd">
+            <summary>
+            Internal random number generator.
+            </summary>
+        </member>
         <member name="F:Opc.Ua.Security.Certificates.X509PfxUtils.TestBlockSize">
             <summary>
             The size of the block used to test a sign or encrypt operation.
@@ -1323,12 +1279,13 @@
             Verify RSA key pair of two certificates.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.X509PfxUtils.CreateCertificateFromPKCS12(System.Byte[],System.String)">
+        <member name="M:Opc.Ua.Security.Certificates.X509PfxUtils.CreateCertificateFromPKCS12(System.Byte[],System.String,System.Boolean)">
             <summary>
             Creates a certificate from a PKCS #12 store with a private key.
             </summary>
             <param name="rawData">The raw PKCS #12 store data.</param>
             <param name="password">The password to use to access the store.</param>
+            <param name="noEphemeralKeySet">Set to true if the key should not use the ephemeral key set.</param>
             <returns>The certificate with a private key.</returns>
         </member>
         <member name="M:Opc.Ua.Security.Certificates.X509PfxUtils.VerifyRSAKeyPairCrypt(System.Security.Cryptography.RSA,System.Security.Cryptography.RSA)">
@@ -1339,6 +1296,16 @@
         <member name="M:Opc.Ua.Security.Certificates.X509PfxUtils.VerifyRSAKeyPairSign(System.Security.Cryptography.RSA,System.Security.Cryptography.RSA)">
             <summary>
             Verify a RSA key pair using a signature.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509PfxUtils.VerifyECDsaKeyPair(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Boolean)">
+            <summary>
+            Verify ECDsa key pair of two certificates.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509PfxUtils.VerifyECDsaKeyPairSign(System.Security.Cryptography.ECDsa,System.Security.Cryptography.ECDsa)">
+            <summary>
+            Verify a ECDsa key pair using a signature.
             </summary>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.CrlBuilder">
@@ -1457,7 +1424,7 @@
             Add a revoked certificate.
             </summary>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.CrlBuilder.CreateSignature(Opc.Ua.Security.Certificates.X509SignatureGenerator)">
+        <member name="M:Opc.Ua.Security.Certificates.CrlBuilder.CreateSignature(System.Security.Cryptography.X509Certificates.X509SignatureGenerator)">
             <summary>
             Create the CRL with signature generator.
             </summary>
@@ -1467,6 +1434,12 @@
         <member name="M:Opc.Ua.Security.Certificates.CrlBuilder.CreateForRSA(System.Security.Cryptography.X509Certificates.X509Certificate2)">
             <summary>
             Create the CRL with signature for RSA.
+            </summary>
+            <returns>The signed CRL.</returns>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CrlBuilder.CreateForECDsa(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Create the CRL with signature for ECDsa.
             </summary>
             <returns>The signed CRL.</returns>
         </member>
@@ -1500,6 +1473,13 @@
                                           -- if present, version MUST be v2
                                         }
              </remarks>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.CrlBuilder.WriteTime(System.Formats.Asn1.AsnWriter,System.DateTime)">
+            <summary>
+            Write either a UTC time or a Generalized time depending if DataTime is before or after 2050.
+            </summary>
+            <param name="writer">The writer to write to.</param>
+            <param name="dateTime">The date time to write.</param>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.CRLReason">
             <summary>
@@ -1705,13 +1685,63 @@
         </member>
         <member name="M:Opc.Ua.Security.Certificates.X509CRL.DecodeCrl(System.Byte[])">
             <summary>
-            Decode the Tbs of the CRL.
+            Decode the Tbs of the CRL. 
             </summary>
             <param name="tbs">The raw TbsCertList of the CRL.</param>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRL.ReadTime(System.Formats.Asn1.AsnReader,System.Boolean)">
+            <summary>
+            Read the time, UTC or local time
+            </summary>
+            <param name="asnReader"></param>
+            <param name="optional"></param>
+            <returns>The DateTime representing the tag</returns>
         </member>
         <member name="M:Opc.Ua.Security.Certificates.X509CRL.EnsureDecoded">
             <summary>
             Decode if RawData is yet undecoded.
+            </summary>
+        </member>
+        <member name="T:Opc.Ua.Security.Certificates.X509CRLCollection">
+            <summary>
+            A collection of X509CRL.
+            </summary>
+        </member>
+        <member name="P:Opc.Ua.Security.Certificates.X509CRLCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element to get or set.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRLCollection.#ctor">
+            <summary>
+            Create an empty X509CRL collection.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRLCollection.#ctor(Opc.Ua.Security.Certificates.X509CRL)">
+            <summary>
+            Create a crl collection from a single CRL.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRLCollection.#ctor(Opc.Ua.Security.Certificates.X509CRLCollection)">
+            <summary>
+            Create a crl collection from a CRL collection.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRLCollection.#ctor(Opc.Ua.Security.Certificates.X509CRL[])">
+            <summary>
+            Create a collection from an array.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRLCollection.ToX509CRLCollection(Opc.Ua.Security.Certificates.X509CRL[])">
+            <summary>
+            Converts an array to a collection.
+            </summary>
+        </member>
+        <member name="M:Opc.Ua.Security.Certificates.X509CRLCollection.op_Implicit(Opc.Ua.Security.Certificates.X509CRL[])~Opc.Ua.Security.Certificates.X509CRLCollection">
+            <summary>
+            Converts an array to a collection.
             </summary>
         </member>
         <member name="T:Opc.Ua.Security.Certificates.X509Signature">
@@ -1800,11 +1830,12 @@
             </summary>
             <param name="signature">The signature to encode as ASN.1</param>
         </member>
-        <member name="M:Opc.Ua.Security.Certificates.X509Signature.DecodeECDsa(System.ReadOnlyMemory{System.Byte})">
+        <member name="M:Opc.Ua.Security.Certificates.X509Signature.DecodeECDsa(System.ReadOnlyMemory{System.Byte},System.Int32)">
             <summary>
             Decode a ECDSA signature from ASN.1.
             </summary>
             <param name="signature">The signature to decode from ASN.1</param>
+            <param name="keySize">The keySize in bits.</param>
         </member>
     </members>
 </doc>

@@ -102,7 +102,6 @@ namespace DHS.EQUIPMENT
 
                 Console.WriteLine("Start the server...");
                 
-
                 connection = true;
                 return true;
             }

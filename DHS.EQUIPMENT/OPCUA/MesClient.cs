@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,10 @@ using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 using DHS.EQUIPMENT.PLC;
 using Opc.Ua;
+using Opc.Ua.Client;
 using OPCUACLIENT;
+using OpcUaHelper;
+using static System.Net.Mime.MediaTypeNames;
 using static DHS.EQUIPMENT.MesClient;
 using static Telerik.WinControls.UI.ValueMapper;
 
@@ -19,6 +24,7 @@ namespace DHS.EQUIPMENT
     {
         public static bool connection = false;
         public bool isRead = false;
+        //OPCUACLIENT.OPCUACLIENT opcclient = null;
         OPCUACLIENT.OPCUACLIENT opcclient = null;
         IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
 
@@ -95,6 +101,8 @@ namespace DHS.EQUIPMENT
             _strLog = string.Empty;
 
             opcclient = new OPCUACLIENT.OPCUACLIENT();
+            opcclient.OpcStatusChange += OpcUaClient_OpcStatusChange;
+            opcclient.ConnectComplete += OpcUaClient_ConnectComplete;
 
             //* IROCV DATA
             for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
@@ -112,23 +120,77 @@ namespace DHS.EQUIPMENT
             _tmrMESRead.Enabled = true;
         }
 
-        public async Task<bool> MesClientStartAsync()
+        private void OpcUaClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
+        {
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke(new Action(() =>
+            //    {
+            //        OpcUaClient_OpcStatusChange(sender, e);
+            //    }));
+            //    return;
+            //}
+
+            //if (e.Error)
+            //{
+            //    toolStripStatusLabel1.BackColor = Color.Red;
+            //}
+            //else
+            //{
+            //    toolStripStatusLabel1.BackColor = SystemColors.Control;
+            //}
+
+            //toolStripStatusLabel_opc.Text = e.ToString();
+        }
+
+        private void OpcUaClient_ConnectComplete(object sender, EventArgs e)
         {
             try
             {
-                //await Task.Run(() => opcclient.Connect("opc.tcp://192.168.0.14:48000/IROCV"));
+                OPCUACLIENT.OPCUACLIENT client = (OPCUACLIENT.OPCUACLIENT)sender;
+                if (client.Connected) connection = true;
+                else connection = false;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.ToString());
+            }
+        }
+
+        public async Task<bool> MesClientStartAsync2()
+        {
+            try
+            {
                 //connection = true;
                 string serverurl = MesServer.IPADDRESS;
-                connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://herald:4841"));
-                //connection = await Task.FromResult<bool>(opcclient.Connect(serverurl));
-                return connection;
-                
+                //connection = await Task.FromResult<bool>(opcclient.Connect("opc.tcp://localhost:4841"));
+
+                //connection = opcclient.ConnectAsync("opc.tcp://herald:4841");
+                //Task<bool> task = opcclient.ConnectAsync(serverurl);
+                Task<bool> task = null;
+                task.Wait();
+
+                return task.Result;
             } catch(Exception ex)
             {
                 connection = false;
                 Console.WriteLine(ex.ToString());
             }
             return false;
+        }
+        public async void MesClientStartAsync()
+        {
+            try
+            {
+                string serverurl = MesServer.IPADDRESS;
+                opcclient.ConnectToServer(serverurl);
+
+            }
+            catch (Exception ex)
+            {
+                connection = false;
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         #region MES Timer
@@ -455,27 +517,27 @@ namespace DHS.EQUIPMENT
                 switch (nDataType)
                 {
                     case (int)MesClient.EnumDataType.dtUInt32:
-                        objValue = opcclient.Read<UInt32>(node);
+                        objValue = opcclient.ReadNode<UInt32>(node);
                         if (objValue == null) return 0;
                         break;
                     case (int)MesClient.EnumDataType.dtString:
-                        objValue = opcclient.Read<string>(node);
+                        objValue = opcclient.ReadNode<string>(node);
                         if (objValue == null) return string.Empty;
                         break;
                     case (int)MesClient.EnumDataType.dtStringArr:
-                        objValue = (string[])opcclient.Read<string[]>(node);
+                        objValue = (string[])opcclient.ReadNode<string[]>(node);
                         if (objValue == null) return string.Empty;
                         break;
                     case (int)MesClient.EnumDataType.dtUInt32Arr:
-                        objValue = (UInt32[])opcclient.Read<UInt32[]>(node);
+                        objValue = (UInt32[])opcclient.ReadNode<UInt32[]>(node);
                         if (objValue == null) return 0;
                         break;
                     case (int)MesClient.EnumDataType.dtFloatArr:
-                        objValue = (float[])opcclient.Read<float[]>(node);
+                        objValue = (float[])opcclient.ReadNode<float[]>(node);
                         if (objValue == null) return 0;
                         break;
                     case (int)MesClient.EnumDataType.dtBoolean:
-                        var bVal = (Boolean)opcclient.Read<bool>(node);
+                        var bVal = (Boolean)opcclient.ReadNode<bool>(node);
                         objValue = bVal.ToString();
                         break;
                     default:
@@ -504,34 +566,34 @@ namespace DHS.EQUIPMENT
                     case (int)MesClient.EnumDataType.dtUInt32:
                         UInt32 iVal = 0;
                         UInt32.TryParse(value, out iVal);
-                        opcclient.Write<UInt32>(node, iVal);
+                        opcclient.WriteNode<UInt32>(node, iVal);
                         break;
                     case (int)MesClient.EnumDataType.dtFloat:
                         float fVal = 0.0f;
                         float.TryParse(value, out fVal);
-                        opcclient.Write<float>(node, fVal);
+                        opcclient.WriteNode<float>(node, fVal);
                         break;
                     case (int)MesClient.EnumDataType.dtString:
                         string strVal = string.Empty;
                         strVal = value;
-                        opcclient.Write<string>(node, strVal);
+                        opcclient.WriteNode<string>(node, strVal);
                         break;
                     case (int)MesClient.EnumDataType.dtStringArr:
                         String[] strVals;
                         strVals = value.Split(',');
-                        opcclient.Write<String[]>(node, strVals);
+                        opcclient.WriteNode<String[]>(node, strVals);
                         break;
                     case (int)MesClient.EnumDataType.dtUInt32Arr:
                         UInt32[] iValArr;
                         string[] strValArr = value.Split(',');
                         iValArr = Array.ConvertAll(strValArr, UInt32.Parse);
-                        opcclient.Write<UInt32[]>(node, iValArr);
+                        opcclient.WriteNode<UInt32[]>(node, iValArr);
                         break;
                     case (int)MesClient.EnumDataType.dtBoolean:
                         bool bVal = false;
                         //* boolean 형은 "True"은 true, 그 외에 다른 값은 false
                         Boolean.TryParse(value, out bVal);
-                        opcclient.Write<Boolean>(node, bVal);
+                        opcclient.WriteNode<Boolean>(node, bVal);
                         break;
                     default:
                         break;
@@ -555,17 +617,17 @@ namespace DHS.EQUIPMENT
                 switch (nDataType)
                 {
                     case (int)MesClient.EnumDataType.dtStringArr:
-                        opcclient.Write<String[]>(node, values);
+                        opcclient.WriteNode<String[]>(node, values);
                         break;
                     case (int)MesClient.EnumDataType.dtUInt32Arr:
                         UInt32[] iValArr;
                         iValArr = Array.ConvertAll(values, UInt32.Parse);
-                        opcclient.Write<UInt32[]>(node, iValArr);
+                        opcclient.WriteNode<UInt32[]>(node, iValArr);
                         break;
                     case (int)MesClient.EnumDataType.dtFloatArr:
                         float[] fValArr;
                         fValArr = Array.ConvertAll(values, float.Parse);
-                        opcclient.Write<float[]>(node, fValArr);
+                        opcclient.WriteNode<float[]>(node, fValArr);
                         break;
                     default:
                         break;

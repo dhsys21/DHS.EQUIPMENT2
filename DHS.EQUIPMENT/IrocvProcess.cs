@@ -21,7 +21,6 @@ namespace DHS.EQUIPMENT
         public static IrocvProcess irocvprocess = null;
         Util util;
         SIEMENSS7LIB siemensplc;
-        OPENUACLIENT opcuames;
         MesServer messerver;
         MesClient mesclient;
         CEquipmentData _system;
@@ -788,7 +787,9 @@ namespace DHS.EQUIPMENT
             {
                 try
                 {
-                    _bMesConnected = await Task.Run(() => mesclient.MesClientStartAsync());
+                    //_bMesConnected = await Task.Run(() => mesclient.MesClientStartAsync());
+                    await Task.Run(() => mesclient.MesClientStartAsync());
+                    _bMesConnected = MesClient.connection;
                 }
                 catch (Exception ex)
                 {

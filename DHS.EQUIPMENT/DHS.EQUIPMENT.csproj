@@ -182,6 +182,7 @@
     <Reference Include="Opc.Ua.Server, Version=1.5.374.0, Culture=neutral, PublicKeyToken=bfa7a73c5cf4b6e8, processorArchitecture=MSIL">
       <HintPath>..\packages\OPCFoundation.NetStandard.Opc.Ua.Server.1.5.374.70\lib\net48\Opc.Ua.Server.dll</HintPath>
     </Reference>
+    <Reference Include="OpcUaHelper, Version=2.1.3.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="S7.Net, Version=0.20.0.0, Culture=neutral, PublicKeyToken=d5812d469e84c693, processorArchitecture=MSIL">
       <HintPath>..\packages\S7netplus.0.20.0\lib\net462\S7.Net.dll</HintPath>
     </Reference>
@@ -340,7 +341,6 @@
     <Compile Include="IROCV\NGInfo.Designer.cs">
       <DependentUpon>NGInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="MES\OPENUACLIENT.cs" />
     <Compile Include="OPCUA\MesClient.cs" />
     <Compile Include="OPCUA\MESINTERFACE.cs">
       <SubType>Form</SubType>
@@ -505,6 +505,9 @@
       <Project>{9c4a7b47-d191-4267-a5be-141467668536}</Project>
       <Name>OPCUACLIENT</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MES\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
