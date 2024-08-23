@@ -244,21 +244,24 @@ namespace DHS.EQUIPMENT
         
         private void MesReadTimer()
         {
-            string tagName1 = "ns=2;i=6013";
-            NodeId nodeid1 = NodeId.Parse("ns=2;i=6013");
-            NodeId nodeid2 = NodeId.Parse("ns=2;i=6011");
+            NodeId nodeid1 = NodeId.Parse("ns=2;i=6012");
+            NodeId nodeid2 = NodeId.Parse("ns=2;i=6013");
+            NodeId nodeid3 = NodeId.Parse("ns=2;i=6038");
+            NodeId nodeid4 = NodeId.Parse("ns=2;i=6041");
+
+            NodeId[] nodeids = { nodeid1, nodeid2, nodeid3, nodeid4 };
 
             string value = "102";
             UInt32 iVal = 0;
             UInt32.TryParse(value, out iVal);
             try
             {
-                opcclient.WriteNode<UInt32>(tagName1, iVal);
+                opcclient.WriteNode<UInt32>(nodeid2.ToString(), iVal);
 
                 object objValue = opcclient.ReadNode(nodeid1);
                 Console.WriteLine(objValue.ToString());
 
-                objValue = opcclient.ReadNode(nodeid2);
+                objValue = opcclient.ReadNodes(nodeids);
                 Console.WriteLine(objValue.ToString());
             }
             catch(Exception ex)
