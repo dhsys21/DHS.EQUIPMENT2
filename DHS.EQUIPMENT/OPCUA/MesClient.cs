@@ -32,7 +32,7 @@ namespace DHS.EQUIPMENT
         private string _strLog;
 
         private string[] mesData = new string[72];
-        private string[] pcData = new string[172];
+        private string[] plcData = new string[172];
 
         private int _iMesSequenceNo;
         private int _iMesAcknowledgeNo;
@@ -80,13 +80,13 @@ namespace DHS.EQUIPMENT
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
         static System.Windows.Forms.Timer _tmrMESConnect = new System.Windows.Forms.Timer();
 
-        public delegate void SetDataToDgv(string[] pcValues, string[] mesValues);
+        public delegate void SetDataToDgv(string[] plcValues, string[] mesValues);
         public event SetDataToDgv OnSetDataToDgv = null;
-        protected void RaiseOnSetDataToDgv(string[] pcValues, string[] mesValues)
+        protected void RaiseOnSetDataToDgv(string[] plcValues, string[] mesValues)
         {
             if (OnSetDataToDgv != null)
             {
-                OnSetDataToDgv(pcValues, mesValues);
+                OnSetDataToDgv(plcValues, mesValues);
             }
         }
         public delegate void SaveMesLog(string mesLog);
@@ -228,9 +228,9 @@ namespace DHS.EQUIPMENT
                     sw.Start();
 
                     //* for test 2024 07 09
-                    //MesReadTimer();
+                    MesReadTimer();
 
-                    RaiseOnSetDataToDgv(pcData, mesData);
+                    RaiseOnSetDataToDgv(plcData, mesData);
 
                     sw.Stop();
                     //SetValue(sw.ElapsedMilliseconds.ToString());
@@ -241,8 +241,33 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(ex.ToString());
             }
         }
-
+        
         private void MesReadTimer()
+        {
+            string tagName1 = "ns=2:i=6013";
+            NodeId nodeid1 = NodeId.Parse("ns=2;i=6013");
+
+            string value = "101";
+            UInt32 iVal = 0;
+            UInt32.TryParse(value, out iVal);
+            try
+            {
+                //opcclient.WriteNode<UInt32>(tagName1, iVal);
+
+                object objValue = opcclient.ReadNode(nodeid1);
+                Console.WriteLine(objValue.ToString());
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
+
+        }
+        /// <summary>
+        /// node를 만들어서 읽고 쓰기를 할 때 사용한 코드
+        /// </summary>
+        private void MesReadTimer_Old()
         {
             try
             {
@@ -497,24 +522,24 @@ namespace DHS.EQUIPMENT
         private void SetValue(int row, int value, string type)
         {
             if (type == "MES") mesData[row] = value.ToString();
-            else if (type == "PC") pcData[row] = value.ToString();
+            else if (type == "PC") plcData[row] = value.ToString();
         }
         private void SetValue(int row, string value, string type)
         {
             if (type == "MES") mesData[row] = value;
-            else if (type == "PC") pcData[row] = value;
+            else if (type == "PC") plcData[row] = value;
         }
         private void SetValue(int row, bool value, string type)
         {
             if (type == "MES") mesData[row] = value.ToString();
-            else if (type == "PC") pcData[row] = value.ToString();
+            else if (type == "PC") plcData[row] = value.ToString();
         }
         private void SetValue(int row, int[] values, string type)
         {
             for(int nIndex = 0; nIndex < values.Length; nIndex++)
             {
                 if (type == "MES") mesData[row++] = values[nIndex].ToString();
-                else if (type == "PC") pcData[row++] = values[nIndex].ToString();
+                else if (type == "PC") plcData[row++] = values[nIndex].ToString();
             }
         }
         private void SetValue(int row, float[] values, string type)
@@ -522,7 +547,7 @@ namespace DHS.EQUIPMENT
             for (int nIndex = 0; nIndex < values.Length; nIndex++)
             {
                 if (type == "MES") mesData[row++] = values[nIndex].ToString();
-                else if (type == "PC") pcData[row++] = values[nIndex].ToString();
+                else if (type == "PC") plcData[row++] = values[nIndex].ToString();
             }
         }
         private void SetValue(int row, string[] values, string type)
@@ -530,7 +555,7 @@ namespace DHS.EQUIPMENT
             for (int nIndex = 0; nIndex < values.Length; nIndex++)
             {
                 if (type == "MES") mesData[row++] = values[nIndex];
-                else if (type == "PC") pcData[row++] = values[nIndex];
+                else if (type == "PC") plcData[row++] = values[nIndex];
             }
         }
         private object ReadValue(string node, int nDataType)

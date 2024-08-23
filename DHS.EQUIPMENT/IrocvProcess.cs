@@ -292,9 +292,9 @@ namespace DHS.EQUIPMENT
         {
             mesclient.WriteValue(node, value);
         }
-        private void _MesClient_SetDataToDgv(string[] pcValues, string[] mesValues)
+        private void _MesClient_SetDataToDgv(string[] plcValues, string[] mesValues)
         {
-            mesinterface.SetDataToGrid(pcValues, mesValues);
+            mesinterface.SetDataToGrid(plcValues, mesValues);
         }
         private void _MesClient_SaveMesLog(string mesLog)
         {

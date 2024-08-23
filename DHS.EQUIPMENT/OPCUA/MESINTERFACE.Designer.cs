@@ -33,7 +33,7 @@ namespace DHS.EQUIPMENT
             this.radpnl_MesInterfaceTitle = new Telerik.WinControls.UI.RadPanel();
             this.pnl_PlcInterface = new System.Windows.Forms.Panel();
             this.dgvMES = new System.Windows.Forms.DataGridView();
-            this.dgvPC = new System.Windows.Forms.DataGridView();
+            this.dgvPLC = new System.Windows.Forms.DataGridView();
             this.radpnl_MESTEST = new Telerik.WinControls.UI.RadPanel();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.cbTagType = new System.Windows.Forms.ComboBox();
@@ -76,7 +76,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
             this.pnl_PlcInterface.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMES)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPLC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MESTEST)).BeginInit();
             this.radpnl_MESTEST.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
@@ -128,7 +128,7 @@ namespace DHS.EQUIPMENT
             // pnl_PlcInterface
             // 
             this.pnl_PlcInterface.Controls.Add(this.dgvMES);
-            this.pnl_PlcInterface.Controls.Add(this.dgvPC);
+            this.pnl_PlcInterface.Controls.Add(this.dgvPLC);
             this.pnl_PlcInterface.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnl_PlcInterface.Location = new System.Drawing.Point(5, 94);
             this.pnl_PlcInterface.Name = "pnl_PlcInterface";
@@ -149,19 +149,19 @@ namespace DHS.EQUIPMENT
             this.dgvMES.Size = new System.Drawing.Size(450, 615);
             this.dgvMES.TabIndex = 0;
             // 
-            // dgvPC
+            // dgvPLC
             // 
-            this.dgvPC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPC.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dgvPC.Location = new System.Drawing.Point(466, 10);
-            this.dgvPC.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvPC.Name = "dgvPC";
-            this.dgvPC.RowHeadersVisible = false;
-            this.dgvPC.RowHeadersWidth = 51;
-            this.dgvPC.RowTemplate.Height = 23;
-            this.dgvPC.Size = new System.Drawing.Size(450, 615);
-            this.dgvPC.TabIndex = 1;
+            this.dgvPLC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPLC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPLC.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dgvPLC.Location = new System.Drawing.Point(466, 10);
+            this.dgvPLC.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvPLC.Name = "dgvPLC";
+            this.dgvPLC.RowHeadersVisible = false;
+            this.dgvPLC.RowHeadersWidth = 51;
+            this.dgvPLC.RowTemplate.Height = 23;
+            this.dgvPLC.Size = new System.Drawing.Size(450, 615);
+            this.dgvPLC.TabIndex = 1;
             // 
             // radpnl_MESTEST
             // 
@@ -703,7 +703,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).EndInit();
             this.pnl_PlcInterface.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMES)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPLC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MESTEST)).EndInit();
             this.radpnl_MESTEST.ResumeLayout(false);
             this.radpnl_MESTEST.PerformLayout();
@@ -732,7 +732,7 @@ namespace DHS.EQUIPMENT
         private Telerik.WinControls.UI.RadPanel radpnl_MesInterfaceTitle;
         private System.Windows.Forms.Panel pnl_PlcInterface;
         private System.Windows.Forms.DataGridView dgvMES;
-        private System.Windows.Forms.DataGridView dgvPC;
+        private System.Windows.Forms.DataGridView dgvPLC;
         private Telerik.WinControls.UI.RadPanel radpnl_MESTEST;
         private System.Windows.Forms.ComboBox cbTagList;
         private System.Windows.Forms.Label label5;

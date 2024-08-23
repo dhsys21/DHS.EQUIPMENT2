@@ -16,7 +16,7 @@ namespace DHS.EQUIPMENT
     public partial class MESINTERFACE : Form
     {
         private static MESINTERFACE mesform;
-        DataGridView[] dgvPCs = new DataGridView[_Constant.frmCount];
+        DataGridView[] dgvPLCs = new DataGridView[_Constant.frmCount];
         DataGridView[] dgvMESs = new DataGridView[_Constant.frmCount];
 
         public delegate void WriteButtonClick(string node, string value, int nDataType);
@@ -89,7 +89,7 @@ namespace DHS.EQUIPMENT
             this.Width = 992;
             radpnl_MESTEST.Visible = false;
 
-            dgvPCs[0] = dgvPC;
+            dgvPLCs[0] = dgvPLC;
             dgvMESs[0] = dgvMES;
             MakeGridView();
 
@@ -145,72 +145,52 @@ namespace DHS.EQUIPMENT
         {
             //* 열 추가
             dgvMESs[0].Columns.Add("001", "MES TAG NAME");
-            dgvMESs[0].Columns.Add("002", "MES VALUES");
-            dgvMESs[0].Columns[0].Width = 180;
-            dgvMESs[0].Columns[1].Width = 250;
+            dgvMESs[0].Columns.Add("002", "MES TAG VALUE");
+            dgvMESs[0].Columns[0].Width = 300;
+            dgvMESs[0].Columns[1].Width = 145;
 
             //* 행 추가
-            dgvMESs[0].Rows.Add(70);
-            dgvMESs[0].Rows[0].Cells[0].Value = "SequenceNo";
-            dgvMESs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
-            dgvMESs[0].Rows[2].Cells[0].Value = "EquipmentID";
-            dgvMESs[0].Rows[3].Cells[0].Value = "TrayID";
-            dgvMESs[0].Rows[4].Cells[0].Value = "TrayStatusCode";
-            dgvMESs[0].Rows[5].Cells[0].Value = "ErrorCode";
-            dgvMESs[0].Rows[6].Cells[0].Value = "ErrorMessage";
-
-            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
-            {
-                dgvMESs[0].Rows[nIndex + 7].Cells[0].Value = "CellID " + (nIndex + 1).ToString("D2");
-                dgvMESs[0].Rows[nIndex + 32 + 7].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
-            }
+            dgvMESs[0].Rows.Add(10);
+            dgvMESs[0].Rows[0].Cells[0].Value = "FORIR 2.1 RequestTrayInfo";
+            dgvMESs[0].Rows[1].Cells[0].Value = "   Acknowledge No.";
+            dgvMESs[0].Rows[2].Cells[0].Value = "   Sequence No.";
+            dgvMESs[0].Rows[3].Cells[0].Value = "FORIR 2.2 DataCollection";
+            dgvMESs[0].Rows[4].Cells[0].Value = "   Acknowledge No.";
+            dgvMESs[0].Rows[5].Cells[0].Value = "   Sequence No.";
 
             //* 열 추가
-            dgvPCs[0].Columns.Add("001", "PC TAG NAME");
-            dgvPCs[0].Columns.Add("002", "PC VALUES");
-            dgvPCs[0].Columns[0].Width = 200;
-            dgvPCs[0].Columns[1].Width = 250;
+            dgvPLCs[0].Columns.Add("001", "PLC TAG NAME");
+            dgvPLCs[0].Columns.Add("002", "PLC TAG VALUE");
+            dgvPLCs[0].Columns[0].Width = 300;
+            dgvPLCs[0].Columns[1].Width = 150;
 
             //* 행 추가
-            dgvPCs[0].Rows.Add(172);
-            dgvPCs[0].Rows[0].Cells[0].Value = "SequenceNo";
-            dgvPCs[0].Rows[1].Cells[0].Value = "AcknowledgeNo";
-            dgvPCs[0].Rows[2].Cells[0].Value = "EquipmentID";
-            dgvPCs[0].Rows[3].Cells[0].Value = "TrayID";
-
-            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
-            {
-                dgvPCs[0].Rows[nIndex + 4].Cells[0].Value = "CellID " + (nIndex + 1).ToString("D2");
-                dgvPCs[0].Rows[nIndex + 32 + 4].Cells[0].Value = "IR " + (nIndex + 1).ToString("D2");
-                dgvPCs[0].Rows[nIndex + 64 + 4].Cells[0].Value = "OCV " + (nIndex + 1).ToString("D2");
-                dgvPCs[0].Rows[nIndex + 96 + 4].Cells[0].Value = "CellStatus " + (nIndex + 1).ToString("D2");
-            }
-
-            dgvPCs[0].Rows[140].Cells[0].Value = "InterfaceVersionProject";
-            dgvPCs[0].Rows[141].Cells[0].Value = "EquipmentName";
-            dgvPCs[0].Rows[142].Cells[0].Value = "EquipmentTypeID";
-            dgvPCs[0].Rows[143].Cells[0].Value = "LineID";
-            dgvPCs[0].Rows[144].Cells[0].Value = "AreaID";
-            dgvPCs[0].Rows[145].Cells[0].Value = "EquipmentID";
-            dgvPCs[0].Rows[146].Cells[0].Value = "State";
-            dgvPCs[0].Rows[147].Cells[0].Value = "Mode";
-            dgvPCs[0].Rows[148].Cells[0].Value = "Blocked";
-            dgvPCs[0].Rows[149].Cells[0].Value = "Starved";
-            dgvPCs[0].Rows[150].Cells[0].Value = "CurrentSpeed";
-            dgvPCs[0].Rows[151].Cells[0].Value = "DesignSpeed";
-            dgvPCs[0].Rows[152].Cells[0].Value = "TotalCounter";
-            dgvPCs[0].Rows[153].Cells[0].Value = "StandstillReason";
-            dgvPCs[0].Rows[154].Cells[0].Value = "Stacklight0Color";
-            dgvPCs[0].Rows[155].Cells[0].Value = "Stacklight0Behavior";
-            dgvPCs[0].Rows[156].Cells[0].Value = "Stacklight1Color";
-            dgvPCs[0].Rows[157].Cells[0].Value = "Stacklight1Behavior";
-            dgvPCs[0].Rows[158].Cells[0].Value = "Stacklight2Color";
-            dgvPCs[0].Rows[159].Cells[0].Value = "Stacklight2Behavior";
-            dgvPCs[0].Rows[160].Cells[0].Value = "Stacklight3Color";
-            dgvPCs[0].Rows[161].Cells[0].Value = "Stacklight3Behavior";
+            dgvPLCs[0].Rows.Add(25);
+            dgvPLCs[0].Rows[0].Cells[0].Value = "InterfaceVersionProject";
+            dgvPLCs[0].Rows[1].Cells[0].Value = "EquipmentName";
+            dgvPLCs[0].Rows[2].Cells[0].Value = "EquipmentTypeID";
+            dgvPLCs[0].Rows[3].Cells[0].Value = "LineID";
+            dgvPLCs[0].Rows[4].Cells[0].Value = "AreaID";
+            dgvPLCs[0].Rows[5].Cells[0].Value = "EquipmentID";
+            dgvPLCs[0].Rows[6].Cells[0].Value = "State";
+            dgvPLCs[0].Rows[7].Cells[0].Value = "Mode";
+            dgvPLCs[0].Rows[8].Cells[0].Value = "Blocked";
+            dgvPLCs[0].Rows[9].Cells[0].Value = "Starved";
+            dgvPLCs[0].Rows[10].Cells[0].Value = "CurrentSpeed";
+            dgvPLCs[0].Rows[11].Cells[0].Value = "DesignSpeed";
+            dgvPLCs[0].Rows[12].Cells[0].Value = "TotalCounter";
+            dgvPLCs[0].Rows[13].Cells[0].Value = "StandstillReason";
+            dgvPLCs[0].Rows[14].Cells[0].Value = "Stacklight0Color";
+            dgvPLCs[0].Rows[15].Cells[0].Value = "Stacklight0Behavior";
+            dgvPLCs[0].Rows[16].Cells[0].Value = "Stacklight1Color";
+            dgvPLCs[0].Rows[17].Cells[0].Value = "Stacklight1Behavior";
+            dgvPLCs[0].Rows[18].Cells[0].Value = "Stacklight2Color";
+            dgvPLCs[0].Rows[19].Cells[0].Value = "Stacklight2Behavior";
+            dgvPLCs[0].Rows[20].Cells[0].Value = "Stacklight3Color";
+            dgvPLCs[0].Rows[21].Cells[0].Value = "Stacklight3Behavior";
         }
 
-        public void SetDataToGrid(string[] pcData, string[] mesData)
+        public void SetDataToGrid(string[] plcData, string[] mesData)
         {
             #region PLC DATA VIEW
             int nIndex = 0;
@@ -220,37 +200,13 @@ namespace DHS.EQUIPMENT
             AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayID
             AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayStatusCode
             AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //ErrorCode
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //ErrorMessage
 
-            //* nIndex = 6
-            for (int i = 0; i < _Constant.ChannelCount; i++)
-            {
-                AddDataGridView(dgvMESs[0], mesData[i + 7], i + 7); //CellID
-                AddDataGridView(dgvMESs[0], mesData[i + 7 + 32], i + 7 + 32); //CellStatus
-            }
-            #endregion
-
-            #region PC DATA VIEW
-            nIndex = 0;
-            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //SequenceNo
-            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //AcknowledgeNo
-            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //EquipmentID
-            AddDataGridView(dgvPCs[0], pcData[nIndex], nIndex++); //TrayID
-
-            //* nIndex = 5
-            for (int i = 0; i < _Constant.ChannelCount; i++)
-            {
-                AddDataGridView(dgvPCs[0], pcData[i + 4], i + 4); //CellID
-                AddDataGridView(dgvPCs[0], pcData[i + 4 + 32], i + 4 + 32); //IR
-                AddDataGridView(dgvPCs[0], pcData[i + 4 + 64], i + 4 + 64); //OCV
-                AddDataGridView(dgvPCs[0], pcData[i + 4 + 96], i + 4 + 96); //CellStatus
-            }
             #endregion
 
             #region PLC SYS INFO
-            nIndex = 140;
+            nIndex = 0;
             for (int i = 0; i < 23; i++)
-                AddDataGridView(dgvPCs[0], pcData[nIndex + i], nIndex + i);
+                AddDataGridView(dgvPLCs[0], plcData[nIndex + i], nIndex + i);
             #endregion
         }
         private void AddDataGridView(DataGridView dgv, string value, int nRow)
