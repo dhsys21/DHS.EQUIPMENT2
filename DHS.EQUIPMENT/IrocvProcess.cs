@@ -45,7 +45,7 @@ namespace DHS.EQUIPMENT
         public Timer[] _tmrConnectionChange = new Timer[_Constant.frmCount];
         public Timer[] _tmrMsaInspection = new Timer[_Constant.frmCount];
         public Timer _tmrGetPlcData = new Timer();
-        public Timer _tmrGetMesData = new Timer();
+        //public Timer _tmrGetMesData = new Timer();
         public Timer _tmrWritePLCSysInfoToMes = new Timer();
         public Timer DeleteFileTimer = null;
 
@@ -143,8 +143,8 @@ namespace DHS.EQUIPMENT
             }
 
             //* MES Timer
-            _tmrGetMesData.Interval = 1000;
-            _tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_TickAsync);
+            //_tmrGetMesData.Interval = 3000;
+            //_tmrGetMesData.Tick += new EventHandler(GetMesDataTimer_TickAsync);
             //_tmrGetMesData.Enabled = true;
 
             //* Write PLC SYS INFO to MES Timer
@@ -284,8 +284,6 @@ namespace DHS.EQUIPMENT
                 _tmrEquipStatus[nIndex].Enabled = true;
             }
             #endregion
-
-            _tmrGetMesData.Enabled = true;
         }
 
         
@@ -850,6 +848,7 @@ namespace DHS.EQUIPMENT
             if (irocv[stageno].EQUIPMODE != enumEquipMode.AUTO && irocv[stageno].EQUIPSTATUS != enumEquipStatus.StepNoAnswer)
                 irocv[stageno].EQUIPSTATUS = enumEquipStatus.StepManual;
 
+            _bMesConnected = MesClient.connection;
             irocvform[stageno].SetStageStatus(irocv[stageno].EQUIPSTATUS, _bPlcConnected, siemensplc.PLCAUTOMANUAL, siemensplc.PLCERROR, _bMesConnected);
         }
         private void ConnectionChangeTimer_Tick(object sender, EventArgs e)

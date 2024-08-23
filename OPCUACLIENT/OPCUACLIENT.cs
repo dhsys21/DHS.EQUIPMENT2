@@ -65,6 +65,7 @@ namespace OPCUACLIENT
         public bool Connected
         {
             get { return m_IsConnected; }
+            set { m_IsConnected = value; }
         }
 
         /// <summary>

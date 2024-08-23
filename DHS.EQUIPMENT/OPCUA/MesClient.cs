@@ -77,7 +77,8 @@ namespace DHS.EQUIPMENT
         public float[] PCOCVS { get => _fPCOCVs; set => _fPCOCVs = value; }
 
         static System.Windows.Forms.Timer _tmrMESRead = new System.Windows.Forms.Timer();
-        
+        static System.Windows.Forms.Timer _tmrMESConnect = new System.Windows.Forms.Timer();
+
         public delegate void SetDataToDgv(string[] pcValues, string[] mesValues);
         public event SetDataToDgv OnSetDataToDgv = null;
         protected void RaiseOnSetDataToDgv(string[] pcValues, string[] mesValues)
@@ -118,8 +119,15 @@ namespace DHS.EQUIPMENT
             _tmrMESRead.Interval = 1000;
             _tmrMESRead.Tick += new EventHandler(MESReadTimer_Tick);
             _tmrMESRead.Enabled = true;
+
+            _tmrMESConnect.Interval = 3000;
+            _tmrMESConnect.Tick += new EventHandler(MESConnect_TickAsync);
+            _tmrMESConnect.Enabled = true;
         }
 
+        
+
+        #region MES CONNECT Timer
         private void OpcUaClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
         {
             //if (InvokeRequired)
@@ -156,7 +164,35 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(exception.ToString());
             }
         }
+        private void MESConnect_TickAsync(object sender, EventArgs e)
+        {
+            if(connection == false)
+            {
+                try
+                {
+                    MesClientStartAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
+        
+        public void MesClientStartAsync()
+        {
+            try
+            {
+                string serverurl = MesServer.IPADDRESS;
+                opcclient.ConnectToServer(serverurl);
 
+            }
+            catch (Exception ex)
+            {
+                connection = false;
+                Console.WriteLine(ex.ToString());
+            }
+        }
         public async Task<bool> MesClientStartAsync2()
         {
             try
@@ -171,29 +207,17 @@ namespace DHS.EQUIPMENT
                 task.Wait();
 
                 return task.Result;
-            } catch(Exception ex)
-            {
-                connection = false;
-                Console.WriteLine(ex.ToString());
-            }
-            return false;
-        }
-        public async void MesClientStartAsync()
-        {
-            try
-            {
-                string serverurl = MesServer.IPADDRESS;
-                opcclient.ConnectToServer(serverurl);
-
             }
             catch (Exception ex)
             {
                 connection = false;
                 Console.WriteLine(ex.ToString());
             }
+            return false;
         }
+        #endregion MES CONNECT Timer
 
-        #region MES Timer
+        #region MES READ Timer
         private void MESReadTimer_Tick(object sender, EventArgs e)
         {
             try
@@ -466,7 +490,7 @@ namespace DHS.EQUIPMENT
                 Console.WriteLine(ex.ToString() );
             }
         }
-        #endregion
+        #endregion  MES READ Timer
 
         #region OPC UA Read Value Method
         //* SetValue는 opc ua 서버에서 tag를 read한 후에 값을 변수에 넣는 것.
