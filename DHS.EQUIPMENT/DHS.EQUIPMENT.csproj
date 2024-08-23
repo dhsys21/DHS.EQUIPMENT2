@@ -341,7 +341,9 @@
     <Compile Include="IROCV\NGInfo.Designer.cs">
       <DependentUpon>NGInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPCUA\MesClient.cs" />
+    <Compile Include="OPCUA\MesClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OPCUA\MESINTERFACE.cs">
       <SubType>Form</SubType>
     </Compile>

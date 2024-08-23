@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 using DHS.EQUIPMENT.PLC;
@@ -20,7 +21,7 @@ using static Telerik.WinControls.UI.ValueMapper;
 
 namespace DHS.EQUIPMENT
 {
-    public class MesClient
+    public class MesClient : Form
     {
         public static bool connection = false;
         public bool isRead = false;
@@ -131,25 +132,23 @@ namespace DHS.EQUIPMENT
         private void OpcUaClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
         {
             //* test
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke(new Action(() =>
-            //    {
-            //        OpcUaClient_OpcStatusChange(sender, e);
-            //    }));
-            //    return;
-            //}
+            if (this.InvokeRequired)
+            {
+                BeginInvoke(new Action(() =>
+                {
+                    OpcUaClient_OpcStatusChange(sender, e);
+                }));
+                return;
+            }
 
-            //if (e.Error)
-            //{
-            //    toolStripStatusLabel1.BackColor = Color.Red;
-            //}
-            //else
-            //{
-            //    toolStripStatusLabel1.BackColor = SystemColors.Control;
-            //}
-
-            //toolStripStatusLabel_opc.Text = e.ToString();
+            if (e.Error)
+            {
+                connection = false;
+            }
+            else
+            {
+                connection = true;
+            }
         }
 
         private void OpcUaClient_ConnectComplete(object sender, EventArgs e)

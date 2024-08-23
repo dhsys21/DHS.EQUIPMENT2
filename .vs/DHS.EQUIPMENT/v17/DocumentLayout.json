@@ -11,6 +11,10 @@
       "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\irocvprocess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|d:\\project\\2023\\5. kapjin\\program\\dhs.equipment.irocv\\dhs.equipment\\errorform\\errorform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1A6E556-189C-4AD1-BA91-5062BADA12A1}|DHS.EQUIPMENT\\DHS.EQUIPMENT.csproj|solutionrelative:dhs.equipment\\errorform\\errorform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9C4A7B47-D191-4267-A5BE-141467668536}|OPCUACLIENT\\OPCUACLIENT.csproj|D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\opcuaclient\\opcuaclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9C4A7B47-D191-4267-A5BE-141467668536}|OPCUACLIENT\\OPCUACLIENT.csproj|solutionrelative:opcuaclient\\opcuaclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ErrorForm.cs",
+              "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\ErrorForm\\ErrorForm.cs",
+              "RelativeDocumentMoniker": "DHS.EQUIPMENT\\ErrorForm\\ErrorForm.cs",
+              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\ErrorForm\\ErrorForm.cs",
+              "RelativeToolTip": "DHS.EQUIPMENT\\ErrorForm\\ErrorForm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-23T01:29:51.487Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -42,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "OPCUACLIENT.cs",
               "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\OPCUACLIENT\\OPCUACLIENT.cs",
               "RelativeDocumentMoniker": "OPCUACLIENT\\OPCUACLIENT.cs",
@@ -59,16 +76,16 @@
               "Title": "MesClient.cs",
               "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "RelativeToolTip": "DHS.EQUIPMENT\\OPCUA\\MesClient.cs",
-              "ViewState": "AQIAAH0AAAAAAAAAAAAhwIgAAAATAAAA",
+              "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\OPCUA\\MesClient.cs*",
+              "RelativeToolTip": "DHS.EQUIPMENT\\OPCUA\\MesClient.cs*",
+              "ViewState": "AQIAAHoAAAAAAAAAAAAgwJcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-21T07:51:25.697Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ConfigForm.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\ConfigForm.cs",
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\ConfigForm.cs",
@@ -85,7 +102,7 @@
               "RelativeDocumentMoniker": "DHS.EQUIPMENT\\IrocvProcess.cs",
               "ToolTip": "D:\\Project\\2023\\5. Kapjin\\program\\DHS.EQUIPMENT.IROCV\\DHS.EQUIPMENT\\IrocvProcess.cs",
               "RelativeToolTip": "DHS.EQUIPMENT\\IrocvProcess.cs",
-              "ViewState": "AQIAAIgCAAAAAAAAAAAmwBIDAAARAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAgwBIDAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-18T00:25:05.071Z",
               "EditorCaption": ""
