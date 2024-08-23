@@ -130,6 +130,7 @@ namespace DHS.EQUIPMENT
         #region MES CONNECT Timer
         private void OpcUaClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
         {
+            //* test
             //if (InvokeRequired)
             //{
             //    BeginInvoke(new Action(() =>
