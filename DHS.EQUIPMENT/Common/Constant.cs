@@ -97,7 +97,7 @@ namespace DHS.EQUIPMENT.Common
         public static readonly int PC_MEASUREMENT_COMPLETE = 8;
 
         //* PLC 데이터를 MES로 넘겨주기 위해 만듦 2024 05 27
-        //public static readonly int DB_NUMBER_SYS = 66;
+        //public static readonly int DB_NUMBER_SYS = 600;
         public static readonly int PLC_DATA_LENGTH_SYS = 256;
         public static readonly int PLC_SYS_STRING_LENGTH = 98;
 
@@ -114,7 +114,7 @@ namespace DHS.EQUIPMENT.Common
         public static readonly int PLC_STARVED = 215;
         public static readonly int PLC_CURRNET_SPEED = 216;
         public static readonly int PLC_DESIGNED_SPEED = 218;
-        public static readonly int PLC_DEFECTOR_COUNTER = 220;
+        public static readonly int PLC_DEFECTOR_COUNTER = 220; //* 
         public static readonly int PLC_GOOD_COUNTER = 220;
         public static readonly int PLC_TOTAL_COUNTER = 220;
         public static readonly int PLC_STAND_STILL_REASON = 222;

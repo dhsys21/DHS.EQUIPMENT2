@@ -288,8 +288,11 @@ namespace DHS.EQUIPMENT
                 {
                     _system.EQUIPMENTID = util.readConfig(filename, "EQUIPMENT", "ID");
 
+                    //* 20240530 : 192.168.9.1
                     _system.PLCIPADDRESS = util.readConfig(filename, "PLC", "IPADDRESS");
+                    //* 20240530 : 85
                     _system.PLCDBNUMBER = Convert.ToInt32(util.readConfig(filename, "PLC", "DB NUMBER"));
+                    //* 20240530 : 600
                     _system.PLCDBNUMBERSYS = Convert.ToInt32(util.readConfig(filename, "PLC", "DB(SYS) NUMBER"));
 
                     configForm.SetSystemValue();

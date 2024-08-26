@@ -92,53 +92,6 @@ namespace DHS.EQUIPMENT
             dgvPLCs[0] = dgvPLC;
             dgvMESs[0] = dgvMES;
             MakeGridView();
-
-            MakeGridView_MESTEST();
-        }
-
-        private void MakeGridView_MESTEST()
-        {
-
-            dgvCellID.Columns.Add("001", "CH");
-            dgvCellID.Columns.Add("002", "CELL ID");
-            dgvCellID.Rows.Add(32);
-
-            dgvCellStatus.Columns.Add("001", "CH");
-            dgvCellStatus.Columns.Add("002", "CELL STATUS");
-            dgvCellStatus.Rows.Add(32);
-
-            dgvCellStatusResult.Columns.Add("001", "CH");
-            dgvCellStatusResult.Columns.Add("002", "Result");
-            dgvCellStatusResult.Rows.Add(32);
-
-            dgvIR.Columns.Add("001", "CH");
-            dgvIR.Columns.Add("002", "IR");
-            dgvIR.Rows.Add(32);
-
-            dgvOCV.Columns.Add("001", "CH");
-            dgvOCV.Columns.Add("002", "OCV");
-            dgvOCV.Rows.Add(32);
-
-            double ir = 0.3886;
-            double ocv = 3644.03;
-
-            for (int i = 0; i < 32; i++)
-            {
-                dgvCellID.Rows[i].Cells[0].Value = (i + 1).ToString();
-                dgvCellID.Rows[i].Cells[1].Value = "C000" + (i + 1).ToString("D2");
-
-                dgvCellStatus.Rows[i].Cells[0].Value = (i + 1).ToString();
-                dgvCellStatus.Rows[i].Cells[1].Value = "1";
-
-                dgvCellStatusResult.Rows[i].Cells[0].Value = (i + 1).ToString();
-                dgvCellStatusResult.Rows[i].Cells[1].Value = "0";
-
-                dgvIR.Rows[i].Cells[0].Value = (i + 1).ToString();
-                dgvIR.Rows[i].Cells[1].Value = ir + ((i * 10) / (i % 8 + 4) / 10000.0);
-
-                dgvOCV.Rows[i].Cells[0].Value = (i + 1).ToString();
-                dgvOCV.Rows[i].Cells[1].Value = ocv + (i * 5) / (i % 4 + 1);
-            }
         }
 
         private void MakeGridView()
@@ -165,29 +118,39 @@ namespace DHS.EQUIPMENT
             dgvPLCs[0].Columns[1].Width = 150;
 
             //* 행 추가
-            dgvPLCs[0].Rows.Add(25);
-            dgvPLCs[0].Rows[0].Cells[0].Value = "InterfaceVersionProject";
-            dgvPLCs[0].Rows[1].Cells[0].Value = "EquipmentName";
-            dgvPLCs[0].Rows[2].Cells[0].Value = "EquipmentTypeID";
-            dgvPLCs[0].Rows[3].Cells[0].Value = "LineID";
-            dgvPLCs[0].Rows[4].Cells[0].Value = "AreaID";
-            dgvPLCs[0].Rows[5].Cells[0].Value = "EquipmentID";
-            dgvPLCs[0].Rows[6].Cells[0].Value = "State";
-            dgvPLCs[0].Rows[7].Cells[0].Value = "Mode";
-            dgvPLCs[0].Rows[8].Cells[0].Value = "Blocked";
-            dgvPLCs[0].Rows[9].Cells[0].Value = "Starved";
-            dgvPLCs[0].Rows[10].Cells[0].Value = "CurrentSpeed";
-            dgvPLCs[0].Rows[11].Cells[0].Value = "DesignSpeed";
-            dgvPLCs[0].Rows[12].Cells[0].Value = "TotalCounter";
-            dgvPLCs[0].Rows[13].Cells[0].Value = "StandstillReason";
-            dgvPLCs[0].Rows[14].Cells[0].Value = "Stacklight0Color";
-            dgvPLCs[0].Rows[15].Cells[0].Value = "Stacklight0Behavior";
-            dgvPLCs[0].Rows[16].Cells[0].Value = "Stacklight1Color";
-            dgvPLCs[0].Rows[17].Cells[0].Value = "Stacklight1Behavior";
-            dgvPLCs[0].Rows[18].Cells[0].Value = "Stacklight2Color";
-            dgvPLCs[0].Rows[19].Cells[0].Value = "Stacklight2Behavior";
-            dgvPLCs[0].Rows[20].Cells[0].Value = "Stacklight3Color";
-            dgvPLCs[0].Rows[21].Cells[0].Value = "Stacklight3Behavior";
+            dgvPLCs[0].Rows.Add(30);
+            //* Equipment Information
+            dgvPLCs[0].Rows[0].Cells[0].Value = "AreaID";
+            dgvPLCs[0].Rows[1].Cells[0].Value = "EquipmentID";
+            dgvPLCs[0].Rows[2].Cells[0].Value = "EquipmentName";
+            dgvPLCs[0].Rows[3].Cells[0].Value = "EquipmentTypeID";
+            dgvPLCs[0].Rows[4].Cells[0].Value = "InterfaceVersionProject";
+            dgvPLCs[0].Rows[5].Cells[0].Value = "LineID";
+            dgvPLCs[0].Rows[6].Cells[0].Value = "VendorID";
+
+            //* Equipment Status
+            dgvPLCs[0].Rows[7].Cells[0].Value = "Blocked";
+            dgvPLCs[0].Rows[8].Cells[0].Value = "CurrentCycleTime";
+            dgvPLCs[0].Rows[9].Cells[0].Value = "DefectCounter"; //* PLC에서 정보를 주지 않음. PC에서 정리해서 사용
+            dgvPLCs[0].Rows[10].Cells[0].Value = "DesignCycleTime";
+            dgvPLCs[0].Rows[11].Cells[0].Value = "GoodCounter"; //* PLC에서 정보를 주지 않음. PC에서 정리해서 사용
+            dgvPLCs[0].Rows[12].Cells[0].Value = "Mode";
+            dgvPLCs[0].Rows[13].Cells[0].Value = "Stacklight0Color";
+            dgvPLCs[0].Rows[14].Cells[0].Value = "Stacklight0Behavior";
+            dgvPLCs[0].Rows[15].Cells[0].Value = "Stacklight1Color";
+            dgvPLCs[0].Rows[16].Cells[0].Value = "Stacklight1Behavior";
+            dgvPLCs[0].Rows[17].Cells[0].Value = "Stacklight2Color";
+            dgvPLCs[0].Rows[18].Cells[0].Value = "Stacklight2Behavior";
+            dgvPLCs[0].Rows[19].Cells[0].Value = "Stacklight3Color";
+            dgvPLCs[0].Rows[20].Cells[0].Value = "Stacklight3Behavior";
+            dgvPLCs[0].Rows[21].Cells[0].Value = "Stacklight4Color";
+            dgvPLCs[0].Rows[22].Cells[0].Value = "Stacklight4Behavior";
+            dgvPLCs[0].Rows[23].Cells[0].Value = "Stacklight5Color";
+            dgvPLCs[0].Rows[24].Cells[0].Value = "Stacklight5Behavior";
+            dgvPLCs[0].Rows[25].Cells[0].Value = "StandstillReason";
+            dgvPLCs[0].Rows[26].Cells[0].Value = "Starved";
+            dgvPLCs[0].Rows[27].Cells[0].Value = "State";
+            dgvPLCs[0].Rows[28].Cells[0].Value = "TotaCounter";
         }
 
         public void SetDataToGrid(string[] plcData, string[] mesData)
@@ -248,11 +211,8 @@ namespace DHS.EQUIPMENT
 
         private void radBtnWriteValue_Click(object sender, EventArgs e)
         {
-            //WriteValue("ns=2;s=Equipment/EquipmentID", equipmentid, (int)EnumDataType.dtString);
-            string node = string.Empty, value = string.Empty;
+           string node = string.Empty, value = string.Empty;
             int nDataType = 0;
-
-            //node = "ns=2;s=Equipment/" + cbTagList.Text;
             node = cbTagList.Text;
             value = tbTagValue.Text;
             nDataType = cbTagType.SelectedIndex;
@@ -312,41 +272,12 @@ namespace DHS.EQUIPMENT
 
         private void radBtnWriteForir2_2_Click(object sender, EventArgs e)
         {
-            string equipmentid = tbEquipmentID.Text;
-            string trayid = tbTrayID.Text;
-            string[] cellid = new string[32];
-            string[] cellstatus = new string[32];
-            double[] ir = new double[32];
-            double[] ocv = new double[32];
-
-            for(int i = 0; i < 32;i++)
-            {
-                cellid[i] = dgvCellID.Rows[i].Cells[1].Value.ToString();
-                cellstatus[i] = dgvCellStatusResult.Rows[i].Cells[1].Value.ToString();
-                ir[i] = Convert.ToDouble(dgvIR.Rows[i].Cells[1].Value.ToString());
-                ocv[i] = Convert.ToDouble(dgvOCV.Rows[i].Cells[1].Value.ToString());
-            }
-
-            RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
+            //RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
         }
 
         private void radBtnReadFORIR2_1_Click(object sender, EventArgs e)
         {
-            string trayid = tbTrayID.Text;
-            string equipmentid = tbEquipmentID.Text;
-            string[] cellid = new string[32];
-            string[] cellstatus = new string[32];
-            string traystatuscode = tbTrayStatusCode.Text;
-            string errorcode = tbErrorCode.Text;
-            string errormessage = tbErrorMessage.Text;
-
-            for(int i = 0; i < 32; i++)
-            {
-                cellid[i] = dgvCellID.Rows[i].Cells[1].Value.ToString();
-                cellstatus[i] = dgvCellStatus.Rows[i].Cells[1].Value.ToString();
-            }
-
-            RaiseOnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
+            //RaiseOnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
         }
 
         private void radBtnReadFORIR2_2_Click(object sender, EventArgs e)

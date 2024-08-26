@@ -238,30 +238,30 @@ namespace DHS.EQUIPMENT
             }
 
             //* PLC SYS Tag Names
-            _PlcTagNamesSys.Add("MW10000");
-            _PlcTagNamesSys.Add("MW10100");
-            _PlcTagNamesSys.Add("MW10200");//type id
-            _PlcTagNamesSys.Add("MW10202");//line id
-            _PlcTagNamesSys.Add("MW10204");//area id
-            _PlcTagNamesSys.Add("MW10206");//vendor id
-            _PlcTagNamesSys.Add("MW10208");//equipment id
+            _PlcTagNamesSys.Add("MW10000");//InterfaceVersionProject - string
+            _PlcTagNamesSys.Add("MW10100");//EquipmentName - string
+            _PlcTagNamesSys.Add("MW10200");//type id - DInt
+            _PlcTagNamesSys.Add("MW10202");//line id - DInt
+            _PlcTagNamesSys.Add("MW10204");//area id - DInt
+            _PlcTagNamesSys.Add("MW10206");//vendor id - DInt
+            _PlcTagNamesSys.Add("MW10208");//equipment id - DInt
 
-            _PlcTagNamesSys.Add("MW10210");//state int
-            _PlcTagNamesSys.Add("MW10310");//state string
-            _PlcTagNamesSys.Add("MW10312");//mode int
-            _PlcTagNamesSys.Add("MW10412");// mode string
+            _PlcTagNamesSys.Add("MW10210");//state int - DInt
+            _PlcTagNamesSys.Add("MW10310");//state string - string
+            _PlcTagNamesSys.Add("MW10312");//mode int - DInt
+            _PlcTagNamesSys.Add("MW10412");// mode - string
 
-            _PlcTagNamesSys.Add("MW10414");//blocked
-            _PlcTagNamesSys.Add("MW10415");//starved
-            _PlcTagNamesSys.Add("MW10416");//current speed
-            _PlcTagNamesSys.Add("MW10418");//design speed
-            _PlcTagNamesSys.Add("MW10420");//total counter
+            _PlcTagNamesSys.Add("MW10414");//blocked - bool
+            _PlcTagNamesSys.Add("MW10415");//starved - bool
+            _PlcTagNamesSys.Add("MW10416");//current speed - Real
+            _PlcTagNamesSys.Add("MW10418");//design speed - Real
+            _PlcTagNamesSys.Add("MW10420");//total counter - UDInt
 
-            _PlcTagNamesSys.Add("MW10422");//stand still reason int
-            _PlcTagNamesSys.Add("MW10424");//stand still reason string
+            _PlcTagNamesSys.Add("MW10422");//stand still reason - DInt
+            _PlcTagNamesSys.Add("MW10424");//stand still reason - string
 
-            _PlcTagNamesSys.Add("MW10524");//0 stack light color
-            _PlcTagNamesSys.Add("MW10526");//0 stack light behavior
+            _PlcTagNamesSys.Add("MW10524");//0 stack light color - DInt
+            _PlcTagNamesSys.Add("MW10526");//0 stack light behavior - DInt
             _PlcTagNamesSys.Add("MW10528");
             _PlcTagNamesSys.Add("MW10530");
             _PlcTagNamesSys.Add("MW10532");
