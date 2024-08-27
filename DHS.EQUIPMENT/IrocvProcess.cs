@@ -338,11 +338,15 @@ namespace DHS.EQUIPMENT
         {
             if (tagname == "InterfaceVersionProject") plcsysinfo.INTERFACEVERSIONPROJECT = tagvalue;
             else if (tagname == "EquipmentName") plcsysinfo.EQUIPMENTNAME = tagvalue;
-            else if (tagname == "EquipmentTypeID") plcsysinfo.EQUIPMENTID = Convert.ToInt16(tagvalue);
-            else if (tagname == "LineID") plcsysinfo.LINEID = Convert.ToInt16(tagvalue);
             else if (tagname == "EquipmentID") plcsysinfo.EQUIPMENTID = Convert.ToInt16(tagvalue);
+            else if (tagname == "EquipmentTypeID") plcsysinfo.EQUIPMENTID = Convert.ToInt16(tagvalue);
+            else if(tagname == "AreaID") plcsysinfo.AREAID = Convert.ToInt16(tagvalue);
+            else if (tagname == "LineID") plcsysinfo.LINEID = Convert.ToInt16(tagvalue);
+            else if (tagname == "VendorID") plcsysinfo.VENDORID = Convert.ToInt16(tagvalue);
             else if(tagname == "State") plcsysinfo.STATE = Convert.ToInt16(tagvalue);
+            else if (tagname == "Mode") plcsysinfo.MODE = Convert.ToInt16(tagvalue);
             else if(tagname == "Blocked") plcsysinfo.BLOCKED = Convert.ToBoolean(tagvalue);
+            else if (tagname == "TotalCounter") plcsysinfo.TOTALCOUNTER = Convert.ToInt16(tagvalue);
             else if(tagname == "CurrentSpeed") plcsysinfo.CURRENTSPEED = Convert.ToDouble(tagvalue);
             else if(tagname == "StandstillReason") plcsysinfo.STANDSTILLREASON = Convert.ToInt16(tagvalue);
             else if(tagname == "Stacklight0Color") plcsysinfo.STACKLIGHT0COLOR = Convert.ToInt32(tagvalue);
