@@ -118,7 +118,7 @@ namespace DHS.EQUIPMENT
             dgvPLCs[0].Columns[1].Width = 150;
 
             //* 행 추가
-            dgvPLCs[0].Rows.Add(30);
+            dgvPLCs[0].Rows.Add(35);
             //* Equipment Information
             dgvPLCs[0].Rows[0].Cells[0].Value = "AreaID";
             dgvPLCs[0].Rows[1].Cells[0].Value = "EquipmentID";
@@ -135,41 +135,36 @@ namespace DHS.EQUIPMENT
             dgvPLCs[0].Rows[10].Cells[0].Value = "DesignCycleTime";
             dgvPLCs[0].Rows[11].Cells[0].Value = "GoodCounter"; //* PLC에서 정보를 주지 않음. PC에서 정리해서 사용
             dgvPLCs[0].Rows[12].Cells[0].Value = "Mode";
-            dgvPLCs[0].Rows[13].Cells[0].Value = "Stacklight0Color";
-            dgvPLCs[0].Rows[14].Cells[0].Value = "Stacklight0Behavior";
-            dgvPLCs[0].Rows[15].Cells[0].Value = "Stacklight1Color";
-            dgvPLCs[0].Rows[16].Cells[0].Value = "Stacklight1Behavior";
-            dgvPLCs[0].Rows[17].Cells[0].Value = "Stacklight2Color";
-            dgvPLCs[0].Rows[18].Cells[0].Value = "Stacklight2Behavior";
-            dgvPLCs[0].Rows[19].Cells[0].Value = "Stacklight3Color";
-            dgvPLCs[0].Rows[20].Cells[0].Value = "Stacklight3Behavior";
-            dgvPLCs[0].Rows[21].Cells[0].Value = "Stacklight4Color";
-            dgvPLCs[0].Rows[22].Cells[0].Value = "Stacklight4Behavior";
-            dgvPLCs[0].Rows[23].Cells[0].Value = "Stacklight5Color";
-            dgvPLCs[0].Rows[24].Cells[0].Value = "Stacklight5Behavior";
-            dgvPLCs[0].Rows[25].Cells[0].Value = "StandstillReason";
-            dgvPLCs[0].Rows[26].Cells[0].Value = "Starved";
-            dgvPLCs[0].Rows[27].Cells[0].Value = "State";
-            dgvPLCs[0].Rows[28].Cells[0].Value = "TotaCounter";
+            dgvPLCs[0].Rows[13].Cells[0].Value = "State";
+            dgvPLCs[0].Rows[14].Cells[0].Value = "StandstillReason";
+            dgvPLCs[0].Rows[15].Cells[0].Value = "Starved";
+            dgvPLCs[0].Rows[16].Cells[0].Value = "TotaCounter";
+            dgvPLCs[0].Rows[17].Cells[0].Value = "Stacklight0Color";
+            dgvPLCs[0].Rows[18].Cells[0].Value = "Stacklight0Behavior";
+            dgvPLCs[0].Rows[19].Cells[0].Value = "Stacklight1Color";
+            dgvPLCs[0].Rows[20].Cells[0].Value = "Stacklight1Behavior";
+            dgvPLCs[0].Rows[21].Cells[0].Value = "Stacklight2Color";
+            dgvPLCs[0].Rows[22].Cells[0].Value = "Stacklight2Behavior";
+            dgvPLCs[0].Rows[23].Cells[0].Value = "Stacklight3Color";
+            dgvPLCs[0].Rows[24].Cells[0].Value = "Stacklight3Behavior";
+            dgvPLCs[0].Rows[25].Cells[0].Value = "Stacklight4Color";
+            dgvPLCs[0].Rows[26].Cells[0].Value = "Stacklight4Behavior";
+            dgvPLCs[0].Rows[27].Cells[0].Value = "Stacklight5Color";
+            dgvPLCs[0].Rows[28].Cells[0].Value = "Stacklight5Behavior";
         }
 
         public void SetDataToGrid(string[] plcData, string[] mesData)
         {
             #region PLC DATA VIEW
-            int nIndex = 0;
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //SequenceNo
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //AcknowledgeNo
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //EquipmentID
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayID
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //TrayStatusCode
-            AddDataGridView(dgvMESs[0], mesData[nIndex], nIndex++); //ErrorCode
-
+            AddDataGridView(dgvMESs[0], mesData[0], 1); //SequenceNo
+            AddDataGridView(dgvMESs[0], mesData[1], 2); //AcknowledgeNo
+            AddDataGridView(dgvMESs[0], mesData[2], 4); //EquipmentID
+            AddDataGridView(dgvMESs[0], mesData[3], 5); //TrayID
             #endregion
 
             #region PLC SYS INFO
-            nIndex = 0;
-            for (int i = 0; i < 23; i++)
-                AddDataGridView(dgvPLCs[0], plcData[nIndex + i], nIndex + i);
+            for (int i = 0; i < plcData.Length; i++)
+                AddDataGridView(dgvPLCs[0], plcData[i], i);
             #endregion
         }
         private void AddDataGridView(DataGridView dgv, string value, int nRow)
@@ -191,11 +186,6 @@ namespace DHS.EQUIPMENT
                 dgv.Rows[nRow++].Cells[1].Value = pData[nIndex].ToString();
             }
         }
-        private void radpnl_MesInterfaceTitle_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
         private void MESINTERFACE_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;

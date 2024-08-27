@@ -31,8 +31,8 @@ namespace DHS.EQUIPMENT
 
         private string _strLog;
 
-        private string[] mesData = new string[72];
-        private string[] plcData = new string[172];
+        private string[] mesData = new string[10];
+        private string[] plcData = new string[35];
 
         private int _iMesSequenceNo;
         private int _iMesAcknowledgeNo;
@@ -110,9 +110,7 @@ namespace DHS.EQUIPMENT
             for (int nIndex = 0; nIndex < _Constant.frmCount; nIndex++)
                 irocvdata[nIndex] = IROCVData.GetInstance(nIndex);
 
-            SetEquipmentTagList();
-            SetMesTagList();
-            SetPLCTagList();
+            SetNodeIdList();
 
             connection = false;
             //MesClientStartAsync();
@@ -244,279 +242,27 @@ namespace DHS.EQUIPMENT
         
         private void MesReadTimer()
         {
-            NodeId nodeid1 = NodeId.Parse(_Constant.MES_FOIR21_AcknowledgeNo);
-            NodeId nodeid2 = NodeId.Parse(_Constant.MES_FOIR21_SequenceNo);
-            NodeId nodeid3 = NodeId.Parse(_Constant.MES_FOIR22_AcknowledgeNo);
-            NodeId nodeid4 = NodeId.Parse(_Constant.MES_FOIR22_SequenceNo);
-
-            NodeId[] nodeids = { nodeid1, nodeid2, nodeid3, nodeid4 };
-
+            NodeId[] nodeids = nodeIdList.ToArray<NodeId>();
+            object objValue = null;
             try
             {
-                
-
-                object objValue = opcclient.ReadNode(nodeid1);
-                Console.WriteLine(objValue.ToString());
-
                 objValue = opcclient.ReadNodes(nodeids);
+                SetValueToMesInterface(objValue);
                 Console.WriteLine(objValue.ToString());
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-            
-
         }
-        /// <summary>
-        /// node를 만들어서 읽고 쓰기를 할 때 사용한 코드
-        /// </summary>
-        private void MesReadTimer_Old()
+        private void SetValueToMesInterface(object objValue)
         {
-            try
+            IEnumerable<object> enumerable = objValue as IEnumerable<object>;
+            string[] plcSysInfos = enumerable.Select(o=> o?.ToString()).ToArray();
+            for (int nIndex = 0; nIndex < plcSysInfos.Length; nIndex++)
             {
-                #region Get Value from MES Tag
-                UInt32 iVal = 0;
-                UInt32[] iVals;
-                float[] fVals;
-                foreach (var tag in MesTagList)
-                {
-                    switch (tag.tagName)
-                    {
-                        case "ns=2;s=Mes/SequenceNo":
-                            iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iMesSequenceNo = (int)iVal;
-                            SetValue(0, _iMesSequenceNo, "MES");
-                            break;
-                        case "ns=2;s=Mes/AcknowledgeNo":
-                            iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iMesAcknowledgeNo = (int)iVal;
-                            SetValue(1, _iMesAcknowledgeNo, "MES");
-                            break;
-                        case "ns=2;s=Mes/EquipmentID":
-                            _strMesEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(2, _strMesEquipmentID, "MES");
-                            break;
-                        case "ns=2;s=Mes/TrayID":
-                            _strMesTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(3, _strMesTrayID, "MES");
-                            break;
-                        case "ns=2;s=Mes/TrayStatusCode":
-                            _strMesTrayStatusCode = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(4, _strMesTrayStatusCode, "MES");
-                            break;
-                        case "ns=2;s=Mes/ErrorCode":
-                            iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iMesErrorCode = (int)iVal;
-                            SetValue(5, _iMesErrorCode, "MES");
-                            break;
-                        case "ns=2;s=Mes/ErrorMessage":
-                            _strMesErrorMsg = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(6, _strMesErrorMsg, "MES");
-                            break;
-                        case "ns=2;s=Mes/CellID":
-                            _strMesCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(7, _strMesCellIDs, "MES");
-                            break;
-                        case "ns=2;s=Mes/CellStatus":
-                            _strMesCellStatus = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(39, _strMesCellStatus, "MES");
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                #endregion
-
-                #region Get Value from Equipment Tag
-                foreach (var tag in EquipTagList)
-                {
-                    switch (tag.tagName)
-                    {
-                        case "ns=2;s=Equipment/SequenceNo":
-                            iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iPCSequenceNo = (int)iVal;
-                            SetValue(0, _iPCSequenceNo, "PC");
-                            break;
-                        case "ns=2;s=Equipment/AcknowledgeNo":
-                            iVal = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _iPCAcknowledgeNo = (int)iVal;
-                            SetValue(1, _iPCAcknowledgeNo, "PC");
-                            break;
-                        case "ns=2;s=Equipment/EquipmentID":
-                            _strPCEquipmentID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(2, _strPCEquipmentID, "PC");
-                            break;
-                        case "ns=2;s=Equipment/TrayID":
-                            _strPCTrayID = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(3, _strPCTrayID, "PC");
-                            break;
-                        case "ns=2;s=Equipment/CellID":
-                            _strPCCellIDs = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(4, _strPCCellIDs, "PC");
-                            break;
-                        case "ns=2;s=Equipment/CellStatus":
-                            _strPCCellStatus = (string[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(100, _strPCCellStatus, "PC");
-                            break;
-                        case "ns=2;s=Equipment/IR":
-                            fVals = (float[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _fPCIRs = fVals.Select(x => (float)x).ToArray();
-                            SetValue(36, _fPCIRs, "PC");
-                            break;
-                        case "ns=2;s=Equipment/OCV":
-                            fVals = (float[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                            _fPCOCVs = fVals.Select(x => (float)x).ToArray();
-                            SetValue(68, _fPCOCVs, "PC");
-                            break;
-                        //case "ns=2;s=Equipment/IR":
-                        //    iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                        //    _iPCIRs = iVals.Select(x => (int)x).ToArray();
-                        //    SetValue(36, _iPCIRs, "PC");
-                        //    break;
-                        //case "ns=2;s=Equipment/OCV":
-                        //    iVals = (UInt32[])ReadValue(tag.tagName, (int)tag.tagDataType);
-                        //    _iPCOCVs = iVals.Select(x => (int)x).ToArray();
-                        //    SetValue(68, _iPCOCVs, "PC");
-                        //    break;
-                        default:
-                            break;
-                    }
-                }
-                #endregion
-
-                #region Get Value from PLC Tag
-                string strValue = string.Empty;
-                uint uiValue = 0;
-                int iValue = 0;
-                bool bValue = false;
-                object oValue = null;
-                float fValue = 0.0f;
-                foreach (var tag in PLCTagList)
-                {
-                    switch (tag.tagName)
-                    {
-                        case "ns=2;s=PLC/InterfaceVersionProject":
-                            strValue = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(140, strValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/EquipmentName":
-                            strValue = (string)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(141, strValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/EquipmentTypeID":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(142, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/LineID":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(143, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/AreaID":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(144, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/EquipmentID":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(145, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/State":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(146, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/Mode":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(147, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/Blocked":
-                            //bValue = (Boolean)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            //oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            Boolean.TryParse(ReadValue(tag.tagName, (int)tag.tagDataType).ToString(), out bValue);
-                            SetValue(148, bValue.ToString(), "PC");
-                            break;
-                        case "ns=2;s=PLC/Starved":
-                            //bValue = (bool)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            //oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            Boolean.TryParse(ReadValue(tag.tagName, (int)tag.tagDataType).ToString(), out bValue);
-                            SetValue(149, bValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/CurrentSpeed":
-                            //fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(150, oValue.ToString(), "PC");
-                            break;
-                        case "ns=2;s=PLC/DesignSpeed":
-                            //fValue = (float)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            SetValue(151, oValue.ToString(), "PC");
-                            break;
-                        case "ns=2;s=PLC/TotalCounter":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(152, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StandStillReason":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(153, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight0Color":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            //oValue = ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(154, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight0Behavior":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(155, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight1Color":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(156, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight1Behavior":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(157, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight2Color":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(158, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight2Behavior":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(159, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight3Color":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(160, iValue, "PC");
-                            break;
-                        case "ns=2;s=PLC/StackLight3Behavior":
-                            uiValue = (UInt32)ReadValue(tag.tagName, (int)tag.tagDataType);
-                            iValue = (int)uiValue;
-                            SetValue(161, iValue, "PC");
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-                #endregion
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString() );
+                if (nIndex >= 4) SetValue(nIndex - 4, plcSysInfos[nIndex], "PLC");
+                else SetValue(nIndex, plcSysInfos[nIndex], "MES");
             }
         }
         #endregion  MES READ Timer
@@ -531,7 +277,7 @@ namespace DHS.EQUIPMENT
         private void SetValue(int row, string value, string type)
         {
             if (type == "MES") mesData[row] = value;
-            else if (type == "PC") plcData[row] = value;
+            else if (type == "PLC") plcData[row] = value;
         }
         private void SetValue(int row, bool value, string type)
         {
@@ -818,7 +564,7 @@ namespace DHS.EQUIPMENT
 
             //* STACKLIGHT0BEHAVIOR - ns=4;i=1043
             int stacklight0behavior = plcsysinfo.STACKLIGHT0BEHAVIOR;
-            WriteValue(_Constant.MES_Stacklignt0Behavior, stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue(_Constant.MES_Stacklight0Behavior, stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 0:" + stacklight0behavior;
 
             //* STACKLIGHT1COLOR - ns=4;i=1041
@@ -828,7 +574,7 @@ namespace DHS.EQUIPMENT
 
             //* STACKLIGHT1BEHAVIOR - ns=4;i=1043
             int stacklight1behavior = plcsysinfo.STACKLIGHT1BEHAVIOR;
-            WriteValue(_Constant.MES_Stacklignt1Behavior, stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue(_Constant.MES_Stacklight1Behavior, stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 1:" + stacklight1behavior;
 
             //* STACKLIGHT2COLOR - ns=4;i=1041
@@ -838,7 +584,7 @@ namespace DHS.EQUIPMENT
 
             //* STACKLIGHT2BEHAVIOR - ns=4;i=1043
             int stacklight2behavior = plcsysinfo.STACKLIGHT2BEHAVIOR;
-            WriteValue(_Constant.MES_Stacklignt2Behavior, stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue(_Constant.MES_Stacklight2Behavior, stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 2:" + stacklight2behavior;
 
             //* STACKLIGHT3COLOR - ns=4;i=1041
@@ -848,7 +594,7 @@ namespace DHS.EQUIPMENT
 
             //* STACKLIGHT3BEHAVIOR - ns=4;i=1043
             int stacklight3behavior = plcsysinfo.STACKLIGHT3BEHAVIOR;
-            WriteValue(_Constant.MES_Stacklignt3Behavior, stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue(_Constant.MES_Stacklight3Behavior, stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 3:" + stacklight3behavior;
 
             //* STACKLIGHT4COLOR - ns=4;i=1041
@@ -858,7 +604,7 @@ namespace DHS.EQUIPMENT
 
             //* STACKLIGHT4BEHAVIOR - ns=4;i=1043
             int stacklight4behavior = plcsysinfo.STACKLIGHT4BEHAVIOR;
-            WriteValue(_Constant.MES_Stacklignt4Behavior, stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue(_Constant.MES_Stacklight4Behavior, stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 4:" + stacklight4behavior;
 
             //* STACKLIGHT5COLOR - ns=4;i=1041
@@ -868,7 +614,7 @@ namespace DHS.EQUIPMENT
 
             //* STACKLIGHT5BEHAVIOR - ns=4;i=1043
             int stacklight5behavior = plcsysinfo.STACKLIGHT5BEHAVIOR;
-            WriteValue(_Constant.MES_Stacklignt5Behavior, stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
+            WriteValue(_Constant.MES_Stacklight5Behavior, stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
             _strLog += ", Stack Light Behavior 5:" + stacklight5behavior;
 
             //* Save Log
@@ -1305,200 +1051,47 @@ namespace DHS.EQUIPMENT
             dtUInt64
         }
 
-        public struct Tag
+        //NodeId[] nodeIdList = new NodeId[33];
+        List<NodeId> nodeIdList = new List<NodeId>();
+
+        public void SetNodeIdList()
         {
-            public string tagName;
-            public EnumDataType tagDataType;
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_FOIR21_AcknowledgeNo));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_FOIR21_SequenceNo));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_FOIR22_AcknowledgeNo));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_FOIR22_SequenceNo));
+
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_AreaID));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_EquipmentID));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_EquipmentName));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_EquipmentTypeID));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_InterfaceVersionProject));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_LineID));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_VendorID));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Blocked));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_CurrentCycleTime));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_DefectCounter));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_DesignCycleTime));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_GoodCounter));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Mode));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_STATE));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_StandstillReason));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Starved));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_TotalCounter));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight0Color));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight0Behavior));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight1Color));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight1Behavior));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight2Color));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight2Behavior));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight3Color));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight3Behavior));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight4Color));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight4Behavior));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight5Color));
+            nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight5Behavior));
         }
 
-        public List<Tag> EquipTagList = new List<Tag>();
-        public List<Tag> MesTagList = new List<Tag>();
-        public List<Tag> PLCTagList = new List<Tag>();
-
-        public void SetEquipmentTagList()
-        {
-            #region Equipment Tag List
-            Tag tag;
-            tag.tagName = "ns=2;s=Equipment/SequenceNo";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/AcknowledgeNo";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/EquipmentID";
-            tag.tagDataType = EnumDataType.dtString;
-            EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/TrayID";
-            tag.tagDataType = EnumDataType.dtString;
-            EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/CellID";
-            tag.tagDataType = EnumDataType.dtStringArr;
-            EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/IR";
-            tag.tagDataType = EnumDataType.dtFloatArr;
-            EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/OCV";
-            tag.tagDataType = EnumDataType.dtFloatArr;
-            EquipTagList.Add(tag);
-
-            //tag.tagName = "ns=2;s=Equipment/IR";
-            //tag.tagDataType = EnumDataType.dtUInt32Arr;
-            //EquipTagList.Add(tag);
-
-            //tag.tagName = "ns=2;s=Equipment/OCV";
-            //tag.tagDataType = EnumDataType.dtUInt32Arr;
-            //EquipTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Equipment/CellStatus";
-            tag.tagDataType = EnumDataType.dtStringArr;
-            EquipTagList.Add(tag);
-            #endregion
-        }
-        public void SetMesTagList()
-        {
-            #region MES Tag List
-            Tag tag;
-            tag.tagName = "ns=2;s=Mes/SequenceNo";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/AcknowledgeNo";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/ErrorCode";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/ErrorMessage";
-            tag.tagDataType = EnumDataType.dtString;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/EquipmentID";
-            tag.tagDataType = EnumDataType.dtString;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/TrayID";
-            tag.tagDataType = EnumDataType.dtString;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/TrayStatusCode";
-            tag.tagDataType = EnumDataType.dtString;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/CellID";
-            tag.tagDataType = EnumDataType.dtStringArr;
-            MesTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=Mes/CellStatus";
-            tag.tagDataType = EnumDataType.dtStringArr;
-            MesTagList.Add(tag);
-            #endregion
-        }
-        public void SetPLCTagList()
-        {
-            #region Equipment Tag List
-            Tag tag;
-            tag.tagName = "ns=2;s=PLC/InterfaceVersionProject";
-            tag.tagDataType = EnumDataType.dtString;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/EquipmentName";
-            tag.tagDataType = EnumDataType.dtString;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/EquipmentTypeID";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/LineID";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/AreaID";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/VendorID";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/EquipmentID";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/State";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/Mode";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/Blocked";
-            tag.tagDataType = EnumDataType.dtBoolean;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/Starved";
-            tag.tagDataType = EnumDataType.dtBoolean;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/CurrentSpeed";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/DesignSpeed";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/TotalCounter";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StandStillReason";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight0Color";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight0Behavior";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight1Color";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight1Behavior";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight2Color";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight2Behavior";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight3Color";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            tag.tagName = "ns=2;s=PLC/StackLight3Behavior";
-            tag.tagDataType = EnumDataType.dtUInt32;
-            PLCTagList.Add(tag);
-
-            #endregion
-        }
         #endregion
     }
 }

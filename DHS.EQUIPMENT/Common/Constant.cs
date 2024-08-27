@@ -151,17 +151,17 @@ namespace DHS.EQUIPMENT.Common
         public static readonly string MES_StandstillReason = "ns=2;i=6080";
         public static readonly string MES_Starved = "ns=2;i=6081";
         public static readonly string MES_TotalCounter = "ns=2;i=6083";
-        public static readonly string MES_Stacklignt0Behavior = "ns=2;i=6078";
+        public static readonly string MES_Stacklight0Behavior = "ns=2;i=6078";
         public static readonly string MES_Stacklight0Color = "ns=2;i=6079";
-        public static readonly string MES_Stacklignt1Behavior = "ns=2;i=6024";
+        public static readonly string MES_Stacklight1Behavior = "ns=2;i=6024";
         public static readonly string MES_Stacklight1Color = "ns=2;i=6025";
-        public static readonly string MES_Stacklignt2Behavior = "ns=2;i=6026";
+        public static readonly string MES_Stacklight2Behavior = "ns=2;i=6026";
         public static readonly string MES_Stacklight2Color = "ns=2;i=6027";
-        public static readonly string MES_Stacklignt3Behavior = "ns=2;i=6028";
+        public static readonly string MES_Stacklight3Behavior = "ns=2;i=6028";
         public static readonly string MES_Stacklight3Color = "ns=2;i=6029";
-        public static readonly string MES_Stacklignt4Behavior = "ns=2;i=6030";
+        public static readonly string MES_Stacklight4Behavior = "ns=2;i=6030";
         public static readonly string MES_Stacklight4Color = "ns=2;i=6034";
-        public static readonly string MES_Stacklignt5Behavior = "ns=2;i=6039";
+        public static readonly string MES_Stacklight5Behavior = "ns=2;i=6039";
         public static readonly string MES_Stacklight5Color = "ns=2;i=6040";
 
         public static readonly string MES_FOIR21_AcknowledgeNo = "ns=2;i=6012";
