@@ -1051,9 +1051,7 @@ namespace DHS.EQUIPMENT
             dtUInt64
         }
 
-        //NodeId[] nodeIdList = new NodeId[33];
         List<NodeId> nodeIdList = new List<NodeId>();
-
         public void SetNodeIdList()
         {
             nodeIdList.Add(NodeId.Parse(_Constant.MES_FOIR21_AcknowledgeNo));
