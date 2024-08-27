@@ -61,14 +61,14 @@ namespace DHS.EQUIPMENT
             this.label8 = new System.Windows.Forms.Label();
             this.tbMsg = new System.Windows.Forms.TextBox();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.radBtnWritePLCInfo = new Telerik.WinControls.UI.RadButton();
+            this.cbPLCInfoTagType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.tbPLCInfoTagValue = new System.Windows.Forms.TextBox();
+            this.cbPLCInfoTagList = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
@@ -86,7 +86,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWriteForir2_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnWritePLCInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // radpnl_OperationMode
@@ -168,10 +168,10 @@ namespace DHS.EQUIPMENT
             this.radpnl_MESTEST.Controls.Add(this.tbTagValue);
             this.radpnl_MESTEST.Controls.Add(this.radBtnWriteValue);
             this.radpnl_MESTEST.Controls.Add(this.label1);
-            this.radpnl_MESTEST.Location = new System.Drawing.Point(976, 25);
+            this.radpnl_MESTEST.Location = new System.Drawing.Point(961, 25);
             this.radpnl_MESTEST.Name = "radpnl_MESTEST";
             this.radpnl_MESTEST.Padding = new System.Windows.Forms.Padding(5);
-            this.radpnl_MESTEST.Size = new System.Drawing.Size(373, 153);
+            this.radpnl_MESTEST.Size = new System.Drawing.Size(392, 114);
             this.radpnl_MESTEST.TabIndex = 13;
             this.radpnl_MESTEST.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radpnl_MESTEST.GetChildAt(0))).Text = "";
@@ -186,9 +186,9 @@ namespace DHS.EQUIPMENT
             "StringArr",
             "UInt32",
             "UInt32Arr"});
-            this.cbTagType.Location = new System.Drawing.Point(183, 52);
+            this.cbTagType.Location = new System.Drawing.Point(90, 58);
             this.cbTagType.Name = "cbTagType";
-            this.cbTagType.Size = new System.Drawing.Size(153, 20);
+            this.cbTagType.Size = new System.Drawing.Size(133, 20);
             this.cbTagType.TabIndex = 63;
             this.cbTagType.Text = "String";
             // 
@@ -197,7 +197,7 @@ namespace DHS.EQUIPMENT
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(75, 56);
+            this.label2.Location = new System.Drawing.Point(10, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 62;
@@ -207,34 +207,18 @@ namespace DHS.EQUIPMENT
             // 
             this.cbTagList.FormattingEnabled = true;
             this.cbTagList.Items.AddRange(new object[] {
-            "SequenceNo",
-            "AcknowledgeNo",
-            "EquipmentID",
-            "TrayID",
-            "RecipeID",
-            "CellID",
-            "IR",
-            "OCV",
-            "CellStatus",
+            "FORIR 2.1 RequestTrayInfo",
+            "2.1 Acknowledge No.",
+            "2.1 Sequence No.",
             "",
-            "InterfaceVersionProject",
-            "EquipmentName",
-            "EquipmentTypeID",
-            "LineID",
-            "EquipmentID",
-            "State",
-            "Blocked",
-            "CurrentSpeed",
-            "StandstillReason",
-            "Stacklight0Color",
-            "Stacklight0Behavior",
-            "Stacklight1Color",
-            "Stacklight1Behavior"});
-            this.cbTagList.Location = new System.Drawing.Point(183, 27);
+            "FORIR 2.2 DataCollection",
+            "2.2 Acknowledge No.",
+            "2.2 Sequence No."});
+            this.cbTagList.Location = new System.Drawing.Point(118, 29);
             this.cbTagList.Name = "cbTagList";
             this.cbTagList.Size = new System.Drawing.Size(153, 20);
             this.cbTagList.TabIndex = 61;
-            this.cbTagList.Text = "EquipmentID";
+            this.cbTagList.Text = "2.1 Sequence No.";
             this.cbTagList.SelectedValueChanged += new System.EventHandler(this.cbTagList_SelectedValueChanged);
             // 
             // label5
@@ -242,7 +226,7 @@ namespace DHS.EQUIPMENT
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(74, 31);
+            this.label5.Location = new System.Drawing.Point(9, 33);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 16);
             this.label5.TabIndex = 60;
@@ -253,7 +237,7 @@ namespace DHS.EQUIPMENT
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(75, 80);
+            this.label3.Location = new System.Drawing.Point(12, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 16);
             this.label3.TabIndex = 57;
@@ -261,10 +245,10 @@ namespace DHS.EQUIPMENT
             // 
             // tbTagValue
             // 
-            this.tbTagValue.Location = new System.Drawing.Point(183, 79);
+            this.tbTagValue.Location = new System.Drawing.Point(90, 84);
             this.tbTagValue.Multiline = true;
             this.tbTagValue.Name = "tbTagValue";
-            this.tbTagValue.Size = new System.Drawing.Size(182, 21);
+            this.tbTagValue.Size = new System.Drawing.Size(133, 21);
             this.tbTagValue.TabIndex = 56;
             this.tbTagValue.Text = "0";
             // 
@@ -272,10 +256,10 @@ namespace DHS.EQUIPMENT
             // 
             this.radBtnWriteValue.Font = new System.Drawing.Font("Arial", 14F, System.Drawing.FontStyle.Bold);
             this.radBtnWriteValue.ForeColor = System.Drawing.Color.White;
-            this.radBtnWriteValue.Location = new System.Drawing.Point(223, 108);
+            this.radBtnWriteValue.Location = new System.Drawing.Point(247, 58);
             this.radBtnWriteValue.Margin = new System.Windows.Forms.Padding(4);
             this.radBtnWriteValue.Name = "radBtnWriteValue";
-            this.radBtnWriteValue.Size = new System.Drawing.Size(130, 38);
+            this.radBtnWriteValue.Size = new System.Drawing.Size(136, 47);
             this.radBtnWriteValue.TabIndex = 52;
             this.radBtnWriteValue.Text = "Write Value";
             this.radBtnWriteValue.ThemeName = "ControlDefault";
@@ -315,10 +299,10 @@ namespace DHS.EQUIPMENT
             this.radPanel1.Controls.Add(this.label7);
             this.radPanel1.Controls.Add(this.tbTrayStatusCode);
             this.radPanel1.Controls.Add(this.label8);
-            this.radPanel1.Location = new System.Drawing.Point(976, 470);
+            this.radPanel1.Location = new System.Drawing.Point(961, 380);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel1.Size = new System.Drawing.Size(373, 289);
+            this.radPanel1.Size = new System.Drawing.Size(392, 379);
             this.radPanel1.TabIndex = 14;
             this.radPanel1.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Text = "";
@@ -520,101 +504,65 @@ namespace DHS.EQUIPMENT
             // tbMsg
             // 
             this.tbMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbMsg.Location = new System.Drawing.Point(976, 182);
+            this.tbMsg.Location = new System.Drawing.Point(961, 145);
             this.tbMsg.Multiline = true;
             this.tbMsg.Name = "tbMsg";
             this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbMsg.Size = new System.Drawing.Size(373, 106);
+            this.tbMsg.Size = new System.Drawing.Size(392, 106);
             this.tbMsg.TabIndex = 15;
             // 
             // radPanel2
             // 
-            this.radPanel2.Controls.Add(this.radButton1);
-            this.radPanel2.Controls.Add(this.comboBox2);
+            this.radPanel2.Controls.Add(this.radBtnWritePLCInfo);
+            this.radPanel2.Controls.Add(this.cbPLCInfoTagType);
             this.radPanel2.Controls.Add(this.label4);
             this.radPanel2.Controls.Add(this.label11);
-            this.radPanel2.Controls.Add(this.textBox1);
-            this.radPanel2.Controls.Add(this.comboBox1);
+            this.radPanel2.Controls.Add(this.tbPLCInfoTagValue);
+            this.radPanel2.Controls.Add(this.cbPLCInfoTagList);
             this.radPanel2.Controls.Add(this.label6);
             this.radPanel2.Controls.Add(this.label16);
-            this.radPanel2.Location = new System.Drawing.Point(976, 292);
+            this.radPanel2.Location = new System.Drawing.Point(961, 257);
             this.radPanel2.Name = "radPanel2";
             this.radPanel2.Padding = new System.Windows.Forms.Padding(5);
-            this.radPanel2.Size = new System.Drawing.Size(373, 172);
+            this.radPanel2.Size = new System.Drawing.Size(392, 117);
             this.radPanel2.TabIndex = 16;
             this.radPanel2.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).BorderHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(14)))), ((int)(((byte)(248)))));
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(5);
             // 
-            // label16
+            // radBtnWritePLCInfo
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label16.Location = new System.Drawing.Point(5, 5);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
-            this.label16.TabIndex = 50;
-            this.label16.Text = "PLC Info.";
+            this.radBtnWritePLCInfo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radBtnWritePLCInfo.ForeColor = System.Drawing.Color.White;
+            this.radBtnWritePLCInfo.Location = new System.Drawing.Point(247, 59);
+            this.radBtnWritePLCInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.radBtnWritePLCInfo.Name = "radBtnWritePLCInfo";
+            this.radBtnWritePLCInfo.Size = new System.Drawing.Size(130, 47);
+            this.radBtnWritePLCInfo.TabIndex = 92;
+            this.radBtnWritePLCInfo.Text = "Write PLC Info.";
+            this.radBtnWritePLCInfo.ThemeName = "ControlDefault";
+            this.radBtnWritePLCInfo.Click += new System.EventHandler(this.radBtnWritePLCInfo_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWritePLCInfo.GetChildAt(0))).Text = "Write PLC Info.";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnWritePLCInfo.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWritePLCInfo.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWritePLCInfo.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWritePLCInfo.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnWritePLCInfo.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
             // 
-            // comboBox1
+            // cbPLCInfoTagType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "SequenceNo",
-            "AcknowledgeNo",
-            "EquipmentID",
-            "TrayID",
-            "RecipeID",
-            "CellID",
-            "IR",
-            "OCV",
-            "CellStatus",
-            "",
-            "InterfaceVersionProject",
-            "EquipmentName",
-            "EquipmentTypeID",
-            "LineID",
-            "EquipmentID",
-            "State",
-            "Blocked",
-            "CurrentSpeed",
-            "StandstillReason",
-            "Stacklight0Color",
-            "Stacklight0Behavior",
-            "Stacklight1Color",
-            "Stacklight1Behavior"});
-            this.comboBox1.Location = new System.Drawing.Point(118, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 20);
-            this.comboBox1.TabIndex = 87;
-            this.comboBox1.Text = "EquipmentID";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label6.Location = new System.Drawing.Point(9, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 16);
-            this.label6.TabIndex = 86;
-            this.label6.Text = "Tag Name List";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbPLCInfoTagType.FormattingEnabled = true;
+            this.cbPLCInfoTagType.Items.AddRange(new object[] {
             "String",
             "StringArr",
             "UInt32",
             "UInt32Arr"});
-            this.comboBox2.Location = new System.Drawing.Point(119, 57);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(153, 20);
-            this.comboBox2.TabIndex = 91;
-            this.comboBox2.Text = "String";
+            this.cbPLCInfoTagType.Location = new System.Drawing.Point(90, 57);
+            this.cbPLCInfoTagType.Name = "cbPLCInfoTagType";
+            this.cbPLCInfoTagType.Size = new System.Drawing.Size(133, 20);
+            this.cbPLCInfoTagType.TabIndex = 91;
+            this.cbPLCInfoTagType.Text = "String";
             // 
             // label4
             // 
@@ -638,32 +586,76 @@ namespace DHS.EQUIPMENT
             this.label11.TabIndex = 89;
             this.label11.Text = "Tag Value";
             // 
-            // textBox1
+            // tbPLCInfoTagValue
             // 
-            this.textBox1.Location = new System.Drawing.Point(119, 85);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 21);
-            this.textBox1.TabIndex = 88;
-            this.textBox1.Text = "0";
+            this.tbPLCInfoTagValue.Location = new System.Drawing.Point(90, 85);
+            this.tbPLCInfoTagValue.Multiline = true;
+            this.tbPLCInfoTagValue.Name = "tbPLCInfoTagValue";
+            this.tbPLCInfoTagValue.Size = new System.Drawing.Size(133, 21);
+            this.tbPLCInfoTagValue.TabIndex = 88;
+            this.tbPLCInfoTagValue.Text = "0";
             // 
-            // radButton1
+            // cbPLCInfoTagList
             // 
-            this.radButton1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radButton1.ForeColor = System.Drawing.Color.White;
-            this.radButton1.Location = new System.Drawing.Point(119, 125);
-            this.radButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(130, 38);
-            this.radButton1.TabIndex = 92;
-            this.radButton1.Text = "Write PLC Info.";
-            this.radButton1.ThemeName = "ControlDefault";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton1.GetChildAt(0))).Text = "Write PLC Info.";
-            ((Telerik.WinControls.UI.RadButtonElement)(this.radButton1.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radButton1.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            this.cbPLCInfoTagList.FormattingEnabled = true;
+            this.cbPLCInfoTagList.Items.AddRange(new object[] {
+            "AreaID",
+            "EquipmentID",
+            "EquipmentName",
+            "EquipmentTypeID",
+            "InterfaceVersionProject",
+            "LineID",
+            "VendorID",
+            "",
+            "Blocked",
+            "CurrentCycleTime",
+            "DefectCounter",
+            "DesignCycleTime",
+            "GoodCounter",
+            "Mode",
+            "Stacklight0Color",
+            "Stacklight0Behavior",
+            "Stacklight1Color",
+            "Stacklight1Behavior",
+            "Stacklight2Color",
+            "Stacklight2Behavior",
+            "Stacklight3Color",
+            "Stacklight3Behavior",
+            "Stacklight4Color",
+            "Stacklight4Behavior",
+            "Stacklight5Color",
+            "Stacklight5Behavior",
+            "StandstillReason",
+            "Starved",
+            "State",
+            "TotaCounter"});
+            this.cbPLCInfoTagList.Location = new System.Drawing.Point(118, 32);
+            this.cbPLCInfoTagList.Name = "cbPLCInfoTagList";
+            this.cbPLCInfoTagList.Size = new System.Drawing.Size(153, 20);
+            this.cbPLCInfoTagList.TabIndex = 87;
+            this.cbPLCInfoTagList.Text = "AreaID";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label6.Location = new System.Drawing.Point(9, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 16);
+            this.label6.TabIndex = 86;
+            this.label6.Text = "Tag Name List";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label16.Location = new System.Drawing.Point(5, 5);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(69, 16);
+            this.label16.TabIndex = 50;
+            this.label16.Text = "PLC Info.";
             // 
             // MESINTERFACE
             // 
@@ -702,7 +694,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnWritePLCInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -743,12 +735,12 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.TextBox tbTrayID;
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbPLCInfoTagType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox tbPLCInfoTagValue;
+        private System.Windows.Forms.ComboBox cbPLCInfoTagList;
         private System.Windows.Forms.Label label6;
-        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton radBtnWritePLCInfo;
     }
 }

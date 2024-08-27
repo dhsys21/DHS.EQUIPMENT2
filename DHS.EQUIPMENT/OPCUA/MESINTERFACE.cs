@@ -286,14 +286,13 @@ namespace DHS.EQUIPMENT
             string errormessage = tbErrorMessage.Text;
             RaiseOnReadForIR2(errorcode, errormessage);
         }
-
-        private void radButton1_Click(object sender, EventArgs e)
-        {
-            string tagname = cbTagList.Text;
-            string tagvalue = tbTagValue.Text;
-            RaiseOnWritePLCSysInfo(tagname, tagvalue);
-        }
         #endregion
 
+        private void radBtnWritePLCInfo_Click(object sender, EventArgs e)
+        {
+            string tagname = cbPLCInfoTagList.Text;
+            string tagvalue = tbPLCInfoTagValue.Text;
+            RaiseOnWritePLCSysInfo(tagname, tagvalue);
+        }
     }
 }

@@ -244,19 +244,16 @@ namespace DHS.EQUIPMENT
         
         private void MesReadTimer()
         {
-            NodeId nodeid1 = NodeId.Parse("ns=2;i=6012");
-            NodeId nodeid2 = NodeId.Parse("ns=2;i=6013");
-            NodeId nodeid3 = NodeId.Parse("ns=2;i=6038");
-            NodeId nodeid4 = NodeId.Parse("ns=2;i=6041");
+            NodeId nodeid1 = NodeId.Parse(_Constant.MES_FOIR21_AcknowledgeNo);
+            NodeId nodeid2 = NodeId.Parse(_Constant.MES_FOIR21_SequenceNo);
+            NodeId nodeid3 = NodeId.Parse(_Constant.MES_FOIR22_AcknowledgeNo);
+            NodeId nodeid4 = NodeId.Parse(_Constant.MES_FOIR22_SequenceNo);
 
             NodeId[] nodeids = { nodeid1, nodeid2, nodeid3, nodeid4 };
 
-            string value = "102";
-            UInt32 iVal = 0;
-            UInt32.TryParse(value, out iVal);
             try
             {
-                opcclient.WriteNode<UInt32>(nodeid2.ToString(), iVal);
+                
 
                 object objValue = opcclient.ReadNode(nodeid1);
                 Console.WriteLine(objValue.ToString());
@@ -619,10 +616,20 @@ namespace DHS.EQUIPMENT
             {
                 switch (nDataType)
                 {
+                    case (int)MesClient.EnumDataType.dtInt32:
+                        Int32 iVal = 0;
+                        Int32.TryParse(value, out iVal);
+                        opcclient.WriteNode<Int32>(node, iVal);
+                        break;
+                    case (int)MesClient.EnumDataType.dtUInt64:
+                        UInt64 ui64Val = 0;
+                        UInt64.TryParse(value, out ui64Val);
+                        opcclient.WriteNode<UInt64>(node, ui64Val);
+                        break;
                     case (int)MesClient.EnumDataType.dtUInt32:
-                        UInt32 iVal = 0;
-                        UInt32.TryParse(value, out iVal);
-                        opcclient.WriteNode<UInt32>(node, iVal);
+                        UInt32 uiVal = 0;
+                        UInt32.TryParse(value, out uiVal);
+                        opcclient.WriteNode<UInt32>(node, uiVal);
                         break;
                     case (int)MesClient.EnumDataType.dtFloat:
                         float fVal = 0.0f;
@@ -700,27 +707,173 @@ namespace DHS.EQUIPMENT
         }
         #endregion
 
-        #region MES Write/Read
+        #region Version 2. - MES와 IROCV간 주고 받는 Sequence 별로 구현
         public void WriteValue(string node, string value)
         {
             if (connection == false) return;
+
+            UInt32 iVal = 0;
+            UInt32.TryParse(value, out iVal);
             switch (node)
             {
-                case "EquipmentID":
-                    WriteValue("ns=2;s=Equipment/EquipmentID", value, (int)EnumDataType.dtString);
+                case "2.1 Acknowledge No.":
+                    opcclient.WriteNode<UInt32>(_Constant.MES_FOIR21_AcknowledgeNo, iVal);
                     break;
-                case "TrayID":
-                    WriteValue("ns=2;s=Equipment/TrayID", value, (int)EnumDataType.dtString);
+                case "2.1 Sequence No.":
+                    opcclient.WriteNode<UInt32>(_Constant.MES_FOIR21_SequenceNo, iVal);
                     break;
-                case "Blocked":
-                    WriteValue("ns=2;s=PLC/Blocked", value, (int)EnumDataType.dtBoolean);
+                case "2.2 Acknowledge No.":
+                    opcclient.WriteNode<UInt32>(_Constant.MES_FOIR22_AcknowledgeNo, iVal);
                     break;
-                default : break;
+                case "2.2 Sequence No.":
+                    opcclient.WriteNode<UInt32>(_Constant.MES_FOIR22_SequenceNo, iVal);
+                    break;
+                default: break;
             }
         }
-        #endregion
+        public void WritePLSInfo(int stageno, PLCSysInfo plcsysinfo)
+        {
+            //* Int32, UInt32 구분해야 함.
+            _strLog = string.Empty;
 
-        #region Version 2. - MES와 IROCV간 주고 받는 Sequence 별로 구현
+            //* Interface Version Project - String
+            string interfaceversionproject = plcsysinfo.INTERFACEVERSIONPROJECT;
+            WriteValue(_Constant.MES_InterfaceVersionProject, interfaceversionproject, (int)EnumDataType.dtString);
+            _strLog += "Interface Version Project: " + interfaceversionproject;
+
+            //* Equipment Name - String
+            string equipmentname = plcsysinfo.EQUIPMENTNAME;
+            WriteValue(_Constant.MES_EquipmentName, equipmentname, (int)EnumDataType.dtString);
+            _strLog += ", Equipment Name: " + equipmentname;
+
+            //* Equipment Type Id - Int32
+            int equipmenttypeid = plcsysinfo.EQUIPMENTTYPEID;
+            WriteValue(_Constant.MES_EquipmentTypeID, equipmenttypeid.ToString(), (int)EnumDataType.dtInt32);
+            _strLog += ", Equipment Type ID: " + equipmenttypeid;
+
+            //* Line ID - Int32
+            int lineid = plcsysinfo.LINEID;
+            WriteValue(_Constant.MES_LineID, lineid.ToString(), (int)EnumDataType.dtInt32);
+            _strLog += ", Line ID: " + lineid;
+
+            //* Area ID - Int32
+            int areaid = plcsysinfo.AREAID;
+            WriteValue(_Constant.MES_AreaID, areaid.ToString(), (int)EnumDataType.dtInt32);
+            _strLog += ", Area ID: " + areaid;
+
+            //* Vendor ID - Int32
+            int vendorid = plcsysinfo.VENDORID;
+            WriteValue(_Constant.MES_VendorID, vendorid.ToString(), (int)EnumDataType.dtInt32);
+            _strLog += ", Vendor ID: " + vendorid;
+
+            //* Equipment ID - Int32
+            int equipmentid = plcsysinfo.EQUIPMENTID;
+            WriteValue(_Constant.MES_EquipmentID, equipmentid.ToString(), (int)EnumDataType.dtInt32);
+            _strLog += ", Equipment ID: " + equipmentid;
+
+            //* STATE - ns=4;i=1035
+            int state = plcsysinfo.STATE;
+            WriteValue(_Constant.MES_STATE, state.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", State: " + state;
+
+            //* MODE - ns=4;i=1037
+            int mode = plcsysinfo.MODE;
+            WriteValue(_Constant.MES_Mode, mode.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Mode:" + mode;
+
+            //* Blocked - Boolean
+            bool blocked = plcsysinfo.BLOCKED;
+            WriteValue(_Constant.MES_Blocked, blocked.ToString(), (int)EnumDataType.dtBoolean);
+            _strLog += ", Blocked:" + blocked;
+
+            //* Starved - Boolean
+            bool starved = plcsysinfo.STARVED;
+            WriteValue(_Constant.MES_Starved, starved.ToString(), (int)EnumDataType.dtBoolean);
+            _strLog += ", Starved:" + starved;
+
+            //* Current Speed - Float
+            double currentspeed = plcsysinfo.CURRENTSPEED;
+            WriteValue(_Constant.MES_CurrentCycleTime, currentspeed.ToString(), (int)EnumDataType.dtFloat);
+            _strLog += ", Current Speed:" + currentspeed;
+
+            //* Designed Speed - Float
+            double designspeed = plcsysinfo.DESIGNSPEED;
+            WriteValue(_Constant.MES_DesignCycleTime, designspeed.ToString(), (int)EnumDataType.dtFloat);
+            _strLog += ", Designed Spee:" + designspeed;
+
+            //* Total Counter - UInt64
+            int totalcounter = plcsysinfo.TOTALCOUNTER;
+            WriteValue(_Constant.MES_TotalCounter, totalcounter.ToString(), (int)EnumDataType.dtUInt64);
+            _strLog += ", Total Counter:" + totalcounter;
+
+            //* STANDSTILLREASON - ns=2;i=6080
+            int standstillreason = plcsysinfo.STANDSTILLREASON;
+            WriteValue(_Constant.MES_StandstillReason, standstillreason.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stand Still Reason:" + standstillreason;
+
+            //* STACKLIGHT0COLOR - ns=4;i=1041
+            int stacklight0color = plcsysinfo.STACKLIGHT0COLOR;
+            WriteValue(_Constant.MES_Stacklight0Color, stacklight0color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 0:" + stacklight0color;
+
+            //* STACKLIGHT0BEHAVIOR - ns=4;i=1043
+            int stacklight0behavior = plcsysinfo.STACKLIGHT0BEHAVIOR;
+            WriteValue(_Constant.MES_Stacklignt0Behavior, stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 0:" + stacklight0behavior;
+
+            //* STACKLIGHT1COLOR - ns=4;i=1041
+            int stacklight1color = plcsysinfo.STACKLIGHT1COLOR;
+            WriteValue(_Constant.MES_Stacklight1Color, stacklight1color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 1:" + stacklight1color;
+
+            //* STACKLIGHT1BEHAVIOR - ns=4;i=1043
+            int stacklight1behavior = plcsysinfo.STACKLIGHT1BEHAVIOR;
+            WriteValue(_Constant.MES_Stacklignt1Behavior, stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 1:" + stacklight1behavior;
+
+            //* STACKLIGHT2COLOR - ns=4;i=1041
+            int stacklight2color = plcsysinfo.STACKLIGHT2COLOR;
+            WriteValue(_Constant.MES_Stacklight2Color, stacklight2color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 2:" + stacklight2color;
+
+            //* STACKLIGHT2BEHAVIOR - ns=4;i=1043
+            int stacklight2behavior = plcsysinfo.STACKLIGHT2BEHAVIOR;
+            WriteValue(_Constant.MES_Stacklignt2Behavior, stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 2:" + stacklight2behavior;
+
+            //* STACKLIGHT3COLOR - ns=4;i=1041
+            int stacklight3color = plcsysinfo.STACKLIGHT3COLOR;
+            WriteValue(_Constant.MES_Stacklight3Color, stacklight3color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 3:" + stacklight3color;
+
+            //* STACKLIGHT3BEHAVIOR - ns=4;i=1043
+            int stacklight3behavior = plcsysinfo.STACKLIGHT3BEHAVIOR;
+            WriteValue(_Constant.MES_Stacklignt3Behavior, stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 3:" + stacklight3behavior;
+
+            //* STACKLIGHT4COLOR - ns=4;i=1041
+            int stacklight4color = plcsysinfo.STACKLIGHT4COLOR;
+            WriteValue(_Constant.MES_Stacklight4Color, stacklight4color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 4:" + stacklight4color;
+
+            //* STACKLIGHT4BEHAVIOR - ns=4;i=1043
+            int stacklight4behavior = plcsysinfo.STACKLIGHT4BEHAVIOR;
+            WriteValue(_Constant.MES_Stacklignt4Behavior, stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 4:" + stacklight4behavior;
+
+            //* STACKLIGHT5COLOR - ns=4;i=1041
+            int stacklight5color = plcsysinfo.STACKLIGHT5COLOR;
+            WriteValue(_Constant.MES_Stacklight5Color, stacklight5color.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Color 5:" + stacklight5color;
+
+            //* STACKLIGHT5BEHAVIOR - ns=4;i=1043
+            int stacklight5behavior = plcsysinfo.STACKLIGHT5BEHAVIOR;
+            WriteValue(_Constant.MES_Stacklignt5Behavior, stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
+            _strLog += ", Stack Light Behavior 5:" + stacklight5behavior;
+
+            //* Save Log
+            SaveLog(stageno, "PLC SYS INFO. IROCV -> MES", _strLog);
+        }
         public void test()
         {
             opcclient.CallMethod();
@@ -884,149 +1037,6 @@ namespace DHS.EQUIPMENT
             irocvdata[stageno].LOG = _strLog;
             return irocvdata[stageno];
         }
-        public void WritePLSInfo(int stageno, PLCSysInfo plcsysinfo)
-        {
-            _strLog = string.Empty;
-
-            //* Interface Version Project
-            string interfaceversionproject = plcsysinfo.INTERFACEVERSIONPROJECT;
-            WriteValue("ns=2;s=PLC/InterfaceVersionProject", interfaceversionproject, (int)EnumDataType.dtString);
-            _strLog += "Interface Version Project: " + interfaceversionproject;
-
-            //* Equipment Name
-            string equipmentname = plcsysinfo.EQUIPMENTNAME;
-            WriteValue("ns=2;s=PLC/EquipmentName", equipmentname, (int)EnumDataType.dtString);
-            _strLog += ", Equipment Name: " + equipmentname;
-
-            //* Equipment Type Id
-            int equipmenttypeid = plcsysinfo.EQUIPMENTTYPEID;
-            WriteValue("ns=2;s=PLC/EquipmentTypeID", equipmenttypeid.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Equipment Type ID: " + equipmenttypeid;
-
-            //* Line ID
-            int lineid = plcsysinfo.LINEID;
-            WriteValue("ns=2;s=PLC/LineID", lineid.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Line ID: " + lineid;
-
-            //* Area ID
-            int areaid = plcsysinfo.AREAID;
-            WriteValue("ns=2;s=PLC/AreaID", areaid.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Area ID: " + areaid;
-
-            //* Vendor ID
-            int vendorid = plcsysinfo.VENDORID;
-            WriteValue("ns=2;s=PLC/VendorID", vendorid.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Vendor ID: " + vendorid;
-
-            //* Equipment ID
-            int equipmentid = plcsysinfo.EQUIPMENTID;
-            WriteValue("ns=2;s=PLC/EquipmentID", equipmentid.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Equipment ID: " + equipmentid;
-
-            //* STATE
-            int state = plcsysinfo.STATE;
-            WriteValue("ns=2;s=PLC/State", state.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", State: " + state;
-
-            //* MODE
-            int mode = plcsysinfo.MODE;
-            WriteValue("ns=2;s=PLC/Mode", mode.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Mode:" + mode;
-
-            //* Blocked
-            bool blocked = plcsysinfo.BLOCKED;
-            WriteValue("ns=2;s=PLC/Blocked", blocked.ToString(), (int)EnumDataType.dtBoolean);
-            _strLog += ", Blocked:" + blocked;
-
-            //* Starved
-            bool starved = plcsysinfo.STARVED;
-            WriteValue("ns=2;s=PLC/Starved", starved.ToString(), (int)EnumDataType.dtBoolean);
-            _strLog += ", Starved:" + starved;
-
-            //* Current Speed
-            double currentspeed = plcsysinfo.CURRENTSPEED;
-            WriteValue("ns=2;s=PLC/CurrentSpeed", currentspeed.ToString(), (int)EnumDataType.dtFloat);
-            _strLog += ", Current Speed:" + currentspeed;
-
-            //* Designed Speed
-            double designspeed = plcsysinfo.DESIGNSPEED;
-            WriteValue("ns=2;s=PLC/DesignSpeed", designspeed.ToString(), (int)EnumDataType.dtFloat);
-            _strLog += ", Designed Spee:" + designspeed;
-
-            //* Total Counter
-            int totalcounter = plcsysinfo.TOTALCOUNTER;
-            WriteValue("ns=2;s=PLC/TotalCounter", totalcounter.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Total Counter:" + totalcounter;
-
-            //* STANDSTILLREASON
-            int standstillreason = plcsysinfo.STANDSTILLREASON;
-            WriteValue("ns=2;s=PLC/StandStillReason", standstillreason.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stand Still Reason:" + standstillreason;
-
-            //* STACKLIGHT0COLOR
-            int stacklight0color = plcsysinfo.STACKLIGHT0COLOR;
-            WriteValue("ns=2;s=PLC/StackLight0Color", stacklight0color.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Color 0:" + stacklight0color;
-
-            //* STACKLIGHT0BEHAVIOR
-            int stacklight0behavior = plcsysinfo.STACKLIGHT0BEHAVIOR;
-            WriteValue("ns=2;s=PLC/StackLight0Behavior", stacklight0behavior.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Behavior 0:" + stacklight0behavior;
-
-            //* STACKLIGHT1COLOR
-            int stacklight1color = plcsysinfo.STACKLIGHT1COLOR;
-            WriteValue("ns=2;s=PLC/StackLight1Color", stacklight1color.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Color 1:" + stacklight1color;
-
-            //* STACKLIGHT1BEHAVIOR
-            int stacklight1behavior = plcsysinfo.STACKLIGHT1BEHAVIOR;
-            WriteValue("ns=2;s=PLC/StackLight1Behavior", stacklight1behavior.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Behavior 1:" + stacklight1behavior;
-
-            //* STACKLIGHT2COLOR
-            int stacklight2color = plcsysinfo.STACKLIGHT2COLOR;
-            WriteValue("ns=2;s=PLC/StackLight2Color", stacklight2color.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Color 2:" + stacklight2color;
-
-            //* STACKLIGHT2BEHAVIOR
-            int stacklight2behavior = plcsysinfo.STACKLIGHT2BEHAVIOR;
-            WriteValue("ns=2;s=PLC/StackLight2Behavior", stacklight2behavior.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Behavior 2:" + stacklight2behavior;
-
-            //* STACKLIGHT3COLOR
-            int stacklight3color = plcsysinfo.STACKLIGHT3COLOR;
-            WriteValue("ns=2;s=PLC/StackLight3Color", stacklight3color.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Color 3:" + stacklight3color;
-
-            //* STACKLIGHT3BEHAVIOR
-            int stacklight3behavior = plcsysinfo.STACKLIGHT3BEHAVIOR;
-            WriteValue("ns=2;s=PLC/StackLight3Behavior", stacklight3behavior.ToString(), (int)EnumDataType.dtUInt32);
-            _strLog += ", Stack Light Behavior 3:" + stacklight3behavior;
-
-            //* STACKLIGHT4COLOR
-            //int stacklight4color = plcsysinfo.STACKLIGHT4COLOR;
-            //WriteValue("ns=2;s=PLC/StackLight4Color", stacklight4color.ToString(), (int)EnumDataType.dtUInt32);
-            //_strLog += ", Stack Light Color 4:" + stacklight4color;
-
-            //* STACKLIGHT4BEHAVIOR
-            //int stacklight4behavior = plcsysinfo.STACKLIGHT4BEHAVIOR;
-            //WriteValue("ns=2;s=PLC/StackLight4Behavior", stacklight4behavior.ToString(), (int)EnumDataType.dtUInt32);
-            //_strLog += ", Stack Light Behavior 4:" + stacklight4behavior;
-
-            //* STACKLIGHT5COLOR
-            //int stacklight5color = plcsysinfo.STACKLIGHT5COLOR;
-            //WriteValue("ns=2;s=PLC/StackLight5Color", stacklight5color.ToString(), (int)EnumDataType.dtUInt32);
-            //_strLog += ", Stack Light Color 0:" + stacklight5color;
-
-            //* STACKLIGHT5BEHAVIOR
-            //int stacklight5behavior = plcsysinfo.STACKLIGHT5BEHAVIOR;
-            //WriteValue("ns=2;s=PLC/StackLight5Behavior", stacklight5behavior.ToString(), (int)EnumDataType.dtUInt32);
-            //_strLog += ", Stack Light Behavior 5:" + stacklight5behavior;
-
-            //* Save Log
-            SaveLog(stageno, "PLC SYS INFO. IROCV -> MES", _strLog);
-        }
-
         public void WriteFORIR1_ForMes(int stageno, string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
         {
             _strLog = string.Empty;
@@ -1290,7 +1300,9 @@ namespace DHS.EQUIPMENT
             dtUInt32Arr,
             dtFloat,
             dtFloatArr,
-            dtBoolean
+            dtBoolean,
+            dtInt32,
+            dtUInt64
         }
 
         public struct Tag

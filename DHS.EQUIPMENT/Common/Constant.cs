@@ -132,6 +132,44 @@ namespace DHS.EQUIPMENT.Common
         public static readonly int PLC_STACK_LIGHT5_BEHAVIOR = 246;
         #endregion
 
+        #region MES Tag
+        public static readonly string MES_AreaID = "ns=2;i=6022";
+        public static readonly string MES_EquipmentID = "ns=2;i=6008";
+        public static readonly string MES_EquipmentName = "ns=2;i=6009";
+        public static readonly string MES_EquipmentTypeID = "ns=2;i=6071";
+        public static readonly string MES_InterfaceVersionProject = "ns=2;i=6067";
+        public static readonly string MES_LineID = "ns=2;i=6069";
+        public static readonly string MES_VendorID = "ns=2;i=6070";
+
+        public static readonly string MES_Blocked = "ns=2;i=6072";
+        public static readonly string MES_CurrentCycleTime = "ns=2;i=6019";
+        public static readonly string MES_DefectCounter = "ns=2;i=6074";
+        public static readonly string MES_DesignCycleTime = "ns=2;i=6021";
+        public static readonly string MES_GoodCounter = "ns=2;i=6076";
+        public static readonly string MES_Mode = "ns=2;i=6077";
+        public static readonly string MES_STATE = "ns=2;i=6082";
+        public static readonly string MES_StandstillReason = "ns=2;i=6080";
+        public static readonly string MES_Starved = "ns=2;i=6081";
+        public static readonly string MES_TotalCounter = "ns=2;i=6083";
+        public static readonly string MES_Stacklignt0Behavior = "ns=2;i=6078";
+        public static readonly string MES_Stacklight0Color = "ns=2;i=6079";
+        public static readonly string MES_Stacklignt1Behavior = "ns=2;i=6024";
+        public static readonly string MES_Stacklight1Color = "ns=2;i=6025";
+        public static readonly string MES_Stacklignt2Behavior = "ns=2;i=6026";
+        public static readonly string MES_Stacklight2Color = "ns=2;i=6027";
+        public static readonly string MES_Stacklignt3Behavior = "ns=2;i=6028";
+        public static readonly string MES_Stacklight3Color = "ns=2;i=6029";
+        public static readonly string MES_Stacklignt4Behavior = "ns=2;i=6030";
+        public static readonly string MES_Stacklight4Color = "ns=2;i=6034";
+        public static readonly string MES_Stacklignt5Behavior = "ns=2;i=6039";
+        public static readonly string MES_Stacklight5Color = "ns=2;i=6040";
+
+        public static readonly string MES_FOIR21_AcknowledgeNo = "ns=2;i=6012";
+        public static readonly string MES_FOIR21_SequenceNo = "ns=2;i=6013";
+        public static readonly string MES_FOIR22_AcknowledgeNo = "ns=2;i=6038";
+        public static readonly string MES_FOIR22_SequenceNo = "ns=2;i=6041";
+        #endregion MES Tag
+
     }
 
     public enum enumEquipMode
