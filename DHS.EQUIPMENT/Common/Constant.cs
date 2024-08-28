@@ -211,6 +211,18 @@ namespace DHS.EQUIPMENT.Common
         pFinish = 10,
         pTrayOut = 11
     }
+    public enum enumSequenceNo
+    {
+        pVacancy = 101,
+        pTrayId = 102,
+        pRequestTrayInfo = 103,
+        pReplyTrayInfo =104,
+        pRunning = 105,
+        pEnd = 106,
+        pDataCollection = 107,
+        pDataReply = 108,
+        pFinish = 109
+    }
     public enum enumSocketConnectionMode
     {
         // Server Style

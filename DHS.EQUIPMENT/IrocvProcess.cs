@@ -10,9 +10,6 @@ using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 using DHS.EQUIPMENT.PLC;
 using OPCUASERVER;
-using Telerik.Collections.Generic;
-using Telerik.WinControls.Svg.FilterEffects;
-
 
 namespace DHS.EQUIPMENT
 {
@@ -23,6 +20,11 @@ namespace DHS.EQUIPMENT
         SIEMENSS7LIB siemensplc;
         MesServer messerver;
         MesClient mesclient;
+        #region MES DATA
+        TrayInfo trayInfo = null;
+        IrocvDataCollection irocvDataCollection = null;
+        #endregion MES DATA
+
         CEquipmentData _system;
         PLCINTERFACE plcinterface = null;
         PLCSysInfo plcsysinfo = null;
@@ -116,6 +118,10 @@ namespace DHS.EQUIPMENT
 
             #region MES
             _bMesConnected = false;
+
+            trayInfo = TrayInfo.GetInstance();
+            irocvDataCollection = IrocvDataCollection.GetInstance();
+
             mesinterface = MESINTERFACE.GetInstance();
             mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
             //* MES 시뮬레이션
@@ -356,6 +362,65 @@ namespace DHS.EQUIPMENT
 
             mesclient.WritePLSInfo(0, plcsysinfo);
         }
+        #endregion
+
+        #region MES Action
+        public void DisplayDataReply(int stageno, IROCVData irocvdata)
+        {
+            irocvform[stageno].SetMesInfo(irocvdata.TRAYSTATUSCODE, irocvdata.ERRORCODE, irocvdata.ERRORMESSAGE);
+        }
+        public void DisplayTrayInfo(int stageno, IROCVData irocvData)
+        {
+            irocvform[stageno].SetTrayId(irocvData.TRAYID);
+            irocvform[stageno].SetMesInfo(irocvData.TRAYSTATUSCODE, irocvData.ERRORCODE, irocvData.ERRORMESSAGE);
+            measureinfo.DisplayMesChannelInfo(stageno, irocvData);
+
+            //* for test 이 코드는 왜?
+            //IROCV_Refresh(stageno);
+            irocvdata[stageno].SetStartTime();
+        }
+        public TrayInfo GetTrayInfo(IROCVData irocvdata)
+        {
+            TrayInfo trayinfo = new TrayInfo();
+            trayinfo.EquipmentID = irocvdata.EQUIPMENTID;
+            trayinfo.TrayID = irocvdata.TRAYID;
+
+            return trayinfo;
+        }
+        public void SetTrayRequestInfo(int stageno, TrayRequestInfo trayrequestinfo)
+        {
+            irocvdata[stageno].CELLID = trayrequestinfo.CellID;
+            irocvdata[stageno].CELL = Array.ConvertAll(trayrequestinfo.CellStatus, s => int.Parse(s));
+            irocvdata[stageno].CELLSTATUSMES = trayrequestinfo.CellStatus;
+            irocvdata[stageno].TRAYSTATUSCODE = trayrequestinfo.TrayStatusCode;
+            irocvdata[stageno].ERRORCODE = trayrequestinfo.ErrorCode;
+            irocvdata[stageno].ERRORMESSAGE = trayrequestinfo.ErrorMessage;
+
+            DisplayTrayInfo(stageno, irocvdata[stageno]);
+        }
+        public IrocvDataCollection GetIrocvDataCollection(Opc.Ua.NodeId nodeId, IROCVData irocvdata)
+        {
+            IrocvDataCollection irocvDC = new IrocvDataCollection();
+            irocvDC.TypeId = nodeId;
+            irocvDC.EquipmentID = irocvdata.EQUIPMENTID;
+            irocvDC.TrayID = irocvdata.TRAYID;
+            irocvDC.CellID = irocvdata.CELLID;
+            /// 0 => OK, others => NG
+            irocvDC.CellStatus = irocvdata.CELLSTATUSIROCV;
+            irocvDC.IR = irocvdata.IR_AFTERVALUE;
+            irocvDC.OCV = irocvdata.OCV;
+
+            return irocvDC;
+        }
+        public void SetReplyDataCollection(int stageno, ReplyDataCollection replyDataCollection)
+        {
+            irocvdata[stageno].MESRESULT = int.Parse(replyDataCollection.ErrorCode);
+            irocvdata[stageno].MESERRORCODE = replyDataCollection.ErrorCode;
+            irocvdata[stageno].MESERRORMESSAGE = replyDataCollection.ErrorMessage;
+
+            DisplayDataReply(stageno, irocvdata[stageno]);
+        }
+        
         #endregion
 
         private void _PLCINTERFACE_WritePLC(int stageno, string tagname, int nValue)
@@ -1122,7 +1187,7 @@ namespace DHS.EQUIPMENT
                     break;
                 case 1:
                     //* Write Sequence : 상태가 변했을 때 sequence를 변경하여 알림.
-                    mesclient.WriteSequence(stageno, (int)enumProcess.pBarcode);
+                    mesclient.WriteSequence(stageno, (int)enumSequenceNo.pTrayId);
                     nInspectionStep = 2;
                     break;
                 case 2:
@@ -1928,48 +1993,6 @@ namespace DHS.EQUIPMENT
         }
         #endregion PLC Action
 
-        #region MES Action
-        public void DisplayTrayInfo(int stageno, IROCVData irocvData)
-        {
-            irocvform[stageno].SetTrayId(irocvData.TRAYID);
-            irocvform[stageno].SetMesInfo(irocvData.TRAYSTATUSCODE, irocvData.ERRORCODE, irocvData.ERRORMESSAGE);
-            measureinfo.DisplayMesChannelInfo(stageno, irocvData);
-
-            //* for test 이 코드는 왜?
-            //IROCV_Refresh(stageno);
-            irocvdata[stageno].SetStartTime();
-        }
-        public void SetTrayInfo(int stageno, TrayRequestInfo trayinfo)
-        {
-            irocvdata[stageno].CELLID = trayinfo.CellID;
-            irocvdata[stageno].CELL = Array.ConvertAll(trayinfo.CellStatus, s => int.Parse(s));
-            irocvdata[stageno].CELLSTATUSMES = trayinfo.CellStatus;
-            irocvdata[stageno].TRAYSTATUSCODE = trayinfo.TrayStatusCode;
-            irocvdata[stageno].ERRORCODE = trayinfo.ErrorCode;
-            irocvdata[stageno].ERRORMESSAGE = trayinfo.ErrorMessage;
-        }
-        public void SetReplyDataCollection(int stageno, ReplyDataCollection replyDataCollection)
-        {
-            irocvdata[stageno].MESRESULT = int.Parse(replyDataCollection.ErrorCode);
-            irocvdata[stageno].MESERRORCODE = replyDataCollection.ErrorCode;
-            irocvdata[stageno].MESERRORMESSAGE = replyDataCollection.ErrorMessage;
-        }
-        public IrocvDataCollection GetIrocvDataCollection(Opc.Ua.NodeId nodeId, IROCVData irocvdata)
-        {
-            IrocvDataCollection irocvDC = new IrocvDataCollection();
-            irocvDC.TypeId = nodeId;
-            irocvDC.EquipmentID = irocvdata.EQUIPMENTID;
-            irocvDC.TrayID = irocvdata.TRAYID;
-            irocvDC.CellID = irocvdata.CELLID;
-            /// 0 => OK, others => NG
-            irocvDC.CellStatus = irocvdata.CELLSTATUSIROCV;
-            irocvDC.IR = irocvdata.IR_AFTERVALUE;
-            irocvDC.OCV = irocvdata.OCV;
-
-            return irocvDC;
-        }
-        #endregion
-
         #region DELEGATE
 
         #region Delegate Event IROCV Equipment (Socket)
@@ -2196,5 +2219,9 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #endregion
+
+        #region TRAYINFO Structure
+
+        #endregion TRAYINFO Structure
     }
 }
