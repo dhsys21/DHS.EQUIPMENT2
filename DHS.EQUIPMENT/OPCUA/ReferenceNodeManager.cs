@@ -483,8 +483,7 @@ namespace OPCUASERVER
                 /// outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
 
                 TrayInfo trayinfo = new TrayInfo();
-                irocvdata[0] = IROCVData.GetInstance(0);
-                trayinfo = irocvprocess.GetTrayInfo(irocvdata[0]);
+                trayinfo = irocvprocess.GetTrayInfo(0);
 
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), HEADERDATATYPE);
                 ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5032"), trayinfo);
@@ -540,36 +539,11 @@ namespace OPCUASERVER
                 /// inputArguments : null
                 /// outputArguments(return value) : Data Collection(EquipmentID, TayID, CellID, CellStatus, IR, OCV)
 
-                //#region for test
-                //string equipmentid = "IROCV0002";
-                //string trayid = "Test0001";
-                //string[] cellid = new string[32];
-                //string[] cellstatus = new string[32];
-                //double[] ir = new double[32];
-                //double[] ocv = new double[32];
-
-                //for(int i = 0; i < 32;i++)
-                //{
-                //    cellid[i] = "test" + (i + 1).ToString("D3");
-                //    cellstatus[i] = "0";
-                    
-                //    ir[i] = 0.3832 + (double)(i % 8 + i) / 10000.0;
-                //    ocv[i] = 3721.21 + (double)(i % 8 + i) / 100.0;
-                //}
-                //irocvdata[0] = IROCVData.GetInstance(0);
-                //irocvdata[0].InitData();
-                //irocvdata[0].EQUIPMENTID = equipmentid;
-                //irocvdata[0].TRAYID = trayid;
-                //irocvdata[0].CELLID = cellid;
-                //irocvdata[0].CELLSTATUSIROCV = cellstatus;
-                //irocvdata[0].IR_AFTERVALUE = ir;
-                //irocvdata[0].OCV = ocv;
-                //#endregion for test
-
                 IrocvDataCollection irocvData = new IrocvDataCollection();
-                irocvData = irocvprocess.GetIrocvDataCollection(NodeId.Parse("ns=0;i=5041"), irocvdata[0]);
-                ExtensionObject extensionObject2 = ConvertDataCollectionExtensionObject(irocvData);
+                irocvData = irocvprocess.GetIrocvDataCollection(NodeId.Parse("ns=0;i=5041"), 0);
+                
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), HEADERDATATYPE);
+                ExtensionObject extensionObject2 = ConvertDataCollectionExtensionObject(irocvData);
                 //ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5041"), irocvData);
 
                 outputArguments.Add(new Variant(extensionObject1));
@@ -585,6 +559,7 @@ namespace OPCUASERVER
                 /// SetEnvelope (FORIR_2_2_DataCollection)
                 /// inputArguments : Data Collection Reply (ErrorCode, ErrorMessage)
                 /// outputArguments : null
+                
                 if (inputArguments != null)
                 {
                     foreach (Variant value1 in inputArguments)

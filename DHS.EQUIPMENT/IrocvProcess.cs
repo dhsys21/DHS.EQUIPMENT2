@@ -326,17 +326,17 @@ namespace DHS.EQUIPMENT
 
             mesclient.WritePLSInfo(0, plcsysinfo);
         }
-        private void _MesClient_WriteIROCVValues(IrocvDataCollection irocvDataCollection)
+        private void _MesClient_WriteIROCVValues(int stageno, IrocvDataCollection irocvDataCollection)
         {
-            irocvdata[0].EQUIPMENTID = irocvDataCollection.EquipmentID;
-            irocvdata[0].TRAYID = irocvDataCollection.TrayID;
-            irocvdata[0].CELLID = irocvDataCollection.CellID;
-            irocvdata[0].CELLSTATUSIROCV = irocvDataCollection.CellStatus;
-            irocvdata[0].IR_AFTERVALUE = irocvDataCollection.IR;
-            irocvdata[0].OCV = irocvDataCollection.OCV;
+            irocvdata[stageno].EQUIPMENTID = irocvDataCollection.EquipmentID;
+            irocvdata[stageno].TRAYID = irocvDataCollection.TrayID;
+            irocvdata[stageno].CELLID = irocvDataCollection.CellID;
+            irocvdata[stageno].CELLSTATUSIROCV = irocvDataCollection.CellStatus;
+            irocvdata[stageno].IR_AFTERVALUE = irocvDataCollection.IR;
+            irocvdata[stageno].OCV = irocvDataCollection.OCV;
         }
 
-        private void _MesClient_WriteMesValues(TrayRequestInfo trayRequestInfo)
+        private void _MesClient_WriteMesValues(int stageno, TrayRequestInfo trayRequestInfo)
         {
             
         }
@@ -357,11 +357,11 @@ namespace DHS.EQUIPMENT
             //IROCV_Refresh(stageno);
             irocvdata[stageno].SetStartTime();
         }
-        public TrayInfo GetTrayInfo(IROCVData irocvdata)
+        public TrayInfo GetTrayInfo(int stageno)
         {
             TrayInfo trayinfo = new TrayInfo();
-            trayinfo.EquipmentID = irocvdata.EQUIPMENTID;
-            trayinfo.TrayID = irocvdata.TRAYID;
+            trayinfo.EquipmentID = irocvdata[stageno].EQUIPMENTID;
+            trayinfo.TrayID = irocvdata[stageno].TRAYID;
 
             return trayinfo;
         }
@@ -376,17 +376,17 @@ namespace DHS.EQUIPMENT
 
             DisplayTrayInfo(stageno, irocvdata[stageno]);
         }
-        public IrocvDataCollection GetIrocvDataCollection(Opc.Ua.NodeId nodeId, IROCVData irocvdata)
+        public IrocvDataCollection GetIrocvDataCollection(Opc.Ua.NodeId nodeId, int stageno)
         {
             IrocvDataCollection irocvDC = new IrocvDataCollection();
             irocvDC.TypeId = nodeId;
-            irocvDC.EquipmentID = irocvdata.EQUIPMENTID;
-            irocvDC.TrayID = irocvdata.TRAYID;
-            irocvDC.CellID = irocvdata.CELLID;
+            irocvDC.EquipmentID = irocvdata[stageno].EQUIPMENTID;
+            irocvDC.TrayID = irocvdata[stageno].TRAYID;
+            irocvDC.CellID = irocvdata[stageno].CELLID;
             /// 0 => OK, others => NG
-            irocvDC.CellStatus = irocvdata.CELLSTATUSIROCV;
-            irocvDC.IR = irocvdata.IR_AFTERVALUE;
-            irocvDC.OCV = irocvdata.OCV;
+            irocvDC.CellStatus = irocvdata[stageno].CELLSTATUSIROCV;
+            irocvDC.IR = irocvdata[stageno].IR_AFTERVALUE;
+            irocvDC.OCV = irocvdata[stageno].OCV;
 
             return irocvDC;
         }

@@ -38,22 +38,22 @@ namespace DHS.EQUIPMENT
                 OnWritePLCSysInfo(tagname, tagvalue);
             }
         }
-        public delegate void WriteMesValues(TrayRequestInfo trayRequestInfo);
+        public delegate void WriteMesValues(int stageno, TrayRequestInfo trayRequestInfo);
         public event WriteMesValues OnWriteMesValues = null;
-        protected void RaiseOnMesValues(TrayRequestInfo trayRequestInfo)
+        protected void RaiseOnMesValues(int stageno, TrayRequestInfo trayRequestInfo)
         {
             if (OnWriteMesValues != null)
             {
-                OnWriteMesValues(trayRequestInfo);
+                OnWriteMesValues(stageno, trayRequestInfo);
             }
         }
-        public delegate void WriteIROCVValues(IrocvDataCollection irocvDataCollection);
+        public delegate void WriteIROCVValues(int stageno, IrocvDataCollection irocvDataCollection);
         public event WriteIROCVValues OnWriteIROCVValues = null;
-        protected void RaiseOnIROCVValues(IrocvDataCollection irocvDataCollection)
+        protected void RaiseOnIROCVValues(int stageno, IrocvDataCollection irocvDataCollection)
         {
             if (OnWriteIROCVValues != null)
             {
-                OnWriteIROCVValues(irocvDataCollection);
+                OnWriteIROCVValues(stageno, irocvDataCollection);
             }
         }
         #endregion
@@ -254,7 +254,7 @@ namespace DHS.EQUIPMENT
             trayRequestInfo.TrayStatusCode = null;
             trayRequestInfo.ErrorCode = null;
             trayRequestInfo.ErrorMessage = null;
-            RaiseOnMesValues(trayRequestInfo);
+            RaiseOnMesValues(0, trayRequestInfo);
         }
 
         private void radBtnIrocvValues_Click(object sender, EventArgs e)
@@ -277,9 +277,9 @@ namespace DHS.EQUIPMENT
             irocvDataCollection.TrayID = tbTrayID.Text;
             irocvDataCollection.CellID = cellids;
             irocvDataCollection.CellStatus = cellstatus;
-            irocvDataCollection.IR = irs;
-            irocvDataCollection.OCV = ocvs;
-            RaiseOnIROCVValues(irocvDataCollection);
+            irocvDataCollection.IR = Array.ConvertAll(irs, double.Parse); ;
+            irocvDataCollection.OCV = Array.ConvertAll(ocvs, double.Parse); ;
+            RaiseOnIROCVValues(0, irocvDataCollection);
         }
         #endregion
     }
