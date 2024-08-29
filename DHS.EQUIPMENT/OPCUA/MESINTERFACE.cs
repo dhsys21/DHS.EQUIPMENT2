@@ -22,7 +22,7 @@ namespace DHS.EQUIPMENT
         #region MES 시뮬레이션
         public delegate void WriteButtonClick(string node, string value, int nDataType);
         public event WriteButtonClick OnWriteButtonClick = null;
-        protected void RaiseOnWriteMes(string node, string value, int nDataType)
+        protected void RaiseOnWriteMesTag(string node, string value, int nDataType)
         {
             if (OnWriteButtonClick != null)
             {
@@ -38,6 +38,24 @@ namespace DHS.EQUIPMENT
                 OnWritePLCSysInfo(tagname, tagvalue);
             }
         }
+        public delegate void WriteMesValues(TrayRequestInfo trayRequestInfo);
+        public event WriteMesValues OnWriteMesValues = null;
+        protected void RaiseOnMesValues(TrayRequestInfo trayRequestInfo)
+        {
+            if (OnWriteMesValues != null)
+            {
+                OnWriteMesValues(trayRequestInfo);
+            }
+        }
+        public delegate void WriteIROCVValues(IrocvDataCollection irocvDataCollection);
+        public event WriteIROCVValues OnWriteIROCVValues = null;
+        protected void RaiseOnIROCVValues(IrocvDataCollection irocvDataCollection)
+        {
+            if (OnWriteIROCVValues != null)
+            {
+                OnWriteIROCVValues(irocvDataCollection);
+            }
+        }
         #endregion
 
         public static MESINTERFACE GetInstance()
@@ -50,12 +68,15 @@ namespace DHS.EQUIPMENT
             InitializeComponent();
 
             mesform = this;
-            this.Width = 992;
+            this.Width = 990;
             radpnl_MESTEST.Visible = false;
 
             dgvPLCs[0] = dgvPLC;
             dgvMESs[0] = dgvMES;
             MakeGridView();
+
+            //* for test
+            MakeGridViewForDemo();
         }
         private void MESINTERFACE_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -67,6 +88,41 @@ namespace DHS.EQUIPMENT
         private void MakeGridViewForDemo()
         {
             dgvCellId.Rows.Add(_Constant.ChannelCount);
+            dgvMesCellStatus.Rows.Add(_Constant.ChannelCount);
+            dgvIrocvCellStatus.Rows.Add(_Constant.ChannelCount);
+            dgvIr.Rows.Add(_Constant.ChannelCount);
+            dgvOcv.Rows.Add(_Constant.ChannelCount);
+
+            double[] irs = new double[_Constant.ChannelCount];
+            double[] ocvs = new double[_Constant.ChannelCount];
+            double ir = 38.21;
+            double ocv = 3523.82;
+            Random random = new Random();
+
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                //* cell id
+                dgvCellId.Rows[nIndex].Cells[0].Value = (nIndex + 1).ToString();
+                dgvCellId.Rows[nIndex].Cells[1].Value = "CELL" + (nIndex + 1).ToString("D3");
+
+                //* mes cell status
+                dgvMesCellStatus.Rows[nIndex].Cells[0].Value = (nIndex + 1).ToString();
+                dgvMesCellStatus.Rows[nIndex].Cells[1].Value = "1";
+
+                //* IROCV cell status
+                dgvIrocvCellStatus.Rows[nIndex].Cells[0].Value = (nIndex + 1).ToString();
+                dgvIrocvCellStatus.Rows[nIndex].Cells[1].Value = "0";
+
+                //* ir values
+                irs[nIndex] = ir + random.NextDouble();
+                dgvIr.Rows[nIndex].Cells[0].Value = (nIndex + 1).ToString();
+                dgvIr.Rows[nIndex].Cells[1].Value = irs[nIndex].ToString("F2");
+
+                //* ocv values
+                ocvs[nIndex] = ocv + random.NextDouble();
+                dgvOcv.Rows[nIndex].Cells[0].Value = (nIndex + 1).ToString();
+                dgvOcv.Rows[nIndex].Cells[1].Value = ocvs[nIndex].ToString("F2");
+            }
         }
         #endregion mes demo value
 
@@ -165,8 +221,8 @@ namespace DHS.EQUIPMENT
         private void radpnl_MesInterfaceTitle_Click(object sender, EventArgs e)
         {
             radpnl_MESTEST.Visible = !radpnl_MESTEST.Visible;
-            if (radpnl_MESTEST.Visible == true) this.Width = 1380;
-            else this.Width = 1000;
+            if (radpnl_MESTEST.Visible == true) this.Width = 1420;
+            else this.Width = 990;
         }
         #endregion  MES Interface Value Data Grid View
 
@@ -182,13 +238,48 @@ namespace DHS.EQUIPMENT
             node = cbTagList.Text;
             value = tbTagValue.Text;
             //OnWriteButtonClick(node, value, nDataType);
-            RaiseOnWriteMes(node, value, nDataType);
+            RaiseOnWriteMesTag(node, value, nDataType);
         }
         private void radBtnWritePLCInfo_Click(object sender, EventArgs e)
         {
             string tagname = cbPLCInfoTagList.Text;
             string tagvalue = tbPLCInfoTagValue.Text;
             RaiseOnWritePLCSysInfo(tagname, tagvalue);
+        }
+        private void radBtnMesValues_Click(object sender, EventArgs e)
+        {
+            TrayRequestInfo trayRequestInfo = new TrayRequestInfo();
+            trayRequestInfo.CellID = null;
+            trayRequestInfo.CellStatus = null;
+            trayRequestInfo.TrayStatusCode = null;
+            trayRequestInfo.ErrorCode = null;
+            trayRequestInfo.ErrorMessage = null;
+            RaiseOnMesValues(trayRequestInfo);
+        }
+
+        private void radBtnIrocvValues_Click(object sender, EventArgs e)
+        {
+            string[] cellids = new string[_Constant.ChannelCount];
+            string[] cellstatus = new string[_Constant.ChannelCount];
+            string[] irs = new string[_Constant.ChannelCount];
+            string[] ocvs = new string[_Constant.ChannelCount];
+
+            for (int nIndex = 0; nIndex < _Constant.ChannelCount; nIndex++)
+            {
+                cellids[nIndex] = dgvCellId.Rows[nIndex].Cells[1].Value.ToString();
+                cellstatus[nIndex] = dgvIrocvCellStatus.Rows[nIndex].Cells[1].Value.ToString();
+                irs[nIndex] = dgvIr.Rows[nIndex].Cells[1].Value.ToString();
+                ocvs[nIndex] = dgvOcv.Rows[nIndex].Cells[1].Value.ToString();
+            }
+
+            IrocvDataCollection irocvDataCollection = new IrocvDataCollection();
+            irocvDataCollection.EquipmentID = tbEquipmentID.Text;
+            irocvDataCollection.TrayID = tbTrayID.Text;
+            irocvDataCollection.CellID = cellids;
+            irocvDataCollection.CellStatus = cellstatus;
+            irocvDataCollection.IR = irs;
+            irocvDataCollection.OCV = ocvs;
+            RaiseOnIROCVValues(irocvDataCollection);
         }
         #endregion
     }

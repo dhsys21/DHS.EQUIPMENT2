@@ -126,6 +126,8 @@ namespace DHS.EQUIPMENT
             //* MES 시뮬레이션
             mesinterface.OnWritePLCSysInfo += _MesClient_WritePLCSysInfo;
             mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
+            mesinterface.OnWriteMesValues += _MesClient_WriteMesValues;
+            mesinterface.OnWriteIROCVValues += _MesClient_WriteIROCVValues;
 
             //* MES Connection
             try
@@ -323,6 +325,20 @@ namespace DHS.EQUIPMENT
             else if (tagname == "Stacklight1Behavior") plcsysinfo.STACKLIGHT1BEHAVIOR = Convert.ToInt32(tagvalue);
 
             mesclient.WritePLSInfo(0, plcsysinfo);
+        }
+        private void _MesClient_WriteIROCVValues(IrocvDataCollection irocvDataCollection)
+        {
+            irocvdata[0].EQUIPMENTID = irocvDataCollection.EquipmentID;
+            irocvdata[0].TRAYID = irocvDataCollection.TrayID;
+            irocvdata[0].CELLID = irocvDataCollection.CellID;
+            irocvdata[0].CELLSTATUSIROCV = irocvDataCollection.CellStatus;
+            irocvdata[0].IR_AFTERVALUE = irocvDataCollection.IR;
+            irocvdata[0].OCV = irocvDataCollection.OCV;
+        }
+
+        private void _MesClient_WriteMesValues(TrayRequestInfo trayRequestInfo)
+        {
+            
         }
         #endregion
 

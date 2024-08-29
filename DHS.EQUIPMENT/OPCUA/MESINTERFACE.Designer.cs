@@ -190,7 +190,7 @@ namespace DHS.EQUIPMENT
             this.radpnl_MESTEST.Controls.Add(this.tbTagValue);
             this.radpnl_MESTEST.Controls.Add(this.radBtnWriteValue);
             this.radpnl_MESTEST.Controls.Add(this.label1);
-            this.radpnl_MESTEST.Location = new System.Drawing.Point(961, 25);
+            this.radpnl_MESTEST.Location = new System.Drawing.Point(994, 25);
             this.radpnl_MESTEST.Name = "radpnl_MESTEST";
             this.radpnl_MESTEST.Padding = new System.Windows.Forms.Padding(5);
             this.radpnl_MESTEST.Size = new System.Drawing.Size(400, 82);
@@ -216,7 +216,6 @@ namespace DHS.EQUIPMENT
             this.cbTagList.Size = new System.Drawing.Size(151, 20);
             this.cbTagList.TabIndex = 61;
             this.cbTagList.Text = "2.1 Sequence No.";
-            this.cbTagList.SelectedValueChanged += new System.EventHandler(this.cbTagList_SelectedValueChanged);
             // 
             // label5
             // 
@@ -295,7 +294,7 @@ namespace DHS.EQUIPMENT
             this.radPanel1.Controls.Add(this.label7);
             this.radPanel1.Controls.Add(this.tbTrayStatusCode);
             this.radPanel1.Controls.Add(this.label8);
-            this.radPanel1.Location = new System.Drawing.Point(961, 305);
+            this.radPanel1.Location = new System.Drawing.Point(994, 305);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Padding = new System.Windows.Forms.Padding(5);
             this.radPanel1.Size = new System.Drawing.Size(400, 454);
@@ -360,9 +359,9 @@ namespace DHS.EQUIPMENT
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(357, 244);
+            this.tabPage2.Size = new System.Drawing.Size(382, 322);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "MES CELL STATUS";
+            this.tabPage2.Text = "MES Cell status";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dgvMesCellStatus
@@ -375,7 +374,7 @@ namespace DHS.EQUIPMENT
             this.dgvMesCellStatus.Location = new System.Drawing.Point(3, 3);
             this.dgvMesCellStatus.Name = "dgvMesCellStatus";
             this.dgvMesCellStatus.RowTemplate.Height = 23;
-            this.dgvMesCellStatus.Size = new System.Drawing.Size(351, 238);
+            this.dgvMesCellStatus.Size = new System.Drawing.Size(376, 316);
             this.dgvMesCellStatus.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -395,9 +394,9 @@ namespace DHS.EQUIPMENT
             this.tabPage3.Controls.Add(this.dgvIrocvCellStatus);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(357, 244);
+            this.tabPage3.Size = new System.Drawing.Size(382, 322);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "IROCV CELL STATUS";
+            this.tabPage3.Text = "IROCV Cell status";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dgvIrocvCellStatus
@@ -410,7 +409,7 @@ namespace DHS.EQUIPMENT
             this.dgvIrocvCellStatus.Location = new System.Drawing.Point(0, 0);
             this.dgvIrocvCellStatus.Name = "dgvIrocvCellStatus";
             this.dgvIrocvCellStatus.RowTemplate.Height = 23;
-            this.dgvIrocvCellStatus.Size = new System.Drawing.Size(357, 244);
+            this.dgvIrocvCellStatus.Size = new System.Drawing.Size(382, 322);
             this.dgvIrocvCellStatus.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn3
@@ -430,7 +429,7 @@ namespace DHS.EQUIPMENT
             this.tabPage4.Controls.Add(this.dgvIr);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(357, 244);
+            this.tabPage4.Size = new System.Drawing.Size(382, 322);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "IR";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -445,7 +444,7 @@ namespace DHS.EQUIPMENT
             this.dgvIr.Location = new System.Drawing.Point(0, 0);
             this.dgvIr.Name = "dgvIr";
             this.dgvIr.RowTemplate.Height = 23;
-            this.dgvIr.Size = new System.Drawing.Size(357, 244);
+            this.dgvIr.Size = new System.Drawing.Size(382, 322);
             this.dgvIr.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn5
@@ -465,7 +464,7 @@ namespace DHS.EQUIPMENT
             this.tabPage5.Controls.Add(this.dgvOcv);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(357, 244);
+            this.tabPage5.Size = new System.Drawing.Size(382, 322);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "OCV";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -480,7 +479,7 @@ namespace DHS.EQUIPMENT
             this.dgvOcv.Location = new System.Drawing.Point(0, 0);
             this.dgvOcv.Name = "dgvOcv";
             this.dgvOcv.RowTemplate.Height = 23;
-            this.dgvOcv.Size = new System.Drawing.Size(357, 244);
+            this.dgvOcv.Size = new System.Drawing.Size(382, 322);
             this.dgvOcv.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn7
@@ -506,6 +505,7 @@ namespace DHS.EQUIPMENT
             this.radBtnIrocvValues.TabIndex = 84;
             this.radBtnIrocvValues.Text = "Write Irocv Values";
             this.radBtnIrocvValues.ThemeName = "ControlDefault";
+            this.radBtnIrocvValues.Click += new System.EventHandler(this.radBtnIrocvValues_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnIrocvValues.GetChildAt(0))).Text = "Write Irocv Values";
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnIrocvValues.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnIrocvValues.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
@@ -566,6 +566,7 @@ namespace DHS.EQUIPMENT
             this.radBtnMesValues.TabIndex = 74;
             this.radBtnMesValues.Text = "Write Mes Values";
             this.radBtnMesValues.ThemeName = "ControlDefault";
+            this.radBtnMesValues.Click += new System.EventHandler(this.radBtnMesValues_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnMesValues.GetChildAt(0))).Text = "Write Mes Values";
             ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnMesValues.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnMesValues.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
@@ -650,7 +651,7 @@ namespace DHS.EQUIPMENT
             // tbMsg
             // 
             this.tbMsg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbMsg.Location = new System.Drawing.Point(961, 109);
+            this.tbMsg.Location = new System.Drawing.Point(994, 109);
             this.tbMsg.Multiline = true;
             this.tbMsg.Name = "tbMsg";
             this.tbMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -665,7 +666,7 @@ namespace DHS.EQUIPMENT
             this.radPanel2.Controls.Add(this.cbPLCInfoTagList);
             this.radPanel2.Controls.Add(this.label6);
             this.radPanel2.Controls.Add(this.label16);
-            this.radPanel2.Location = new System.Drawing.Point(961, 217);
+            this.radPanel2.Location = new System.Drawing.Point(994, 217);
             this.radPanel2.Name = "radPanel2";
             this.radPanel2.Padding = new System.Windows.Forms.Padding(5);
             this.radPanel2.Size = new System.Drawing.Size(400, 87);
@@ -780,7 +781,7 @@ namespace DHS.EQUIPMENT
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1365, 765);
+            this.ClientSize = new System.Drawing.Size(1404, 765);
             this.Controls.Add(this.radPanel2);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radpnl_MESTEST);

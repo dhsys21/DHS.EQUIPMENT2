@@ -56,7 +56,8 @@ namespace OPCUASERVER
         IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
         //TrayInfo trayInfo = TrayInfo.GetInstance();
         //IrocvDataCollection irocvDataCollection = IrocvDataCollection.GetInstance();
-        HeaderDataType HEADERDATATYPE {  get; set; }
+        HeaderDataType headerDataType = new HeaderDataType();
+        HeaderDataType HEADERDATATYPE { get => headerDataType; set => headerDataType = value; }
 
         #region Set Header Data
         public void SetHeaderDataType(int id, string Type, DateTime Timestamp)
@@ -482,6 +483,7 @@ namespace OPCUASERVER
                 /// outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
 
                 TrayInfo trayinfo = new TrayInfo();
+                irocvdata[0] = IROCVData.GetInstance(0);
                 trayinfo = irocvprocess.GetTrayInfo(irocvdata[0]);
 
                 ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), HEADERDATATYPE);

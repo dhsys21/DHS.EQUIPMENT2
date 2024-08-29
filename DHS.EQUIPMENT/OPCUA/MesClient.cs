@@ -453,6 +453,13 @@ namespace DHS.EQUIPMENT
         }
         #endregion
 
+        #region OPC UA Call Method
+        private void CallMethod()
+        {
+            opcclient.CallMethod();
+        }
+        #endregion OPC UA Call Method
+
         #region Version 2. - MES와 IROCV간 주고 받는 Sequence 별로 구현
         public void WriteValue(string node, string value)
         {
