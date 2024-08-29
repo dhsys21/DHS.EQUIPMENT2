@@ -481,11 +481,6 @@ namespace OPCUASERVER
                 /// inputArguments : null
                 /// outputArguments(return value) : TrayInfo(EquipmentID, TrayID)
 
-                //TrayInfo trayInfo = new TrayInfo
-                //{
-                //    EquipmentID = "IRCOV0002",
-                //    TrayID = "Test1234"
-                //};
                 TrayInfo trayinfo = new TrayInfo();
                 trayinfo = irocvprocess.GetTrayInfo(irocvdata[0]);
 

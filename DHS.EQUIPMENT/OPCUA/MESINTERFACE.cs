@@ -19,6 +19,7 @@ namespace DHS.EQUIPMENT
         DataGridView[] dgvPLCs = new DataGridView[_Constant.frmCount];
         DataGridView[] dgvMESs = new DataGridView[_Constant.frmCount];
 
+        #region MES 시뮬레이션
         public delegate void WriteButtonClick(string node, string value, int nDataType);
         public event WriteButtonClick OnWriteButtonClick = null;
         protected void RaiseOnWriteMes(string node, string value, int nDataType)
@@ -28,25 +29,6 @@ namespace DHS.EQUIPMENT
                 OnWriteButtonClick(node, value, nDataType);
             }
         }
-        #region MES 시뮬레이션
-        public delegate void WriteForIR1(string equipmentid, string trayid);
-        public event WriteForIR1 OnWriteForIR1 = null;
-        protected void RaiseOnWriteForIR1(string equipmentid, string trayid)
-        {
-            if (OnWriteForIR1 != null)
-            {
-                OnWriteForIR1(equipmentid, trayid);
-            }
-        }
-        public delegate void WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv);
-        public event WriteForIR2 OnWriteForIR2 = null;
-        protected void RaiseOnWriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv)
-        {
-            if (OnWriteForIR2 != null)
-            {
-                OnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
-            }
-        }
         public delegate void WritePLCSysInfo(string tagname, string tagvalue);
         public event WritePLCSysInfo OnWritePLCSysInfo = null;
         protected void RaiseOnWritePLCSysInfo(string tagname, string tagvalue)
@@ -54,24 +36,6 @@ namespace DHS.EQUIPMENT
             if (OnWritePLCSysInfo != null)
             {
                 OnWritePLCSysInfo(tagname, tagvalue);
-            }
-        }
-        public delegate void ReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage);
-        public event ReadForIR1 OnReadForIR1 = null;
-        protected void RaiseOnReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
-        {
-            if (OnReadForIR1 != null)
-            {
-                OnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
-            }
-        }
-        public delegate void ReadForIR2(string errorcode, string errormessage);
-        public event ReadForIR2 OnReadForIR2 = null;
-        protected void RaiseOnReadForIR2(string errorcode, string errormessage)
-        {
-            if (OnReadForIR2 != null)
-            {
-                OnReadForIR2(errorcode, errormessage);
             }
         }
         #endregion
@@ -93,7 +57,20 @@ namespace DHS.EQUIPMENT
             dgvMESs[0] = dgvMES;
             MakeGridView();
         }
+        private void MESINTERFACE_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
 
+        #region mes demo value
+        private void MakeGridViewForDemo()
+        {
+            dgvCellId.Rows.Add(_Constant.ChannelCount);
+        }
+        #endregion mes demo value
+
+        #region MES Interface Value Data Grid View
         private void MakeGridView()
         {
             //* 열 추가
@@ -152,7 +129,6 @@ namespace DHS.EQUIPMENT
             dgvPLCs[0].Rows[27].Cells[0].Value = "Stacklight5Color";
             dgvPLCs[0].Rows[28].Cells[0].Value = "Stacklight5Behavior";
         }
-
         public void SetDataToGrid(string[] plcData, string[] mesData)
         {
             #region PLC DATA VIEW
@@ -186,103 +162,34 @@ namespace DHS.EQUIPMENT
                 dgv.Rows[nRow++].Cells[1].Value = pData[nIndex].ToString();
             }
         }
-        private void MESINTERFACE_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
-        }
-
         private void radpnl_MesInterfaceTitle_Click(object sender, EventArgs e)
         {
             radpnl_MESTEST.Visible = !radpnl_MESTEST.Visible;
             if (radpnl_MESTEST.Visible == true) this.Width = 1380;
             else this.Width = 1000;
         }
-
-        private void radBtnWriteValue_Click(object sender, EventArgs e)
-        {
-           string node = string.Empty, value = string.Empty;
-            int nDataType = 0;
-            node = cbTagList.Text;
-            value = tbTagValue.Text;
-            nDataType = cbTagType.SelectedIndex;
-            OnWriteButtonClick(node, value, nDataType);
-        }
-
-        private void cbTagList_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string cbTagname = cbTagList.Text;
-            if (cbTagname == "SequenceNo" || cbTagname == "AcknowledgeNo")
-            {
-                cbTagType.Text = "UInt32";
-            }
-            else if(cbTagname == "EquipmentID" || cbTagname == "TrayID" || cbTagname == "RecipeID")
-            {
-                cbTagType.Text = "String";
-            }
-            else if(cbTagname == "CellID")
-            {
-                cbTagType.Text = "StringArr";
-
-                string tempvalue = "";
-                for (int i = 0; i < 32; i++)
-                    tempvalue += (i + 1).ToString("D3") + ",";
-                tbTagValue.Text = tempvalue;
-            }
-            else if(cbTagname == "IR" || cbTagname == "OCV")
-            {
-                cbTagType.Text = "FloatArr";
-                string tempvalue = "";
-                for (int i = 0; i < 32; i++)
-                    tempvalue += (i + 1).ToString("D3") + ",";
-                tbTagValue.Text = tempvalue;
-            }
-            else if (cbTagname == "CellStatus")
-            {
-                cbTagType.Text = "StringArr";
-                string tempvalue = "";
-                for (int i = 0; i < 32; i++)
-                    tempvalue += "1,";
-                tbTagValue.Text = tempvalue;
-            }
-        }
+        #endregion  MES Interface Value Data Grid View
 
         #region MES 시뮬레이션
         public void ShowReadMesValues(string strMessage)
         {
             tbMsg.Text += strMessage + Environment.NewLine;
         }
-        private void radBtnWriteForir2_1_Click(object sender, EventArgs e)
+        private void radBtnWriteValue_Click(object sender, EventArgs e)
         {
-            //* trayid, equipment idd
-            string trayid = tbTrayID.Text;
-            string equipmentid = tbEquipmentID.Text;
-            RaiseOnWriteForIR1(equipmentid, trayid);
+            string node = string.Empty, value = string.Empty;
+            int nDataType = 0;
+            node = cbTagList.Text;
+            value = tbTagValue.Text;
+            //OnWriteButtonClick(node, value, nDataType);
+            RaiseOnWriteMes(node, value, nDataType);
         }
-
-        private void radBtnWriteForir2_2_Click(object sender, EventArgs e)
-        {
-            //RaiseOnWriteForIR2(equipmentid, trayid, cellid, cellstatus, ir, ocv);
-        }
-
-        private void radBtnReadFORIR2_1_Click(object sender, EventArgs e)
-        {
-            //RaiseOnReadForIR1(cellid, cellstatus, traystatuscode, errorcode, errormessage);
-        }
-
-        private void radBtnReadFORIR2_2_Click(object sender, EventArgs e)
-        {
-            string errorcode = tbErrorCode.Text;
-            string errormessage = tbErrorMessage.Text;
-            RaiseOnReadForIR2(errorcode, errormessage);
-        }
-        #endregion
-
         private void radBtnWritePLCInfo_Click(object sender, EventArgs e)
         {
             string tagname = cbPLCInfoTagList.Text;
             string tagvalue = tbPLCInfoTagValue.Text;
             RaiseOnWritePLCSysInfo(tagname, tagvalue);
         }
+        #endregion
     }
 }

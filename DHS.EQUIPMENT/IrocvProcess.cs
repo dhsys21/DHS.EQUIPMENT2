@@ -123,13 +123,9 @@ namespace DHS.EQUIPMENT
             irocvDataCollection = IrocvDataCollection.GetInstance();
 
             mesinterface = MESINTERFACE.GetInstance();
-            mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
             //* MES 시뮬레이션
-            mesinterface.OnWriteForIR1 += _MesClient_WriteForIR1;
-            mesinterface.OnWriteForIR2 += _MeSClient_WriteForIR2;
-            mesinterface.OnReadForIR1 += _MesClient_ReadForIR1;
-            mesinterface.OnReadForIR2 += _MesClient_ReadForIR2;
             mesinterface.OnWritePLCSysInfo += _MesClient_WritePLCSysInfo;
+            mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
 
             //* MES Connection
             try
@@ -292,12 +288,7 @@ namespace DHS.EQUIPMENT
             #endregion
         }
 
-        
         #region MES Method
-        private void _MesClient_WriteMesValue(string node, string value, int nDataType)
-        {
-            mesclient.WriteValue(node, value);
-        }
         private void _MesClient_SetDataToDgv(string[] plcValues, string[] mesValues)
         {
             mesinterface.SetDataToGrid(plcValues, mesValues);
@@ -307,39 +298,10 @@ namespace DHS.EQUIPMENT
             util.SaveMesLog(mesLog);
         }
         //* MES 시뮬레이션
-        private void _MesClient_WriteForIR1(string equipmentid, string trayid)
+        private void _MesClient_WriteMesValue(string node, string value, int nDataType)
         {
-            mesclient.WriteFOEQR2_1(0, equipmentid, trayid);
+            mesclient.WriteValue(node, value);
         }
-        IROCVData irocvdataTest = new IROCVData();
-        private void _MeSClient_WriteForIR2(string equipmentid, string trayid, string[] cellid, string[] cellstatus, double[] ir, double[] ocv)
-        {
-
-            irocvdataTest.EQUIPMENTID = equipmentid;
-            irocvdataTest.TRAYID = trayid;
-            irocvdataTest.CELLID = cellid;
-            irocvdataTest.CELLSTATUSIROCV = cellstatus;
-            irocvdataTest.IR_AFTERVALUE = ir;
-            irocvdataTest.OCV = ocv;
-
-            mesclient.WriteFOEQR2_2(0, irocvdataTest);
-        }
-
-        private void _MesClient_ReadForIR1(string[] cellid, string[] cellstatus, string traystatuscode, string errorcode, string errormessage)
-        {
-            mesclient.WriteFORIR1_ForMes(0, cellid, cellstatus, traystatuscode, errorcode, errormessage);
-            mesclient.ReadFOEQR2_1(0);
-
-            mesinterface.ShowReadMesValues(irocvdata[0].LOG);
-        }
-        private void _MesClient_ReadForIR2(string errorcode, string errormessage)
-        {
-            mesclient.WriteFORIR2_ForMes(0, errorcode, errormessage);
-            mesclient.ReadFOEQR2_1(0);
-
-            mesinterface.ShowReadMesValues(irocvdata[0].LOG);
-        }
-
         private void _MesClient_WritePLCSysInfo(string tagname, string tagvalue)
         {
             if (tagname == "InterfaceVersionProject") plcsysinfo.INTERFACEVERSIONPROJECT = tagvalue;
@@ -1265,7 +1227,7 @@ namespace DHS.EQUIPMENT
                     }
                     break;
                 case 1:
-                    mesclient.WriteSequence(stageno, 101);
+                    //mesclient.WriteSequence(stageno, 101);
                     nInspectionStep = 2;
                     break;
                 case 2:
@@ -1411,7 +1373,7 @@ namespace DHS.EQUIPMENT
                     break;
                 case 1:
                     //* Write Sequence : 상태가 변했을 때 sequence를 변경하여 알림.
-                    mesclient.WriteSequence(stageno, (int)enumProcess.pDataUpload);
+                    mesclient.WriteSequence(stageno, (int)enumSequenceNo.pEnd);
                     nInspectionStep = 2;
                     break;
                 case 2:
@@ -1731,7 +1693,7 @@ namespace DHS.EQUIPMENT
             if (irocv[stageno].EQUIPMODE == enumEquipMode.AUTO)
             {
                 irocvdata[stageno].REMEASURECELLCOUNT = 0;
-                irocvdata[stageno] = irocvdataTest;
+                //irocvdata[stageno] = irocvdataTest;
 
                 #region IR/ OCV Error 처리
                 for (int index = 0; index < _Constant.ChannelCount; ++index)
