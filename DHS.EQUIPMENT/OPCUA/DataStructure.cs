@@ -1,5 +1,6 @@
 ﻿using DHS.EQUIPMENT.Common;
 using Opc.Ua;
+using S7.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,37 @@ namespace DHS.EQUIPMENT
 
         public string TrayID { get; set; }
         public string EquipmentID { get; set; }
+        public object Clone()
+        {
+            return new TrayInfo
+            {
+                TrayID = TrayID,
+                EquipmentID = EquipmentID
+            };
+        }
+
+        public void Decode(IDecoder decoder)
+        {
+            TrayID = decoder.ReadString("TrayID");
+            EquipmentID = decoder.ReadString("EquipmentID");
+        }
+
+        public void Encode(IEncoder encoder)
+        {
+            encoder.WriteString("TrayID", TrayID);
+            encoder.WriteString("EquipmentID", EquipmentID);
+        }
+
+        public bool IsEqual(IEncodeable encodeable)
+        {
+            if (encodeable == null || !(encodeable is TrayInfo))
+            {
+                return false;
+            }
+
+            var other = (TrayInfo)encodeable;
+            return TrayID == other.TrayID && EquipmentID == other.EquipmentID;
+        }
     }
     [DataContract(Namespace = "http://yourcompany.com/ContentDataType")]
     public class TrayRequestInfo : IEncodeable

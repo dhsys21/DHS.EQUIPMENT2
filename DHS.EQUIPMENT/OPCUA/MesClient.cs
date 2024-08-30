@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Forms;
 using DHS.EQUIPMENT.Common;
 using DHS.EQUIPMENT.PLC;
 using Opc.Ua;
-using Opc.Ua.Client;
-using OPCUACLIENT;
 using OpcUaHelper;
-using static System.Net.Mime.MediaTypeNames;
-using static DHS.EQUIPMENT.MesClient;
-using static Telerik.WinControls.UI.ValueMapper;
 
 namespace DHS.EQUIPMENT
 {
@@ -27,6 +20,7 @@ namespace DHS.EQUIPMENT
         public bool isRead = false;
         //OPCUACLIENT.OPCUACLIENT opcclient = null;
         OPCUACLIENT.OPCUACLIENT opcclient = null;
+        IrocvProcess irocvprocess = IrocvProcess.GetInstance();
         IROCVData[] irocvdata = new IROCVData[_Constant.frmCount];
 
         private string _strLog;
@@ -123,8 +117,6 @@ namespace DHS.EQUIPMENT
             _tmrMESConnect.Tick += new EventHandler(MESConnect_TickAsync);
             _tmrMESConnect.Enabled = true;
         }
-
-        
 
         #region MES CONNECT Timer
         private void OpcUaClient_OpcStatusChange(object sender, OpcUaStatusEventArgs e)
@@ -454,9 +446,151 @@ namespace DHS.EQUIPMENT
         #endregion
 
         #region OPC UA Call Method
-        private void CallMethod()
+        public void CallMethod(string parentTag, string Tag)
         {
-            opcclient.CallMethod();
+            #region MES -> IROCV Data
+            string[] cellids = new string[32];
+            string[] cellsc = new string[32];
+            for (int i = 0; i < 32; i++)
+            {
+                cellids[i] = "CELL" + (i + 1).ToString("D3");
+                if (i == 3 || i == 21)
+                    cellsc[i] = "0";
+                else
+                    cellsc[i] = "1";
+            }
+            HeaderDataType header = new HeaderDataType
+            {
+                Id = 1,
+                Type = "1",
+                Timestamp = DateTime.Now
+            };
+            TrayRequestInfo requestTrayInfo = new TrayRequestInfo
+            {
+                CellID = cellids,
+                CellStatus = cellsc,
+                TrayStatusCode = "CN",
+                ErrorCode = "1",
+                ErrorMessage = "No Error"
+            };
+            ReplyDataCollection replyDataCollection = new ReplyDataCollection
+            {
+                ErrorCode = "1",
+                ErrorMessage = "Data is ok"
+            };
+            //* Header
+            ExtensionObject extensionObject1 = CreateExtensionObject(NodeId.Parse("ns=0;i=5000"), header);
+            //* Reply Tray Info
+            ExtensionObject extensionObject2 = CreateExtensionObject(NodeId.Parse("ns=0;i=5034"), requestTrayInfo);
+            //* Reply Data Collection
+            ExtensionObject extensionObject3 = CreateExtensionObject(NodeId.Parse("ns=0;i=5045"), replyDataCollection);
+            #endregion MES -> IROCV Data
+
+            NodeId objectId = NodeId.Parse(parentTag);
+            NodeId methodId = NodeId.Parse(Tag);
+
+            /// FOIR 2.1 RequestTrayInformation 
+            /// Envelope ns=2;i=5031
+            /// GetEnvelope ns=2;i=7004
+            /// SetEnvelope ns=2;i=7012
+            string nodeid = methodId.Identifier.ToString();
+            object[] inputArguments = null;
+            object[] outputArguments = null;
+            List<Variant> variants = new List<Variant>();
+            if (nodeid == "7004")
+            {
+                /// GetEnvelope
+                outputArguments = opcclient.CallMethodByNodeId(parentTag, Tag, inputArguments);
+
+                if (outputArguments != null)
+                {
+                    foreach(var item in outputArguments)
+                        variants.Add(new Variant(item));
+
+                    foreach (Variant value1 in variants)
+                    {
+                        ExtensionObject extObj = value1.Value as ExtensionObject;
+                        if (extObj != null)
+                            Console.WriteLine(extObj.ToString());
+
+                        TrayInfo trayinfo;
+                        if (extObj.TypeId.Identifier.ToString() == "5032")
+                        {
+                            trayinfo = ConvertExtensionObjectTrayInfo(extObj);
+                            Console.WriteLine(trayinfo.TrayID.ToString());
+                            Console.WriteLine(trayinfo.EquipmentID.ToString());
+                            Console.WriteLine(trayinfo.ToString());
+                        }
+                    }
+                }
+            }
+            else if (nodeid == "7012")
+            {
+                //* input content : i=5034
+                //inputArguments = new List<Variant>();
+                //inputArguments.Add(new Variant(extensionObject1));
+                //inputArguments.Add(new Variant(extensionObject2));
+                //inputArguments.Capacity = 2;
+
+                //// call the method on the server.
+                //error = session.Call(
+                //    objectId,
+                //    methodId,
+                //    inputArguments,
+                //    out inputArgumentErrors,
+                //    out outputArguments);
+            }
+            else if (nodeid == "7013")
+            {
+                //* output content : i=5041
+                //error = session.Call(
+                //    objectId,
+                //    methodId,
+                //    inputArguments,
+                //    out inputArgumentErrors,
+                //    out outputArguments);
+
+                //if (outputArguments != null)
+                //{
+                //    foreach (Variant value1 in outputArguments)
+                //    {
+                //        ExtensionObject extObj = value1.Value as ExtensionObject;
+                //        if (extObj != null)
+                //            Console.WriteLine(extObj.ToString());
+
+                //        IrocvDataCollection irocvdata;
+                //        if (extObj.TypeId.Identifier.ToString() == "5041")
+                //        {
+                //            irocvdata = ConvertExtensionObjectDataCollection(extObj);
+                //            Console.WriteLine(irocvdata.TrayID.ToString());
+                //            Console.WriteLine(irocvdata.EquipmentID.ToString());
+                //            Console.WriteLine(irocvdata.CellID.ToString());
+                //            Console.WriteLine(irocvdata.CellStatus.ToString());
+                //            Console.WriteLine(irocvdata.IR.ToString());
+                //            Console.WriteLine(irocvdata.OCV.ToString());
+                //            Console.WriteLine(irocvdata.ToString());
+                //        }
+                //    }
+                //}
+            }
+            else if (nodeid == "7016")
+            {
+                //* input content : i=5045
+                //inputArguments = new List<Variant>();
+                //inputArguments.Add(new Variant(extensionObject1));
+                //inputArguments.Add(new Variant(extensionObject3));
+                //inputArguments.Capacity = 2;
+
+                //// call the method on the server.
+                //error = session.Call(
+                //    objectId,
+                //    methodId,
+                //    inputArguments,
+                //    out inputArgumentErrors,
+                //    out outputArguments);
+            }
+
+            if (outputArguments == null) return;
         }
         #endregion OPC UA Call Method
 
@@ -1097,6 +1231,149 @@ namespace DHS.EQUIPMENT
             nodeIdList.Add(NodeId.Parse(_Constant.MES_Stacklight5Behavior));
         }
 
+        #endregion
+
+        #region ExtensionObject
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, HeaderDataType header)
+        {
+            List<byte> headerBytes = new List<byte>();
+
+            headerBytes.AddRange(IntToBytes(header.Id));
+            headerBytes.AddRange(IntToBytes(header.Type.Length));
+            headerBytes.AddRange(StringToBytes(header.Type));
+            //headerBytes.AddRange(DateTimeToByteArray(DateTime.Now));
+
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "urn:KitInformationmodel.Siemens.com");
+            return new ExtensionObject(typeid, headerBytes.ToArray());
+            //return new ExtensionObject(nodeid, headerBytes.ToArray());
+        }
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, TrayRequestInfo content)
+        {
+            List<byte> contentBytes = new List<byte>();
+
+            contentBytes.AddRange(IntToBytes(content.CellID.Length));
+            contentBytes.AddRange(StringToBytes(content.CellID));
+
+            contentBytes.AddRange(IntToBytes(content.CellStatus.Length));
+            contentBytes.AddRange(StringToBytes(content.CellStatus));
+
+            contentBytes.AddRange(IntToBytes(content.TrayStatusCode.Length));
+            contentBytes.AddRange(StringToBytes(content.TrayStatusCode));
+
+            contentBytes.AddRange(IntToBytes(content.ErrorCode.Length));
+            contentBytes.AddRange(StringToBytes(content.ErrorCode));
+
+            contentBytes.AddRange(IntToBytes(content.ErrorMessage.Length));
+            contentBytes.AddRange(StringToBytes(content.ErrorMessage));
+
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
+            return new ExtensionObject(typeid, contentBytes.ToArray());
+            //return new ExtensionObject(nodeid, contentBytes.ToArray());
+        }
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, TrayInfo content)
+        {
+            List<byte> contentBytes = new List<byte>();
+
+            contentBytes.AddRange(IntToBytes(content.EquipmentID.Length));
+            contentBytes.AddRange(StringToBytes(content.EquipmentID));
+
+            contentBytes.AddRange(IntToBytes(content.TrayID.Length));
+            contentBytes.AddRange(StringToBytes(content.TrayID));
+
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
+            return new ExtensionObject(typeid, contentBytes.ToArray());
+            //return new ExtensionObject(nodeid, contentBytes.ToArray());
+        }
+        public static ExtensionObject CreateExtensionObject(NodeId nodeid, ReplyDataCollection content)
+        {
+            List<byte> contentBytes = new List<byte>();
+
+            contentBytes.AddRange(IntToBytes(content.ErrorCode.Length));
+            contentBytes.AddRange(StringToBytes(content.ErrorCode));
+
+            contentBytes.AddRange(IntToBytes(content.ErrorMessage.Length));
+            contentBytes.AddRange(StringToBytes(content.ErrorMessage));
+
+            uint identifier = Convert.ToUInt32(nodeid.Identifier);
+            var typeid = new ExpandedNodeId(identifier, "http://StandardBatteryInterface");
+            return new ExtensionObject(typeid, contentBytes.ToArray());
+            //return new ExtensionObject(nodeid, contentBytes.ToArray());
+        }
+        public static byte[] IntToBytes(int value)
+        {
+            byte[] byteArray = BitConverter.GetBytes(value);
+            return byteArray;
+        }
+        public static byte[] StringToBytes(string value)
+        {
+            byte[] asciiBytes = Encoding.ASCII.GetBytes(value);
+            return asciiBytes;
+        }
+        public static byte[] StringToBytes(string[] values)
+        {
+            List<byte> byteList = new List<byte>();
+
+            foreach (var str in values)
+            {
+                byte[] stringBytes = Encoding.UTF8.GetBytes(str);
+                byte[] lengthBytes = BitConverter.GetBytes(stringBytes.Length);
+
+                byteList.AddRange(lengthBytes);
+                byteList.AddRange(stringBytes);
+            }
+
+            return byteList.ToArray();
+        }
+        public static byte[] DateTimeToByteArray2(DateTime dateTime)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(ms, dateTime);
+                return ms.ToArray();
+            }
+        }
+        public static byte[] DateTimeToByteArray(DateTime dateTime)
+        {
+            long ticks = dateTime.Ticks;
+            return BitConverter.GetBytes(ticks);
+        }
+        #endregion
+
+        #region Convert ExtensionObject
+        public static TrayInfo ConvertExtensionObjectTrayInfo(ExtensionObject extObj)
+        {
+            if (extObj.Body is TrayInfo)
+                return (TrayInfo)extObj.Body;
+
+            if (extObj.Body is byte[])
+            {
+                var decoder = new BinaryDecoder((byte[])extObj.Body, new ServiceMessageContext());
+                var data = new TrayInfo();
+                data.Decode(decoder);
+                return data;
+            }
+
+            throw new InvalidCastException("ExtensionObject cannot be cast to TrayInfo");
+        }
+        public static IrocvDataCollection ConvertExtensionObjectDataCollection(ExtensionObject extObj)
+        {
+            //if (extObj.Body is IrocvDataCollection)
+            //    return (IrocvDataCollection)extObj.Body;
+
+            //if (extObj.Body is byte[])
+            //{
+            //    var decoder = new BinaryDecoder((byte[])extObj.Body, new MessageContext());
+            //    var data = new IrocvDataCollection();
+            //    data.Decode(decoder);
+            //    return data;
+            //}
+
+            throw new InvalidCastException("ExtensionObject cannot be cast to IrocvDataCollection");
+        }
         #endregion
     }
 }

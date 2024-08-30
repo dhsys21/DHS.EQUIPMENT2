@@ -351,6 +351,7 @@
     <Compile Include="OPCUA\MESINTERFACE.Designer.cs">
       <DependentUpon>MESINTERFACE.cs</DependentUpon>
     </Compile>
+    <Compile Include="OPCUA\MessageContext.cs" />
     <Compile Include="OPCUA\MesServer.cs" />
     <Compile Include="OPCUA\Namespaces.cs" />
     <Compile Include="OPCUA\ReferenceNodeManager.cs" />

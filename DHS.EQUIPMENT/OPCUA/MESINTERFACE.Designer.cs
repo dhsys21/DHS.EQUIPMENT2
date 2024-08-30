@@ -84,6 +84,7 @@ namespace DHS.EQUIPMENT
             this.cbPLCInfoTagList = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.radBtnCallMethod = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_OperationMode)).BeginInit();
             this.radpnl_OperationMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radpnl_MesInterfaceTitle)).BeginInit();
@@ -111,6 +112,7 @@ namespace DHS.EQUIPMENT
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWritePLCInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnCallMethod)).BeginInit();
             this.SuspendLayout();
             // 
             // radpnl_OperationMode
@@ -777,11 +779,31 @@ namespace DHS.EQUIPMENT
             this.label16.TabIndex = 50;
             this.label16.Text = "PLC Info.";
             // 
+            // radBtnCallMethod
+            // 
+            this.radBtnCallMethod.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radBtnCallMethod.ForeColor = System.Drawing.Color.White;
+            this.radBtnCallMethod.Location = new System.Drawing.Point(1091, 147);
+            this.radBtnCallMethod.Margin = new System.Windows.Forms.Padding(4);
+            this.radBtnCallMethod.Name = "radBtnCallMethod";
+            this.radBtnCallMethod.Size = new System.Drawing.Size(124, 28);
+            this.radBtnCallMethod.TabIndex = 75;
+            this.radBtnCallMethod.Text = "Call Method";
+            this.radBtnCallMethod.ThemeName = "ControlDefault";
+            this.radBtnCallMethod.Click += new System.EventHandler(this.radBtnCallMethod_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnCallMethod.GetChildAt(0))).Text = "Call Method";
+            ((Telerik.WinControls.UI.RadButtonElement)(this.radBtnCallMethod.GetChildAt(0))).Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnCallMethod.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnCallMethod.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnCallMethod.GetChildAt(0).GetChildAt(0))).BackColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radBtnCallMethod.GetChildAt(0).GetChildAt(0))).BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            // 
             // MESINTERFACE
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1404, 765);
+            this.Controls.Add(this.radBtnCallMethod);
             this.Controls.Add(this.radPanel2);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radpnl_MESTEST);
@@ -824,6 +846,7 @@ namespace DHS.EQUIPMENT
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnWritePLCInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnCallMethod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -886,5 +909,6 @@ namespace DHS.EQUIPMENT
         private System.Windows.Forms.DataGridView dgvOcv;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private Telerik.WinControls.UI.RadButton radBtnCallMethod;
     }
 }

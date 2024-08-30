@@ -128,6 +128,7 @@ namespace DHS.EQUIPMENT
             mesinterface.OnWriteButtonClick += _MesClient_WriteMesValue;
             mesinterface.OnWriteMesValues += _MesClient_WriteMesValues;
             mesinterface.OnWriteIROCVValues += _MesClient_WriteIROCVValues;
+            mesinterface.OnCallMethod += _MesClient_CallMethod;
 
             //* MES Connection
             try
@@ -339,6 +340,10 @@ namespace DHS.EQUIPMENT
         private void _MesClient_WriteMesValues(int stageno, TrayRequestInfo trayRequestInfo)
         {
             
+        }
+        private void _MesClient_CallMethod(string tagParent, string Tag)
+        {
+            mesclient.CallMethod(tagParent, Tag);
         }
         #endregion
 

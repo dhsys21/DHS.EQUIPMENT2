@@ -15,6 +15,7 @@ namespace DHS.EQUIPMENT
 {
     public partial class MESINTERFACE : Form
     {
+        //MesClient mesclient = new MesClient();
         private static MESINTERFACE mesform;
         DataGridView[] dgvPLCs = new DataGridView[_Constant.frmCount];
         DataGridView[] dgvMESs = new DataGridView[_Constant.frmCount];
@@ -54,6 +55,15 @@ namespace DHS.EQUIPMENT
             if (OnWriteIROCVValues != null)
             {
                 OnWriteIROCVValues(stageno, irocvDataCollection);
+            }
+        }
+        public delegate void CallMethod(string tagParent, string Tag);
+        public event CallMethod OnCallMethod = null;
+        protected void RaiseOnCallMethod(string tagParent, string Tag)
+        {
+            if (OnCallMethod != null)
+            {
+                OnCallMethod(tagParent, Tag);
             }
         }
         #endregion
@@ -282,5 +292,10 @@ namespace DHS.EQUIPMENT
             RaiseOnIROCVValues(0, irocvDataCollection);
         }
         #endregion
+
+        private void radBtnCallMethod_Click(object sender, EventArgs e)
+        {
+            RaiseOnCallMethod("ns=2;i=5031", "ns=2;i=7004");
+        }
     }
 }
